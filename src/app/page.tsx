@@ -498,7 +498,9 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-6 text-gray-600 text-xs">
             <a href={`${APP_SIGNUP_URL}/login`} className="hover:text-gray-300 transition-colors">Log In</a>
-            <a href={`mailto:hello@theprogramsuite.com`} className="hover:text-gray-300 transition-colors">Contact</a>
+            <a href="mailto:hello@theprogramsuite.com" className="hover:text-gray-300 transition-colors">Contact</a>
+            <a href="/privacy" className="hover:text-gray-300 transition-colors">Privacy</a>
+            <a href="/terms" className="hover:text-gray-300 transition-colors">Terms</a>
             <span>© {new Date().getFullYear()} The Program Suite</span>
           </div>
         </div>
