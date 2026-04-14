@@ -159,7 +159,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Is the Founding Rate permanent?",
-    a: "Yes. The founding rate is locked to your account for the lifetime of your membership. You will never be repriced.",
+    a: "The founding rate is available while founding spots last. When spots close, the price moves to the regular rate. Your founding rate stays with you for as long as you remain a member — but it is not available to new members after the founding window ends.",
   },
   {
     q: "Do I need a separate app for my athletes?",
@@ -222,7 +222,7 @@ function TierCard({ tier }: { tier: Tier }) {
         <h3 className="text-white text-2xl font-black mb-4">{name}</h3>
         <div className="flex items-end gap-2 mb-1">
           <span className="text-white text-4xl font-black tabular-nums">{founding}</span>
-          <span className="text-gray-400 text-sm mb-1.5">/year founding</span>
+          <span className="text-gray-400 text-sm mb-1.5">/year · founding rate</span>
         </div>
         <p className="text-gray-600 text-xs line-through">Regular: {regular}/year</p>
       </div>
@@ -324,7 +324,7 @@ export default function LandingPage() {
             >
               Claim Your Founding Spot <ArrowRight size={18} />
             </a>
-            <span className="text-gray-500 text-sm">Starting at $79 / year — locked for life</span>
+            <span className="text-gray-500 text-sm">Starting at $79 / year — founding rate, limited spots</span>
           </div>
         </div>
       </section>
@@ -578,7 +578,8 @@ export default function LandingPage() {
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Most high school coaches start with the Coach tier and never need anything else.
-              Founding rates are your reward for being first — locked permanently.
+              Founding rates are your reward for being first — available while spots last.
+              When the founding window closes, the price moves to the regular rate.
             </p>
           </div>
 
@@ -633,7 +634,7 @@ export default function LandingPage() {
             Claim Your Founding Spot <ChevronRight size={20} />
           </a>
           <p className="text-gray-600 text-sm mt-6">
-            Starting at $79/year — locked for life — 30-day guarantee
+            Starting at $79/year — founding rate while spots last — 30-day guarantee
           </p>
         </div>
       </section>
