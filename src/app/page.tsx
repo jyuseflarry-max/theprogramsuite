@@ -3,71 +3,69 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  Play, Timer, Music2, Mic, Volume2, BookOpen, Dumbbell, Target,
+  ClipboardList, Dumbbell, Users, Eye,
   ChevronDown, ChevronRight, Check, Quote, Shield, ArrowRight,
-  Users, Globe, Zap,
+  Globe, Zap, Play, Timer, Music2, Mic, Volume2,
+  BookOpen, Target,
 } from "lucide-react";
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const APP_URL = "https://tpscoach.com";
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TRANSITION_STEPS = [
-  { icon: Volume2, label: "Music Ducks",        desc: "The gym quiets. No fumbling, no abrupt cuts. The energy winds down on your tempo." },
-  { icon: Mic,     label: "Drill Announced",    desc: "Your speakers call the next rotation — clearly, automatically, every single time." },
-  { icon: Music2,  label: "New Track Fades In", desc: "The energy for the next drill builds back in. The gym is already moving before you say a word." },
-  { icon: Timer,   label: "Clock Resets",       desc: "You never touched your phone. You never looked away from your players. Not once." },
+const ADMIN_TAXES = [
+  { time: "45 min", task: "Building tomorrow's practice plan from scratch" },
+  { time: "20 min", task: "Updating S&C weights after last week's maxes" },
+  { time: "15 min", task: "Texting your assistant the updated practice order" },
+  { time: "10 min", task: "Finding last month's drill to rebuild the template" },
 ];
 
-const PILLARS = [
+const PRACTICE_FEATURES = [
+  "Drag-and-drop timed plan builder — done in under 10 minutes",
+  "Drill vault with every rep you've ever run, searchable by tag and intensity",
+  "Reusable templates — build once, remix all season",
+  "Shot density auto-calculated so you always know your reps load",
+  "Live Co-Pilot: music, voice announcements, and transitions — hands-free",
+  "Periodization calendar so you can see the whole season at a glance",
+];
+
+const SC_FEATURES = [
+  "Build multi-week programs and assign them to your full team or individual athletes",
+  "Daily loads auto-calculated from each athlete's recorded maxes — no spreadsheet",
+  "Athletes walk in knowing exactly what weight to hit",
+  "Progress tracked over the season — you see who's improving, who's stalling",
+  "Scheduling built in — S&C sessions live on the same calendar as practice and games",
+  "Athlete-facing workout view so they can review sets, reps, and coaching cues",
+];
+
+const COLLAB_FEATURES = [
   {
-    name:   "The Vault",
-    icon:   BookOpen,
-    tag:    "Practice & Planning",
-    desc:   "Every drill you've ever run. Organized by tag, intensity, and objective. Build a timed practice plan from your library and share it with your staff — in under 10 minutes.",
-    items:  [
-      "Searchable drill library",
-      "Drag-and-drop plan builder",
-      "Reusable timed templates",
-      "Staff collaboration — live",
-    ],
+    icon: Users,
+    title: "Your staff is always on the same plan",
+    desc: "Assistants pull up today's practice on their own device — live, in real time. No printed sheets, no group text with a photo of the whiteboard, no version confusion at 3:30 when warmups start.",
   },
   {
-    name:   "The Lab",
-    icon:   Dumbbell,
-    tag:    "Strength & Performance",
-    desc:   "Assign training programs by team or individual. Daily loads auto-calculated from recorded maxes. Readiness scores surfaced before you ever hit the floor.",
-    items:  [
-      "S&C program assignment",
-      "Auto-calculated daily weights",
-      "Wellness check-ins",
-      "Athlete-facing dashboard",
-    ],
+    icon: Eye,
+    title: "Athletes walk in prepared",
+    desc: "When you publish a plan, athletes can see it before they hit the floor. They know the focus of the day. They know what to expect in the weight room. That 5-minute chalk talk gets sharper when everyone already has context.",
   },
   {
-    name:   "The War Room",
-    icon:   Target,
-    tag:    "Scouting & Operations",
-    desc:   "Build opponent profiles and printable scouting reports. Keep schedule, announcements, and team comms unified — so nothing gets buried in a group chat.",
-    items:  [
-      "Opponent tendencies & personnel",
-      "Printable PDF scouting reports",
-      "Unified game and practice calendar",
-      "Team-wide announcements",
-    ],
+    icon: ClipboardList,
+    title: "Attendance is automatic",
+    desc: "Every practice and S&C session has an attendance log built in. No clipboard. No roster sheet. Absences, tardies, and makeup work tracked in the same place as the plan — because the plan and the record of who ran it belong together.",
   },
 ];
 
 interface Tier {
-  name:        string;
-  icon:        React.ElementType;
-  audience:    string;
-  founding:    string;
-  regular:     string;
-  badge?:      string;
-  hook:        string;
-  features:    string[];
-  cta:         string;
+  name:      string;
+  icon:      React.ElementType;
+  audience:  string;
+  founding:  string;
+  regular:   string;
+  badge?:    string;
+  hook:      string;
+  features:  string[];
+  cta:       string;
 }
 
 const TIERS: Tier[] = [
@@ -75,26 +73,26 @@ const TIERS: Tier[] = [
     name:     "Coach",
     icon:     Play,
     audience: "Single Coach",
-    founding: "$150",
-    regular:  "$300",
-    badge:    "Most Popular",
-    hook:     "The full Co-Pilot for one coach and their team. Every tool in the suite, one price.",
+    founding: "$79",
+    regular:  "$149",
+    badge:    "Start Here",
+    hook:     "Practice planning, S&C management, and live floor co-pilot — everything a single high school coach needs to run a professional program.",
     features: [
-      "Live Practice Co-Pilot (voice + music transitions)",
-      "Full drill library with reusable templates",
-      "S&C program assignment and tracking",
-      "Scouting reports and opponent profiles",
-      "Team scheduling and communications",
-      "Staff collaboration — real time",
+      "Full drill library and plan builder",
+      "Live Practice Co-Pilot — voice, music, hands-free transitions",
+      "S&C program builder and athlete tracking",
+      "Staff collaboration — live plan sharing",
+      "Athlete-facing practice and workout view",
+      "Scheduling, attendance, and season calendar",
     ],
-    cta: "Claim Coach Rate",
+    cta: "Claim Founding Rate",
   },
   {
     name:     "Program",
     icon:     Users,
     audience: "HS Athletic Department",
-    founding: "$600",
-    regular:  "$1,200",
+    founding: "$499",
+    regular:  "$999",
     hook:     "Every sport, every coach, one platform. Built for athletic directors who want visibility across the entire department.",
     features: [
       "Everything in Coach",
@@ -115,7 +113,7 @@ const TIERS: Tier[] = [
     hook:     "Built for the demands of college athletics — recruiting, compliance, and performance tracking at a higher standard.",
     features: [
       "Everything in Program",
-      "Recruiting pipeline & prospect tracking",
+      "Recruiting pipeline and prospect tracking",
       "Transfer portal management",
       "Compliance documentation",
       "Advanced analytics and reporting",
@@ -134,7 +132,7 @@ const TIERS: Tier[] = [
       "Everything in Collegiate",
       "Full department deployment",
       "API access and data integrations",
-      "Scholarship & aid tracking",
+      "Scholarship and aid tracking",
       "NCAA / NAIA compliance tools",
       "Dedicated account manager",
     ],
@@ -145,27 +143,31 @@ const TIERS: Tier[] = [
 const FAQ_ITEMS = [
   {
     q: "What sports does this support?",
-    a: "Any team sport with a practice floor. Basketball is the primary use case today, with football, volleyball, and soccer in active development.",
+    a: "Basketball is the primary use case today, with football, volleyball, and soccer in active development. The practice planning and S&C modules work for any team sport.",
   },
   {
-    q: "Does it work without a Bluetooth speaker?",
-    a: "Yes. You can run it from any device with a browser. Audio transitions play through whatever output device you choose.",
+    q: "Can my assistant coaches see the plan live?",
+    a: "Yes. Staff pull up the plan in real time on their own device. Any change you make is reflected immediately — no printed sheets, no email threads.",
   },
   {
-    q: "Can my assistants see the practice plan live?",
-    a: "Yes. Staff can pull up the plan in real time on their own device. No printing, no email threads, no version confusion.",
+    q: "Can my athletes see their practice plan and workouts?",
+    a: "Yes. When you publish a plan, athletes can view it from their player dashboard before stepping into the gym. S&C sessions show their personalized weights based on their recorded maxes.",
+  },
+  {
+    q: "How does the S&C weight calculation work?",
+    a: "You record each athlete's max for a lift once. After that, daily loads are calculated automatically based on the intensity percentage you set in the program. Athletes see their target weight when they open their workout — no coach math required.",
   },
   {
     q: "Is the Founding Rate permanent?",
     a: "Yes. The founding rate is locked to your account for the lifetime of your membership. You will never be repriced.",
   },
   {
-    q: "How does the Collegiate recruiting pipeline work?",
-    a: "You build prospect profiles, track communication logs, and manage evaluation notes all in one place — connected to your practice and performance data. Recruiting tools are currently in development; founding members get access first.",
+    q: "Do I need a separate app for my athletes?",
+    a: "No. Athletes log in through the same platform on any browser. Their view is scoped to what you've published — they see practice plans, today's S&C session, and the schedule. They never see administrative or coaching-only content.",
   },
   {
-    q: "Can an Athletic Director manage multiple teams?",
-    a: "Yes. Program and Collegiate tiers include a department-level dashboard with visibility across all sports and coaching staffs.",
+    q: "Can I use this without running the live Co-Pilot feature?",
+    a: "Absolutely. The practice planning and S&C modules stand entirely on their own. The Co-Pilot is there when you want it — but you get full value from day one just building and managing your program.",
   },
 ];
 
@@ -301,19 +303,19 @@ export default function LandingPage() {
         />
         <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
           <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-6">
-            The Practice Co-Pilot
+            Built for the High School Coach
           </p>
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-8">
-            Stop Managing
+            More time
             <br />
-            <span className="text-brand-gold">the Clock.</span>
+            <span className="text-brand-gold">with your athletes.</span>
             <br />
-            Command the Gym.
+            Less time on admin.
           </h1>
           <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            You are the most important person in that gym.
-            Every second you spend standing next to a Bluetooth speaker
-            is a second you are&nbsp;<em>not</em> coaching.
+            You became a coach to develop athletes — not to build spreadsheets,
+            text practice orders to your assistant, and recalculate lifting weights
+            every Monday morning. There&rsquo;s a better way.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
@@ -322,31 +324,33 @@ export default function LandingPage() {
             >
               Claim Your Founding Spot <ArrowRight size={18} />
             </a>
-            <span className="text-gray-500 text-sm">Starting at $150 / year — locked for life</span>
+            <span className="text-gray-500 text-sm">Starting at $79 / year — locked for life</span>
           </div>
         </div>
       </section>
 
-      {/* ── 12-MINUTE CALL-OUT ── */}
+      {/* ── ADMIN TAX CALLOUT ── */}
       <section className="bg-brand-gold">
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-16 text-center sm:text-left">
-            <div>
-              <p className="text-6xl sm:text-7xl font-black tabular-nums leading-none text-brand-navy">12</p>
-              <p className="text-brand-navy/70 text-sm font-semibold uppercase tracking-widest mt-1">Minutes</p>
-            </div>
-            <div className="hidden sm:block w-px h-20 bg-brand-navy/20" aria-hidden="true" />
-            <div className="max-w-md">
-              <p className="text-xl sm:text-2xl font-bold leading-snug text-brand-navy">
-                Reclaimed every practice. Handed back to coaching.
-              </p>
-              <p className="text-brand-navy/70 text-sm mt-2 leading-relaxed">
-                Average transition waste per 90-minute practice across 3 drill rotations.
-                Over a 40-game season, that&rsquo;s more than 8 hours of authority
-                returned to you. Present this box to your Athletic Director. The math speaks.
-              </p>
-            </div>
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <p className="text-brand-navy text-2xl sm:text-3xl font-black leading-snug">
+              Here&rsquo;s what your week looks like before the first whistle blows.
+            </p>
+            <p className="text-brand-navy/70 text-sm mt-2">The admin tax every coach pays. Every single week.</p>
           </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {ADMIN_TAXES.map(({ time, task }) => (
+              <div key={task} className="bg-brand-navy/10 rounded-xl p-5">
+                <p className="text-brand-navy text-3xl font-black tabular-nums mb-1">{time}</p>
+                <p className="text-brand-navy/80 text-sm leading-snug">{task}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-brand-navy font-bold text-lg mt-8">
+            That&rsquo;s 90 minutes a week not spent watching film, not on the phone with a parent,
+            not building relationships with your kids.{" "}
+            <span className="underline decoration-2">The Program Suite gives it back.</span>
+          </p>
         </div>
       </section>
 
@@ -354,90 +358,176 @@ export default function LandingPage() {
       <section className="py-28 border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-8">
-            15% of your practice is{" "}
-            <span className="text-brand-gold">logistics.</span>
+            You wear every hat.
             <br />
-            None of it is coaching.
+            <span className="text-brand-gold">The platform should too.</span>
           </h2>
           <div className="space-y-5 text-gray-300 text-lg leading-relaxed max-w-3xl">
             <p>
-              You walk in. You&rsquo;ve got a plan. You&rsquo;ve got a message. You&rsquo;ve got things
-              to teach. And then the first 8 minutes look like this: find the music, set the
-              timer, yell the drill over the noise, repeat.
+              At the high school level, there&rsquo;s no director of athletic performance.
+              No director of player development. No full-time strength coach.
+              There&rsquo;s you — and whoever shows up to help.
             </p>
             <p>
-              The problem isn&rsquo;t discipline. It&rsquo;s not your staff.
-              It&rsquo;s that the floor has never had a system that runs <em>with</em> you.
+              You&rsquo;re writing the practice plan, tracking who lifted and who didn&rsquo;t,
+              calculating next week&rsquo;s loads from last week&rsquo;s maxes, and texting your
+              assistant coach the schedule change — usually while the team is warming up.
             </p>
             <p className="text-white font-semibold text-xl">
-              A professional practice should run with the precision of a clock —
-              so the Head Coach can focus entirely on teaching and correction.
-              That&rsquo;s not an aspiration. That&rsquo;s the standard.
+              The coaching you do matters. The admin work between reps
+              doesn&rsquo;t. The Program Suite handles the system
+              so you can focus on the athlete standing in front of you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── THE SCENE ── */}
+      {/* ── PRACTICE PLANNING ── */}
       <section className="py-28 bg-brand-navy-mid border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">The Co-Pilot Experience</p>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
-              Walk in. Hit Run.
-              <br />
-              <span className="text-brand-gold">The gym follows your lead.</span>
-            </h2>
-          </div>
-
-          {/* Scene */}
-          <div className="bg-brand-navy rounded-2xl border border-brand-gold/20 p-8 sm:p-12 mb-16">
-            <div className="flex items-start gap-4 mb-6">
-              <span
-                className="w-10 h-10 rounded-full bg-brand-orange flex items-center justify-center shrink-0 mt-0.5"
-                aria-hidden="true"
-              >
-                <Play size={16} className="text-white ml-0.5" />
-              </span>
-              <p className="text-gray-200 text-lg sm:text-xl leading-relaxed">
-                You walk into the gym. You open the app. You hit{" "}
-                <span className="text-white font-bold">&ldquo;Run.&rdquo;</span>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Practice Planning</p>
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-6">
+                A practice plan that actually runs itself.
+              </h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                Build your drill library once. Every rep you&rsquo;ve ever run — tagged by
+                category, intensity, and objective — ready to drag into a timed plan in minutes.
+                Hit Run. The Co-Pilot handles transitions, music, and announcements.
+                You put your phone in your pocket and coach.
               </p>
+              <ul className="space-y-3" role="list">
+                {PRACTICE_FEATURES.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-gray-300">
+                    <Check size={14} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed pl-14">
-              The music starts. The first drill is announced over your speakers.
-              The timer begins. You put your phone in your pocket.
-              You walk to the baseline. You start coaching.
+
+            {/* Visual: transition sequence */}
+            <div className="flex flex-col gap-3">
+              {[
+                { icon: Volume2, step: "01", label: "Music ducks",          desc: "The gym quiets. No fumbling. The energy winds down on your tempo." },
+                { icon: Mic,     step: "02", label: "Drill announced",       desc: "Your speakers call the next rotation — clearly, automatically, every time." },
+                { icon: Music2,  step: "03", label: "New track fades in",    desc: "Energy for the next drill builds back in. The gym moves before you say a word." },
+                { icon: Timer,   step: "04", label: "Clock resets",          desc: "You never touched your phone. You never looked away from your players." },
+              ].map(({ icon: Icon, step, label, desc }) => (
+                <div key={label} className="bg-brand-navy border border-white/10 rounded-xl p-5 flex items-start gap-4">
+                  <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                    <span className="text-brand-gold font-black text-xs font-mono">{step}</span>
+                    <Icon size={14} className="text-brand-gold" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm mb-1">{label}</p>
+                    <p className="text-gray-400 text-xs leading-relaxed">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STRENGTH & CONDITIONING ── */}
+      <section className="py-28 border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Visual: athlete card mockup */}
+            <div className="order-2 lg:order-1">
+              <div className="bg-brand-navy-mid border border-white/10 rounded-2xl p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-brand-gold text-xs font-bold uppercase tracking-widest">Today&rsquo;s Session — Week 4, Day 2</p>
+                  <span className="text-xs font-mono text-gray-500">Lower Body Power</span>
+                </div>
+                {[
+                  { lift: "Back Squat",     sets: "4×5", weight: "225 lbs", pct: "80%" },
+                  { lift: "Romanian DL",    sets: "3×8", weight: "185 lbs", pct: "70%" },
+                  { lift: "Box Jump",       sets: "4×4", weight: "Bodyweight", pct: "—"  },
+                  { lift: "Nordic Curl",    sets: "3×6", weight: "Bodyweight", pct: "—"  },
+                ].map(({ lift, sets, weight, pct }) => (
+                  <div key={lift} className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
+                    <div>
+                      <p className="text-white font-semibold text-sm">{lift}</p>
+                      <p className="text-gray-500 text-xs font-mono">{sets}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-brand-gold font-black text-sm tabular-nums">{weight}</p>
+                      {pct !== "—" && <p className="text-gray-600 text-xs font-mono">{pct} 1RM</p>}
+                    </div>
+                  </div>
+                ))}
+                <p className="text-gray-600 text-[10px] font-mono pt-1">Weights auto-calculated from recorded maxes · Coach assigned</p>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Strength &amp; Conditioning</p>
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-6">
+                Every athlete.
+                <br />
+                Right weight.
+                <br />
+                <span className="text-brand-gold">Every session.</span>
+              </h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                Build a program once. Assign it to your team. The platform handles
+                the math — each athlete&rsquo;s daily loads are calculated from their
+                individual maxes. They walk in knowing exactly what to lift.
+                You walk in knowing exactly who&rsquo;s on track.
+              </p>
+              <ul className="space-y-3" role="list">
+                {SC_FEATURES.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-gray-300">
+                    <Check size={14} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── COLLABORATION ── */}
+      <section className="py-28 bg-brand-navy-mid border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Staff &amp; Athletes</p>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-6">
+              Everyone aligned.
+              <br />
+              <span className="text-brand-gold">Before you walk in the door.</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Great coaching is communication. The Program Suite extends
+              that communication before the first whistle — to your staff
+              and to your athletes.
             </p>
           </div>
 
-          {/* Transition sequence */}
-          <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-6 text-center">
-            What happens at every transition — without you touching a thing
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {TRANSITION_STEPS.map(({ icon: Icon, label, desc }, i) => (
-              <div key={label} className="bg-brand-navy border border-white/10 rounded-xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-brand-gold font-black text-xs font-mono">0{i + 1}</span>
-                  <Icon size={15} className="text-brand-gold" aria-hidden="true" />
+          <div className="grid md:grid-cols-3 gap-6">
+            {COLLAB_FEATURES.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="rounded-2xl border border-brand-gold/20 bg-brand-navy p-8 flex flex-col gap-4">
+                <div className="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center">
+                  <Icon size={22} className="text-brand-gold" aria-hidden="true" />
                 </div>
-                <p className="text-white font-bold text-base mb-2">{label}</p>
+                <h3 className="text-white font-bold text-lg leading-snug">{title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
-          {/* Transformation */}
-          <div className="mt-16 border-t border-white/10 pt-16 max-w-3xl mx-auto text-center">
-            <p className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-              You are free to roam. Free to pull a player aside
-              for a 30-second correction — without the entire practice
-              grinding to a halt because{" "}
-              <span className="text-gray-400 italic">&ldquo;Coach forgot to hit the buzzer.&rdquo;</span>
+          <div className="mt-12 border border-brand-gold/20 bg-brand-navy rounded-2xl p-8 max-w-3xl mx-auto text-center">
+            <p className="text-2xl font-bold text-white leading-snug mb-3">
+              When your athlete walks into the gym already knowing what&rsquo;s on the plan,
+              you skip the orientation and start coaching.
             </p>
-            <p className="text-brand-gold font-bold text-lg mt-6">
-              The gym follows your rhythm, powered by the Co-Pilot.
+            <p className="text-brand-gold font-semibold text-base">
+              That&rsquo;s not a minor convenience. That&rsquo;s the first five minutes of every practice, reclaimed.
             </p>
           </div>
         </div>
@@ -454,12 +544,13 @@ export default function LandingPage() {
             />
             <div>
               <blockquote className="text-white text-xl sm:text-2xl font-semibold leading-relaxed mb-8">
-                &ldquo;I spent 22 years on the sideline. I realized that my impact as a coach
-                was capped by how much admin work I was doing on the floor.
-                I built the Co-Pilot to take the logistics off my plate
-                so I could actually lead.
-                It&rsquo;s the tool for coaches who want their{" "}
-                <span className="text-brand-gold">presence felt in every corner of the court.&rdquo;</span>
+                &ldquo;I spent 22 years on the sideline. The best coaching I ever did
+                happened in the moments I wasn&rsquo;t managing the logistics —
+                when I was standing next to a kid at the baseline, talking through
+                what I saw. I built this to create more of those moments.
+                Not for the programs with full-time staff and budgets.
+                For the coach who shows up alone and makes it{" "}
+                <span className="text-brand-gold">work anyway.&rdquo;</span>
               </blockquote>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center" style={{ background: "rgba(197,160,89,0.1)" }}>
@@ -475,59 +566,19 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── UTILITY BELT ── */}
-      <section className="py-28 bg-brand-navy-mid border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">The Utility Belt</p>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-6">
-              Everything else your program runs on.
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              You use Hudl for film. You use FastModel for Xs and Os.
-              Use <strong className="text-white">The Program Suite</strong> to lead the session.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {PILLARS.map(({ name, icon: Icon, tag, desc, items }) => (
-              <div
-                key={name}
-                className="rounded-2xl border border-brand-gold/20 bg-brand-navy p-8 flex flex-col gap-6"
-              >
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <Icon size={20} className="text-brand-gold" aria-hidden="true" />
-                    <span className="text-brand-gold text-xs font-bold uppercase tracking-widest">{tag}</span>
-                  </div>
-                  <h3 className="text-2xl font-black text-white mb-3">{name}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
-                </div>
-                <ul className="space-y-2.5" role="list">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-gray-300">
-                      <Check size={13} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── PRICING ── */}
-      <section className="py-28 border-b border-white/5" id="pricing">
+      <section className="py-28 border-b border-white/5 bg-brand-navy-mid" id="pricing">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Founding Rates</p>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-6">
-              Lock in the professional standard.
+              Lock in the rate.
+              <br />
+              Keep it for life.
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Founding rates are your reward for being first.
-              Every price below is locked to your account for life.
+              Most high school coaches start with the Coach tier and never need anything else.
+              Founding rates are your reward for being first — locked permanently.
             </p>
           </div>
 
@@ -542,15 +593,15 @@ export default function LandingPage() {
             <Shield size={28} className="text-green-400 mx-auto mb-3" aria-hidden="true" />
             <p className="text-white font-bold text-lg mb-2">30-Day No-Questions Guarantee</p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              If the Co-Pilot doesn&rsquo;t change how your practice feels within 30 days,
-              you get a full refund. No forms, no follow-up email. Just ask.
+              If The Program Suite doesn&rsquo;t change how your practice and S&C weeks feel
+              within 30 days, you get a full refund. No forms, no follow-up email. Just ask.
             </p>
           </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-28 bg-brand-navy-mid border-b border-white/5">
+      <section className="py-28 border-b border-white/5">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-2xl sm:text-4xl font-black mb-12 text-center">Questions.</h2>
           {FAQ_ITEMS.map((item) => (
@@ -560,20 +611,20 @@ export default function LandingPage() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="py-28">
+      <section className="py-28 bg-brand-navy-mid">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-6">
-            The Floor Generals
+            Built for Coaches Like You
           </p>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.9] mb-8">
-            The gym is waiting.
+            Your athletes deserve
             <br />
-            <span className="text-brand-gold">Time to run it.</span>
+            <span className="text-brand-gold">your full attention.</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-xl mx-auto mb-10">
-            The coaches who build great programs don&rsquo;t manage clocks.
-            They command attention, correct in real time, and leave the
-            logistics to a system that never misses a transition.
+            Every practice plan built in minutes. Every S&C session loaded automatically.
+            Every assistant on the same page before warmups start.
+            The admin work is done. The coaching can begin.
           </p>
           <a
             href={APP_URL}
@@ -582,7 +633,7 @@ export default function LandingPage() {
             Claim Your Founding Spot <ChevronRight size={20} />
           </a>
           <p className="text-gray-600 text-sm mt-6">
-            Starting at $150/year — locked for life — 30-day guarantee
+            Starting at $79/year — locked for life — 30-day guarantee
           </p>
         </div>
       </section>
