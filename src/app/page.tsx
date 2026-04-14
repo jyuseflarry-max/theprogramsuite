@@ -3,15 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ClipboardList, Dumbbell, Users, Eye,
+  ClipboardList, Users, Eye,
   ChevronDown, ChevronRight, Check, Quote, Shield, ArrowRight,
-  Play, Timer, Music2, Mic, Volume2, Zap,
+  Play, Timer, Music2, Mic, Volume2,
 } from "lucide-react";
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const APP_URL = "https://tpscoach.com";
-const FOUNDING_SPOTS_TOTAL = 100;
-const FOUNDING_SPOTS_TAKEN = 23; // update manually as members join
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SPORTS = [
@@ -63,55 +61,14 @@ const COLLAB_FEATURES = [
   },
 ];
 
-interface Tier {
-  name:      string;
-  icon:      React.ElementType;
-  audience:  string;
-  founding:  string;
-  regular:   string;
-  badge?:    string;
-  hook:      string;
-  features:  string[];
-  cta:       string;
-}
-
-const TIERS: Tier[] = [
-  {
-    name:     "Coach",
-    icon:     Play,
-    audience: "Single Coach · Any Sport",
-    founding: "$79",
-    regular:  "$149",
-    badge:    "Start Here",
-    hook:     "Practice planning and S&C management in one place — everything a high school coach needs to run a professional program, regardless of sport.",
-    features: [
-      "Full drill library and plan builder — any sport",
-      "Live Co-Pilot — music, voice transitions, hands-free",
-      "S&C program builder and athlete tracking",
-      "Auto-calculated daily weights from recorded maxes",
-      "Athlete-facing practice and workout view",
-      "Scheduling, attendance, and season calendar",
-      "Staff collaboration — live plan sharing",
-    ],
-    cta: "Claim Founding Rate",
-  },
-  {
-    name:     "Program",
-    icon:     Users,
-    audience: "Multiple Coaches · Multiple Sports",
-    founding: "$499",
-    regular:  "$999",
-    hook:     "Every coach in your program on one platform. Practice planning and S&C unified across your entire athletic department.",
-    features: [
-      "Everything in Coach",
-      "Unlimited coaches and sports",
-      "Cross-sport scheduling and shared calendar",
-      "Department-level visibility for coordinators",
-      "Centralized communications across teams",
-      "Priority support",
-    ],
-    cta: "Claim Program Rate",
-  },
+const COACH_FEATURES = [
+  "Full drill library and plan builder — any sport",
+  "Live Co-Pilot — music, voice transitions, hands-free",
+  "S&C program builder and athlete tracking",
+  "Auto-calculated daily weights from recorded maxes",
+  "Athlete-facing practice and workout view",
+  "Scheduling, attendance, and season calendar",
+  "Staff collaboration — live plan sharing",
 ];
 
 const FAQ_ITEMS = [
@@ -168,65 +125,6 @@ function FaqRow({ q, a }: { q: string; a: string }) {
   );
 }
 
-function TierCard({ tier }: { tier: Tier }) {
-  const { name, icon: Icon, audience, founding, regular, badge, hook, features, cta } = tier;
-  const isPopular = !!badge;
-  return (
-    <div
-      className={`relative flex flex-col rounded-2xl overflow-hidden border ${
-        isPopular
-          ? "border-brand-gold bg-brand-navy-mid"
-          : "border-white/10 bg-brand-navy-mid/50"
-      }`}
-    >
-      {isPopular && (
-        <div className="bg-brand-gold px-4 py-1.5 text-center">
-          <span className="text-[#0F172A] text-[10px] font-black uppercase tracking-widest">
-            {badge}
-          </span>
-        </div>
-      )}
-
-      <div className="p-6 border-b border-white/10">
-        <div className="flex items-center gap-2 mb-3">
-          <Icon size={16} className="text-brand-gold" aria-hidden="true" />
-          <span className="text-brand-gold text-xs font-bold uppercase tracking-widest">{audience}</span>
-        </div>
-        <h3 className="text-white text-2xl font-black mb-4">{name}</h3>
-        <div className="flex items-end gap-2 mb-1">
-          <span className="text-white text-4xl font-black tabular-nums">{founding}</span>
-          <span className="text-gray-400 text-sm mb-1.5">/year · founding rate</span>
-        </div>
-        <p className="text-gray-600 text-xs line-through">Regular: {regular}/year</p>
-      </div>
-
-      <div className="px-6 py-4 border-b border-white/10">
-        <p className="text-gray-300 text-sm leading-relaxed">{hook}</p>
-      </div>
-
-      <div className="p-6 flex flex-col flex-1">
-        <ul className="space-y-2.5 flex-1 mb-6" role="list">
-          {features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5 text-sm text-gray-300">
-              <Check size={13} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
-              {f}
-            </li>
-          ))}
-        </ul>
-        <a
-          href={APP_URL}
-          className={`block text-center font-black text-sm py-3.5 rounded-lg transition-colors ${
-            isPopular
-              ? "bg-brand-orange hover:bg-brand-orange-dark text-white"
-              : "bg-white/10 hover:bg-white/20 text-white"
-          }`}
-        >
-          {cta}
-        </a>
-      </div>
-    </div>
-  );
-}
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
@@ -560,50 +458,65 @@ export default function LandingPage() {
 
       {/* ── PRICING ── */}
       <section className="py-28 border-b border-white/5 bg-brand-navy-mid" id="pricing">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Founding Rates</p>
+        <div className="max-w-2xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Founding Rate</p>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-6">
-              Simple pricing.
+              One plan.
               <br />
-              Built for coaches, not budgets.
+              Everything you need.
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Most coaches start with the Coach tier and never need anything else.
-              Founding rates are available for the first {FOUNDING_SPOTS_TOTAL} members — when the window closes,
-              the price moves to the regular rate for new members.
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              Practice planning and S&C in one place — for one coach, any sport.
+              Founding rate is locked in for life as long as you stay active.
             </p>
           </div>
 
-          {/* Founding spots tracker */}
-          <div className="max-w-2xl mx-auto mb-8 bg-brand-navy border border-brand-gold/20 rounded-2xl p-5">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <Zap size={14} className="text-brand-gold" aria-hidden="true" />
-                <span className="text-white font-bold text-sm">Founding Spots</span>
-              </div>
-              <span className="text-brand-gold font-black text-sm tabular-nums">
-                {FOUNDING_SPOTS_TAKEN} of {FOUNDING_SPOTS_TOTAL} claimed
+          {/* Single pricing card */}
+          <div className="rounded-2xl overflow-hidden border border-brand-gold bg-brand-navy-mid">
+            <div className="bg-brand-gold px-4 py-1.5 text-center">
+              <span className="text-[#0F172A] text-[10px] font-black uppercase tracking-widest">
+                Founding Member Rate
               </span>
             </div>
-            <div className="h-2 rounded-full bg-white/10 overflow-hidden" role="progressbar" aria-valuenow={FOUNDING_SPOTS_TAKEN} aria-valuemin={0} aria-valuemax={FOUNDING_SPOTS_TOTAL} aria-label={`${FOUNDING_SPOTS_TAKEN} of ${FOUNDING_SPOTS_TOTAL} founding spots claimed`}>
-              <div
-                className="h-full rounded-full bg-brand-gold transition-all"
-                style={{ width: `${(FOUNDING_SPOTS_TAKEN / FOUNDING_SPOTS_TOTAL) * 100}%` }}
-              />
+
+            <div className="p-8 border-b border-white/10">
+              <div className="flex items-center gap-2 mb-4">
+                <Play size={16} className="text-brand-gold" aria-hidden="true" />
+                <span className="text-brand-gold text-xs font-bold uppercase tracking-widest">Single Coach · Any Sport</span>
+              </div>
+              <div className="flex items-end gap-3 mb-1">
+                <span className="text-white text-6xl font-black tabular-nums">$79</span>
+                <div className="mb-2">
+                  <p className="text-gray-400 text-sm">/year</p>
+                  <p className="text-gray-600 text-xs line-through">$149/year after founding window</p>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mt-4 leading-relaxed">
+                Practice planning and S&amp;C management in one place — everything a high school coach
+                needs to run a professional program, regardless of sport.
+              </p>
             </div>
-            <p className="text-gray-500 text-xs mt-2.5">
-              {FOUNDING_SPOTS_TOTAL - FOUNDING_SPOTS_TAKEN} spots remaining at the founding rate — once they&rsquo;re gone, the price moves to the regular rate for new members.
-            </p>
+
+            <div className="p-8">
+              <ul className="space-y-3 mb-8" role="list">
+                {COACH_FEATURES.map((f) => (
+                  <li key={f} className="flex items-start gap-3 text-sm text-gray-300">
+                    <Check size={14} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={APP_URL}
+                className="block text-center font-black text-base py-4 rounded-lg bg-brand-orange hover:bg-brand-orange-dark text-white transition-colors"
+              >
+                Claim Your Founding Rate
+              </a>
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {TIERS.map((tier) => (
-              <TierCard key={tier.name} tier={tier} />
-            ))}
-          </div>
-
-          <div className="mt-12 max-w-xl mx-auto border border-green-500/30 bg-green-500/5 rounded-2xl p-8 text-center">
+          <div className="mt-8 border border-green-500/30 bg-green-500/5 rounded-2xl p-8 text-center">
             <Shield size={28} className="text-green-400 mx-auto mb-3" aria-hidden="true" />
             <p className="text-white font-bold text-lg mb-2">30-Day No-Questions Guarantee</p>
             <p className="text-gray-400 text-sm leading-relaxed">
