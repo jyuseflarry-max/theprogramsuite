@@ -170,7 +170,7 @@ export default function LandingPage() {
         />
         <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
           <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-6">
-            Built for Texas High School Coaches
+            Built for High School Coaches
           </p>
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] mb-8">
             Practice planning.
@@ -447,7 +447,7 @@ export default function LandingPage() {
                   <span className="text-brand-gold font-black text-sm">JL</span>
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm">Coach Larry</p>
+                  <p className="text-white font-bold text-sm">Coach Jyusef Larry</p>
                   <p className="text-gray-500 text-xs">Founder · Texas High School Coach · 22 Years</p>
                 </div>
               </div>
@@ -541,7 +541,7 @@ export default function LandingPage() {
       <section className="py-28 bg-brand-navy-mid">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-6">
-            Texas High School Coaches
+            High School Coaches
           </p>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.9] mb-8">
             Your athletes deserve
