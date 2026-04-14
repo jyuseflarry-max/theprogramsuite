@@ -196,7 +196,7 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center gap-3">
             <a
               href={APP_URL}
               className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-dark text-white font-black text-lg px-10 py-5 rounded-lg transition-colors flex items-center justify-center gap-2"
