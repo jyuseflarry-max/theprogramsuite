@@ -3,135 +3,146 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
-  ClipboardList, Dumbbell, Calendar, Users, Package, MessageSquare,
+  ClipboardList, Dumbbell, Users, MessageSquare,
   Check, Play, X, ChevronRight, Quote, Menu, Timer, Music2, Mic,
-  Zap, BarChart2, Activity, Volume2, Minus, ChevronDown,
+  Minus, ChevronDown, BookOpen, Target, HeartPulse, Calendar,
+  Volume2, Zap,
 } from "lucide-react";
 
 // ── Configuration ─────────────────────────────────────────────────────────────
-const APP_URL       = "https://tpscoach.com";
-const VIDEO_EMBED   = ""; // paste YouTube embed URL when ready
+const APP_URL     = "https://tpscoach.com";
+const VIDEO_EMBED = ""; // paste YouTube embed URL when ready
 // ──────────────────────────────────────────────────────────────────────────────
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const RUNNER_STEPS = [
+const COPILOT_STEPS = [
   {
-    icon: ClipboardList,
-    step: "01",
-    title: "Build your practice",
-    desc: "Drag drills from your Vault into a timed plan. Set durations, assign music, add coaching notes. Takes 10 minutes.",
+    step:  "01",
+    icon:  ClipboardList,
+    title: "Build It.",
+    desc:  "Drag your drills into a timed plan. Assign a playlist to each segment. Add coaching cues for your staff. The whole setup takes under 10 minutes.",
   },
   {
-    icon: Play,
-    step: "02",
-    title: "Hit Run Practice",
-    desc: "One button. The timer starts, the first drill is announced, and your music fades in at practice volume.",
+    step:  "02",
+    icon:  Play,
+    title: "Hit Run.",
+    desc:  "One tap. The Co-Pilot takes over. The timer starts, the first drill is announced over your speakers, and the music fades in — all at once, automatically.",
   },
   {
-    icon: Zap,
-    step: "03",
-    title: "Coach — not manage",
-    desc: "At every transition, music fades, the next drill is called out, and the clock resets. Automatically. You never touch your phone.",
+    step:  "03",
+    icon:  Zap,
+    title: "Just Coach.",
+    desc:  "At every transition, music fades, the next drill is called out, and the clock resets — without you touching a thing. Phone in pocket. Eyes on your athletes.",
   },
 ];
 
-const FEATURES = [
+const TRANSITION_SEQUENCE = [
   {
-    icon: Timer,
-    title: "Live Practice Runner",
-    desc: "The first platform with a real-time floor manager. Drill timer, voice announcements, and period tracking — all running hands-free.",
-    highlight: true,
+    icon:  Volume2,
+    label: "Music fades smoothly",
+    desc:  "The gym quiets down automatically. No fumbling. No abrupt cuts.",
   },
   {
-    icon: Music2,
-    title: "Automatic Music Transitions",
-    desc: "Spotify playlists assigned per drill. Music crossfades and loops between drills. Volume ducks during announcements, then fades back in.",
-    highlight: true,
+    icon:  Mic,
+    label: "Drill announced",
+    desc:  "Your speakers call the next drill — clearly, every single time.",
   },
   {
-    icon: ClipboardList,
-    title: "Practice Planning Suite",
-    desc: "Build, save, and reuse drill-level practice scripts. Your entire library in one place — shareable with staff in real time.",
+    icon:  Music2,
+    label: "Next playlist begins",
+    desc:  "The energy for the next drill builds back in automatically.",
   },
   {
-    icon: Package,
-    title: "Drill Vault",
-    desc: "A searchable library of every drill you've ever run. Tagged by intensity, space, objectives, and stat impact. Your playbook, organized.",
+    icon:  Timer,
+    label: "Clock resets",
+    desc:  "You never touched your phone. You never looked away from your players.",
+  },
+];
+
+const BEFORE_AFTER = [
+  {
+    icon:   Mic,
+    before: "You yell the next drill into a loud gym. Half the team is still shooting. You yell again.",
+    after:  "The Co-Pilot announces it clearly over your speakers. Every player hears it. Every time.",
   },
   {
-    icon: Dumbbell,
-    title: "Strength & Conditioning",
-    desc: "Assign programs by team or athlete, track maxes automatically, and generate daily weights. No more spreadsheet gymnastics.",
+    icon:   Music2,
+    before: "You stop mid-coaching, unlock your phone, find the playlist. The energy dies. You've lost the room.",
+    after:  "Playlists transition seamlessly between drills. The pace never breaks. The energy stays.",
   },
   {
-    icon: Activity,
-    title: "Player Wellness Tracking",
-    desc: "Daily vibe checks surface readiness scores before practice. Know who's dragging before they step on the floor.",
+    icon:   Timer,
+    before: "You're watching the clock instead of watching your players. You miss the teachable moment.",
+    after:  "The clock manages itself. You manage your athletes. That's the entire difference.",
+  },
+];
+
+const UTILITY_BELT = [
+  {
+    name:  "The Vault",
+    icon:  BookOpen,
+    tag:   "Practice & Planning",
+    desc:  "Your full drill library, practice plan templates, and session history — searchable, reusable, shareable with your staff in real time.",
+    items: ["Drill library with tags and objectives", "Practice plan builder", "Session history and analytics", "Staff collaboration tools"],
   },
   {
-    icon: Users,
-    title: "Player & Roster Database",
-    desc: "Full roster management with attendance history, readiness trends, and athlete-facing plan views — all in one dashboard.",
+    name:  "The Lab",
+    icon:  Dumbbell,
+    tag:   "Strength & Wellness",
+    desc:  "Assign strength programs, auto-calculate daily weights from athlete maxes, and surface readiness scores before practice even starts.",
+    items: ["Strength & conditioning programs", "Auto-calculated daily weights", "Daily wellness check-ins", "Player readiness scores"],
   },
   {
-    icon: BarChart2,
-    title: "Scouting & Reports",
-    desc: "Build opponent profiles, generate printable scouting reports, and track team tendencies across your full schedule.",
-  },
-  {
-    icon: Calendar,
-    title: "Live-Sync Scheduling",
-    desc: "Game schedule, strength calendar, and practice schedule unified. Players see updates the moment you make them.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Team Communications",
-    desc: "Message players, parents, and staff from the same platform your whole program already lives in. No more lost group texts.",
+    name:  "The War Room",
+    icon:  Target,
+    tag:   "Scouting & Comms",
+    desc:  "Build opponent profiles, generate printable scouting reports, and keep your entire program on the same page — schedule, announcements, and messages unified.",
+    items: ["Opponent scouting profiles", "Printable scouting reports", "Game and practice schedule", "Team messaging + announcements"],
   },
 ];
 
 const COMPARE_ROWS = [
-  { feature: "Live Practice Runner",        us: true,  fastmodel: false, hudl: false  },
-  { feature: "Auto Music Transitions",      us: true,  fastmodel: false, hudl: false  },
-  { feature: "Drill Voice Announcements",   us: true,  fastmodel: false, hudl: false  },
-  { feature: "Drill Vault / Library",       us: true,  fastmodel: true,  hudl: false  },
+  { feature: "Live Practice Runner",        us: true,  fastmodel: false, hudl: false   },
+  { feature: "Automated Announcements",     us: true,  fastmodel: false, hudl: false   },
+  { feature: "Seamless Music Transitions",  us: true,  fastmodel: false, hudl: false   },
+  { feature: "Drill Vault / Library",       us: true,  fastmodel: true,  hudl: false   },
   { feature: "Practice Planning",           us: true,  fastmodel: true,  hudl: "partial" },
-  { feature: "Scouting Reports",            us: true,  fastmodel: true,  hudl: true   },
-  { feature: "Strength & Conditioning",     us: true,  fastmodel: false, hudl: false  },
-  { feature: "Player Wellness Tracking",    us: true,  fastmodel: false, hudl: false  },
+  { feature: "Scouting Reports",            us: true,  fastmodel: true,  hudl: true    },
+  { feature: "Strength & Conditioning",     us: true,  fastmodel: false, hudl: false   },
+  { feature: "Player Wellness Tracking",    us: true,  fastmodel: false, hudl: false   },
   { feature: "Athlete-Facing Views",        us: true,  fastmodel: false, hudl: "partial" },
-  { feature: "Film Review",                 us: false, fastmodel: false, hudl: true   },
-  { feature: "Single-team annual price",    us: "$149 founding",  fastmodel: "$149–$999", hudl: "$1,000–$4,000" },
+  { feature: "Film Review",                 us: false, fastmodel: false, hudl: true    },
+  { feature: "Single-team annual price",    us: "$149 founding", fastmodel: "$149–$999", hudl: "$1,000–$4,000" },
 ];
 
 const TIERS = [
   {
-    name: "Coach",
-    tagline: "One program. Everything included.",
+    name:          "Coach",
+    tagline:       "Your personal Floor Manager. One program, everything included.",
+    badge:         "Best for Co-Pilot",
     foundingPrice: 149,
-    regularPrice: 290,
-    period: "year",
-    badge: null,
+    regularPrice:  290,
+    highlight:     true,
     features: [
-      "Full practice planner + live runner",
+      "Full Practice Co-Pilot — live runner, announcements, music",
       "Drill Vault (unlimited drills)",
-      "Spotify integration + audio ducking",
+      "Spotify integration + seamless transitions",
+      "Practice planning + session history",
       "Scouting (up to 10 opponents)",
       "Up to 25 players",
       "1 head coach + 2 assistant accounts",
-      "Lock in founding rate for life",
+      "Founding rate locked for life",
     ],
-    cta: "Start as a Founding Coach",
-    highlight: false,
+    cta: "Claim Your Founding Rate",
   },
   {
-    name: "Program",
-    tagline: "Your whole department. One platform.",
+    name:          "Program",
+    tagline:       "Your whole department. One platform.",
+    badge:         null,
     foundingPrice: 390,
-    regularPrice: 790,
-    period: "year",
-    badge: "Most Popular",
+    regularPrice:  790,
+    highlight:     false,
     features: [
       "Everything in Coach",
       "Multiple sports under one account",
@@ -139,20 +150,19 @@ const TIERS = [
       "Unlimited coaching staff accounts",
       "Strength & conditioning module",
       "Individual athlete plan views",
-      "Player vibe check + wellness tracking",
+      "Player wellness tracking",
       "Priority support",
-      "Lock in founding rate for life",
+      "Founding rate locked for life",
     ],
     cta: "Start as a Founding Program",
-    highlight: true,
   },
   {
-    name: "Elite",
-    tagline: "Collegiate programs and serious clubs.",
+    name:          "Elite",
+    tagline:       "Collegiate programs and serious clubs.",
+    badge:         null,
     foundingPrice: 990,
-    regularPrice: 1990,
-    period: "year",
-    badge: null,
+    regularPrice:  1990,
+    highlight:     false,
     features: [
       "Everything in Program",
       "Unlimited players and staff",
@@ -162,37 +172,36 @@ const TIERS = [
       "Dedicated onboarding call",
       "SLA support",
       "Conference / multi-school licensing",
-      "Lock in founding rate for life",
+      "Founding rate locked for life",
     ],
     cta: "Start as a Founding Elite",
-    highlight: false,
   },
 ];
 
 const FAQS = [
   {
-    q: "What is the live practice runner?",
-    a: "When you hit Run Practice, the app manages the floor automatically — it announces each drill name through your device speaker, keeps a visible countdown clock, fades your Spotify music between drills, and signals the end of each period. You plan it once; the app manages every transition so you stay focused on coaching.",
+    q: "What exactly does the Practice Co-Pilot do?",
+    a: "When you tap Run Practice, the Co-Pilot manages your entire floor automatically — it announces each drill by name through your device speaker, keeps a visible countdown timer, transitions your Spotify playlists between drills, and signals the end of each period. You plan it once; it handles every transition so you can focus on coaching.",
   },
   {
     q: "Do I need Spotify Premium for the music features?",
-    a: "Yes, the audio ducking and automatic playlist transitions require a Spotify Premium account. The rest of the platform — practice planning, drill vault, scouting, S&C — works without it.",
+    a: "Yes. Seamless playlist transitions require a Spotify Premium account. All other features — practice planning, drill vault, scouting, S&C — work without it.",
   },
   {
-    q: "Can my assistant coaches and players see the same practice plan?",
-    a: "Yes. Staff accounts see the full plan and can collaborate in real time. Players get their own view showing their individual schedule and plan for the day — no ability to edit.",
+    q: "Can my assistant coaches see the plan in real time?",
+    a: "Yes. Staff accounts see the full plan and can collaborate live. Players get their own view showing their schedule for the day — no ability to edit.",
   },
   {
     q: "Is this only for basketball?",
-    a: "The platform was built first for basketball, where the live runner is most natural (timed segments, music culture, fast transitions). But the architecture is sport-agnostic — volleyball, soccer, and football coaches are all on the roadmap.",
+    a: "The platform was built first for basketball, where the live runner is most natural — timed segments, music culture, fast transitions. The architecture is sport-agnostic. Volleyball, soccer, and football are on the roadmap.",
   },
   {
     q: "What happens to my founding price if you add new features?",
-    a: "Nothing. Your founding price is locked for as long as you stay subscribed. When we add new features — and we will — they're included at no additional cost.",
+    a: "Nothing. Your founding price is locked for life as long as you stay subscribed. Every new feature we ship is included at no extra cost.",
   },
   {
-    q: "Can I switch tiers later?",
-    a: "Yes. You can upgrade anytime. If you upgrade from a founding Coach plan to a founding Program plan, you keep founding pricing on the new tier as long as you upgrade before the founding window closes.",
+    q: "Can I upgrade my tier later and keep founding pricing?",
+    a: "Yes. You can upgrade anytime. As long as you upgrade before the founding window closes, you keep founding pricing on the new tier.",
   },
 ];
 
@@ -209,10 +218,10 @@ function CellIcon({ value }: { value: boolean | "partial" | string }) {
 
 function VideoModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", handler);
+    const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", h);
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", handler); document.body.style.overflow = ""; };
+    return () => { document.removeEventListener("keydown", h); document.body.style.overflow = ""; };
   }, [onClose]);
 
   return (
@@ -256,8 +265,8 @@ function VideoModal({ onClose }: { onClose: () => void }) {
 }
 
 function Nav({ onVideoOpen }: { onVideoOpen: () => void }) {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -266,27 +275,30 @@ function Nav({ onVideoOpen }: { onVideoOpen: () => void }) {
   }, []);
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-      scrolled ? "bg-[#0b0e14]/95 backdrop-blur border-b border-gray-800/80 shadow-xl" : "bg-transparent"
-    }`}>
+    <nav
+      aria-label="Main navigation"
+      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
+        scrolled ? "bg-[#0b0e14]/95 backdrop-blur border-b border-gray-800/80 shadow-xl" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Image src="/logo.png" alt="The Program Suite" width={140} height={36} className="h-9 w-auto object-contain" priority />
 
         <div className="hidden sm:flex items-center gap-6">
-          <a href="#features"  className="text-gray-400 hover:text-white text-sm transition-colors">Features</a>
-          <a href="#compare"   className="text-gray-400 hover:text-white text-sm transition-colors">Compare</a>
-          <a href="#pricing"   className="text-gray-400 hover:text-white text-sm transition-colors">Pricing</a>
+          <a href="#how-it-works" className="text-gray-400 hover:text-white text-sm transition-colors">How It Works</a>
+          <a href="#features"     className="text-gray-400 hover:text-white text-sm transition-colors">Features</a>
+          <a href="#pricing"      className="text-gray-400 hover:text-white text-sm transition-colors">Pricing</a>
           <button
             onClick={onVideoOpen}
             className="text-gray-400 hover:text-white text-sm transition-colors flex items-center gap-1.5"
           >
-            <Play size={13} className="text-blue-400" /> See it in action
+            <Play size={13} className="text-blue-400" /> See it live
           </button>
           <a
             href={APP_URL}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors"
           >
-            Get Started <ChevronRight size={14} />
+            Claim Founding Pricing <ChevronRight size={14} />
           </a>
         </div>
 
@@ -294,6 +306,7 @@ function Nav({ onVideoOpen }: { onVideoOpen: () => void }) {
           className="sm:hidden text-gray-400 hover:text-white"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           <Menu size={22} />
         </button>
@@ -301,20 +314,20 @@ function Nav({ onVideoOpen }: { onVideoOpen: () => void }) {
 
       {menuOpen && (
         <div className="sm:hidden bg-[#0f1420] border-t border-gray-800 px-4 py-4 flex flex-col gap-3">
-          <a href="#features" onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">Features</a>
-          <a href="#compare"  onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">Compare</a>
-          <a href="#pricing"  onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">Pricing</a>
+          <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">How It Works</a>
+          <a href="#features"     onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">Features</a>
+          <a href="#pricing"      onClick={() => setMenuOpen(false)} className="text-gray-300 text-sm">Pricing</a>
           <button
             onClick={() => { onVideoOpen(); setMenuOpen(false); }}
             className="text-gray-300 text-sm text-left flex items-center gap-2"
           >
-            <Play size={13} className="text-blue-400" /> See it in action
+            <Play size={13} className="text-blue-400" /> See it live
           </button>
           <a
             href={APP_URL}
-            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors"
           >
-            Get Started — Founding Pricing Available
+            Claim Founding Pricing
           </a>
         </div>
       )}
@@ -329,12 +342,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
       >
         <span className="text-white font-medium text-sm">{q}</span>
         <ChevronDown
           size={16}
           className={`text-gray-500 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          aria-hidden="true"
         />
       </button>
       {open && (
@@ -358,116 +373,134 @@ export default function HomePage() {
 
         {/* ── HERO ──────────────────────────────────────────────────────────── */}
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-16 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[130px]" />
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-blue-600/10 rounded-full blur-[140px]" />
           </div>
 
           <div className="relative max-w-4xl mx-auto flex flex-col items-center gap-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-semibold uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              Now in Early Access · Founding Pricing Available
+
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-bold uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" aria-hidden="true" />
+              Introducing: The Practice Co-Pilot
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
+            {/* Headline */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
               Plan it once.
               <br />
               <span className="gradient-text">The floor runs itself.</span>
             </h1>
 
+            {/* Subhead */}
             <p className="max-w-2xl text-gray-400 text-lg sm:text-xl leading-relaxed">
-              The first coaching platform with a{" "}
-              <span className="text-gray-200 font-semibold">live practice runner</span> — drill
-              announcements, automatic Spotify transitions, and hands-free timing.
-              So you can coach instead of manage.
+              The first system that automates your drill timers,{" "}
+              <span className="text-gray-200 font-semibold">Spotify transitions</span>, and{" "}
+              <span className="text-gray-200 font-semibold">voice announcements</span>.
+              Keep your phone in your pocket and your eyes on your players.
             </p>
 
-            {/* Mini feature badges */}
-            <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
+            {/* Feature badges */}
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs" role="list">
               {[
-                { icon: Mic,    label: "Drill Voice Announcements" },
-                { icon: Music2, label: "Auto Music Transitions" },
-                { icon: Timer,  label: "Hands-Free Timer" },
-                { icon: Volume2,label: "Auto Volume Ducking" },
+                { icon: Mic,    label: "Automated Announcements" },
+                { icon: Music2, label: "Seamless Transitions"    },
+                { icon: Timer,  label: "Hands-Free Timing"       },
+                { icon: Volume2,label: "Auto Volume Control"     },
               ].map(({ icon: Icon, label }) => (
-                <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400">
-                  <Icon size={11} className="text-blue-400" /> {label}
+                <span
+                  key={label}
+                  role="listitem"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400"
+                >
+                  <Icon size={11} className="text-blue-400" aria-hidden="true" /> {label}
                 </span>
               ))}
             </div>
 
+            {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
               <a
                 href={APP_URL}
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-base font-bold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-base font-bold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95"
               >
-                Get Started — Founding Pricing
-                <ChevronRight size={18} />
+                Claim Founding Pricing — $149/yr
+                <ChevronRight size={18} aria-hidden="true" />
               </a>
               <button
                 onClick={() => setVideoOpen(true)}
                 className="inline-flex items-center gap-2 text-gray-300 hover:text-white text-sm font-medium transition-colors group"
               >
                 <span className="w-9 h-9 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
-                  <Play size={14} className="ml-0.5 text-blue-400" />
+                  <Play size={14} className="ml-0.5 text-blue-400" aria-hidden="true" />
                 </span>
-                See How It Works
+                See it in action
               </button>
             </div>
 
-            <p className="text-gray-600 text-sm">
-              Annual billing · Founding rate locked for life · No per-player fees
-            </p>
+            <p className="text-gray-600 text-sm">Annual billing · Founding rate locked for life · No per-player fees</p>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2" aria-hidden="true">
             <div className="w-px h-10 bg-gradient-to-b from-gray-600 to-transparent" />
           </div>
         </section>
 
-        {/* ── THE PROBLEM ───────────────────────────────────────────────────── */}
+        {/* ── STAT BAR ──────────────────────────────────────────────────────── */}
+        <section className="py-12 px-4 bg-[#0f1420] border-y border-gray-800/60" aria-label="Key statistics">
+          <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6 text-center">
+            {[
+              { stat: "12 min",   label: "lost to logistics every practice" },
+              { stat: "~8 hrs",   label: "of coaching stolen per season"    },
+              { stat: "1 tap",    label: "to give it all back"              },
+            ].map(({ stat, label }) => (
+              <div key={stat}>
+                <p className="text-3xl sm:text-4xl font-black text-white mb-1">{stat}</p>
+                <p className="text-gray-500 text-xs sm:text-sm leading-tight">{label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── THE VILLAIN ───────────────────────────────────────────────────── */}
         <section className="relative py-24 px-4 section-glow">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">The Problem</p>
+            <div className="text-center mb-4">
+              <p className="text-red-400 text-xs font-bold uppercase tracking-widest mb-3">The Problem</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-                You plan a great practice.
+                You planned a great practice.
                 <br className="hidden sm:block" />
-                <span className="gradient-text">Then you manage it instead of coaching it.</span>
+                <span className="gradient-text">Then you spent it managing the clock.</span>
               </h2>
-              <p className="text-gray-400 max-w-xl mx-auto">
-                Every drill transition costs you 30–90 seconds — yelling across the gym,
-                managing your phone, watching the clock. At 8 transitions, that's 12 minutes
-                of every practice lost to logistics.
-              </p>
             </div>
 
+            {/* The math */}
+            <div className="max-w-2xl mx-auto mb-14">
+              <div className="rounded-2xl bg-[#0f1420] border border-red-500/20 p-6 text-center">
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Every drill transition costs you{" "}
+                  <strong className="text-white">30–90 seconds</strong> — yelling drill names,
+                  fading music, watching the clock, losing the moment.
+                  At <strong className="text-white">8+ transitions per practice</strong>, that&apos;s{" "}
+                  <strong className="text-red-400 text-lg">12 minutes gone</strong> — every single practice.
+                  Over a 40-practice season, that&apos;s{" "}
+                  <strong className="text-white">8 full hours of coaching</strong> stolen by logistics.
+                </p>
+              </div>
+            </div>
+
+            {/* Before / After */}
             <div className="grid sm:grid-cols-3 gap-6">
-              {[
-                {
-                  before: "You yell a drill name across a noisy gym and half the team doesn't hear it",
-                  after:  "The app announces the next drill automatically — clearly, every time",
-                  icon: Mic,
-                },
-                {
-                  before: "You manually fade music, unlock your phone, switch playlists mid-drill",
-                  after:  "Music crossfades automatically between drills. Volume ducks during announcements.",
-                  icon: Music2,
-                },
-                {
-                  before: "Your practice plan is in a folder. Your S&C is in a spreadsheet. Your players can't access either.",
-                  after:  "Every drill, every lift, every player — in one real-time platform",
-                  icon: ClipboardList,
-                },
-              ].map(({ before, after, icon: Icon }) => (
-                <div key={before} className="bg-[#0f1420] rounded-2xl border border-gray-800 overflow-hidden">
+              {BEFORE_AFTER.map(({ icon: Icon, before, after }) => (
+                <div key={before} className="rounded-2xl bg-[#0f1420] border border-gray-800 overflow-hidden">
                   <div className="p-5 border-b border-gray-800/80">
-                    <p className="text-xs font-mono text-red-400 uppercase tracking-widest mb-2">Before</p>
+                    <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-2">Before</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{before}</p>
                   </div>
                   <div className="p-5 bg-blue-500/5">
-                    <p className="text-xs font-mono text-blue-400 uppercase tracking-widest mb-2">After</p>
+                    <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">After</p>
                     <div className="flex items-start gap-2">
-                      <Icon size={14} className="text-blue-400 mt-0.5 shrink-0" />
+                      <Icon size={14} className="text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
                       <p className="text-gray-200 text-sm leading-relaxed">{after}</p>
                     </div>
                   </div>
@@ -477,33 +510,32 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── LIVE RUNNER SPOTLIGHT ──────────────────────────────────────────── */}
-        <section className="py-24 px-4 bg-[#0f1420]">
+        {/* ── THE CO-PILOT FLOW ─────────────────────────────────────────────── */}
+        <section id="how-it-works" className="py-24 px-4 bg-[#0f1420]">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">The Breakthrough Feature</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">How It Works</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-                The Live Practice Runner
+                Three steps. Then just coach.
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                Every other coaching platform stops at the plan. We built what comes next.
-                The first platform that actually manages the practice session itself —
-                so your phone stays in your pocket where it belongs.
+              <p className="text-gray-400 max-w-xl mx-auto">
+                Every other coaching platform stops at the plan.
+                The Practice Co-Pilot is what happens when you hit <strong className="text-gray-200">Run</strong>.
               </p>
             </div>
 
             {/* Steps */}
             <div className="grid sm:grid-cols-3 gap-8 mb-16">
-              {RUNNER_STEPS.map(({ icon: Icon, step, title, desc }) => (
+              {COPILOT_STEPS.map(({ step, icon: Icon, title, desc }) => (
                 <div key={step} className="flex flex-col gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-blue-500/40 font-black text-4xl leading-none">{step}</span>
+                    <span className="text-blue-500/40 font-black text-4xl leading-none" aria-hidden="true">{step}</span>
                     <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                      <Icon size={18} className="text-blue-400" />
+                      <Icon size={18} className="text-blue-400" aria-hidden="true" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-white font-bold mb-1.5">{title}</h3>
+                    <h3 className="text-white font-black text-lg mb-1.5">{title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
@@ -512,17 +544,14 @@ export default function HomePage() {
 
             {/* What happens at each transition */}
             <div className="rounded-2xl bg-[#0b0e14] border border-blue-500/20 p-8">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-6">At every drill transition</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+                At every drill transition — automatically
+              </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  { icon: Volume2, label: "Music fades to 10%",    desc: "Smooth 600ms ramp so the gym goes quiet" },
-                  { icon: Mic,     label: "Drill name announced",  desc: "Clear voice reads the next drill name" },
-                  { icon: Music2,  label: "New playlist starts",   desc: "Drill-specific Spotify URI begins playing" },
-                  { icon: Volume2, label: "Music fades back up",   desc: "Ramps to your practice volume as speech ends" },
-                ].map(({ icon: Icon, label, desc }) => (
+                {TRANSITION_SEQUENCE.map(({ icon: Icon, label, desc }) => (
                   <div key={label} className="flex flex-col gap-2">
                     <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                      <Icon size={16} className="text-blue-400" />
+                      <Icon size={16} className="text-blue-400" aria-hidden="true" />
                     </div>
                     <p className="text-white text-sm font-semibold">{label}</p>
                     <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
@@ -533,46 +562,65 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── FULL FEATURE GRID ──────────────────────────────────────────────── */}
-        <section id="features" className="py-24 px-4">
+        {/* ── THE MISSING PILLAR ────────────────────────────────────────────── */}
+        <section className="py-20 px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-2xl bg-[#0f1420] border border-blue-500/20 p-8 sm:p-12 text-center">
+              <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">The Missing Piece</p>
+              <blockquote className="text-white text-xl sm:text-2xl font-black leading-tight mb-6">
+                You use <span className="text-blue-400">Hudl</span> for film.
+                <br />
+                You use <span className="text-blue-400">FastModel</span> for Xs and Os.
+                <br />
+                Use <span className="gradient-text">The Program Suite</span> to actually run the floor.
+              </blockquote>
+              <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">
+                Every coach has tools for the <em>before</em> and the <em>after</em>. Nobody built
+                a tool for the <strong className="text-gray-200">during</strong> — the two hours
+                where coaching actually happens. Until now.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── UTILITY BELT ──────────────────────────────────────────────────── */}
+        <section id="features" className="py-24 px-4 bg-[#0f1420]">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">Everything In One Place</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">Everything Else</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-                One Platform. Every Tool Your Program Needs.
+                Three modules. One platform.
               </h2>
               <p className="text-gray-400 max-w-xl mx-auto">
-                Replace three separate subscriptions with a single professional platform that
-                actually knows how each piece connects to the others.
+                The Co-Pilot runs your practice floor. These three modules run everything around it.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {FEATURES.map(({ icon: Icon, title, desc, highlight }) => (
-                <div
-                  key={title}
-                  className={`group p-6 rounded-2xl border transition-all duration-300 ${
-                    highlight
-                      ? "bg-blue-500/8 border-blue-500/30 hover:border-blue-500/60"
-                      : "bg-[#0f1420] border-gray-800 hover:border-blue-500/30 hover:bg-blue-500/5"
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-colors ${
-                    highlight
-                      ? "bg-blue-500/20 border border-blue-500/40 group-hover:bg-blue-500/30"
-                      : "bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20"
-                  }`}>
-                    <Icon size={18} className="text-blue-400" />
+            <div className="grid sm:grid-cols-3 gap-6">
+              {UTILITY_BELT.map(({ name, icon: Icon, tag, desc, items }) => (
+                <div key={name} className="rounded-2xl bg-[#0b0e14] border border-gray-800 hover:border-blue-500/30 transition-colors p-7 flex flex-col gap-5">
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                        <Icon size={18} className="text-blue-400" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <p className="text-white font-black text-base">{name}</p>
+                        <p className="text-gray-500 text-xs">{tag}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
                   </div>
-                  <div className="flex items-start gap-2 mb-2">
-                    <h3 className="text-white font-bold">{title}</h3>
-                    {highlight && (
-                      <span className="shrink-0 text-[9px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/15 border border-blue-500/30 px-1.5 py-0.5 rounded mt-0.5">
-                        New
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+                  <ul className="flex flex-col gap-2 mt-auto" role="list">
+                    {items.map((item) => (
+                      <li key={item} className="flex items-start gap-2" role="listitem">
+                        <div className="mt-0.5 w-4 h-4 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center shrink-0">
+                          <Check size={9} className="text-blue-400" aria-hidden="true" />
+                        </div>
+                        <span className="text-gray-400 text-xs leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -580,25 +628,24 @@ export default function HomePage() {
         </section>
 
         {/* ── COMPARISON TABLE ───────────────────────────────────────────────── */}
-        <section id="compare" className="py-24 px-4 bg-[#0f1420]">
+        <section id="compare" className="py-24 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">How We Compare</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">How We Compare</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-                Built for the gym floor, not the film room.
+                Built for the floor, not the film room.
               </h2>
               <p className="text-gray-400 max-w-xl mx-auto">
-                Hudl is exceptional for film. FastModel is excellent for play diagramming.
-                Neither one runs your practice for you.
+                Hudl is exceptional for film. FastModel is excellent for Xs and Os.
+                Neither one steps onto the floor with you.
               </p>
             </div>
 
             <div className="rounded-2xl overflow-hidden border border-gray-800">
-              {/* Header */}
-              <div className="grid grid-cols-4 bg-[#0b0e14] border-b border-gray-800">
+              <div className="grid grid-cols-4 bg-[#0f1420] border-b border-gray-800">
                 <div className="px-4 py-4 col-span-1" />
                 {[
-                  { name: "The Program Suite", highlight: true },
+                  { name: "The Program Suite", highlight: true  },
                   { name: "FastModel",          highlight: false },
                   { name: "Hudl",               highlight: false },
                 ].map(({ name, highlight }) => (
@@ -610,7 +657,6 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Rows */}
               {COMPARE_ROWS.map(({ feature, us, fastmodel, hudl }, i) => (
                 <div
                   key={feature}
@@ -619,64 +665,53 @@ export default function HomePage() {
                   }`}
                 >
                   <div className="px-4 py-3.5 text-gray-300 text-sm">{feature}</div>
-                  <div className="px-4 py-3.5 text-center bg-blue-500/5">
-                    <CellIcon value={us} />
-                  </div>
-                  <div className="px-4 py-3.5 text-center">
-                    <CellIcon value={fastmodel} />
-                  </div>
-                  <div className="px-4 py-3.5 text-center">
-                    <CellIcon value={hudl} />
-                  </div>
+                  <div className="px-4 py-3.5 text-center bg-blue-500/5"><CellIcon value={us} /></div>
+                  <div className="px-4 py-3.5 text-center"><CellIcon value={fastmodel} /></div>
+                  <div className="px-4 py-3.5 text-center"><CellIcon value={hudl} /></div>
                 </div>
               ))}
             </div>
 
             <p className="text-gray-600 text-xs text-center mt-4">
-              — = partial or limited feature · ✗ = not available · Film review intentionally not in our roadmap
+              — = partial or limited · ✗ = not available · Film review is intentionally not in our scope
             </p>
           </div>
         </section>
 
-        {/* ── FOUNDER STORY ──────────────────────────────────────────────────── */}
-        <section className="relative py-24 px-4 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-600/8 rounded-full blur-[100px]" />
+        {/* ── FOUNDER'S STORY ───────────────────────────────────────────────── */}
+        <section className="relative py-24 px-4 overflow-hidden bg-[#0f1420]">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/8 rounded-full blur-[120px]" />
           </div>
           <div className="max-w-3xl mx-auto relative">
             <div className="text-center mb-12">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">Why This Exists</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">Why This Exists</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white">
-                Built From the Sideline,
-                <br /> Not a Boardroom.
+                Built from the sideline.
+                <br />Not a boardroom.
               </h2>
             </div>
 
-            <div className="relative p-8 sm:p-10 rounded-2xl bg-[#0f1420] border border-gray-800">
-              <Quote size={48} className="absolute top-6 left-8 text-blue-500/15" aria-hidden="true" />
+            <div className="relative p-8 sm:p-12 rounded-2xl bg-[#0b0e14] border border-gray-800">
+              <Quote size={56} className="absolute top-6 left-8 text-blue-500/12" aria-hidden="true" />
               <blockquote className="relative z-10">
-                <p className="text-gray-200 text-lg sm:text-xl leading-relaxed font-medium mb-6">
-                  "In 22 years on the sideline, I've built hundreds of practice templates, designed
-                  countless scouting reports, and managed a dozen different weight programs.
-                  I've bought the 'gold standard' versions of all of them, too.
+                <p className="text-white text-2xl sm:text-3xl font-black leading-tight mb-6">
+                  &ldquo;I spent 22 years coaching, but too much time managing data.
+                  I built this so we can finally get back to the work that matters:
+                  coaching our athletes, not managing a clock.&rdquo;
                 </p>
-                <p className="text-gray-200 text-lg sm:text-xl leading-relaxed font-medium mb-6">
-                  The problem was never the tools — it was that none of them talked to each other.
-                  My practice plan was in a folder, my strength program was in a spreadsheet, and
-                  my players couldn't access any of it in real time. I spent more time managing data
-                  than coaching athletes.
+                <p className="text-gray-400 text-sm leading-relaxed mb-8">
+                  Every tool I bought was best-in-class at one thing. But none of them talked to
+                  each other — and none of them stepped onto the floor with me when practice started.
+                  I kept my eyes on my phone when they should have been on my players.
+                  This is the tool I wish I had when I started.
                 </p>
-                <p className="text-gray-200 text-lg sm:text-xl leading-relaxed font-medium">
-                  I built this because I needed a system where the plan, the development, and the
-                  players finally lived in one place — and where the app runs the practice so I can
-                  run the team. It's the tool I wish I had when I started two decades ago."
-                </p>
-                <footer className="mt-8 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                    <span className="text-blue-400 font-bold text-sm">TPS</span>
+                <footer className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center" aria-hidden="true">
+                    <span className="text-blue-400 font-bold text-xs">TPS</span>
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm">Founder, The Program Suite</p>
+                    <p className="text-white font-bold text-sm">Founder, The Program Suite</p>
                     <p className="text-gray-500 text-xs">22 Years on the Sideline</p>
                   </div>
                 </footer>
@@ -686,23 +721,24 @@ export default function HomePage() {
         </section>
 
         {/* ── PRICING ────────────────────────────────────────────────────────── */}
-        <section id="pricing" className="py-24 px-4 bg-[#0f1420]">
+        <section id="pricing" className="py-24 px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-6">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">Founding Pricing</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">Founding Pricing</p>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
-                Lock in your rate before the price goes up.
+                Hire your Floor Manager.
+                <br />
+                <span className="gradient-text">$149 for the entire year.</span>
               </h2>
               <p className="text-gray-400 max-w-xl mx-auto">
-                We're in early access. Founding members lock in their price for life — no matter
-                how many features we add. Once the window closes, regular pricing applies.
+                We&apos;re in early access. Founding members lock in this rate for life —
+                every feature we ship is included at no extra cost.
               </p>
             </div>
 
-            {/* Savings callout */}
-            <div className="flex items-center justify-center gap-2 mb-12">
+            <div className="flex items-center justify-center mb-12">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-300 text-xs font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" aria-hidden="true" />
                 Founding prices are ~50% off regular pricing · Annual billing only
               </span>
             </div>
@@ -713,14 +749,14 @@ export default function HomePage() {
                   key={tier.name}
                   className={`relative rounded-2xl p-7 flex flex-col gap-6 transition-all ${
                     tier.highlight
-                      ? "bg-[#0b0e14] card-glow border border-blue-500/30"
-                      : "bg-[#0b0e14] border border-gray-800"
+                      ? "bg-[#0b0e14] card-glow border border-blue-500/40"
+                      : "bg-[#0f1420] border border-gray-800"
                   }`}
                 >
                   {tier.badge && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                       <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-500/30">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" aria-hidden="true" />
                         {tier.badge}
                       </span>
                     </div>
@@ -728,7 +764,7 @@ export default function HomePage() {
 
                   <div className={tier.badge ? "pt-3" : ""}>
                     <h3 className="text-white font-bold text-lg mb-0.5">{tier.name}</h3>
-                    <p className="text-gray-500 text-xs">{tier.tagline}</p>
+                    <p className="text-gray-500 text-xs leading-relaxed">{tier.tagline}</p>
                   </div>
 
                   <div>
@@ -744,13 +780,17 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <ul className="flex flex-col gap-2.5 flex-1">
+                  <ul className="flex flex-col gap-2.5 flex-1" role="list">
                     {tier.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5">
-                        <div className="mt-0.5 w-4 h-4 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center shrink-0">
+                      <li key={f} className="flex items-start gap-2.5" role="listitem">
+                        <div className="mt-0.5 w-4 h-4 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center shrink-0" aria-hidden="true">
                           <Check size={9} className="text-blue-400" />
                         </div>
-                        <span className="text-gray-300 text-xs leading-relaxed">{f}</span>
+                        <span className={`text-xs leading-relaxed ${
+                          tier.highlight && f.startsWith("Full Practice Co-Pilot")
+                            ? "text-blue-300 font-semibold"
+                            : "text-gray-300"
+                        }`}>{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -776,13 +816,13 @@ export default function HomePage() {
         </section>
 
         {/* ── FAQ ────────────────────────────────────────────────────────────── */}
-        <section className="py-24 px-4">
+        <section className="py-24 px-4 bg-[#0f1420]">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12">
-              <p className="text-blue-400 text-xs font-semibold uppercase tracking-widest mb-3">Questions</p>
+              <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-3">Questions</p>
               <h2 className="text-3xl font-black text-white">Common Questions</h2>
             </div>
-            <div className="rounded-2xl bg-[#0f1420] border border-gray-800 px-6 divide-y divide-gray-800">
+            <div className="rounded-2xl bg-[#0b0e14] border border-gray-800 px-6 divide-y divide-gray-800">
               {FAQS.map((faq) => (
                 <FaqItem key={faq.q} q={faq.q} a={faq.a} />
               ))}
@@ -791,36 +831,51 @@ export default function HomePage() {
         </section>
 
         {/* ── FINAL CTA ──────────────────────────────────────────────────────── */}
-        <section className="relative py-24 px-4 overflow-hidden bg-[#0f1420]">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/10 rounded-full blur-[80px]" />
+        <section className="relative py-28 px-4 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/12 rounded-full blur-[100px]" />
           </div>
           <div className="relative max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">
-              Your program deserves
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" aria-hidden="true" />
+              Founding window is open
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+              Stop managing the clock.
               <br />
-              <span className="gradient-text">a platform that runs with it.</span>
+              <span className="gradient-text">Start coaching your athletes.</span>
             </h2>
-            <p className="text-gray-400 text-lg mb-8">
-              Join the founding class. Lock in your rate before the window closes.
+
+            <p className="text-gray-400 text-lg mb-3">
+              For <strong className="text-white">$149 a year</strong>, you get a Floor Manager
+              that never misses a transition, never fumbles with Spotify,
+              and never looks away from your players.
             </p>
+            <p className="text-gray-500 text-sm mb-10">
+              That&apos;s 41 cents a day to get back 8 hours of coaching every season.
+            </p>
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={APP_URL}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-95"
+                className="inline-flex items-center gap-2 px-9 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base transition-all hover:shadow-xl hover:shadow-blue-500/30 active:scale-95"
               >
-                Get Started — Founding Pricing <ChevronRight size={18} />
+                Claim Founding Pricing — $149/yr
+                <ChevronRight size={18} aria-hidden="true" />
               </a>
               <button
                 onClick={() => setVideoOpen(true)}
                 className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors"
               >
-                <Play size={14} className="text-blue-400" />
+                <Play size={14} className="text-blue-400" aria-hidden="true" />
                 See how it works first
               </button>
             </div>
+
             <p className="text-gray-600 text-xs mt-6">
-              Coach tier from $149/yr · Program tier from $390/yr · Elite tier from $990/yr
+              Founding rate locked for life · Cancel any time in year one · No per-player fees
             </p>
           </div>
         </section>
@@ -834,15 +889,16 @@ export default function HomePage() {
             <div className="flex flex-col gap-3">
               <Image src="/logo.png" alt="The Program Suite" width={130} height={32} className="h-8 w-auto object-contain" />
               <p className="text-gray-600 text-xs max-w-xs leading-relaxed">
-                The first coaching platform with a live practice runner. Plan it once — the floor runs itself.
+                The Practice Co-Pilot. Plan it once — the floor runs itself.
               </p>
             </div>
             <div className="flex gap-12 text-sm">
               <div className="flex flex-col gap-2">
                 <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Product</p>
-                <a href="#features" className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Features</a>
-                <a href="#compare"  className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Compare</a>
-                <a href="#pricing"  className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Pricing</a>
+                <a href="#how-it-works" className="text-gray-500 hover:text-gray-300 transition-colors text-xs">How It Works</a>
+                <a href="#features"     className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Features</a>
+                <a href="#compare"      className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Compare</a>
+                <a href="#pricing"      className="text-gray-500 hover:text-gray-300 transition-colors text-xs">Pricing</a>
               </div>
               <div className="flex flex-col gap-2">
                 <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Company</p>
@@ -855,7 +911,7 @@ export default function HomePage() {
           </div>
           <div className="border-t border-gray-800/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-gray-600 text-xs">© {new Date().getFullYear()} The Program Suite. All rights reserved.</p>
-            <p className="text-gray-700 text-xs">The Operating System for Winning Programs.</p>
+            <p className="text-gray-700 text-xs">The Practice Co-Pilot for Winning Programs.</p>
           </div>
         </div>
       </footer>
