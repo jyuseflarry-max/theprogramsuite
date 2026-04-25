@@ -1,15 +1,33 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import {
   ClipboardList, Users, Eye,
-  ChevronDown, ChevronRight, Check, Quote, Shield, ArrowRight,
+  ChevronRight, Check, Quote, Shield, ArrowRight,
   Play, Timer, Music2, Mic, Volume2,
 } from "lucide-react";
+import { FaqSection } from "@/components/FaqSection";
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const APP_URL = "https://tpscoach.com";
+const API_BASE = process.env.MARKETING_API_BASE ?? APP_URL;
+
+// Re-fetch founder seat counts at most once per minute.
+export const revalidate = 60;
+
+type SeatRow = { remaining: number; total: number };
+type SeatMap = Record<string, SeatRow>;
+
+async function fetchFounderSeats(): Promise<SeatMap> {
+  try {
+    const res = await fetch(`${API_BASE}/api/public/founder-seats`, {
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) return {};
+    return (await res.json()) as SeatMap;
+  } catch {
+    // Never let a fetch failure block render — fall back to defaults below.
+    return {};
+  }
+}
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SPORTS = [
@@ -61,20 +79,142 @@ const COLLAB_FEATURES = [
   },
 ];
 
-const COACH_FEATURES = [
-  "Full drill library and plan builder — any sport",
-  "Live Co-Pilot — music, voice transitions, hands-free",
-  "S&C program builder and athlete tracking",
-  "Auto-calculated daily weights from recorded maxes",
-  "Athlete-facing practice and workout view",
-  "Scheduling, attendance, and season calendar",
-  "Staff collaboration — live plan sharing",
+interface Tier {
+  key:           "starter" | "pro" | "enterprise";
+  name:          string;
+  badge:         string;
+  teamLabel:     string;
+  foundingPrice: string;
+  regularLine:   string;
+  monthlyLine:   string;
+  description:   string;
+  features:      string[];
+  highlight:     boolean;
+  ctaLabel:      string;
+  defaultTotal:  number;
+}
+
+const TIERS: Tier[] = [
+  {
+    key: "starter",
+    name: "Starter",
+    badge: "Founding Rate",
+    teamLabel: "1 Team · One Coach · Any Sport",
+    foundingPrice: "$99",
+    regularLine: "$199/year regular",
+    monthlyLine: "or $24/mo",
+    description:
+      "Everything you need to run one varsity squad like a professional program. The whole platform — just scoped to one team.",
+    features: [
+      "Full drill library and plan builder — any sport",
+      "Live Co-Pilot — music, voice transitions, hands-free",
+      "S&C program builder with auto-calculated daily loads",
+      "Athlete-facing practice and workout view",
+      "Scheduling, attendance, and season calendar",
+      "Staff collaboration — live plan sharing",
+      "Family view of schedule, games, and workouts",
+    ],
+    highlight: false,
+    ctaLabel: "Claim Starter Founding Rate",
+    defaultTotal: 100,
+  },
+  {
+    key: "pro",
+    name: "Pro",
+    badge: "Most Popular · Founding Rate",
+    teamLabel: "Up to 5 Teams · Full Program",
+    foundingPrice: "$249",
+    regularLine: "$499/year regular",
+    monthlyLine: "or $59/mo",
+    description:
+      "Run V, JV, Freshman — boys, girls, and feeders — under one program. Everything you build flows across all five teams.",
+    features: [
+      "Everything in Starter, for up to 5 teams",
+      "Shared drill library across the entire program",
+      "Cross-team scheduling — calendar never double-books",
+      "Athlete profiles that follow them up the levels",
+      "Program-wide reports — attendance, lifts, drill effectiveness",
+      "Standards & tiers — Bronze through Elite benchmarks",
+      "Shared inventory, kit templates, and equipment tracking",
+      "Program-share — distribute strength programs to peers",
+    ],
+    highlight: true,
+    ctaLabel: "Claim Pro Founding Rate",
+    defaultTotal: 25,
+  },
+  {
+    key: "enterprise",
+    name: "Enterprise",
+    badge: "Athletic Department",
+    teamLabel: "Unlimited Teams · Multi-Sport",
+    foundingPrice: "$749",
+    regularLine: "$1,499/year regular",
+    monthlyLine: "or $169/mo",
+    description:
+      "Built for the AD running the whole department. Every sport, every level, every athlete — one operating system.",
+    features: [
+      "Everything in Pro, with unlimited teams",
+      "Multi-sport — basketball, football, volleyball, all of it",
+      "AD-level dashboards across every team",
+      "Cross-sport scheduling and facility management",
+      "Bulk roster import and athlete history across sports",
+      "Custom paperwork templates and e-sign flows",
+      "Priority support and dedicated onboarding",
+      "Pricing scales with school size — talk to us",
+    ],
+    highlight: false,
+    ctaLabel: "Talk to Us About Enterprise",
+    defaultTotal: 5,
+  },
+];
+
+const PROGRAM_PATH = [
+  {
+    step: "01",
+    title: "Your varsity squad goes first.",
+    desc: "You build your drill library, your S&C program, your plan templates. By week three, your assistants have stopped asking what tomorrow looks like — they just open the app.",
+    tier: "Starter",
+  },
+  {
+    step: "02",
+    title: "Your JV coach asks for access.",
+    desc: "Then the freshman coach. They want the same drill library. They want their kids on the same workout standards. They want their attendance in the same place.",
+    tier: "Move to Pro",
+  },
+  {
+    step: "03",
+    title: "Your athletes move up — and so does their data.",
+    desc: "A freshman who lifted 135 in October is a JV varsity call-up by January. His maxes, his attendance, his vibe-check history — all of it follows him to the next level. No re-onboarding.",
+    tier: "Pro",
+  },
+  {
+    step: "04",
+    title: "The volleyball coach sees what you're running.",
+    desc: "So does the football staff. Now the AD is asking why every program isn't on the same rails. That conversation — across sports, across seasons — is what Enterprise is built for.",
+    tier: "Enterprise",
+  },
 ];
 
 const FAQ_ITEMS = [
   {
     q: "What sports does this work for?",
     a: "Any team sport with a practice schedule and a weight room. Basketball, volleyball, football, soccer, baseball, softball, track, wrestling — the platform doesn't assume your sport. You build your drill library around your terminology, your drills, and your program.",
+  },
+  {
+    q: "What counts as a team?",
+    a: "A team is a roster you coach as a unit. Varsity, JV, and Freshman are three teams. Boys and girls programs at the same level are two teams. A booster summer squad is a team. Pro covers up to five — enough for a typical V/JV/Freshman boys-and-girls basketball program.",
+  },
+  {
+    q: "I run two sports — do I need Enterprise?",
+    a: "Probably not. Pro covers up to 5 teams within one program, and most coaches with two whistles keep their sports as separate plans because rosters and seasons don't overlap. Enterprise is built for athletic directors who want every sport in one dashboard, with cross-sport scheduling and facility management.",
+  },
+  {
+    q: "What happens to my founding rate if I upgrade tiers?",
+    a: "It carries with you. If you start on Starter and your program grows into Pro, you keep your founding 50% off — locked on the Pro tier from day one of the upgrade, for life. The founding rate is yours, not the tier's.",
+  },
+  {
+    q: "Can I upgrade or downgrade mid-season?",
+    a: "Yes. Annual plans are prorated. The platform doesn't care where you are in your season — you can move from Starter to Pro the week before playoffs without losing data, accounts, or settings.",
   },
   {
     q: "Can my assistant coaches see the plan live?",
@@ -104,23 +244,77 @@ const FAQ_ITEMS = [
 
 // ── Components ────────────────────────────────────────────────────────────────
 
-function FaqRow({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+function PricingCard({ tier, seats }: { tier: Tier; seats: SeatRow }) {
+  const pct = seats.total > 0 ? (seats.remaining / seats.total) * 100 : 0;
   return (
-    <div className="border-b border-white/10">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left"
+    <div
+      className={`rounded-2xl overflow-hidden flex flex-col ${
+        tier.highlight
+          ? "border-2 border-brand-gold bg-brand-navy-mid lg:-translate-y-3 shadow-2xl shadow-brand-gold/20"
+          : "border border-white/10 bg-brand-navy-mid"
+      }`}
+    >
+      <div
+        className={`px-4 py-1.5 text-center ${
+          tier.highlight ? "bg-brand-gold" : "bg-white/5 border-b border-white/10"
+        }`}
       >
-        <span className="text-white font-semibold text-base">{q}</span>
-        <ChevronDown
-          size={18}
-          className={`text-gray-400 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          aria-hidden="true"
-        />
-      </button>
-      {open && <p className="pb-5 text-gray-400 text-sm leading-relaxed">{a}</p>}
+        <span
+          className={`text-[10px] font-black uppercase tracking-widest ${
+            tier.highlight ? "text-[#0F172A]" : "text-gray-400"
+          }`}
+        >
+          {tier.badge}
+        </span>
+      </div>
+
+      <div className="p-7 border-b border-white/10">
+        <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-3">
+          {tier.name}
+        </p>
+        <p className="text-white text-sm font-semibold mb-5">{tier.teamLabel}</p>
+
+        <div className="flex items-end gap-2 mb-1">
+          <span className="text-white text-5xl font-black tabular-nums">{tier.foundingPrice}</span>
+          <div className="mb-1.5">
+            <p className="text-gray-400 text-sm">/year</p>
+            <p className="text-gray-600 text-xs line-through">{tier.regularLine}</p>
+          </div>
+        </div>
+        <p className="text-gray-500 text-xs mt-1 mb-5 font-mono">{tier.monthlyLine}</p>
+
+        <p className="text-gray-400 text-sm leading-relaxed">{tier.description}</p>
+
+        <div className="mt-6 pt-5 border-t border-white/5">
+          <p className="text-brand-gold text-[11px] font-bold tracking-wider uppercase mb-2">
+            {seats.remaining} of {seats.total} founder spots left
+          </p>
+          <div className="h-1 rounded-full bg-white/10 overflow-hidden">
+            <div className="h-full bg-brand-gold" style={{ width: `${pct}%` }} />
+          </div>
+        </div>
+      </div>
+
+      <div className="p-7 flex-1 flex flex-col">
+        <ul className="space-y-3 mb-8 flex-1" role="list">
+          {tier.features.map((f) => (
+            <li key={f} className="flex items-start gap-3 text-sm text-gray-300">
+              <Check size={14} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
+              {f}
+            </li>
+          ))}
+        </ul>
+        <a
+          href={APP_URL}
+          className={`block text-center font-black text-base py-4 rounded-lg transition-colors ${
+            tier.highlight
+              ? "bg-brand-orange hover:bg-brand-orange-dark text-white"
+              : "bg-white/5 border border-brand-gold/30 hover:bg-brand-gold/10 text-white"
+          }`}
+        >
+          {tier.ctaLabel}
+        </a>
+      </div>
     </div>
   );
 }
@@ -128,7 +322,14 @@ function FaqRow({ q, a }: { q: string; a: string }) {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const liveSeats = await fetchFounderSeats();
+
+  // Merge live counts with hardcoded defaults so the page always renders even
+  // if the API is down or hasn't been configured yet.
+  const seatsFor = (tier: Tier): SeatRow =>
+    liveSeats[tier.key] ?? { remaining: tier.defaultTotal, total: tier.defaultTotal };
+
   return (
     <div className="bg-brand-navy text-white font-sans min-h-screen">
 
@@ -180,8 +381,8 @@ export default function LandingPage() {
             <span className="text-brand-gold">One place.</span>
           </h1>
           <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-            The only platform built for the high school coach who runs the practice
-            <em> and</em> the weight room — regardless of the sport on your whistle.
+            From the head coach running varsity solo, to the program directing six teams across a
+            department — built for the coach who shows up and makes it work.
           </p>
 
           {/* Sport tags */}
@@ -198,12 +399,12 @@ export default function LandingPage() {
 
           <div className="flex flex-col items-center gap-3">
             <a
-              href={APP_URL}
+              href="#pricing"
               className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-dark text-white font-black text-lg px-10 py-5 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
               Claim Your Founding Spot <ArrowRight size={18} />
             </a>
-            <span className="text-gray-500 text-sm">Starting at $79 / year — founding rate, limited spots</span>
+            <span className="text-gray-500 text-sm">Founding rate from $99/year — locked for life</span>
           </div>
         </div>
       </section>
@@ -420,6 +621,50 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── ONE TEAM BECOMES THREE ── */}
+      <section className="py-28 border-b border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">The Natural Path</p>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-6">
+              When one team
+              <br />
+              <span className="text-brand-gold">becomes three.</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              It almost always starts with one varsity coach. Here&rsquo;s what happens next.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {PROGRAM_PATH.map(({ step, title, desc, tier }) => (
+              <div
+                key={step}
+                className="bg-brand-navy-mid border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-6"
+              >
+                <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-2 sm:w-32 shrink-0">
+                  <span className="text-brand-gold font-black text-3xl font-mono">{step}</span>
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-brand-gold/80 px-2 py-1 rounded border border-brand-gold/30">
+                    {tier}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-xl mb-2">{title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-white text-lg font-semibold max-w-2xl mx-auto">
+              You don&rsquo;t plan to outgrow your tier. You earn it — one team at a time —
+              as your program comes together.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── FOUNDER'S MANIFESTO ── */}
       <section className="py-28 border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6">
@@ -458,84 +703,60 @@ export default function LandingPage() {
 
       {/* ── PRICING ── */}
       <section className="py-28 border-b border-white/5 bg-brand-navy-mid" id="pricing">
-        <div className="max-w-2xl mx-auto px-6">
-          <div className="text-center mb-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
             <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">Founding Rate</p>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-6">
-              One plan.
+              Pick the size of your program.
               <br />
-              Everything you need.
+              <span className="text-brand-gold">Lock the rate for life.</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-xl mx-auto">
-              Practice planning and S&C in one place — for one coach, any sport.
-              Founding rate is locked in for life as long as you stay active.
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Every plan includes the full platform. The only thing that changes is how many teams it covers.
+              Founding rate stays with you for as long as you stay active — half off the regular price, forever.
             </p>
           </div>
 
-          {/* Single pricing card */}
-          <div className="rounded-2xl overflow-hidden border border-brand-gold bg-brand-navy-mid">
-            <div className="bg-brand-gold px-4 py-1.5 text-center">
-              <span className="text-[#0F172A] text-[10px] font-black uppercase tracking-widest">
-                Founding Member Rate
-              </span>
-            </div>
-
-            <div className="p-8 border-b border-white/10">
-              <div className="flex items-center gap-2 mb-4">
-                <Play size={16} className="text-brand-gold" aria-hidden="true" />
-                <span className="text-brand-gold text-xs font-bold uppercase tracking-widest">Single Coach · Any Sport</span>
-              </div>
-              <div className="flex items-end gap-3 mb-1">
-                <span className="text-white text-6xl font-black tabular-nums">$79</span>
-                <div className="mb-2">
-                  <p className="text-gray-400 text-sm">/year</p>
-                  <p className="text-gray-600 text-xs line-through">$149/year after founding window</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm mt-4 leading-relaxed">
-                Practice planning and S&amp;C management in one place — everything a high school coach
-                needs to run a professional program, regardless of sport.
-              </p>
-            </div>
-
-            <div className="p-8">
-              <ul className="space-y-3 mb-8" role="list">
-                {COACH_FEATURES.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-gray-300">
-                    <Check size={14} className="text-brand-gold mt-0.5 shrink-0" aria-hidden="true" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={APP_URL}
-                className="block text-center font-black text-base py-4 rounded-lg bg-brand-orange hover:bg-brand-orange-dark text-white transition-colors"
-              >
-                Claim Your Founding Rate
-              </a>
-            </div>
+          {/* Three pricing cards */}
+          <div className="grid lg:grid-cols-3 gap-6 mb-12 lg:items-start">
+            {TIERS.map((tier) => (
+              <PricingCard key={tier.key} tier={tier} seats={seatsFor(tier)} />
+            ))}
           </div>
 
-          <div className="mt-8 border border-green-500/30 bg-green-500/5 rounded-2xl p-8 text-center">
+          {/* The math callout */}
+          <div className="max-w-3xl mx-auto bg-brand-navy border border-brand-gold/30 rounded-2xl p-8 mb-10">
+            <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4 text-center">
+              The math
+            </p>
+            <p className="text-white font-bold text-xl text-center mb-2 leading-snug">
+              Three Starter plans for V / JV / Freshman ={" "}
+              <span className="text-gray-500 line-through">$297/yr.</span>
+            </p>
+            <p className="text-white font-bold text-xl text-center mb-5 leading-snug">
+              One Pro plan covering all three ={" "}
+              <span className="text-brand-gold">$249/yr.</span>
+            </p>
+            <p className="text-gray-400 text-sm text-center max-w-xl mx-auto leading-relaxed">
+              Pro is cheaper than three Starters, gives you up to five teams, and puts every roster, drill,
+              and lift on the same calendar. One login. One source of truth.
+            </p>
+          </div>
+
+          {/* 30-day guarantee */}
+          <div className="max-w-2xl mx-auto border border-green-500/30 bg-green-500/5 rounded-2xl p-8 text-center">
             <Shield size={28} className="text-green-400 mx-auto mb-3" aria-hidden="true" />
             <p className="text-white font-bold text-lg mb-2">30-Day No-Questions Guarantee</p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              If The Program Suite doesn&rsquo;t change how your practices and S&C weeks feel
-              within 30 days, you get a full refund. No forms, no follow-up. Just ask.
+              Try any plan for 30 days. If The Program Suite doesn&rsquo;t change how your practices and S&C weeks feel,
+              you get a full refund. No forms, no follow-up. Just ask.
             </p>
           </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-28 border-b border-white/5">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-2xl sm:text-4xl font-black mb-12 text-center">Questions.</h2>
-          {FAQ_ITEMS.map((item) => (
-            <FaqRow key={item.q} {...item} />
-          ))}
-        </div>
-      </section>
+      <FaqSection items={FAQ_ITEMS} />
 
       {/* ── FINAL CTA ── */}
       <section className="py-28 bg-brand-navy-mid">
@@ -554,13 +775,13 @@ export default function LandingPage() {
             The admin work is handled. The coaching can begin.
           </p>
           <a
-            href={APP_URL}
+            href="#pricing"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-black text-xl px-12 py-6 rounded-lg transition-colors"
           >
             Claim Your Founding Spot <ChevronRight size={20} />
           </a>
           <p className="text-gray-600 text-sm mt-6">
-            Starting at $79/year — founding rate while spots last — 30-day guarantee
+            Founding rates from $99/year — limited spots — 30-day guarantee
           </p>
         </div>
       </section>
