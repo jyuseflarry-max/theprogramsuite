@@ -92,6 +92,7 @@ const pricing = [
     name: "Starter",
     regular: "$399",
     founder: "$199",
+    monthly: "$39/month",
     description: "For one team getting organized.",
     badge: "Founder price",
     capacity: "1 team",
@@ -109,6 +110,7 @@ const pricing = [
     name: "Pro",
     regular: "$999",
     founder: "$499",
+    monthly: "$99/month",
     description: "For a full sport program.",
     badge: "Most popular",
     capacity: "Up to 5 teams",
@@ -126,6 +128,7 @@ const pricing = [
     name: "Enterprise",
     regular: "Custom",
     founder: "From $4,000",
+    monthly: null,
     description: "For schools, ADs, and districts.",
     badge: "Founder package",
     capacity: "Unlimited teams",
@@ -149,6 +152,10 @@ const faqs = [
   {
     q: "What does founder pricing mean?",
     a: "Founder pricing is a limited early-access price for the first programs that join. Starter is $199/year instead of $399/year, and Pro is $499/year instead of $999/year. You keep that founder price for the life of the account while it remains active."
+  },
+  {
+    q: "Can I pay monthly?",
+    a: "Yes. Starter is available at $39/month and Pro is available at $99/month. Lifetime founder pricing applies to annual plans, because those early annual programs are helping shape the product while it is new."
   },
   {
     q: "Why is there no checkout button yet?",
@@ -220,7 +227,7 @@ export default function LandingPage() {
               </a>
             </div>
             <p className="mt-4 text-sm font-semibold text-white/70">
-              Starter founder price: $199/year. Pro founder price: $499/year. Locked for life while active.
+              Starter founder price: $199/year. Pro founder price: $499/year. Monthly access is available for teams that need a lower starting point.
             </p>
           </div>
           <div className="mt-10 flex flex-wrap gap-2">
@@ -365,7 +372,7 @@ export default function LandingPage() {
             <p className="text-sm font-black uppercase tracking-[0.18em] text-[#b28a2e]">Founder pricing</p>
             <h2 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Early programs get the price locked for life.</h2>
             <p className="mt-4 text-lg leading-8 text-[#5f6878]">
-              Founder pricing is available for a limited time while the first coaches and schools help shape the product.
+              Founder annual pricing is available for a limited time while the first coaches and schools help shape the product. Monthly access is available for Starter and Pro, but the lifetime founder lock applies to annual plans.
             </p>
           </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
@@ -397,7 +404,9 @@ export default function LandingPage() {
               Plan interested in
               <select className="min-h-11 rounded-md border border-black/15 bg-[#fbfaf7] px-3 py-2 font-normal" name="plan">
                 <option>Pro founder price - $499/year</option>
+                <option>Pro monthly - $99/month</option>
                 <option>Starter founder price - $199/year</option>
+                <option>Starter monthly - $39/month</option>
                 <option>Enterprise founder package</option>
                 <option>Not sure yet</option>
               </select>
@@ -463,6 +472,9 @@ function PricingCard({ plan }: { plan: (typeof pricing)[number] }) {
         <p className="mt-2 text-sm text-[#667085]">
           Regular price: <span className="line-through">{plan.regular}/year</span>
         </p>
+        {plan.monthly ? (
+          <p className="mt-1 text-sm font-bold text-[#172033]">or {plan.monthly}</p>
+        ) : null}
         <p className="mt-1 text-sm font-bold text-[#172033]">{plan.capacity}</p>
       </div>
       <ul className="mt-6 grid gap-3">
