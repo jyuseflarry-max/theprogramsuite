@@ -21,7 +21,6 @@ import {
 import { FaqSection } from "@/components/FaqSection";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com/login";
-const FOUNDER_EMAIL = "founders@theprogramsuite.com";
 
 const sports = [
   "Basketball",
@@ -97,7 +96,6 @@ const pricing = [
     badge: "Founder price",
     capacity: "1 team",
     cta: "Claim Starter Founder Price",
-    subject: "Starter founder pricing",
     highlight: false,
     features: [
       "Coach Tools daily command queue",
@@ -115,7 +113,6 @@ const pricing = [
     badge: "Most popular",
     capacity: "Up to 5 teams",
     cta: "Claim Pro Founder Price",
-    subject: "Pro founder pricing",
     highlight: true,
     features: [
       "Everything in Starter",
@@ -133,7 +130,6 @@ const pricing = [
     badge: "Founder package",
     capacity: "Unlimited teams",
     cta: "Talk Founder Package",
-    subject: "Enterprise founder package",
     highlight: false,
     features: [
       "Everything in Pro",
@@ -167,25 +163,6 @@ const faqs = [
     a: "Most coaches should start with Pro if they manage a full program with multiple levels. Starter is best for a single team. Enterprise is for school or district-wide oversight."
   }
 ];
-
-function founderMailto(subject: string) {
-  const params = new URLSearchParams({
-    subject: `The Program Suite - ${subject}`,
-    body: [
-      "I want to claim founder pricing for The Program Suite.",
-      "",
-      "Name:",
-      "School:",
-      "Role:",
-      "Sport(s):",
-      "Plan interested in:",
-      "Program size:",
-      "Biggest thing we need help managing:"
-    ].join("\n")
-  });
-
-  return `mailto:${FOUNDER_EMAIL}?${params.toString()}`;
-}
 
 export default function LandingPage() {
   return (
@@ -408,7 +385,7 @@ export default function LandingPage() {
               Checkout is being handled manually during the founder window so we can onboard early programs correctly. Send the founder access request and we will follow up with the right setup path and payment link.
             </p>
           </div>
-          <form action={`mailto:${FOUNDER_EMAIL}`} className="grid gap-3" encType="text/plain" method="post">
+          <form action="/api/founder-access" className="grid gap-3" method="post">
             <FormInput label="Name" name="name" />
             <FormInput label="Email" name="email" type="email" />
             <FormInput label="School" name="school" />
@@ -496,7 +473,7 @@ function PricingCard({ plan }: { plan: (typeof pricing)[number] }) {
           </li>
         ))}
       </ul>
-      <a className={`mt-auto inline-flex min-h-11 items-center justify-center rounded-md px-4 py-2 font-black ${plan.highlight ? "bg-[#b28a2e] text-white hover:bg-[#967224]" : "border border-black/15 hover:border-[#b28a2e]"}`} href={founderMailto(plan.subject)}>
+      <a className={`mt-auto inline-flex min-h-11 items-center justify-center rounded-md px-4 py-2 font-black ${plan.highlight ? "bg-[#b28a2e] text-white hover:bg-[#967224]" : "border border-black/15 hover:border-[#b28a2e]"}`} href="#founder-access">
         {plan.cta}
       </a>
     </article>
