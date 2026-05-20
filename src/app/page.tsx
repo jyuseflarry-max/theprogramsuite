@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { FaqSection } from "@/components/FaqSection";
 
-const APP_LOGIN_URL = "https://app.theprogramsuite.com/login";
+const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const INVENTORY_SECTIONS = [
   {
@@ -306,12 +306,9 @@ export default function LandingPage() {
             <a className="hover:text-[#172033]" href="#pricing">
               Pricing
             </a>
-            <a className="font-black text-[#775c1e] hover:text-[#172033]" href={APP_LOGIN_URL}>
-              Login
-            </a>
           </nav>
           <a
-            className="rounded-md bg-[#b28a2e] px-3 py-2 text-sm font-black text-white hover:bg-[#967224] md:hidden"
+            className="rounded-md border border-[#172033]/20 px-3 py-2 text-sm font-black text-[#172033] hover:border-[#b28a2e] hover:bg-white"
             href={APP_LOGIN_URL}
           >
             Login
