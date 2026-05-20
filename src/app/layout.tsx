@@ -1,27 +1,35 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theprogramsuite.com"),
-  title: "The Program Suite - Run Your Program Like You Have a Full Staff",
+  title: "The Program Suite - Inventory Accountability for Every Sport",
   description:
-    "Coach Tools, practice planning, game week, gear, schedule, attendance, Athlete development, family communication, and AD oversight for school sports.",
+    "Inventory accountability for school sports, plus the coaching operating system that keeps Athletes, Teams, coaches, and schedules connected.",
   openGraph: {
     title: "The Program Suite",
-    description: "Run your program like you have a full staff. Founder pricing is open for early programs.",
+    description:
+      "Track what your program owns, who has it, what is missing, and what needs to be collected.",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }]
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The Program Suite",
-    description: "The operating system for school sports."
-  }
+    description: "Inventory accountability for every sport.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body>{children}</body>
     </html>
   );
