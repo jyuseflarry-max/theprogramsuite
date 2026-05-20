@@ -318,12 +318,12 @@ export default function LandingPage() {
 
       <section className="relative min-h-[calc(88vh-4rem)] overflow-hidden">
         <Image
-          alt="Inventory dashboard for school sports"
+          alt="Texas school sports inventory room with football equipment in the foreground"
           className="absolute inset-0 h-full w-full object-cover"
           fill
           priority
           sizes="100vw"
-          src="/images/inventory-dashboard-hero.png"
+          src="/images/texas-football-inventory-hero.png"
         />
         <div className="absolute inset-0 bg-[#172033]/78" />
         <div className="relative mx-auto flex min-h-[calc(88vh-4rem)] w-full max-w-7xl flex-col justify-center px-4 py-16 text-white sm:px-6">
