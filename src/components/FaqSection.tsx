@@ -37,7 +37,7 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
     <section className="border-t border-black/10 bg-[#fbfaf7] py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <p className="text-center text-sm font-black uppercase tracking-[0.18em] text-[#b28a2e]">FAQ</p>
-        <h2 className="mt-3 text-center text-4xl font-black tracking-tight">Founder pricing questions</h2>
+        <h2 className="mt-3 text-center text-4xl font-black tracking-tight">Inventory pricing questions</h2>
         <div className="mt-10">
           {items.map((item) => (
             <FaqRow key={item.q} {...item} />
