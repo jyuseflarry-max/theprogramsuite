@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
   title: "Terms of Service | The Program Suite",
@@ -13,29 +15,41 @@ const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <main className="min-h-screen bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
+      <SiteNav />
 
-      {/* Header */}
-      <div className="bg-[#0b0e14] border-b border-gray-800 px-6 py-4">
-        <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link href="/">
-            <Image src="/logo.png" alt="The Program Suite" width={130} height={34} className="h-8 w-auto object-contain" />
-          </Link>
-          <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
-            Privacy Policy →
-          </Link>
+      {/* Title band */}
+      <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
+        <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-[18px]"><Eyebrow>Legal</Eyebrow></div>
+          <h1 className="display" style={{ fontSize: "clamp(48px, 8vw, 120px)" }}>
+            Terms of <span className="headline-italic">service.</span>
+          </h1>
+          <p className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
+            Effective: {EFFECTIVE_DATE} · Operator: The Program Suite · Jurisdiction: Texas, USA
+          </p>
+          <div className="mt-4">
+            <Link
+              href="/privacy"
+              className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-accent)] hover:text-[color:var(--color-ink)]"
+            >
+              Privacy Policy →
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Document */}
-      <div className="max-w-3xl mx-auto px-6 py-12">
+      <div className="prose-doc mx-auto max-w-[820px] px-5 py-16 md:px-8 md:py-20">
 
-        <h1 className="text-3xl font-black text-gray-950 mb-2">Terms of Service</h1>
-        <p className="text-sm text-gray-500 mb-10">
-          Effective: {EFFECTIVE_DATE} &nbsp;·&nbsp; Operator: The Program Suite &nbsp;·&nbsp; Jurisdiction: Texas, USA
-        </p>
-
-        <div className="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 text-sm text-blue-900 mb-10 leading-relaxed">
+        <div
+          className="mb-12 p-5 text-[14px] leading-[1.6]"
+          style={{
+            background: "var(--color-paper-2)",
+            borderLeft: "3px solid var(--color-accent)",
+            color: "var(--color-ink)",
+          }}
+        >
           <strong>Please read these Terms carefully before using the Service.</strong> By creating an account,
           accessing, or using The Program Suite, you agree to be bound by these Terms of Service and our{" "}
           <Link href="/privacy" className="underline font-medium">Privacy Policy</Link>. If you do not agree,
@@ -363,16 +377,8 @@ export default function TermsPage() {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-gray-200 py-8 mt-4">
-        <div className="max-w-3xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
-          <span>© {new Date().getFullYear()} The Program Suite. All rights reserved.</span>
-          <div className="flex gap-4">
-            <Link href="/terms" className="hover:text-gray-900 transition-colors">Terms of Service</Link>
-            <Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link>
-          </div>
-        </div>
-      </div>
-    </div>
+      <SiteFooter />
+    </main>
   );
 }
 
@@ -380,13 +386,13 @@ export default function TermsPage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mb-10">
-      <h2 className="text-xl font-bold text-gray-950 mb-4 pb-2 border-b border-gray-200">{title}</h2>
-      <div className="text-gray-700 leading-relaxed text-sm space-y-1">{children}</div>
+    <section>
+      <h2>{title}</h2>
+      <div>{children}</div>
     </section>
   );
 }
 
 function Subhead({ children }: { children: React.ReactNode }) {
-  return <h3 className="font-semibold text-gray-900 mt-4 mb-1.5">{children}</h3>;
+  return <h3>{children}</h3>;
 }

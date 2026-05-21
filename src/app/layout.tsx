@@ -1,18 +1,33 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Big_Shoulders, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+/* Big Shoulders - editorial sports-magazine headlines */
+const bigShoulders = Big_Shoulders({
+  variable: "--font-display",
+  weight: ["400", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
 });
+
+/* Instrument Serif - italic editorial accent */
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+/* Geist - modern SaaS body (loaded from Google Fonts via next/font/google
+   would require Geist on Google Fonts; we use a CSS @import fallback in globals
+   for simplicity). Replace with @vercel/geist if you'd rather host. */
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theprogramsuite.com"),
   title: "The Program Suite - Inventory Accountability for Every Sport",
   description:
-    "Inventory accountability for school sports, plus the coaching operating system that keeps Athletes, Teams, coaches, and schedules connected.",
+    "Inventory accountability for school sports, plus the coaching operating system that keeps athletes, teams, coaches, and schedules connected.",
   openGraph: {
     title: "The Program Suite",
     description:
@@ -29,7 +44,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${bigShoulders.variable} ${instrumentSerif.variable}`}>
+      <head>
+        {/* Geist body font - Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
