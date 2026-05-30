@@ -51,22 +51,22 @@ const CORE_SYSTEMS = [
 
 const PRODUCT_SHOTS = [
   {
-    src: "/product-receive.png",
-    alt: "Receive shipment screen in The Program Suite with purchase order details, item counts, and condition tracking",
-    eyebrow: "Real product screen",
-    title: "Receive a vendor shipment without rebuilding the count in a spreadsheet.",
+    src: "/images/current-app/coach-home.png",
+    alt: "Current The Program Suite coach home screen with Do next items and today's schedule",
+    eyebrow: "Coach home",
+    title: "Open the day with the work that needs attention first.",
   },
   {
-    src: "/images/practice-dashboard-hero.png",
-    alt: "Practice planning product visual for The Program Suite",
-    eyebrow: "Practice",
-    title: "Turn the next practice into a staff-ready plan.",
+    src: "/images/current-app/athletes.png",
+    alt: "Current The Program Suite roster screen with Athlete cards",
+    eyebrow: "Athlete 360",
+    title: "Keep roster details and Athlete follow-up in one staff view.",
   },
   {
-    src: "/images/training-dashboard-hero.png",
-    alt: "Training dashboard product visual for The Program Suite",
-    eyebrow: "Training",
-    title: "Keep the weight room tied to athletes, groups, and progress.",
+    src: "/images/current-app/mobile-inventory.png",
+    alt: "Current The Program Suite mobile Inventory screen",
+    eyebrow: "Mobile inventory",
+    title: "Give coaches phone-first Inventory actions on the sideline.",
   },
 ];
 
@@ -230,10 +230,10 @@ function Hero() {
             }}
           >
             <Image
-              src="/product-receive.png"
-              alt="The Program Suite receive shipment screen"
-              width={2156}
-              height={1458}
+              src="/images/current-app/coach-home.png"
+              alt="Current The Program Suite coach home screen"
+              width={1440}
+              height={960}
               priority
               className="h-auto w-full"
               sizes="(min-width: 1024px) 520px, 100vw"
@@ -301,9 +301,9 @@ function ProductProof() {
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             {[
-              { src: "/images/athletes-hub-hero.png", label: "Athlete 360" },
-              { src: "/images/game-day-tools-hero.png", label: "Game Day" },
-              { src: "/images/schedule-dashboard-hero.png", label: "Schedule" },
+              { src: "/images/current-app/athletes.png", label: "Athletes" },
+              { src: "/images/current-app/mobile-game-day.png", label: "Game Day" },
+              { src: "/images/current-app/mobile-practice.png", label: "Practice" },
             ].map((shot) => (
               <figure
                 className="overflow-hidden rounded-[8px] border bg-[color:var(--color-paper)]"
@@ -312,9 +312,9 @@ function ProductProof() {
               >
                 <Image
                   src={shot.src}
-                  alt={`${shot.label} screen in The Program Suite`}
-                  width={900}
-                  height={560}
+                  alt={`Current ${shot.label} screen in The Program Suite`}
+                  width={shot.src.includes("mobile") ? 780 : 1440}
+                  height={shot.src.includes("mobile") ? 1688 : 960}
                   className="aspect-[4/3] w-full object-cover"
                   sizes="(min-width: 1024px) 260px, 33vw"
                 />
@@ -504,6 +504,26 @@ function MobileAndDistrict() {
               items={["School readiness rollups", "Budget and inventory review", "Audit trails", "Alerts and action items", "Exportable leadership reports"]}
               icon={<ShieldCheck aria-hidden="true" className="size-6" />}
             />
+            {[
+              { src: "/images/current-app/mobile-training.png", label: "Strength" },
+              { src: "/images/current-app/mobile-inventory.png", label: "Inventory" },
+            ].map((shot) => (
+              <figure
+                className="overflow-hidden rounded-[10px] border border-[rgba(248,250,252,.18)] bg-[rgba(248,250,252,.06)]"
+                key={shot.label}
+              >
+                <Image
+                  alt={`Current mobile ${shot.label} screen in The Program Suite`}
+                  className="aspect-[9/14] w-full object-cover object-top"
+                  height={1688}
+                  src={shot.src}
+                  width={780}
+                />
+                <figcaption className="border-t border-[rgba(248,250,252,.14)] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[rgba(248,250,252,.72)]">
+                  Current app | {shot.label}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </div>
