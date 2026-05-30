@@ -4,21 +4,21 @@
    The Program Suite — design tokens
    ============================================================ */
 @theme {
-  /* Brand palette: brass + slate-navy + chalk cream */
-  --color-ink: #0e1e2e;
-  --color-ink-2: #1a2d42;
-  --color-ink-soft: #3a4d62;
-  --color-muted: #7d8a99;
-  --color-paper: #f4ede0;
-  --color-paper-2: #e9e1d0;
-  --color-line: rgba(14, 30, 46, 0.12);
-  --color-line-strong: rgba(14, 30, 46, 0.22);
-  --color-accent: #b8923f;
+  /* Brand palette: selected blue + playbook navy + cool light surfaces */
+  --color-ink: #0f172a;
+  --color-ink-2: #1e293b;
+  --color-ink-soft: #475569;
+  --color-muted: #64748b;
+  --color-paper: #f8fafc;
+  --color-paper-2: #eef6ff;
+  --color-line: rgba(15, 23, 42, 0.12);
+  --color-line-strong: rgba(15, 23, 42, 0.22);
+  --color-accent: #007aff;
   --color-accent-ink: #ffffff;
-  --color-accent-soft: #f0e3c2;
-  --color-good: #2f6e3e;
-  --color-warn: #b85d12;
-  --color-bad: #a8331f;
+  --color-accent-soft: #e1efff;
+  --color-good: #248a3d;
+  --color-warn: #c04c00;
+  --color-bad: #d70015;
 
   /* Type stacks */
   --font-display: "Big Shoulders Display", "Bebas Neue", Impact, sans-serif;
@@ -93,8 +93,8 @@ button, input, select, textarea { font: inherit; }
 .btn-ghost:hover { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
 .btn-ink { background: var(--color-ink); color: var(--color-paper); }
 .btn-ink:hover { filter: brightness(1.10); }
-.btn-on-dark { background: transparent; color: #f5f0e7; border-color: rgba(245,240,231,.4); }
-.btn-on-dark:hover { background: #f5f0e7; color: var(--color-ink); }
+.btn-on-dark { background: transparent; color: #f8fafc; border-color: rgba(248,250,252,.4); }
+.btn-on-dark:hover { background: #f8fafc; color: var(--color-ink); }
 .btn-lg { padding: 18px 28px; font-size: 16px; }
 
 /* ============================================================
@@ -113,7 +113,7 @@ button, input, select, textarea { font: inherit; }
   width: 6px; height: 6px; border-radius: 50%;
   background: var(--color-accent);
 }
-.eyebrow-on-dark { color: rgba(245, 240, 231, 0.65); }
+.eyebrow-on-dark { color: rgba(248, 250, 252, 0.68); }
 
 /* ============================================================
    Hero headline accent helpers
@@ -157,7 +157,7 @@ button, input, select, textarea { font: inherit; }
 .field-select:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(184, 146, 63, 0.18);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18);
 }
 .field-textarea { min-height: 110px; resize: vertical; }
 

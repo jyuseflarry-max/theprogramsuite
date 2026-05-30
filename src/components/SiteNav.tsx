@@ -4,8 +4,8 @@ import Link from "next/link";
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const NAV_LINKS = [
-  { href: "/#inventory", label: "Inventory" },
-  { href: "/#coaching-os", label: "Coaching OS" },
+  { href: "/#product", label: "Product" },
+  { href: "/#coaching-os", label: "Coach OS" },
   { href: "/#audiences", label: "Audiences" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/#faq", label: "FAQ" },
@@ -18,11 +18,11 @@ export function SiteNav() {
         <Link aria-label="The Program Suite home" href="/" className="flex items-center gap-3">
           <Image
             alt="The Program Suite"
-            src="/logo.png"
-            width={170}
-            height={42}
+            src="/the-program-suite-wordmark.svg"
+            width={240}
+            height={48}
             priority
-            className="h-9 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </Link>
 
@@ -51,7 +51,7 @@ export function SiteNav() {
             className="btn btn-primary"
             style={{ padding: "10px 16px", fontSize: 13, minHeight: 38 }}
           >
-            Start with one sport
+            Request access
           </a>
         </div>
       </div>

@@ -7,25 +7,25 @@ export function SiteFooter() {
     <footer className="border-t border-[color:var(--color-line)] bg-[color:var(--color-paper)] pt-16 pb-10">
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
-          <div className="max-w-[360px]">
+          <div className="max-w-[380px]">
             <Image
-              alt="The Program Suite — The Operating System for Winning Programs"
-              src="/logo.png"
-              width={300}
-              height={158}
-              className="h-auto w-full max-w-[280px] rounded"
+              alt="The Program Suite - The Operating System for Winning Programs"
+              className="h-auto w-full max-w-[320px]"
+              height={64}
+              src="/the-program-suite-wordmark.svg"
+              width={320}
             />
             <p className="mt-4 text-[14.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-              Inventory accountability for school sports. Plus the coaching operating system that
-              keeps athletes, teams, coaches, and schedules connected.
+              The operating system for school sports: athletes, practice, training, schedule,
+              inventory, budget, messages, and district oversight.
             </p>
           </div>
 
           <FooterCol
             title="Product"
             links={[
-              { href: "/#inventory", label: "Inventory" },
-              { href: "/#coaching-os", label: "Coaching OS" },
+              { href: "/#product", label: "Product" },
+              { href: "/#coaching-os", label: "Coach OS" },
               { href: "/#audiences", label: "Audiences" },
               { href: "/#pricing", label: "Pricing" },
             ]}
@@ -69,13 +69,13 @@ function FooterCol({
         {title}
       </div>
       <ul className="flex flex-col gap-[9px]">
-        {links.map((l) => (
-          <li key={l.href}>
+        {links.map((link) => (
+          <li key={link.href}>
             <a
-              href={l.href}
               className="text-[14px] text-[color:var(--color-ink)] hover:text-[color:var(--color-accent)]"
+              href={link.href}
             >
-              {l.label}
+              {link.label}
             </a>
           </li>
         ))}

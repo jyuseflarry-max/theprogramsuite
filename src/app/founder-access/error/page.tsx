@@ -29,8 +29,8 @@ export default async function FounderAccessErrorPage({
             className="mx-auto h-12 w-auto object-contain"
             height={48}
             priority
-            src="/logo.png"
-            width={190}
+            src="/the-program-suite-wordmark.svg"
+            width={240}
           />
           <AlertTriangle
             aria-hidden="true"

@@ -65,13 +65,13 @@ export function SectionHead({
       ) : null}
       <div
         className="grid items-end gap-10 border-b pb-9 mb-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16"
-        style={{ borderColor: onDark ? "rgba(245,240,231,.25)" : "var(--color-ink)" }}
+        style={{ borderColor: onDark ? "rgba(248,250,252,.25)" : "var(--color-ink)" }}
       >
         <h2
           className="display"
           style={{
             fontSize: "clamp(36px, 5.5vw, 88px)",
-            color: onDark ? "#f5f0e7" : "var(--color-ink)",
+            color: onDark ? "#f8fafc" : "var(--color-ink)",
           }}
         >
           {title}
@@ -84,7 +84,7 @@ export function SectionHead({
               fontStyle: "italic",
               fontSize: "clamp(17px, 1.6vw, 24px)",
               lineHeight: 1.35,
-              color: onDark ? "rgba(245,240,231,.7)" : "var(--color-ink-soft)",
+              color: onDark ? "rgba(248,250,252,.72)" : "var(--color-ink-soft)",
             }}
           >
             {description}

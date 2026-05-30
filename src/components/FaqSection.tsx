@@ -62,7 +62,7 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
           style={{ borderColor: "var(--color-ink)" }}
         >
           <h2 className="display" style={{ fontSize: "clamp(36px, 5.5vw, 88px)" }}>
-            Inventory pricing
+            Product and pricing
             <br />
             <span className="headline-italic">questions, </span>
             <span className="text-accent-brand">answered.</span>

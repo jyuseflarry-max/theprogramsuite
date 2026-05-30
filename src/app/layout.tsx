@@ -25,20 +25,20 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theprogramsuite.com"),
-  title: "The Program Suite - Inventory Accountability for Every Sport",
+  title: "The Program Suite - Operating System for School Sports",
   description:
-    "Inventory accountability for school sports, plus the coaching operating system that keeps athletes, teams, coaches, and schedules connected.",
+    "The operating system for school sports: athletes, practice, training, schedule, inventory, budget, messages, and district oversight.",
   openGraph: {
     title: "The Program Suite",
     description:
-      "Track what your program owns, who has it, what is missing, and what needs to be collected.",
+      "Run athletes, practice, training, schedule, inventory, budget, messages, and district oversight from one school sports operating system.",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/images/the-program-suite-og.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The Program Suite",
-    description: "Inventory accountability for every sport.",
+    description: "The operating system for school sports.",
   },
 };
 
