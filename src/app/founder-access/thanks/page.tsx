@@ -18,8 +18,8 @@ export default function FounderAccessThanksPage() {
             className="mx-auto h-12 w-auto object-contain"
             height={48}
             priority
-            src="/the-program-suite-wordmark.svg"
-            width={240}
+            src="/the-program-suite-selected-blue-cropped.png"
+            width={326}
           />
           <CheckCircle2
             aria-hidden="true"
