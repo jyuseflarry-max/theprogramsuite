@@ -601,7 +601,8 @@ function Pricing() {
             eyebrow="Program"
             name="One sport"
             price="$499"
-            sub="Founding annual pricing"
+            comparePrice="$799"
+            sub="Founding member annual pricing"
             desc="For a coach ready to run one sport with serious accountability."
             features={["All teams in the sport", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Founder pricing locked while active"]}
             cta="Start with one sport"
@@ -610,7 +611,7 @@ function Pricing() {
             featured
             eyebrow="Athletic department"
             name="Every sport"
-            price="$1,499"
+            price="$3,499"
             sub="School-wide coverage"
             desc="For ADs who want one operating standard across every program."
             features={["Program switching", "School-wide inventory and budget visibility", "Staff access controls", "Every coach and team included"]}
@@ -841,6 +842,7 @@ function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; t
 }
 
 function PlanCard({
+  comparePrice,
   cta,
   desc,
   eyebrow,
@@ -850,6 +852,7 @@ function PlanCard({
   price,
   sub,
 }: {
+  comparePrice?: string;
   cta: string;
   desc: string;
   eyebrow: string;
@@ -878,8 +881,18 @@ function PlanCard({
         {desc}
       </p>
       <div className="my-7 h-px" style={{ background: featured ? "rgba(248,250,252,.16)" : "var(--color-line)" }} />
-      <div className="display" style={{ color: foreground, fontSize: "clamp(52px, 5.4vw, 82px)", lineHeight: 0.88 }}>
-        {price}
+      <div className="flex flex-wrap items-end gap-3">
+        {comparePrice ? (
+          <span
+            className="display text-[color:var(--color-muted)] line-through decoration-[0.08em]"
+            style={{ fontSize: "clamp(34px, 3.4vw, 54px)", lineHeight: 0.9 }}
+          >
+            {comparePrice}
+          </span>
+        ) : null}
+        <span className="display" style={{ color: foreground, fontSize: "clamp(52px, 5.4vw, 82px)", lineHeight: 0.88 }}>
+          {price}
+        </span>
       </div>
       <p className="mt-2 text-[12px]" style={{ color: muted }}>
         {sub}
