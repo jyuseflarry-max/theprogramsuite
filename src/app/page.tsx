@@ -117,6 +117,9 @@ const MOBILE_FEATURES = [
   "Athlete lookup and messaging",
 ];
 
+const FOUNDING_PROGRAM_LIMIT = 100;
+const FOUNDING_PROGRAMS_CLAIMED = 0;
+
 const FAQ_ITEMS = [
   {
     q: "Is The Program Suite only for inventory?",
@@ -136,7 +139,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is pricing structured?",
-    a: "Pricing is based on scope. One Program is $1,250 per year, with $500 off for founding members. Monthly pricing is available only for one Program at $125 per month. Full-school coverage is $5,000 per year, and districts are custom priced around rollout needs.",
+    a: "Pricing is based on scope. One Program is normally $1,250 per year, but the first 100 founding programs can join for $750 per year and save $500. Monthly pricing is available only for one Program at $125 per month, which totals $1,500 per year. Full-school coverage is $5,000 per year, and districts are custom priced around rollout needs.",
   },
   {
     q: "Can we start with one Program and expand later?",
@@ -174,7 +177,7 @@ function Hero() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
           <div>
             <div className="mb-5 flex flex-wrap gap-2">
-              {["One source of truth", "Built by a coach", "$125/mo to start"].map((item) => (
+              {["One source of truth", "Built by a coach", "$750 founding price"].map((item) => (
                 <span
                   className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
                   key={item}
@@ -712,7 +715,7 @@ function Pricing() {
             <span className="text-accent-brand">yes.</span>
           </>
         }
-        description="One Program can start monthly. Schools and districts can expand when the operating rhythm is proven."
+        description="The first 100 programs can lock in founding pricing at $750 per year before the regular $1,250 annual price takes over."
       />
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
         <div className="grid gap-5 lg:grid-cols-[1.18fr_0.91fr_0.91fr]">
@@ -720,12 +723,12 @@ function Pricing() {
             featured
             eyebrow="Program"
             name="One Program"
-            price="$125"
-            priceSuffix="/mo"
+            price="$750"
+            priceSuffix="/year"
             comparePrice="$1,250/year"
-            sub="Founding members can pay $750/year and save $500."
+            sub="Founding member price for the first 100 programs. Save $500."
             desc="For one coach or program ready to run the season with serious accountability."
-            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Monthly pricing only available here"]}
+            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Monthly option: $125/mo, which is $1,500/year"]}
             cta="Start one program"
           />
           <PlanCard
@@ -748,6 +751,7 @@ function Pricing() {
             cta="Talk district coverage"
           />
         </div>
+        <FoundingSpots />
       </div>
     </section>
   );
@@ -962,6 +966,60 @@ function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; t
   );
 }
 
+function FoundingSpots() {
+  const shouldShowCountdown = FOUNDING_PROGRAMS_CLAIMED >= 50;
+  const remaining = Math.max(FOUNDING_PROGRAM_LIMIT - FOUNDING_PROGRAMS_CLAIMED, 0);
+  const progress = Math.min((FOUNDING_PROGRAMS_CLAIMED / FOUNDING_PROGRAM_LIMIT) * 100, 100);
+
+  return (
+    <div
+      className="mt-5 grid gap-5 rounded-[10px] border bg-white p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6"
+      style={{ borderColor: "var(--color-line-strong)" }}
+    >
+      <div>
+        <p className="text-[12px] font-black uppercase tracking-[0.14em] text-[color:var(--color-accent)]">
+          Founding member window
+        </p>
+        <h3 className="mt-2 text-[22px] font-black tracking-tight text-[color:var(--color-ink)]">
+          The $750 price is only for the first 100 programs.
+        </h3>
+        <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
+          After those spots are gone, one Program moves to the regular $1,250 annual price. Monthly
+          remains available at $125/mo, but the founding annual price is the best deal.
+        </p>
+      </div>
+
+      {shouldShowCountdown ? (
+        <div className="min-w-[220px] rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[color:var(--color-muted)]">
+                Spots left
+              </p>
+              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 48 }}>
+                {remaining}
+              </p>
+            </div>
+            <p className="pb-2 text-[13px] font-bold text-[color:var(--color-ink-soft)]">
+              of {FOUNDING_PROGRAM_LIMIT}
+            </p>
+          </div>
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--color-accent-soft)]">
+            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      ) : (
+        <div
+          className="rounded-[8px] border px-4 py-3 text-[13px] font-semibold text-[color:var(--color-ink-soft)]"
+          style={{ borderColor: "var(--color-line)" }}
+        >
+          Countdown appears after 50 founding programs are claimed.
+        </div>
+      )}
+    </div>
+  );
+}
+
 function BeforeAfterPanel({ items, title, tone }: { items: string[]; title: string; tone: "bad" | "good" }) {
   const isGood = tone === "good";
   return (
@@ -1098,7 +1156,7 @@ function StickyMobileCta() {
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
-          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$125/mo. Founders save $500/year.</p>
+          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$750/year for first 100 programs.</p>
         </div>
         <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
           Start
