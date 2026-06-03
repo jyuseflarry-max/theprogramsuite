@@ -47,11 +47,12 @@ export function SiteNav() {
             Login
           </a>
           <a
-            href="/#pricing"
+            href="/#founder-access"
             className="btn btn-primary"
             style={{ padding: "10px 16px", fontSize: 13, minHeight: 38 }}
           >
-            Request access
+            <span className="hidden sm:inline">Request access</span>
+            <span className="sm:hidden">Start</span>
           </a>
         </div>
       </div>

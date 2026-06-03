@@ -146,10 +146,11 @@ const FAQ_ITEMS = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
+    <main className="min-h-screen bg-[color:var(--color-paper)] pb-20 text-[color:var(--color-ink)] md:pb-0">
       <SiteNav />
       <Hero />
       <CoachStory />
+      <ChaosToClarity />
       <ProductProof />
       <OperatingSystem />
       <Workflow />
@@ -161,43 +162,34 @@ export default function LandingPage() {
       <FaqSection items={FAQ_ITEMS} />
       <FinalCta />
       <SiteFooter />
+      <StickyMobileCta />
     </main>
   );
 }
 
 function Hero() {
   return (
-    <section className="overflow-hidden pt-14 pb-20 md:pt-18">
+    <section className="overflow-hidden pt-10 pb-16 md:pt-14 md:pb-20">
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div
-          className="mb-9 flex flex-wrap items-center justify-between gap-4 border-b pb-5"
-          style={{ borderColor: "var(--color-ink)" }}
-        >
-          <div className="flex flex-wrap items-center gap-[18px]">
-            <span className="text-[11px] font-bold uppercase tracking-[0.18em]">
-              The Program Suite
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
-              Operating system for school sports
-            </span>
-          </div>
-          <a
-            className="btn btn-ink"
-            href="#founder-access"
-            style={{ minHeight: 38, padding: "10px 16px", fontSize: 13 }}
-          >
-            Request founder access
-          </a>
-        </div>
-
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.72fr)] lg:items-end">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
           <div>
-            <h1 className="display" style={{ fontSize: "clamp(54px, 11vw, 164px)" }}>
-              Run the
+            <div className="mb-5 flex flex-wrap gap-2">
+              {["One source of truth", "Built by a coach", "$125/mo to start"].map((item) => (
+                <span
+                  className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
+                  key={item}
+                  style={{ borderColor: "var(--color-line-strong)" }}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <h1 className="display" style={{ fontSize: "clamp(54px, 9.6vw, 132px)" }}>
+              Stop
               <br />
-              whole
+              chasing
               <br />
-              <span className="headline-italic">program.</span>
+              <span className="headline-italic">everything.</span>
             </h1>
             <p
               className="mt-9 max-w-[620px]"
@@ -209,10 +201,11 @@ function Hero() {
                 lineHeight: 1.24,
               }}
             >
-              One home base for coaches and athletic departments: athletes, practice, training,
-              schedule, game day, inventory, budget, messages, and the proof leadership needs.
+              Stop running your program out of texts, spreadsheets, memory, multiple apps, and
+              disconnected websites. The Program Suite gives staff, players, and families one source
+              of truth.
             </p>
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-start">
               <ArrowBtn href="#founder-access" large>
                 Start one program
               </ArrowBtn>
@@ -220,41 +213,58 @@ function Hero() {
                 See the system
               </a>
             </div>
+            <p className="mt-4 text-[13px] font-semibold text-[color:var(--color-ink-soft)]">
+              Founding members save $500. No per-athlete fees.
+            </p>
           </div>
 
-          <div
-            className="overflow-hidden rounded-[10px] border bg-white"
-            style={{
-              borderColor: "var(--color-line-strong)",
-              boxShadow:
-                "0 34px 90px -28px rgba(14,30,46,.42), 0 10px 28px -14px rgba(14,30,46,.26)",
-            }}
-          >
-            <Image
-              src="/images/current-app/coach-home.png"
-              alt="Current The Program Suite coach home screen"
-              width={1440}
-              height={960}
-              priority
-              className="h-auto w-full"
-              sizes="(min-width: 1024px) 520px, 100vw"
-            />
+          <div className="relative">
+            <div
+              className="overflow-hidden rounded-[10px] border bg-white"
+              style={{
+                borderColor: "var(--color-line-strong)",
+                boxShadow:
+                  "0 34px 90px -28px rgba(14,30,46,.42), 0 10px 28px -14px rgba(14,30,46,.26)",
+              }}
+            >
+              <Image
+                src="/images/current-app/coach-home.png"
+                alt="Current The Program Suite coach home screen"
+                width={1440}
+                height={960}
+                priority
+                className="h-auto w-full"
+                sizes="(min-width: 1024px) 640px, 100vw"
+              />
+            </div>
+            <div
+              className="absolute -bottom-8 right-3 hidden w-[31%] min-w-[148px] overflow-hidden rounded-[16px] border-[6px] border-[color:var(--color-paper)] bg-white shadow-2xl sm:block"
+              style={{ boxShadow: "0 22px 55px -24px rgba(15,23,42,.7)" }}
+            >
+              <Image
+                src="/images/current-app/mobile-game-day.png"
+                alt="Current The Program Suite mobile game day screen"
+                width={780}
+                height={1688}
+                className="aspect-[9/16] w-full object-cover object-top"
+                sizes="180px"
+              />
+            </div>
           </div>
         </div>
 
         <div
-          className="mt-16 grid border-t border-b sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-16 grid overflow-hidden rounded-[8px] border bg-white sm:grid-cols-3"
           style={{ borderColor: "var(--color-ink)" }}
         >
           {[
-            ["1", "coach home base for what needs attention today"],
-            ["10+", "major staff workflows connected across the season"],
-            ["All", "teams and levels inside each sport"],
-            ["3", "layers of visibility: sport, school, district"],
+            ["60 sec", "coach home base for what needs attention today"],
+            ["No caps", "players, families, and staff stay connected"],
+            ["1 place", "schedule, inventory, messages, practice, and proof"],
           ].map(([big, label], index) => (
             <div
               key={label}
-              className="flex min-h-[132px] flex-col justify-between gap-4 border-[color:var(--color-line)] p-6 [&:not(:last-child)]:border-b sm:[&:not(:nth-child(2n))]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:[&]:border-b-0 lg:[&:not(:last-child)]:border-r"
+              className="flex min-h-[118px] flex-col justify-between gap-4 border-[color:var(--color-line)] p-5 [&:not(:last-child)]:border-b sm:[&]:border-b-0 sm:[&:not(:last-child)]:border-r"
             >
               <div className="display text-[color:var(--color-accent)]" style={{ fontSize: 58 }}>
                 {big}
@@ -264,6 +274,42 @@ function Hero() {
               </p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ChaosToClarity() {
+  const messy = [
+    "Texts with no record",
+    "Spreadsheets that go stale",
+    "Team sites in different places",
+    "Equipment tracked from memory",
+    "Families asking the same questions",
+  ];
+  const clear = [
+    "One shared athlete profile",
+    "Live schedules and availability",
+    "Program updates in one place",
+    "Inventory with assignment history",
+    "Staff, players, and families aligned",
+  ];
+
+  return (
+    <section className="py-20 md:py-24">
+      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
+        <div className="mb-10 max-w-[760px]">
+          <Eyebrow>Before and after</Eyebrow>
+          <h2 className="display mt-5" style={{ fontSize: "clamp(40px, 6.5vw, 94px)" }}>
+            From scattered
+            <br />
+            to <span className="headline-italic text-accent-brand">settled.</span>
+          </h2>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <BeforeAfterPanel tone="bad" title="What coaches are stuck managing" items={messy} />
+          <BeforeAfterPanel tone="good" title="What The Program Suite gives them" items={clear} />
         </div>
       </div>
     </section>
@@ -655,36 +701,38 @@ function Audiences() {
 
 function Pricing() {
   return (
-    <section id="pricing" className="py-24 md:py-28" style={{ background: "var(--color-paper-2)" }}>
+    <section id="pricing" className="py-20 md:py-24" style={{ background: "var(--color-paper-2)" }}>
       <SectionIntro
         eyebrow="Pricing"
         title={
           <>
-            Start narrow.
+            Easy to
             <br />
-            <span className="headline-italic">Scale </span>
-            <span className="text-accent-brand">cleanly.</span>
+            <span className="headline-italic">say </span>
+            <span className="text-accent-brand">yes.</span>
           </>
         }
-        description="Start with one Program, cover every sport at one school, or standardize across a district."
+        description="One Program can start monthly. Schools and districts can expand when the operating rhythm is proven."
       />
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid border-t lg:grid-cols-3" style={{ borderColor: "var(--color-ink)" }}>
+        <div className="grid gap-5 lg:grid-cols-[1.18fr_0.91fr_0.91fr]">
           <PlanCard
+            featured
             eyebrow="Program"
             name="One Program"
-            price="$750"
-            comparePrice="$1,250"
-            sub="Founding member annual pricing. Or $125/mo."
+            price="$125"
+            priceSuffix="/mo"
+            comparePrice="$1,250/year"
+            sub="Founding members can pay $750/year and save $500."
             desc="For one coach or program ready to run the season with serious accountability."
             features={["All teams in the program", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Monthly pricing only available here"]}
             cta="Start one program"
           />
           <PlanCard
-            featured
             eyebrow="Athletic department"
             name="Entire school"
             price="$5,000"
+            priceSuffix="/year"
             sub="Annual school-wide coverage"
             desc="For ADs who want one operating standard across every program at the school."
             features={["Every program included", "School-wide inventory and budget visibility", "Staff access controls", "Annual pricing only"]}
@@ -914,6 +962,49 @@ function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; t
   );
 }
 
+function BeforeAfterPanel({ items, title, tone }: { items: string[]; title: string; tone: "bad" | "good" }) {
+  const isGood = tone === "good";
+  return (
+    <article
+      className="overflow-hidden rounded-[10px] border bg-white"
+      style={{
+        borderColor: isGood ? "rgba(36,138,61,.35)" : "rgba(215,0,21,.28)",
+        boxShadow: "0 18px 55px -38px rgba(15,23,42,.45)",
+      }}
+    >
+      <div
+        className="border-b px-5 py-4"
+        style={{
+          background: isGood ? "rgba(36,138,61,.08)" : "rgba(215,0,21,.06)",
+          borderColor: isGood ? "rgba(36,138,61,.22)" : "rgba(215,0,21,.18)",
+        }}
+      >
+        <h3 className="text-[16px] font-black text-[color:var(--color-ink)]">{title}</h3>
+      </div>
+      <ul className="grid gap-0">
+        {items.map((item) => (
+          <li
+            className="flex items-center gap-3 border-b px-5 py-4 text-[15px] last:border-b-0"
+            key={item}
+            style={{ borderColor: "var(--color-line)", color: "var(--color-ink-soft)" }}
+          >
+            <span
+              className="flex size-7 shrink-0 items-center justify-center rounded-full text-[16px] font-black"
+              style={{
+                background: isGood ? "rgba(36,138,61,.1)" : "rgba(215,0,21,.08)",
+                color: isGood ? "var(--color-good)" : "var(--color-bad)",
+              }}
+            >
+              {isGood ? "+" : "-"}
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
 function PlanCard({
   comparePrice,
   cta,
@@ -923,6 +1014,7 @@ function PlanCard({
   features,
   name,
   price,
+  priceSuffix,
   sub,
 }: {
   comparePrice?: string;
@@ -933,6 +1025,7 @@ function PlanCard({
   features: string[];
   name: string;
   price: string;
+  priceSuffix?: string;
   sub: string;
 }) {
   const background = featured ? "var(--color-ink)" : "var(--color-paper)";
@@ -941,12 +1034,24 @@ function PlanCard({
 
   return (
     <article
-      className="flex min-h-[560px] flex-col border-b p-8 md:p-9 lg:border-r lg:last:border-r-0"
-      style={{ background, borderColor: "var(--color-line)", color: foreground }}
+      className="flex min-h-[520px] flex-col rounded-[10px] border p-7 md:p-8"
+      style={{
+        background,
+        borderColor: featured ? "var(--color-ink)" : "var(--color-line-strong)",
+        color: foreground,
+        boxShadow: featured ? "0 28px 80px -40px rgba(15,23,42,.65)" : "0 16px 48px -40px rgba(15,23,42,.45)",
+      }}
     >
-      <p className="text-[12px] font-black uppercase tracking-[0.12em] text-[color:var(--color-accent)]">
-        {eyebrow}
-      </p>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[12px] font-black uppercase tracking-[0.12em] text-[color:var(--color-accent)]">
+          {eyebrow}
+        </p>
+        {featured ? (
+          <span className="rounded-full bg-[color:var(--color-accent)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.08em] text-white">
+            Best start
+          </span>
+        ) : null}
+      </div>
       <h3 className="display mt-3" style={{ color: foreground, fontSize: "clamp(34px, 3.2vw, 52px)", lineHeight: 0.9 }}>
         {name}
       </h3>
@@ -954,19 +1059,21 @@ function PlanCard({
         {desc}
       </p>
       <div className="my-7 h-px" style={{ background: featured ? "rgba(248,250,252,.16)" : "var(--color-line)" }} />
-      <div className="flex flex-wrap items-end gap-3">
-        {comparePrice ? (
-          <span
-            className="display text-[color:var(--color-muted)] line-through decoration-[0.08em]"
-            style={{ fontSize: "clamp(34px, 3.4vw, 54px)", lineHeight: 0.9 }}
-          >
-            {comparePrice}
-          </span>
-        ) : null}
+      <div className="flex flex-wrap items-end gap-2">
         <span className="display" style={{ color: foreground, fontSize: "clamp(52px, 5.4vw, 82px)", lineHeight: 0.88 }}>
           {price}
         </span>
+        {priceSuffix ? (
+          <span className="pb-2 text-[15px] font-bold" style={{ color: muted }}>
+            {priceSuffix}
+          </span>
+        ) : null}
       </div>
+      {comparePrice ? (
+        <p className="mt-2 text-[13px] font-semibold" style={{ color: muted }}>
+          Annual list price: {comparePrice}
+        </p>
+      ) : null}
       <p className="mt-2 text-[12px]" style={{ color: muted }}>
         {sub}
       </p>
@@ -982,6 +1089,22 @@ function PlanCard({
         {cta}
       </a>
     </article>
+  );
+}
+
+function StickyMobileCta() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t bg-[color:var(--color-paper)]/95 p-3 shadow-[0_-12px_30px_-24px_rgba(15,23,42,.8)] backdrop-blur md:hidden">
+      <div className="flex items-center gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
+          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$125/mo. Founders save $500/year.</p>
+        </div>
+        <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
+          Start
+        </a>
+      </div>
+    </div>
   );
 }
 
