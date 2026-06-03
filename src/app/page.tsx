@@ -122,28 +122,28 @@ const FOUNDING_PROGRAMS_CLAIMED = 0;
 
 const FAQ_ITEMS = [
   {
-    q: "Is The Program Suite only for inventory?",
-    a: "No. Inventory is an easy place to start because every school feels that pain, but the product is a full operating system for school sports: athletes, practice, training, schedule, attendance, game prep, messaging, budget, forms, and district oversight.",
+    q: "When will The Program Suite be available?",
+    a: "The public launch is about a month away. Founder access is for the first programs that want to get in early, help shape the rollout, and lock in the $750 annual price.",
   },
   {
-    q: "Who is it built for?",
-    a: "It is built for coaches, athletic directors, school staff, athletes, families, and district leaders. Coaches get fast daily workflows; ADs get school-wide visibility; districts get cross-school reporting and accountability.",
+    q: "What does one Program include?",
+    a: "One Program includes the teams and athletes inside that program, with the core workflows coaches need: athletes, schedule, practice, training, inventory, communication, and program records.",
   },
   {
-    q: "Can one coach use it for multiple sports?",
-    a: "Yes. The app is built around school, sport, team, and season context, so a coach can switch programs while each sport keeps its own roster, schedule, inventory, practice plans, and reports.",
+    q: "Why should we sign up before launch?",
+    a: "The first 100 founding programs can join for $750 per year instead of the regular $1,250 annual price. After those spots are gone, the founding price goes away.",
   },
   {
-    q: "Does it work on phones and tablets?",
-    a: "Yes. The web dashboard is built for desktop operations, and mobile-first screens support quick coach actions on iPhone plus larger iPad workflows like training-floor capture and staff work.",
+    q: "Can we pay monthly?",
+    a: "Yes, but only for one Program. Monthly pricing is $125 per month, which totals $1,500 per year, so the $750 founding annual price is the best deal.",
   },
   {
-    q: "How is pricing structured?",
-    a: "Pricing is based on scope. One Program is normally $1,250 per year, but the first 100 founding programs can join for $750 per year and save $500. Monthly pricing is available only for one Program at $125 per month, which totals $1,500 per year. Full-school coverage is $5,000 per year, and districts are custom priced around rollout needs.",
+    q: "Can we expand after starting with one Program?",
+    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage at $5,000 per year. District pricing is custom.",
   },
   {
-    q: "Can we start with one Program and expand later?",
-    a: "Yes. Most schools can start with one Program, prove the operating rhythm, then expand to full-school or district coverage when leadership is ready.",
+    q: "What happens after we request founder access?",
+    a: "We will follow up with the right setup path for your sport, school, or district and walk through where The Program Suite can replace the scattered tools you are using now.",
   },
 ];
 
@@ -152,14 +152,9 @@ export default function LandingPage() {
     <main className="min-h-screen bg-[color:var(--color-paper)] pb-20 text-[color:var(--color-ink)] md:pb-0">
       <SiteNav />
       <Hero />
-      <CoachStory />
       <ChaosToClarity />
+      <CoachStory />
       <ProductProof />
-      <OperatingSystem />
-      <Workflow />
-      <Screenshots />
-      <MobileAndDistrict />
-      <Audiences />
       <Pricing />
       <FounderAccess />
       <FaqSection items={FAQ_ITEMS} />
@@ -300,7 +295,7 @@ function ChaosToClarity() {
   ];
 
   return (
-    <section className="py-20 md:py-24">
+    <section id="how-it-works" className="py-20 md:py-24">
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
         <div className="mb-10 max-w-[760px]">
           <Eyebrow>Before and after</Eyebrow>

@@ -4,9 +4,8 @@ import Link from "next/link";
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const NAV_LINKS = [
+  { href: "/#how-it-works", label: "How it works" },
   { href: "/#product", label: "Product" },
-  { href: "/#coaching-os", label: "Coach OS" },
-  { href: "/#audiences", label: "Audiences" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/#faq", label: "FAQ" },
 ];
