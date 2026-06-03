@@ -136,11 +136,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is pricing structured?",
-    a: "Pricing is based on scope. A Program plan starts with one sport, the Athletic Department plan covers every sport at one school, and District coverage supports multiple schools with rollout and reporting needs.",
+    a: "Pricing is based on scope. One Program is $1,250 per year, with $500 off for founding members. Monthly pricing is available only for one Program at $125 per month. Full-school coverage is $5,000 per year, and districts are custom priced around rollout needs.",
   },
   {
-    q: "Can we start with one sport and expand later?",
-    a: "Yes. Most schools can start with one sport, prove the operating rhythm, then expand to the full athletic department or district when leadership is ready.",
+    q: "Can we start with one Program and expand later?",
+    a: "Yes. Most schools can start with one Program, prove the operating rhythm, then expand to full-school or district coverage when leadership is ready.",
   },
 ];
 
@@ -149,6 +149,7 @@ export default function LandingPage() {
     <main className="min-h-screen bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
       <SiteNav />
       <Hero />
+      <CoachStory />
       <ProductProof />
       <OperatingSystem />
       <Workflow />
@@ -209,11 +210,11 @@ function Hero() {
               }}
             >
               One home base for coaches and athletic departments: athletes, practice, training,
-              schedule, game day, inventory, budget, messages, and district oversight.
+              schedule, game day, inventory, budget, messages, and the proof leadership needs.
             </p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row">
               <ArrowBtn href="#founder-access" large>
-                Start with one sport
+                Start one program
               </ArrowBtn>
               <a className="btn btn-ghost btn-lg" href="#product">
                 See the system
@@ -263,6 +264,78 @@ function Hero() {
               </p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CoachStory() {
+  return (
+    <section className="py-20 md:py-24" style={{ background: "var(--color-paper-2)" }}>
+      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div
+            className="overflow-hidden rounded-[10px] border bg-white"
+            style={{
+              borderColor: "var(--color-line-strong)",
+              boxShadow: "0 24px 70px -32px rgba(14,30,46,.5)",
+            }}
+          >
+            <Image
+              src="/images/current-app/mobile-training.png"
+              alt="The Program Suite mobile training floor workflow"
+              width={780}
+              height={1688}
+              className="max-h-[620px] w-full object-cover object-top"
+              sizes="(min-width: 1024px) 440px, 100vw"
+            />
+          </div>
+
+          <div>
+            <div className="mb-[18px]">
+              <Eyebrow>Built by a coach</Eyebrow>
+            </div>
+            <h2 className="display" style={{ fontSize: "clamp(38px, 5vw, 78px)", lineHeight: 0.92 }}>
+              The job got bigger.
+              <br />
+              <span className="headline-italic">The tools </span>
+              <span className="text-accent-brand">did not.</span>
+            </h2>
+            <p
+              className="mt-6 max-w-[650px]"
+              style={{
+                color: "var(--color-ink-soft)",
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(18px, 1.8vw, 25px)",
+                fontStyle: "italic",
+                lineHeight: 1.35,
+              }}
+            >
+              I built The Program Suite from the same seat other coaches sit in: trying to run a
+              program, keep athletes moving, answer leadership, manage equipment, communicate with
+              families, and still get to practice prepared.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {[
+                ["Less chasing", "The daily work starts where the coach starts, with what needs attention now."],
+                ["More proof", "Every update creates a record staff and leadership can trust later."],
+                ["One rhythm", "Practice, athletes, inventory, messages, and season work move together."],
+              ].map(([title, desc]) => (
+                <article className="border-t pt-4" key={title} style={{ borderColor: "var(--color-ink)" }}>
+                  <h3 className="text-[15px] font-black text-[color:var(--color-ink)]">{title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-[1.45] text-[color:var(--color-ink-soft)]">
+                    {desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <p className="mt-8 max-w-[650px] text-[15px] leading-[1.55] text-[color:var(--color-ink-soft)]">
+              That is the story coaches understand: this is not another admin platform asking them
+              to do more data entry. It is a system for protecting their time, making the program
+              visible, and keeping small problems from becoming end-of-season surprises.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -593,28 +666,28 @@ function Pricing() {
             <span className="text-accent-brand">cleanly.</span>
           </>
         }
-        description="Start with one sport, cover every sport at one school, or standardize across a district."
+        description="Start with one Program, cover every sport at one school, or standardize across a district."
       />
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
         <div className="grid border-t lg:grid-cols-3" style={{ borderColor: "var(--color-ink)" }}>
           <PlanCard
             eyebrow="Program"
-            name="One sport"
-            price="$499"
-            comparePrice="$799"
-            sub="Founding member annual pricing"
-            desc="For a coach ready to run one sport with serious accountability."
-            features={["All teams in the sport", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Founder pricing locked while active"]}
-            cta="Start with one sport"
+            name="One Program"
+            price="$750"
+            comparePrice="$1,250"
+            sub="Founding member annual pricing. Or $125/mo."
+            desc="For one coach or program ready to run the season with serious accountability."
+            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Monthly pricing only available here"]}
+            cta="Start one program"
           />
           <PlanCard
             featured
             eyebrow="Athletic department"
-            name="Every sport"
-            price="$3,499"
-            sub="School-wide coverage"
-            desc="For ADs who want one operating standard across every program."
-            features={["Program switching", "School-wide inventory and budget visibility", "Staff access controls", "Every coach and team included"]}
+            name="Entire school"
+            price="$5,000"
+            sub="Annual school-wide coverage"
+            desc="For ADs who want one operating standard across every program at the school."
+            features={["Every program included", "School-wide inventory and budget visibility", "Staff access controls", "Annual pricing only"]}
             cta="Cover the school"
           />
           <PlanCard
@@ -622,7 +695,7 @@ function Pricing() {
             name="Multi-school"
             price="Custom"
             sub="Built around rollout needs"
-            desc="For districts that need cross-school reporting, alerts, and implementation visibility."
+            desc="For districts that need cross-school reporting, rollout support, alerts, and implementation visibility."
             features={["District readiness reports", "Audit and action item tracking", "Board packet support", "Rollout planning"]}
             cta="Talk district coverage"
           />
@@ -661,7 +734,7 @@ function FounderAccess() {
               sport, school, or district.
             </p>
             <ul className="mt-8 grid gap-3 text-[14px] text-[color:var(--color-ink)]">
-              {["Start with one sport or the whole school", "Use real product screens during onboarding", "Keep school, sport, team, and season work separated"].map((item) => (
+              {["Start with one Program or the whole school", "Use real product screens during onboarding", "Keep school, sport, team, and season work separated"].map((item) => (
                 <li className="flex items-baseline gap-2.5" key={item}>
                   <span className="inline-block size-[6px] shrink-0 -translate-y-[1px] rounded-full bg-[color:var(--color-accent)]" />
                   {item}
@@ -700,8 +773,8 @@ function FounderAccess() {
                   <option disabled value="">
                     Choose a starting point...
                   </option>
-                  <option>One sport</option>
-                  <option>Every sport at one school</option>
+                  <option>One Program</option>
+                  <option>Entire school</option>
                   <option>District coverage</option>
                   <option>Not sure yet</option>
                 </select>
@@ -759,7 +832,7 @@ function FinalCta() {
               lineHeight: 1.3,
             }}
           >
-            Start with one sport, expand to the school, or bring district oversight into one shared
+            Start with one Program, expand to the school, or bring district oversight into one shared
             system.
           </p>
           <div className="flex flex-col gap-2 sm:flex-row">
