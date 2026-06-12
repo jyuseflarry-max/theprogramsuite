@@ -117,13 +117,15 @@ const MOBILE_FEATURES = [
   "Athlete lookup and messaging",
 ];
 
-const FOUNDING_PROGRAM_LIMIT = 100;
+const FOUNDING_PROGRAM_LIMIT = 25;
 const FOUNDING_PROGRAMS_CLAIMED = 0;
+const FOUNDING_SCHOOL_LIMIT = 5;
+const FOUNDING_SCHOOLS_CLAIMED = 0;
 
 const FAQ_ITEMS = [
   {
     q: "When will The Program Suite be available?",
-    a: "The public launch is about a month away. Founder access is for the first programs and schools that want to get in early, help shape the rollout, and lock in founding pricing.",
+    a: "The public launch is about a month away. Founder access is limited to the first 25 programs and 5 schools that want to get in early, help shape the rollout, and lock in founding pricing.",
   },
   {
     q: "What does one Program include?",
@@ -131,7 +133,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Why should we sign up before launch?",
-    a: "Founding programs can join for $1,950 per year instead of the regular $2,950 annual price. Founding schools can lock in $8,500 per year instead of the regular $12,000 school plan.",
+    a: "Founding programs can join for $1,950 per year instead of the regular $2,950 annual price. Founding schools can lock in $8,500 per year instead of the regular $12,000 school plan. The founding window is capped at 25 programs and 5 schools.",
   },
   {
     q: "Can we pay monthly?",
@@ -963,13 +965,14 @@ function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; t
 }
 
 function FoundingSpots() {
-  const shouldShowCountdown = FOUNDING_PROGRAMS_CLAIMED >= 50;
-  const remaining = Math.max(FOUNDING_PROGRAM_LIMIT - FOUNDING_PROGRAMS_CLAIMED, 0);
-  const progress = Math.min((FOUNDING_PROGRAMS_CLAIMED / FOUNDING_PROGRAM_LIMIT) * 100, 100);
+  const programRemaining = Math.max(FOUNDING_PROGRAM_LIMIT - FOUNDING_PROGRAMS_CLAIMED, 0);
+  const schoolRemaining = Math.max(FOUNDING_SCHOOL_LIMIT - FOUNDING_SCHOOLS_CLAIMED, 0);
+  const programProgress = Math.min((FOUNDING_PROGRAMS_CLAIMED / FOUNDING_PROGRAM_LIMIT) * 100, 100);
+  const schoolProgress = Math.min((FOUNDING_SCHOOLS_CLAIMED / FOUNDING_SCHOOL_LIMIT) * 100, 100);
 
   return (
     <div
-      className="mt-5 grid gap-5 rounded-[10px] border bg-white p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6"
+      className="mt-5 grid gap-5 rounded-[10px] border bg-white p-5 md:grid-cols-[1fr_minmax(260px,360px)] md:items-center md:p-6"
       style={{ borderColor: "var(--color-line-strong)" }}
     >
       <div>
@@ -977,7 +980,7 @@ function FoundingSpots() {
           Founding member window
         </p>
         <h3 className="mt-2 text-[22px] font-black tracking-tight text-[color:var(--color-ink)]">
-          Founding pricing is only for the first {FOUNDING_PROGRAM_LIMIT} programs.
+          Founding pricing is capped at {FOUNDING_PROGRAM_LIMIT} programs and {FOUNDING_SCHOOL_LIMIT} schools.
         </h3>
         <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
           One Program is $1,950 per year for founding members, compared with the regular $2,950 annual price.
@@ -986,15 +989,15 @@ function FoundingSpots() {
         </p>
       </div>
 
-      {shouldShowCountdown ? (
-        <div className="min-w-[220px] rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
+      <div className="grid gap-3">
+        <div className="rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[color:var(--color-muted)]">
-                Spots left
+                Program spots left
               </p>
-              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 48 }}>
-                {remaining}
+              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 46 }}>
+                {programRemaining}
               </p>
             </div>
             <p className="pb-2 text-[13px] font-bold text-[color:var(--color-ink-soft)]">
@@ -1002,17 +1005,28 @@ function FoundingSpots() {
             </p>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--color-accent-soft)]">
-            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${progress}%` }} />
+            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${programProgress}%` }} />
           </div>
         </div>
-      ) : (
-        <div
-          className="rounded-[8px] border px-4 py-3 text-[13px] font-semibold text-[color:var(--color-ink-soft)]"
-          style={{ borderColor: "var(--color-line)" }}
-        >
-          Countdown appears after 50 founding programs are claimed.
+        <div className="rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[color:var(--color-muted)]">
+                School spots left
+              </p>
+              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 46 }}>
+                {schoolRemaining}
+              </p>
+            </div>
+            <p className="pb-2 text-[13px] font-bold text-[color:var(--color-ink-soft)]">
+              of {FOUNDING_SCHOOL_LIMIT}
+            </p>
+          </div>
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--color-accent-soft)]">
+            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${schoolProgress}%` }} />
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -1153,7 +1167,7 @@ function StickyMobileCta() {
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
-          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$1,950/year founding program price.</p>
+          <p className="text-[11px] text-[color:var(--color-ink-soft)]">25 program spots. 5 school spots.</p>
         </div>
         <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
           Start
