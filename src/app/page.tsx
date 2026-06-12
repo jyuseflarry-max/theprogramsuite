@@ -123,7 +123,7 @@ const FOUNDING_PROGRAMS_CLAIMED = 0;
 const FAQ_ITEMS = [
   {
     q: "When will The Program Suite be available?",
-    a: "The public launch is about a month away. Founder access is for the first programs that want to get in early, help shape the rollout, and lock in the $750 annual price.",
+    a: "The public launch is about a month away. Founder access is for the first programs and schools that want to get in early, help shape the rollout, and lock in founding pricing.",
   },
   {
     q: "What does one Program include?",
@@ -131,15 +131,15 @@ const FAQ_ITEMS = [
   },
   {
     q: "Why should we sign up before launch?",
-    a: "The first 100 founding programs can join for $750 per year instead of the regular $1,250 annual price. After those spots are gone, the founding price goes away.",
+    a: "Founding programs can join for $1,950 per year instead of the regular $2,950 annual price. Founding schools can lock in $8,500 per year instead of the regular $12,000 school plan.",
   },
   {
     q: "Can we pay monthly?",
-    a: "Yes, but only for one Program. Monthly pricing is $125 per month, which totals $1,500 per year, so the $750 founding annual price is the best deal.",
+    a: "Founder access is annual so schools can plan the season cleanly and lock the account price while the subscription stays active.",
   },
   {
     q: "Can we expand after starting with one Program?",
-    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage at $5,000 per year. District pricing is custom.",
+    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage. Founding school pricing is $8,500 per year, compared with the standard $12,000 school plan. District pricing is custom.",
   },
   {
     q: "What happens after we request founder access?",
@@ -172,7 +172,7 @@ function Hero() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
           <div>
             <div className="mb-5 flex flex-wrap gap-2">
-              {["One source of truth", "Built by a coach", "$750 founding price"].map((item) => (
+              {["One source of truth", "Built by a coach", "$1,950 founding program price"].map((item) => (
                 <span
                   className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
                   key={item}
@@ -710,7 +710,7 @@ function Pricing() {
             <span className="text-accent-brand">yes.</span>
           </>
         }
-        description="The first 100 programs can lock in founding pricing at $750 per year before the regular $1,250 annual price takes over."
+        description="Founding members can lock in early annual pricing while we open the first program and school spots."
       />
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
         <div className="grid gap-5 lg:grid-cols-[1.18fr_0.91fr_0.91fr]">
@@ -718,22 +718,23 @@ function Pricing() {
             featured
             eyebrow="Program"
             name="One Program"
-            price="$750"
+            price="$1,950"
             priceSuffix="/year"
-            comparePrice="$1,250/year"
-            sub="Founding member price for the first 100 programs. Save $500."
-            desc="For one coach or program ready to run the season with serious accountability."
-            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Game prep and messaging", "Monthly option: $125/mo, which is $1,500/year"]}
+            comparePrice="$2,950/year"
+            sub="Founding member price locked while the subscription stays active. Save $1,000/year."
+            desc="For one coach or program ready to run, promote, fund, and report on the season from one place."
+            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Content Studio and fundraising tools", "Generous fair-use AI generation"]}
             cta="Start one program"
           />
           <PlanCard
             eyebrow="Athletic department"
             name="Entire school"
-            price="$5,000"
+            price="$8,500"
             priceSuffix="/year"
-            sub="Annual school-wide coverage"
-            desc="For ADs who want one operating standard across every program at the school."
-            features={["Every program included", "School-wide inventory and budget visibility", "Staff access controls", "Annual pricing only"]}
+            comparePrice="$12,000/year"
+            sub="Founding member price for school-wide coverage."
+            desc="For ADs who want one operating standard across every program, plus school-wide content and fundraising support."
+            features={["Every program included", "School-wide inventory and budget visibility", "Content Studio, sponsor assets, and fundraising", "Staff access controls"]}
             cta="Cover the school"
           />
           <PlanCard
@@ -976,11 +977,12 @@ function FoundingSpots() {
           Founding member window
         </p>
         <h3 className="mt-2 text-[22px] font-black tracking-tight text-[color:var(--color-ink)]">
-          The $750 price is only for the first 100 programs.
+          Founding pricing is only for the first {FOUNDING_PROGRAM_LIMIT} programs.
         </h3>
         <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-          After those spots are gone, one Program moves to the regular $1,250 annual price. Monthly
-          remains available at $125/mo, but the founding annual price is the best deal.
+          One Program is $1,950 per year for founding members, compared with the regular $2,950 annual price.
+          Whole-school founding pricing is $8,500 per year, compared with the standard $12,000 school plan.
+          Pricing stays locked while the subscription stays active and follows fair-use AI limits.
         </p>
       </div>
 
@@ -1151,7 +1153,7 @@ function StickyMobileCta() {
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
-          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$750/year for first 100 programs.</p>
+          <p className="text-[11px] text-[color:var(--color-ink-soft)]">$1,950/year founding program price.</p>
         </div>
         <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
           Start
