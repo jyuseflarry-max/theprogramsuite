@@ -1167,7 +1167,7 @@ function StickyMobileCta() {
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
-          <p className="text-[11px] text-[color:var(--color-ink-soft)]">25 program spots. 5 school spots.</p>
+          <p className="text-[11px] text-[color:var(--color-ink-soft)]">40 program spots. 15 school spots.</p>
         </div>
         <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
           Start
