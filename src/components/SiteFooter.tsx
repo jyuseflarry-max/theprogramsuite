@@ -11,7 +11,7 @@ export function SiteFooter() {
             <Image
               alt="The Program Suite - The Operating System for Winning Programs"
               className="h-auto w-full max-w-[340px]"
-              height={180}
+              height={176}
               src="/the-program-suite-wordmark.svg"
               width={900}
             />

@@ -19,7 +19,7 @@ export function SiteNav() {
             alt="The Program Suite"
             src="/the-program-suite-wordmark.svg"
             width={900}
-            height={180}
+            height={176}
             priority
             className="h-11 w-auto object-contain"
           />

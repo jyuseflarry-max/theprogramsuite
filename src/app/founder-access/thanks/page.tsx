@@ -16,7 +16,7 @@ export default function FounderAccessThanksPage() {
           <Image
             alt="The Program Suite"
             className="mx-auto h-14 w-auto object-contain"
-            height={180}
+            height={176}
             priority
             src="/the-program-suite-wordmark.svg"
             width={900}
