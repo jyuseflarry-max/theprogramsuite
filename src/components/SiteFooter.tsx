@@ -10,10 +10,10 @@ export function SiteFooter() {
           <div className="max-w-[380px]">
             <Image
               alt="The Program Suite - The Operating System for Winning Programs"
-              className="h-auto w-full max-w-[300px]"
-              height={160}
+              className="h-auto w-full max-w-[340px]"
+              height={190}
               src="/the-program-suite-wordmark.svg"
-              width={720}
+              width={920}
             />
             <p className="mt-4 text-[14.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">
               The operating system for school sports: athletes, practice, training, schedule,

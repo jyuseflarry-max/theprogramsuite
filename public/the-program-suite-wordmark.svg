@@ -1,17 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="190" viewBox="0 0 920 190" role="img" aria-labelledby="title desc">
   <title id="title">The Program Suite</title>
-  <desc id="desc">The Program Suite custom wordmark using the blue P logo mark.</desc>
-  <rect width="720" height="160" fill="none"/>
-  <g transform="translate(24 22)">
-    <rect x="0" y="0" width="116" height="116" rx="28" fill="#f8fafc"/>
-    <path d="M36 88V30h37c18.2 0 31 11.6 31 29.3S91.2 88 73 88H58" fill="none" stroke="#007AFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M58 58h15" fill="none" stroke="#0f172a" stroke-width="14" stroke-linecap="round"/>
-    <circle cx="91" cy="27" r="8" fill="#007AFF"/>
-    <path d="M29 99h77" stroke="#0f172a" stroke-width="8" stroke-linecap="round" opacity="0.16"/>
-  </g>
+  <desc id="desc">The Program Suite custom wordmark with the dimensional electric-blue P mark woven into Program.</desc>
+  <rect width="920" height="190" fill="none"/>
+  <defs>
+    <filter id="tpsOuterGlow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#00A3FF" flood-opacity="0.52"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#001B4F" flood-opacity="0.45"/>
+    </filter>
+    <linearGradient id="tpsFaceGradient" x1="148" x2="430" y1="74" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#54C7FF"/>
+      <stop offset="0.38" stop-color="#0A84FF"/>
+      <stop offset="1" stop-color="#004EC7"/>
+    </linearGradient>
+    <linearGradient id="tpsEdgeGradient" x1="120" x2="486" y1="74" y2="436" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#BEEBFF"/>
+      <stop offset="0.32" stop-color="#3FD0FF"/>
+      <stop offset="1" stop-color="#0876FF"/>
+    </linearGradient>
+    <linearGradient id="tpsSideGradient" x1="156" x2="482" y1="116" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#045BD6"/>
+      <stop offset="1" stop-color="#012B7A"/>
+    </linearGradient>
+    <linearGradient id="tpsShineGradient" x1="164" x2="296" y1="82" y2="432" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.58"/>
+      <stop offset="0.26" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="tpsPClip" clipPathUnits="userSpaceOnUse">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M136 470V78H318C426 78 488 138 488 234C488 330 426 390 318 390H240V470H136ZM240 298H314C366 298 398 273 398 234C398 195 366 170 314 170H240V298Z"/>
+    </clipPath>
+  </defs>
+
   <g fill="#0f172a" font-family="Arial, Helvetica, sans-serif">
-    <text x="164" y="65" font-size="34" font-weight="700" letter-spacing="4">THE</text>
-    <text x="164" y="119" font-size="58" font-weight="800" letter-spacing="-1.2">Program Suite</text>
+    <text x="172" y="55" font-size="35" font-weight="700" letter-spacing="5">THE</text>
   </g>
-  <path d="M164 78h480" stroke="#007AFF" stroke-width="5" stroke-linecap="round"/>
+
+  <g transform="translate(26 22) scale(0.30)">
+    <g filter="url(#tpsOuterGlow)">
+      <path fill="url(#tpsSideGradient)" fill-rule="evenodd" opacity="0.88" transform="translate(16 18)" clip-rule="evenodd" d="M136 470V78H318C426 78 488 138 488 234C488 330 426 390 318 390H240V470H136ZM240 298H314C366 298 398 273 398 234C398 195 366 170 314 170H240V298Z"/>
+      <path fill="url(#tpsFaceGradient)" fill-rule="evenodd" clip-rule="evenodd" d="M136 470V78H318C426 78 488 138 488 234C488 330 426 390 318 390H240V470H136ZM240 298H314C366 298 398 273 398 234C398 195 366 170 314 170H240V298Z"/>
+      <path fill="none" stroke="url(#tpsEdgeGradient)" stroke-linejoin="round" stroke-width="7" fill-rule="evenodd" clip-rule="evenodd" d="M141 465V83H318C423 83 484 141 484 234C484 327 423 385 318 385H235V465H141ZM235 303H314C369 303 402 277 402 234C402 191 369 165 314 165H235V303Z"/>
+      <g clip-path="url(#tpsPClip)">
+        <path fill="url(#tpsShineGradient)" opacity="0.72" d="M162 104H222V444H162V104ZM248 101H322C392 101 448 135 468 194C438 162 388 145 316 145H248V101Z"/>
+      </g>
+    </g>
+  </g>
+
+  <g fill="#0f172a" font-family="Arial, Helvetica, sans-serif">
+    <text x="165" y="136" font-size="73" font-weight="800" letter-spacing="-1.6">rogram Suite</text>
+  </g>
+  <path d="M172 72h660" stroke="#0A84FF" stroke-width="5" stroke-linecap="round"/>
 </svg>

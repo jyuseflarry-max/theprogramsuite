@@ -18,10 +18,10 @@ export function SiteNav() {
           <Image
             alt="The Program Suite"
             src="/the-program-suite-wordmark.svg"
-            width={720}
-            height={160}
+            width={920}
+            height={190}
             priority
-            className="h-10 w-auto object-contain"
+            className="h-11 w-auto object-contain"
           />
         </Link>
 
