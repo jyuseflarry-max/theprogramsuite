@@ -117,15 +117,15 @@ const MOBILE_FEATURES = [
   "Athlete lookup and messaging",
 ];
 
-const FOUNDING_PROGRAM_LIMIT = 25;
+const FOUNDING_PROGRAM_LIMIT = 40;
 const FOUNDING_PROGRAMS_CLAIMED = 0;
-const FOUNDING_SCHOOL_LIMIT = 5;
+const FOUNDING_SCHOOL_LIMIT = 15;
 const FOUNDING_SCHOOLS_CLAIMED = 0;
 
 const FAQ_ITEMS = [
   {
     q: "When will The Program Suite be available?",
-    a: "The public launch is about a month away. Founder access is limited to the first 25 programs and 5 schools that want to get in early, help shape the rollout, and lock in founding pricing.",
+    a: "The public launch is about a month away. Founder access is limited to the first 40 programs and 15 schools that want to get in early, help shape the rollout, and lock in founding pricing.",
   },
   {
     q: "What does one Program include?",
@@ -133,7 +133,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Why should we sign up before launch?",
-    a: "Founding programs can join for $1,950 per year instead of the regular $2,950 annual price. Founding schools can lock in $8,500 per year instead of the regular $12,000 school plan. The founding window is capped at 25 programs and 5 schools.",
+    a: "Founding programs can join for $2,500 per year instead of the regular $3,500 annual price. Founding schools can lock in $10,500 per year instead of the regular $15,000 school plan. The founding window is capped at 40 programs and 15 schools.",
   },
   {
     q: "Can we pay monthly?",
@@ -141,7 +141,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Can we expand after starting with one Program?",
-    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage. Founding school pricing is $8,500 per year, compared with the standard $12,000 school plan. District pricing is custom.",
+    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage. Founding pricing is locked to the original package scope. Additional schools, sports, premium modules, integrations, custom services, or materially expanded usage may be priced separately at then-current rates.",
   },
   {
     q: "What happens after we request founder access?",
@@ -174,7 +174,7 @@ function Hero() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
           <div>
             <div className="mb-5 flex flex-wrap gap-2">
-              {["One source of truth", "Built by a coach", "$1,950 founding program price"].map((item) => (
+              {["One source of truth", "Built by a coach", "$2,500 founding program price"].map((item) => (
                 <span
                   className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
                   key={item}
@@ -214,7 +214,7 @@ function Hero() {
               </a>
             </div>
             <p className="mt-4 text-[13px] font-semibold text-[color:var(--color-ink-soft)]">
-              Founding members save $500. No per-athlete fees.
+              Founding pricing is locked to the original package scope.
             </p>
           </div>
 
@@ -720,10 +720,10 @@ function Pricing() {
             featured
             eyebrow="Program"
             name="One Program"
-            price="$1,950"
+            price="$2,500"
             priceSuffix="/year"
-            comparePrice="$2,950/year"
-            sub="Founding member price locked while the subscription stays active. Save $1,000/year."
+            comparePrice="$3,500/year"
+            sub="Founding member price for the first 40 programs."
             desc="For one coach or program ready to run, promote, fund, and report on the season from one place."
             features={["All teams in the program", "Athletes, schedule, practice, inventory", "Content Studio and fundraising tools", "Generous fair-use AI generation"]}
             cta="Start one program"
@@ -731,10 +731,10 @@ function Pricing() {
           <PlanCard
             eyebrow="Athletic department"
             name="Entire school"
-            price="$8,500"
+            price="$10,500"
             priceSuffix="/year"
-            comparePrice="$12,000/year"
-            sub="Founding member price for school-wide coverage."
+            comparePrice="$15,000/year"
+            sub="Founding member price for the first 15 schools."
             desc="For ADs who want one operating standard across every program, plus school-wide content and fundraising support."
             features={["Every program included", "School-wide inventory and budget visibility", "Content Studio, sponsor assets, and fundraising", "Staff access controls"]}
             cta="Cover the school"
@@ -983,9 +983,9 @@ function FoundingSpots() {
           Founding pricing is capped at {FOUNDING_PROGRAM_LIMIT} programs and {FOUNDING_SCHOOL_LIMIT} schools.
         </h3>
         <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-          One Program is $1,950 per year for founding members, compared with the regular $2,950 annual price.
-          Whole-school founding pricing is $8,500 per year, compared with the standard $12,000 school plan.
-          Pricing stays locked while the subscription stays active and follows fair-use AI limits.
+          One Program is $2,500 per year for founding members, compared with the regular $3,500 annual price.
+          Whole-school founding pricing is $10,500 per year, compared with the standard $15,000 school plan.
+          Pricing stays locked while the subscription stays active and applies to the original package scope.
         </p>
       </div>
 
