@@ -17,11 +17,11 @@ export function SiteNav() {
         <Link aria-label="The Program Suite home" href="/" className="flex items-center gap-3">
           <Image
             alt="The Program Suite"
-            src="/the-program-suite-selected-blue-cropped.png"
-            width={1759}
-            height={259}
+            src="/the-program-suite-wordmark.svg"
+            width={720}
+            height={160}
             priority
-            className="h-9 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </Link>
 

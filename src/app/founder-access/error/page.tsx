@@ -26,11 +26,11 @@ export default async function FounderAccessErrorPage({
         >
           <Image
             alt="The Program Suite"
-            className="mx-auto h-12 w-auto object-contain"
-            height={48}
+            className="mx-auto h-14 w-auto object-contain"
+            height={160}
             priority
-            src="/the-program-suite-selected-blue-cropped.png"
-            width={326}
+            src="/the-program-suite-wordmark.svg"
+            width={720}
           />
           <AlertTriangle
             aria-hidden="true"
