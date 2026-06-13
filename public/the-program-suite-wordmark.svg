@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="190" viewBox="0 0 920 190" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="180" viewBox="0 0 900 180" role="img" aria-labelledby="title desc">
   <title id="title">The Program Suite</title>
   <desc id="desc">The Program Suite custom wordmark with the dimensional electric-blue P mark woven into Program.</desc>
-  <rect width="920" height="190" fill="none"/>
+  <rect width="900" height="180" fill="none"/>
   <defs>
     <filter id="tpsOuterGlow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#00A3FF" flood-opacity="0.52"/>
@@ -32,10 +32,10 @@
   </defs>
 
   <g fill="#0f172a" font-family="Arial, Helvetica, sans-serif">
-    <text x="172" y="55" font-size="35" font-weight="700" letter-spacing="5">THE</text>
+    <text x="154" y="54" font-size="33" font-weight="700" letter-spacing="4.5">THE</text>
   </g>
 
-  <g transform="translate(26 22) scale(0.30)">
+  <g transform="translate(22 30) scale(0.265)">
     <g filter="url(#tpsOuterGlow)">
       <path fill="url(#tpsSideGradient)" fill-rule="evenodd" opacity="0.88" transform="translate(16 18)" clip-rule="evenodd" d="M136 470V78H318C426 78 488 138 488 234C488 330 426 390 318 390H240V470H136ZM240 298H314C366 298 398 273 398 234C398 195 366 170 314 170H240V298Z"/>
       <path fill="url(#tpsFaceGradient)" fill-rule="evenodd" clip-rule="evenodd" d="M136 470V78H318C426 78 488 138 488 234C488 330 426 390 318 390H240V470H136ZM240 298H314C366 298 398 273 398 234C398 195 366 170 314 170H240V298Z"/>
@@ -47,7 +47,6 @@
   </g>
 
   <g fill="#0f172a" font-family="Arial, Helvetica, sans-serif">
-    <text x="165" y="136" font-size="73" font-weight="800" letter-spacing="-1.6">rogram Suite</text>
+    <text x="146" y="134" font-size="73" font-weight="800" letter-spacing="-1.4">rogram Suite</text>
   </g>
-  <path d="M172 72h660" stroke="#0A84FF" stroke-width="5" stroke-linecap="round"/>
 </svg>

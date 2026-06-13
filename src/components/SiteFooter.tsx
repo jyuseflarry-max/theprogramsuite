@@ -11,9 +11,9 @@ export function SiteFooter() {
             <Image
               alt="The Program Suite - The Operating System for Winning Programs"
               className="h-auto w-full max-w-[340px]"
-              height={190}
+              height={180}
               src="/the-program-suite-wordmark.svg"
-              width={920}
+              width={900}
             />
             <p className="mt-4 text-[14.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">
               The operating system for school sports: athletes, practice, training, schedule,

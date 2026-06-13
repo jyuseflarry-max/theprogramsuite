@@ -16,10 +16,10 @@ export default function FounderAccessThanksPage() {
           <Image
             alt="The Program Suite"
             className="mx-auto h-14 w-auto object-contain"
-            height={190}
+            height={180}
             priority
             src="/the-program-suite-wordmark.svg"
-            width={920}
+            width={900}
           />
           <CheckCircle2
             aria-hidden="true"
