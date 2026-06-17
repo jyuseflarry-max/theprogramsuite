@@ -129,11 +129,11 @@ const FAQ_ITEMS = [
   },
   {
     q: "What does one Program include?",
-    a: "One Program includes the teams and athletes inside that program, with the core workflows coaches need: athletes, schedule, practice, training, inventory, communication, and program records.",
+    a: "A program covers one sport at all levels — freshman, JV, and varsity — so an athlete's history follows them year over year. It comes in three tiers: Coach for the daily coaching work; Director, which adds inventory, budget, staff access, and reporting; and Full Suite, which adds Content Studio, sponsorships, and fundraising.",
   },
   {
     q: "Why should we sign up before launch?",
-    a: "Founding programs can join for $2,500 per year instead of the regular $3,500 annual price. Founding schools can lock in $10,500 per year instead of the regular $15,000 school plan. The founding window is capped at 40 programs and 15 schools.",
+    a: "Founding members lock in 33% off for the life of the account. A program starts at $800 per year (regular $1,200), Director is $1,600 (regular $2,400), and Full Suite is $2,400 — the same as the regular price of Director. Whole-department pricing starts at $9,600 per year. The founding window is capped at 40 programs and 15 schools.",
   },
   {
     q: "Can we pay monthly?",
@@ -174,7 +174,7 @@ function Hero() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
           <div>
             <div className="mb-5 flex flex-wrap gap-2">
-              {["One source of truth", "Built by a coach", "$2,500 founding program price"].map((item) => (
+              {["One source of truth", "Built by a coach", "From $800/yr founding price"].map((item) => (
                 <span
                   className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
                   key={item}
@@ -715,40 +715,46 @@ function Pricing() {
         description="Founding members can lock in early annual pricing while we open the first program and school spots."
       />
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid gap-5 lg:grid-cols-[1.18fr_0.91fr_0.91fr]">
+        <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.12em] text-[color:var(--color-ink-soft)]">
+          One program — all levels, freshman through varsity
+        </p>
+        <div className="grid gap-5 lg:grid-cols-3">
+          <PlanCard
+            eyebrow="Coach"
+            name="Coach"
+            price="$800"
+            priceSuffix="/year"
+            comparePrice="$1,200/year"
+            sub="Founding price — first 40 programs."
+            desc="For the coach running the program day to day, from practice to game day."
+            features={["Athletes, roster, and family access", "Schedule, attendance, and game prep", "Practice planning and drill library", "Strength and training floor", "Messaging and fair-use AI"]}
+            cta="Start with Coach"
+          />
           <PlanCard
             featured
-            eyebrow="Program"
-            name="One Program"
-            price="$2,500"
+            eyebrow="Director"
+            name="Director"
+            price="$1,600"
             priceSuffix="/year"
-            comparePrice="$3,500/year"
-            sub="Founding member price for the first 40 programs."
-            desc="For one coach or program ready to run, promote, fund, and report on the season from one place."
-            features={["All teams in the program", "Athletes, schedule, practice, inventory", "Content Studio and fundraising tools", "Generous fair-use AI generation"]}
-            cta="Start one program"
+            comparePrice="$2,400/year"
+            sub="Founding price — first 40 programs."
+            desc="For the head coach or director responsible for the gear, the budget, and the staff."
+            features={["Everything in Coach", "Inventory and gear tracking", "Budget and spend visibility", "Staff roles and access", "Audit trails and reporting"]}
+            cta="Run the program"
           />
           <PlanCard
-            eyebrow="Athletic department"
-            name="Entire school"
-            price="$10,500"
+            eyebrow="Full Suite"
+            name="Full Suite"
+            price="$2,400"
             priceSuffix="/year"
-            comparePrice="$15,000/year"
-            sub="Founding member price for the first 15 schools."
-            desc="For ADs who want one operating standard across every program, plus school-wide content and fundraising support."
-            features={["Every program included", "School-wide inventory and budget visibility", "Content Studio, sponsor assets, and fundraising", "Staff access controls"]}
-            cta="Cover the school"
-          />
-          <PlanCard
-            eyebrow="District"
-            name="Multi-school"
-            price="Custom"
-            sub="Built around rollout needs"
-            desc="For districts that need cross-school reporting, rollout support, alerts, and implementation visibility."
-            features={["District readiness reports", "Audit and action item tracking", "Board packet support", "Rollout planning"]}
-            cta="Talk district coverage"
+            comparePrice="$3,600/year"
+            sub="Founding Full Suite costs what others pay for Director."
+            desc="For programs ready to bring in money — sponsorships and fundraising that pay for the upgrade."
+            features={["Everything in Director", "Content Studio", "Sponsorship sales", "Fundraising tools", "Sponsor assets and public pages"]}
+            cta="Make it pay for itself"
           />
         </div>
+        <DepartmentPricing />
         <FoundingSpots />
       </div>
     </section>
@@ -823,7 +829,9 @@ function FounderAccess() {
                   <option disabled value="">
                     Choose a starting point...
                   </option>
-                  <option>One Program</option>
+                  <option>Coach (one program)</option>
+                  <option>Director (one program)</option>
+                  <option>Full Suite (one program)</option>
                   <option>Entire school</option>
                   <option>District coverage</option>
                   <option>Not sure yet</option>
@@ -964,6 +972,65 @@ function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; t
   );
 }
 
+const SCHOOL_BANDS = [
+  { range: "1–10 programs", founding: "$9,600", list: "$14,400" },
+  { range: "11–20 programs", founding: "$19,200", list: "$28,800" },
+  { range: "21–30 programs", founding: "$28,800", list: "$43,200" },
+];
+
+function DepartmentPricing() {
+  return (
+    <div
+      className="mt-5 grid gap-6 rounded-[10px] border bg-white p-6 md:grid-cols-[0.85fr_1.15fr] md:items-center md:p-8"
+      style={{ borderColor: "var(--color-line-strong)" }}
+    >
+      <div>
+        <p className="text-[12px] font-black uppercase tracking-[0.14em] text-[color:var(--color-accent)]">
+          Whole athletic department
+        </p>
+        <h3 className="mt-2 text-[24px] font-black leading-tight tracking-tight text-[color:var(--color-ink)]">
+          Cover every program in the school.
+        </h3>
+        <p className="mt-3 max-w-[520px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
+          Full Suite for every program, plus school-wide inventory, budget, and staff visibility. Priced by program
+          count — each sport counts as one program, and boys and girls teams count separately. Founding price is 33% off.
+        </p>
+        <a className="btn btn-ink mt-5 w-fit" href="#founder-access">
+          Cover the school
+        </a>
+      </div>
+
+      <div className="grid gap-2">
+        {SCHOOL_BANDS.map((band) => (
+          <div
+            className="flex items-center justify-between gap-4 rounded-[8px] border px-4 py-3"
+            key={band.range}
+            style={{ borderColor: "var(--color-line)" }}
+          >
+            <p className="text-[14px] font-bold text-[color:var(--color-ink)]">{band.range}</p>
+            <div className="text-right">
+              <p className="text-[17px] font-black text-[color:var(--color-ink)]">
+                {band.founding}
+                <span className="text-[12px] font-bold text-[color:var(--color-ink-soft)]">/year</span>
+              </p>
+              <p className="text-[12px] font-semibold text-[color:var(--color-ink-soft)]">list {band.list}/year</p>
+            </div>
+          </div>
+        ))}
+        <div
+          className="flex items-center justify-between gap-4 rounded-[8px] border px-4 py-3"
+          style={{ borderColor: "var(--color-line)" }}
+        >
+          <p className="text-[14px] font-bold text-[color:var(--color-ink)]">31+ programs or a district</p>
+          <a className="text-[15px] font-black text-[color:var(--color-accent)] hover:underline" href="#founder-access">
+            Let&apos;s talk
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FoundingSpots() {
   const programRemaining = Math.max(FOUNDING_PROGRAM_LIMIT - FOUNDING_PROGRAMS_CLAIMED, 0);
   const schoolRemaining = Math.max(FOUNDING_SCHOOL_LIMIT - FOUNDING_SCHOOLS_CLAIMED, 0);
@@ -983,9 +1050,9 @@ function FoundingSpots() {
           Founding pricing is capped at {FOUNDING_PROGRAM_LIMIT} programs and {FOUNDING_SCHOOL_LIMIT} schools.
         </h3>
         <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-          One Program is $2,500 per year for founding members, compared with the regular $3,500 annual price.
-          Whole-school founding pricing is $10,500 per year, compared with the standard $15,000 school plan.
-          Pricing stays locked while the subscription stays active and applies to the original package scope.
+          Founding members lock in 33% off every plan — a program starts at $800 per year, and Full Suite is $2,400
+          per year (what others pay for Director). Whole-department pricing starts at $9,600 per year. Pricing stays
+          locked while the subscription stays active and applies to the original package scope.
         </p>
       </div>
 
@@ -1117,7 +1184,7 @@ function PlanCard({
         </p>
         {featured ? (
           <span className="rounded-full bg-[color:var(--color-accent)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.08em] text-white">
-            Best start
+            Most popular
           </span>
         ) : null}
       </div>
