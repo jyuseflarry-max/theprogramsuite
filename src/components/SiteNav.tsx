@@ -1,60 +1,45 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const NAV_LINKS = [
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#product", label: "Product" },
+  { href: "/#story", label: "Story" },
+  { href: "/#capabilities", label: "Capabilities" },
+  { href: "/#audiences", label: "Who it's for" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQ" },
 ];
 
 export function SiteNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--color-line)] bg-[color:var(--color-paper)]/85 backdrop-blur-md backdrop-saturate-150">
-      <div className="mx-auto flex h-[68px] max-w-[1240px] items-center justify-between px-5 md:px-8">
-        <Link aria-label="The Program Suite home" href="/" className="flex items-center gap-3">
-          <Image
-            alt="The Program Suite"
-            src="/the-program-suite-wordmark.svg"
-            width={900}
-            height={176}
-            priority
-            className="h-11 w-auto object-contain"
-          />
-        </Link>
-
-        <nav aria-label="Main navigation" className="hidden items-center gap-[22px] lg:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-[13px] font-medium tracking-tight text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-ink)] whitespace-nowrap"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-[10px]">
-          <a
-            href={APP_LOGIN_URL}
-            className="btn btn-ghost hidden lg:inline-flex"
-            style={{ padding: "10px 16px", fontSize: 13, minHeight: 38 }}
-          >
-            Login
+    <nav className="nav" id="top">
+      <div className="container nav-inner">
+        <div className="nav-left">
+          <Link href="/" className="logo" aria-label="The Program Suite — home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="logo-img" src="/marketing/logo-mark.png" alt="" />
+            <span className="logo-word">The Program Suite</span>
+          </Link>
+          <div className="nav-links">
+            {NAV_LINKS.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="nav-cta">
+          <a href={APP_LOGIN_URL} className="nav-login">
+            Log in
           </a>
           <a
-            href="/#founder-access"
+            href="/#pricing"
             className="btn btn-primary"
-            style={{ padding: "10px 16px", fontSize: 13, minHeight: 38 }}
+            style={{ minHeight: 42, padding: "10px 18px", fontSize: 14.5 }}
           >
-            <span className="hidden sm:inline">Request access</span>
-            <span className="sm:hidden">Start</span>
+            Start one program
           </a>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }

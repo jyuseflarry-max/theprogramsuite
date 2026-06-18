@@ -1,697 +1,456 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
-import {
-  BarChart3,
-  CalendarDays,
-  CheckCircle2,
-  ClipboardList,
-  Dumbbell,
-  MessageSquare,
-  PackageCheck,
-  ShieldCheck,
-  Users,
-} from "lucide-react";
-import { FaqSection } from "@/components/FaqSection";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
-import { ArrowBtn, Eyebrow } from "@/components/primitives";
-
-const CORE_SYSTEMS = [
-  {
-    icon: Users,
-    title: "Athlete 360",
-    desc: "Roster, availability, sizing, follow-ups, family access, development notes, and health signals in one athlete profile.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Season command",
-    desc: "Games, practices, travel, attendance, confirmations, staffing, and game-day readiness stay tied to the active season.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Practice planning",
-    desc: "Install Goals, drill libraries, practice blocks, staff assignments, coverage checks, and carryover work move together.",
-  },
-  {
-    icon: Dumbbell,
-    title: "Training floor",
-    desc: "Strength groups, session command, athlete switching, load tracking, max imports, and rack-side capture for iPad workflows.",
-  },
-  {
-    icon: PackageCheck,
-    title: "Inventory and budget",
-    desc: "Catalog, issue, collect, scan, fee records, kit readiness, budget balances, purchase requests, and replacement planning.",
-  },
-  {
-    icon: BarChart3,
-    title: "District visibility",
-    desc: "Cross-school readiness, inventory rollups, budget review, audit trails, alerts, action items, and board-ready reports.",
-  },
-];
-
-const PRODUCT_SHOTS = [
-  {
-    src: "/images/current-app/coach-home.png",
-    alt: "Current The Program Suite coach home screen with Do next items and today's schedule",
-    eyebrow: "Coach home",
-    title: "Open the day with the work that needs attention first.",
-  },
-  {
-    src: "/images/current-app/athletes.png",
-    alt: "Current The Program Suite roster screen with Athlete cards",
-    eyebrow: "Athlete 360",
-    title: "Keep roster details and Athlete follow-up in one staff view.",
-  },
-  {
-    src: "/images/current-app/mobile-inventory.png",
-    alt: "Current The Program Suite mobile Inventory screen",
-    eyebrow: "Mobile inventory",
-    title: "Give coaches phone-first Inventory actions on the sideline.",
-  },
-];
-
-const WORKFLOWS = [
-  {
-    num: "01",
-    title: "Open the day",
-    desc: "The coach home base surfaces what needs attention now: attendance, game prep, inventory gaps, forms, messages, budget requests, and stale work.",
-  },
-  {
-    num: "02",
-    title: "Run the work",
-    desc: "Build practice, take attendance, issue inventory, check availability, run a training session, or message families without bouncing between tools.",
-  },
-  {
-    num: "03",
-    title: "Close the loop",
-    desc: "Follow-ups, fee records, carryover drills, makeup work, staff tasks, alerts, and district action items keep unfinished work from disappearing.",
-  },
-];
-
-const ROLES = [
-  {
-    role: "For coaches",
-    title: "A staff in your pocket.",
-    desc: "Plan practice, prep for games, track athletes, handle inventory, communicate with families, and see what needs attention next.",
-    bullets: ["Coach command center", "Athlete 360 profiles", "Practice and game prep", "Inventory issue and collect"],
-  },
-  {
-    role: "For athletic directors",
-    title: "One operating standard for every sport.",
-    desc: "Give each program the same playbook for accountability while keeping sport-by-sport ownership clear.",
-    bullets: ["School-wide sport visibility", "Budget and inventory review", "Program switching", "Staff and access controls"],
-  },
-  {
-    role: "For districts",
-    title: "Cross-school oversight without spreadsheet chasing.",
-    desc: "Review readiness, risks, audit trails, budgets, inventory needs, and follow-up work across schools from one district layer.",
-    bullets: ["District alerts", "Readiness reports", "Board packets", "Implementation tracking"],
-  },
-];
-
-const MOBILE_FEATURES = [
-  "Phone-first coach pocket app",
-  "iPad training-floor workflows",
-  "Inventory scanning and issue/collect",
-  "Attendance and game-day checks",
-  "Athlete lookup and messaging",
-];
-
-const FOUNDING_PROGRAM_LIMIT = 40;
-const FOUNDING_PROGRAMS_CLAIMED = 0;
-const FOUNDING_SCHOOL_LIMIT = 15;
-const FOUNDING_SCHOOLS_CLAIMED = 0;
-
-const FAQ_ITEMS = [
-  {
-    q: "When will The Program Suite be available?",
-    a: "The public launch is about a month away. Founder access is limited to the first 40 programs and 15 schools that want to get in early, help shape the rollout, and lock in founding pricing.",
-  },
-  {
-    q: "What does one Program include?",
-    a: "A program covers one sport at all levels — freshman, JV, and varsity — so an athlete's history follows them year over year. It comes in three tiers: Coach for the daily coaching work; Director, which adds inventory, budget, staff access, and reporting; and Full Suite, which adds Content Studio, sponsorships, and fundraising.",
-  },
-  {
-    q: "Why should we sign up before launch?",
-    a: "Founding members lock in 33% off for the life of the account. A program starts at $800 per year (regular $1,200), Director is $1,600 (regular $2,400), and Full Suite is $2,400 — the same as the regular price of Director. Whole-department pricing starts at $9,600 per year. The founding window is capped at 40 programs and 15 schools.",
-  },
-  {
-    q: "Can we pay monthly?",
-    a: "Founder access is annual so schools can plan the season cleanly and lock the account price while the subscription stays active.",
-  },
-  {
-    q: "Can we expand after starting with one Program?",
-    a: "Yes. A school can start with one Program, prove the operating rhythm, then expand to full-school coverage. Founding pricing is locked to the original package scope. Additional schools, sports, premium modules, integrations, custom services, or materially expanded usage may be priced separately at then-current rates.",
-  },
-  {
-    q: "What happens after we request founder access?",
-    a: "We will follow up with the right setup path for your sport, school, or district and walk through where The Program Suite can replace the scattered tools you are using now.",
-  },
-];
+import { SiteFooter } from "@/components/SiteFooter";
+import { Frame } from "@/components/marketing/Frame";
+import { Ico, ModIcon, type IcoName, type ModName } from "@/components/marketing/icons";
+import { LeadForm } from "@/components/marketing/LeadForm";
+import { ProductProof } from "@/components/marketing/ProductProof";
+import { Reveal } from "@/components/marketing/Reveal";
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-[color:var(--color-paper)] pb-20 text-[color:var(--color-ink)] md:pb-0">
+    <div>
+      <Reveal />
       <SiteNav />
       <Hero />
-      <ChaosToClarity />
-      <CoachStory />
+      <BeforeAfter />
+      <Founder />
       <ProductProof />
+      <Capabilities />
+      <ContentStudio />
+      <Audiences />
       <Pricing />
-      <FounderAccess />
-      <FaqSection items={FAQ_ITEMS} />
+      <LeadForm />
+      <Faq />
       <FinalCta />
       <SiteFooter />
-      <StickyMobileCta />
-    </main>
+      <MobileBar />
+    </div>
   );
 }
 
 function Hero() {
   return (
-    <section className="overflow-hidden pt-10 pb-16 md:pt-14 md:pb-20">
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1fr)] lg:items-center">
-          <div>
-            <div className="mb-5 flex flex-wrap gap-2">
-              {["One source of truth", "Built by a coach", "From $800/yr founding price"].map((item) => (
-                <span
-                  className="rounded-full border bg-white px-3 py-1.5 text-[12px] font-bold text-[color:var(--color-ink)]"
-                  key={item}
-                  style={{ borderColor: "var(--color-line-strong)" }}
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-            <h1 className="display" style={{ fontSize: "clamp(54px, 9.6vw, 132px)" }}>
-              Stop
-              <br />
-              chasing
-              <br />
-              <span className="headline-italic">everything.</span>
-            </h1>
-            <p
-              className="mt-9 max-w-[620px]"
-              style={{
-                color: "var(--color-ink-soft)",
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(20px, 2.2vw, 30px)",
-                fontStyle: "italic",
-                lineHeight: 1.24,
-              }}
-            >
-              Stop running your program out of texts, spreadsheets, memory, multiple apps, and
-              disconnected websites. The Program Suite gives staff, players, and families one source
-              of truth.
-            </p>
-            <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-start">
-              <ArrowBtn href="#founder-access" large>
-                Start one program
-              </ArrowBtn>
-              <a className="btn btn-ghost btn-lg" href="#product">
-                See the system
-              </a>
-            </div>
-            <p className="mt-4 text-[13px] font-semibold text-[color:var(--color-ink-soft)]">
-              Founding pricing is locked to the original package scope.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div
-              className="overflow-hidden rounded-[10px] border bg-white"
-              style={{
-                borderColor: "var(--color-line-strong)",
-                boxShadow:
-                  "0 34px 90px -28px rgba(14,30,46,.42), 0 10px 28px -14px rgba(14,30,46,.26)",
-              }}
-            >
-              <Image
-                src="/images/current-app/coach-home.png"
-                alt="Current The Program Suite coach home screen"
-                width={1440}
-                height={960}
-                priority
-                className="h-auto w-full"
-                sizes="(min-width: 1024px) 640px, 100vw"
-              />
-            </div>
-            <div
-              className="absolute -bottom-8 right-3 hidden w-[31%] min-w-[148px] overflow-hidden rounded-[16px] border-[6px] border-[color:var(--color-paper)] bg-white shadow-2xl sm:block"
-              style={{ boxShadow: "0 22px 55px -24px rgba(15,23,42,.7)" }}
-            >
-              <Image
-                src="/images/current-app/mobile-game-day.png"
-                alt="Current The Program Suite mobile game day screen"
-                width={780}
-                height={1688}
-                className="aspect-[9/16] w-full object-cover object-top"
-                sizes="180px"
-              />
-            </div>
+    <header className="hero">
+      <div className="container">
+        <div className="hero-top reveal">
+          <h1 className="h-display h1">
+            Run your whole program
+            <br /> from <span className="accent">one place.</span>
+          </h1>
+          <p className="lead hero-lead">
+            The Program Suite is the operating system for school sports — it replaces the group
+            texts, spreadsheets, and half-dozen apps your program runs on today with one source of
+            truth for staff, athletes, and families.
+          </p>
+          <div className="hero-actions">
+            <a href="#pricing" className="btn btn-primary btn-lg">
+              Start one program <Ico.arrow />
+            </a>
+            <a href="#product" className="btn btn-ghost btn-lg">
+              <Ico.play /> See it in action
+            </a>
           </div>
         </div>
 
-        <div
-          className="mt-16 grid overflow-hidden rounded-[8px] border bg-white sm:grid-cols-3"
-          style={{ borderColor: "var(--color-ink)" }}
-        >
-          {[
-            ["60 sec", "coach home base for what needs attention today"],
-            ["No caps", "players, families, and staff stay connected"],
-            ["1 place", "schedule, inventory, messages, practice, and proof"],
-          ].map(([big, label], index) => (
-            <div
-              key={label}
-              className="flex min-h-[118px] flex-col justify-between gap-4 border-[color:var(--color-line)] p-5 [&:not(:last-child)]:border-b sm:[&]:border-b-0 sm:[&:not(:last-child)]:border-r"
-            >
-              <div className="display text-[color:var(--color-accent)]" style={{ fontSize: 58 }}>
-                {big}
-              </div>
-              <p className="text-[13px] leading-[1.35] text-[color:var(--color-ink-soft)]">
-                {label}
-              </p>
-            </div>
-          ))}
+        <div className="hero-shot reveal">
+          <Frame
+            src="/marketing/screens/inventory-home.png"
+            url="app.theprogramsuite.com/memorial-hs/inventory"
+            alt="The Program Suite — inventory command center showing tasks, kit readiness, buying needs, and team clearance"
+          />
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
-function ChaosToClarity() {
-  const messy = [
-    "Texts with no record",
-    "Spreadsheets that go stale",
-    "Team sites in different places",
-    "Equipment tracked from memory",
-    "Families asking the same questions",
-  ];
-  const clear = [
-    "One shared athlete profile",
-    "Live schedules and availability",
-    "Program updates in one place",
-    "Inventory with assignment history",
-    "Staff, players, and families aligned",
-  ];
-
+function BeforeAfter() {
   return (
-    <section id="how-it-works" className="py-20 md:py-24">
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="mb-10 max-w-[760px]">
-          <Eyebrow>Before and after</Eyebrow>
-          <h2 className="display mt-5" style={{ fontSize: "clamp(40px, 6.5vw, 94px)" }}>
-            From scattered
-            <br />
-            to <span className="headline-italic text-accent-brand">settled.</span>
+    <section className="section section--tight" id="why">
+      <div className="container">
+        <div className="section-head reveal">
+          <h2 className="h-display h2">
+            Most programs aren&apos;t run on a system. They&apos;re run on scraps.
           </h2>
+          <p className="lead">
+            When the information lives in five places, nothing is actually accountable. One source of
+            truth changes that.
+          </p>
         </div>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <BeforeAfterPanel tone="bad" title="What coaches are stuck managing" items={messy} />
-          <BeforeAfterPanel tone="good" title="What The Program Suite gives them" items={clear} />
+
+        <div className="ba-grid reveal">
+          <div className="ba-card ba-before">
+            <div className="ba-head">
+              <span className="ba-kicker">Before — the scattered way</span>
+            </div>
+            <h3>A different tool for every job</h3>
+            <p className="sub">…and none of them talk to each other.</p>
+            <ul className="ba-list">
+              <li>
+                <span className="mk">✕</span> Group texts that scroll away by Tuesday
+              </li>
+              <li>
+                <span className="mk">✕</span> A gear spreadsheet only one coach can find
+              </li>
+              <li>
+                <span className="mk">✕</span> Fees and missing uniforms chased from memory
+              </li>
+              <li>
+                <span className="mk">✕</span> Budget reconciled in a binder at season&apos;s end
+              </li>
+              <li>
+                <span className="mk">✕</span> Nothing follows the athlete to next year
+              </li>
+            </ul>
+          </div>
+          <div className="ba-card ba-after">
+            <div className="ba-head">
+              <span className="ba-kicker">After — one source of truth</span>
+            </div>
+            <h3>One system the whole program shares</h3>
+            <p className="sub">Staff, athletes, and families, finally in sync.</p>
+            <ul className="ba-list">
+              <li>
+                <span className="mk">
+                  <Ico.check width="16" height="16" />
+                </span>{" "}
+                Every roster, schedule, and message in one place
+              </li>
+              <li>
+                <span className="mk">
+                  <Ico.check width="16" height="16" />
+                </span>{" "}
+                Gear, fees, and budget accounted for to the dollar
+              </li>
+              <li>
+                <span className="mk">
+                  <Ico.check width="16" height="16" />
+                </span>{" "}
+                Staff roles, access, and audit trails on every change
+              </li>
+              <li>
+                <span className="mk">
+                  <Ico.check width="16" height="16" />
+                </span>{" "}
+                Board-ready reports without the late-night export
+              </li>
+              <li>
+                <span className="mk">
+                  <Ico.check width="16" height="16" />
+                </span>{" "}
+                History that follows each athlete every season
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function CoachStory() {
+function Founder() {
   return (
-    <section className="py-20 md:py-24" style={{ background: "var(--color-paper-2)" }}>
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div
-            className="overflow-hidden rounded-[10px] border bg-white"
-            style={{
-              borderColor: "var(--color-line-strong)",
-              boxShadow: "0 24px 70px -32px rgba(14,30,46,.5)",
-            }}
-          >
-            <Image
-              src="/images/current-app/mobile-training.png"
-              alt="The Program Suite mobile training floor workflow"
-              width={780}
-              height={1688}
-              className="max-h-[620px] w-full object-cover object-top"
-              sizes="(min-width: 1024px) 440px, 100vw"
+    <section className="section founder" id="story">
+      <div className="container">
+        <div className="founder-grid reveal">
+          <div className="founder-portrait">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/marketing/founder.png"
+              alt="The founding coach in a huddle with the Memorial girls basketball team"
             />
           </div>
-
-          <div>
-            <div className="mb-[18px]">
-              <Eyebrow>Built by a coach</Eyebrow>
-            </div>
-            <h2 className="display" style={{ fontSize: "clamp(38px, 5vw, 78px)", lineHeight: 0.92 }}>
-              The job got bigger.
-              <br />
-              <span className="headline-italic">The tools </span>
-              <span className="text-accent-brand">did not.</span>
-            </h2>
-            <p
-              className="mt-6 max-w-[650px]"
-              style={{
-                color: "var(--color-ink-soft)",
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(18px, 1.8vw, 25px)",
-                fontStyle: "italic",
-                lineHeight: 1.35,
-              }}
-            >
-              I built The Program Suite from the same seat other coaches sit in: trying to run a
-              program, keep athletes moving, answer leadership, manage equipment, communicate with
-              families, and still get to practice prepared.
+          <div className="founder-body">
+            <p className="founder-quote serif-quote">
+              &ldquo;I built the system I wished I&apos;d had when I began coaching{" "}
+              <span className="accent">23 years ago</span>.&rdquo;
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {[
-                ["Less chasing", "The daily work starts where the coach starts, with what needs attention now."],
-                ["More proof", "Every update creates a record staff and leadership can trust later."],
-                ["One rhythm", "Practice, athletes, inventory, messages, and season work move together."],
-              ].map(([title, desc]) => (
-                <article className="border-t pt-4" key={title} style={{ borderColor: "var(--color-ink)" }}>
-                  <h3 className="text-[15px] font-black text-[color:var(--color-ink)]">{title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-[1.45] text-[color:var(--color-ink-soft)]">
-                    {desc}
-                  </p>
-                </article>
-              ))}
-            </div>
-            <p className="mt-8 max-w-[650px] text-[15px] leading-[1.55] text-[color:var(--color-ink-soft)]">
-              That is the story coaches understand: this is not another admin platform asking them
-              to do more data entry. It is a system for protecting their time, making the program
-              visible, and keeping small problems from becoming end-of-season surprises.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProductProof() {
-  return (
-    <section id="product" className="py-20 md:py-24" style={{ background: "var(--color-ink)" }}>
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="mb-[18px]">
-          <Eyebrow onDark>Built from the app</Eyebrow>
-        </div>
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.35fr] lg:items-center">
-          <div>
-            <h2
-              className="display text-[color:var(--color-paper)]"
-              style={{ fontSize: "clamp(38px, 5.4vw, 86px)" }}
-            >
-              Real school
-              <br />
-              sports work.
-            </h2>
-            <p
-              className="mt-6 max-w-[460px] text-[color:rgba(248,250,252,.76)]"
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(18px, 1.7vw, 24px)",
-                fontStyle: "italic",
-                lineHeight: 1.35,
-              }}
-            >
-              This is not a landing-page mockup. The product already has screens for the daily
-              work coaches and ADs actually manage.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              { src: "/images/current-app/athletes.png", label: "Athletes" },
-              { src: "/images/current-app/mobile-game-day.png", label: "Game Day" },
-              { src: "/images/current-app/mobile-practice.png", label: "Practice" },
-            ].map((shot) => (
-              <figure
-                className="overflow-hidden rounded-[8px] border bg-[color:var(--color-paper)]"
-                key={shot.label}
-                style={{ borderColor: "rgba(248,250,252,.18)" }}
-              >
-                <Image
-                  src={shot.src}
-                  alt={`Current ${shot.label} screen in The Program Suite`}
-                  width={shot.src.includes("mobile") ? 780 : 1440}
-                  height={shot.src.includes("mobile") ? 1688 : 960}
-                  className="aspect-[4/3] w-full object-cover"
-                  sizes="(min-width: 1024px) 260px, 33vw"
-                />
-                <figcaption className="border-t border-[color:var(--color-line)] px-3 py-2 text-[12px] font-semibold text-[color:var(--color-ink)]">
-                  {shot.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function OperatingSystem() {
-  return (
-    <section id="coaching-os" className="py-24 md:py-28">
-      <SectionIntro
-        eyebrow="Coaching OS"
-        title={
-          <>
-            Everything a program
-            <br />
-            <span className="headline-italic">has to </span>
-            <span className="text-accent-brand">keep moving.</span>
-          </>
-        }
-        description="The Program Suite connects daily coaching work to the school and district layers that need accountability."
-      />
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid border-t sm:grid-cols-2 lg:grid-cols-3" style={{ borderColor: "var(--color-ink)" }}>
-          {CORE_SYSTEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <article
-                className="min-h-[250px] border-b border-[color:var(--color-line)] p-7 lg:p-8 sm:[&:not(:nth-child(2n))]:border-r lg:[&:not(:nth-child(3n))]:border-r"
-                key={item.title}
-              >
-                <Icon aria-hidden="true" className="mb-6 size-7 text-[color:var(--color-accent)]" />
-                <h3 className="display" style={{ fontSize: "clamp(25px, 2.4vw, 38px)", lineHeight: 0.95 }}>
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-[14.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-                  {item.desc}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Workflow() {
-  return (
-    <section className="py-24 md:py-28" style={{ background: "var(--color-paper-2)" }}>
-      <SectionIntro
-        eyebrow="Daily rhythm"
-        title={
-          <>
-            Start with what
-            <br />
-            <span className="headline-italic">needs </span>
-            <span className="text-accent-brand">attention.</span>
-          </>
-        }
-        description="The first screen after login is a usable command center, not a marketing page. It answers what is next, what needs attention, and where to go now."
-      />
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="border-t" style={{ borderColor: "var(--color-ink)" }}>
-          {WORKFLOWS.map((item, index) => (
-            <div
-              className="grid gap-5 border-b py-8 md:grid-cols-[80px_0.8fr_1.2fr] md:items-baseline"
-              key={item.num}
-              style={{ borderColor: index === WORKFLOWS.length - 1 ? "var(--color-ink)" : "var(--color-line)" }}
-            >
-              <div className="display text-[color:var(--color-accent)]" style={{ fontSize: 42 }}>
-                {item.num}
-              </div>
-              <h3 className="display" style={{ fontSize: "clamp(28px, 3vw, 48px)", lineHeight: 0.95 }}>
-                {item.title}
-              </h3>
-              <p className="max-w-[640px] text-[15px] leading-[1.55] text-[color:var(--color-ink-soft)]">
-                {item.desc}
+            <div className="founder-text">
+              <p>
+                I&apos;m a high school coach. For years my program ran on a phone full of group texts,
+                a laptop full of spreadsheets, and a memory that kept dropping the things that
+                mattered — who still had a jersey, which athlete owed a fee, what we could actually
+                afford.
+              </p>
+              <p>
+                Nothing on the market was built for the way a program actually works, so I built it.
+                The Program Suite is the tool I needed 23 seasons ago — and it&apos;s now the
+                operating system for the whole department.
               </p>
             </div>
-          ))}
+            <div className="founder-sign">
+              <div>
+                <div className="name">Founder &amp; Head Coach</div>
+                <div className="role">The Program Suite</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function Screenshots() {
-  return (
-    <section className="py-24 md:py-28">
-      <SectionIntro
-        eyebrow="Screenshots"
-        title={
-          <>
-            Product proof,
-            <br />
-            <span className="headline-italic">not </span>
-            <span className="text-accent-brand">promises.</span>
-          </>
-        }
-        description="Use the screenshots throughout this page on sales calls, emails, or the existing website. They are pulled from the product asset library."
-      />
-      <div className="mx-auto grid max-w-[1240px] gap-6 px-5 md:px-8">
-        {PRODUCT_SHOTS.map((shot, index) => (
-          <figure
-            className="grid overflow-hidden rounded-[10px] border bg-white lg:grid-cols-[minmax(0,1fr)_340px]"
-            key={shot.title}
-            style={{ borderColor: "var(--color-line-strong)" }}
-          >
-            <Image
-              src={shot.src}
-              alt={shot.alt}
-              width={1400}
-              height={860}
-              className="h-full min-h-[260px] w-full object-cover"
-              sizes="(min-width: 1024px) 860px, 100vw"
-            />
-            <figcaption
-              className={`flex flex-col justify-between gap-8 border-[color:var(--color-line)] p-6 ${
-                index % 2 === 0 ? "bg-[color:var(--color-paper)]" : "bg-[color:var(--color-paper-2)]"
-              }`}
-            >
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-accent)]">
-                  {shot.eyebrow}
-                </p>
-                <h3 className="display mt-3" style={{ fontSize: "clamp(28px, 3vw, 44px)", lineHeight: 0.95 }}>
-                  {shot.title}
-                </h3>
-              </div>
-              <a className="btn btn-ghost w-fit" href="#founder-access">
-                Talk through this screen
-              </a>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </section>
-  );
-}
+const CAP_MODS: { ico: ModName; title: string; desc: string; tags: string[] }[] = [
+  {
+    ico: "athlete",
+    title: "Athlete profiles",
+    desc: "One record per athlete — roster, availability, sizing, family access, and the notes that matter.",
+    tags: ["Roster", "Family access", "Sizing", "Development notes", "Health signals"],
+  },
+  {
+    ico: "season",
+    title: "Season command",
+    desc: "Games, practices, and travel in one calendar, with confirmations and game-day readiness built in.",
+    tags: ["Schedule", "Attendance", "Travel", "Staffing", "Confirmations"],
+  },
+  {
+    ico: "practice",
+    title: "Practice planning",
+    desc: "Set install goals, pull from your drill library, and assign staff to every block of the plan.",
+    tags: ["Install goals", "Drill library", "Practice blocks", "Staff assignments"],
+  },
+  {
+    ico: "training",
+    title: "Training floor",
+    desc: "Strength groups and load tracking, captured rack-side on an iPad while the lift is happening.",
+    tags: ["Strength groups", "Load tracking", "iPad capture"],
+  },
+  {
+    ico: "inventory",
+    title: "Inventory & budget",
+    desc: "Catalog, issue, collect, and scan gear — with fees, budget balances, and purchase requests attached.",
+    tags: ["Catalog", "Issue / collect", "Scanning", "Fees", "Budget", "Purchase requests"],
+  },
+  {
+    ico: "district",
+    title: "District visibility",
+    desc: "Cross-school readiness, rollups, audit trails, and board-ready reports for the people who answer to a board.",
+    tags: ["Cross-school", "Rollups", "Audit trails", "Board reports"],
+  },
+  {
+    ico: "mobile",
+    title: "Mobile, on the field",
+    desc: "A phone-first coach app and iPad training workflows — the system goes where the program goes.",
+    tags: ["Coach app", "iPad workflows", "Offline-friendly"],
+  },
+];
 
-function MobileAndDistrict() {
+function Capabilities() {
   return (
-    <section className="py-24 md:py-28" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <div className="mb-[18px]">
-              <Eyebrow onDark>Mobile and district</Eyebrow>
+    <section className="section cap-band" id="capabilities">
+      <div className="container">
+        <div className="section-head reveal">
+          <h2 className="h-display h2">One system, deep enough to run the whole department.</h2>
+          <p className="lead">
+            Seven connected modules — start with what you need today, grow into the rest without
+            migrating anything.
+          </p>
+        </div>
+        <div className="cap-grid reveal">
+          {CAP_MODS.map((m) => (
+            <div className="cap-cell" key={m.title}>
+              <ModIcon name={m.ico} />
+              <h3>{m.title}</h3>
+              <p>{m.desc}</p>
+              <div className="cap-tags">
+                {m.tags.map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
             </div>
-            <h2 className="display" style={{ fontSize: "clamp(38px, 5.4vw, 86px)" }}>
-              Built for the
-              <br />
-              sideline and
-              <br />
-              the board room.
-            </h2>
-            <p
-              className="mt-6 max-w-[500px] text-[color:rgba(248,250,252,.76)]"
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(18px, 1.7vw, 24px)",
-                fontStyle: "italic",
-                lineHeight: 1.35,
-              }}
-            >
-              Coaches get fast phone workflows. Training staff get iPad-ready capture. ADs and
-              districts get the reporting layer leadership needs.
+          ))}
+          <div className="cap-cell" style={{ justifyContent: "center" }}>
+            <div className="eyebrow" style={{ marginBottom: 6 }}>
+              Always on
+            </div>
+            <p style={{ color: "rgba(255,255,255,.82)", fontSize: 15 }}>
+              Messaging, fair-use AI, roles &amp; permissions, and a full audit trail run underneath
+              every module — so the system is accountable, not just convenient.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            <InfoPanel
-              title="Universal Apple direction"
-              items={MOBILE_FEATURES}
-              icon={<MessageSquare aria-hidden="true" className="size-6" />}
-            />
-            <InfoPanel
-              title="District oversight"
-              items={["School readiness rollups", "Budget and inventory review", "Audit trails", "Alerts and action items", "Exportable leadership reports"]}
-              icon={<ShieldCheck aria-hidden="true" className="size-6" />}
-            />
-            {[
-              { src: "/images/current-app/mobile-training.png", label: "Strength" },
-              { src: "/images/current-app/mobile-inventory.png", label: "Inventory" },
-            ].map((shot) => (
-              <figure
-                className="overflow-hidden rounded-[10px] border border-[rgba(248,250,252,.18)] bg-[rgba(248,250,252,.06)]"
-                key={shot.label}
-              >
-                <Image
-                  alt={`Current mobile ${shot.label} screen in The Program Suite`}
-                  className="aspect-[9/14] w-full object-cover object-top"
-                  height={1688}
-                  src={shot.src}
-                  width={780}
-                />
-                <figcaption className="border-t border-[rgba(248,250,252,.14)] px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[rgba(248,250,252,.72)]">
-                  Current app | {shot.label}
-                </figcaption>
-              </figure>
-            ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STUDIO_POINTS: { ico: IcoName; t: string; d: string }[] = [
+  {
+    ico: "bolt",
+    t: "Pro-grade graphics in minutes",
+    d: "Pick a template, drop in the matchup and your logos, and Content Studio renders a broadcast-quality post — no designer, no Canva afternoon.",
+  },
+  {
+    ico: "handshake",
+    t: "Sell the spot to a local business",
+    d: "Every graphic has a sponsor slot. Southwell's Hamburger Grill gets the whole town's game-day feed; you get a check.",
+  },
+  {
+    ico: "cash",
+    t: "The suite pays for itself",
+    d: "One local sponsor across a season typically covers the subscription — the rest is money back in the program's pocket.",
+  },
+];
+
+function ContentStudio() {
+  return (
+    <section className="section studio" id="content-studio">
+      <div className="container">
+        <div className="studio-grid">
+          <div className="studio-copy">
+            <div className="eyebrow">
+              <span className="dot" />
+              Content Studio · Full Suite
+            </div>
+            <h2 className="h-display h2">Turn game day into revenue.</h2>
+            <p className="lead">
+              The reason Full Suite pays for itself: generate the graphics a program would pay an
+              agency for, then sell the sponsorship to local businesses who want in front of your
+              community.
+            </p>
+            <ul className="studio-points">
+              {STUDIO_POINTS.map((p) => {
+                const Glyph = Ico[p.ico];
+                return (
+                  <li key={p.t}>
+                    <span className="pico">
+                      <Glyph />
+                    </span>
+                    <span>
+                      <span className="pt-t">{p.t}</span>
+                      <span className="pt-d" style={{ display: "block", marginTop: 2 }}>
+                        {p.d}
+                      </span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <a href="#pricing" className="btn btn-primary btn-lg">
+              See Full Suite pricing <Ico.arrow />
+            </a>
+            <div className="studio-tag">
+              <Ico.cash width="15" height="15" /> Also powers <b>fundraising</b> &amp;{" "}
+              <b>public sponsor pages</b>
+            </div>
+          </div>
+
+          <div className="studio-visual">
+            <div className="social-card">
+              <div className="social-head">
+                <span className="social-ava">M</span>
+                <span className="social-meta">
+                  <span className="n">memorialmustangs</span>
+                  <span className="s">Sponsored · game day</span>
+                </span>
+                <span className="social-dots">•••</span>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="social-img"
+                src="/marketing/content-studio.png"
+                alt="Game day social graphic — Memorial Mustangs vs Stratford Spartans, sponsored by Southwell's Hamburger Grill"
+              />
+              <div className="social-foot">
+                <div className="social-acts">
+                  <Ico.heart />
+                  <Ico.comment />
+                  <Ico.send />
+                </div>
+                <div className="social-cap">
+                  <b>memorialmustangs</b> Thursday under the lights. 🏈 Proudly sponsored by{" "}
+                  <span className="by">@southwellsgrill</span> — go grab a burger before kickoff.
+                  #RideTogether
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+type Audience = {
+  role: string;
+  title: string;
+  blurb: string;
+  bullets: string[];
+  foot: string;
+  feature?: boolean;
+};
+
+const AUDIENCES: Audience[] = [
+  {
+    role: "For coaches",
+    title: "Built by someone who sat in your seat",
+    blurb:
+      "Less time on logistics, more time coaching. The day-to-day stuff finally lives in one place — and it was designed by a coach who hated the chaos too.",
+    bullets: [
+      "Run handout day and return day without a clipboard",
+      "Plan practice and share it with your staff",
+      "Message athletes and families, with receipts",
+      "Stop chasing gear, fees, and forms from memory",
+    ],
+    foot: "Start running your program in an afternoon.",
+  },
+  {
+    role: "For athletic directors",
+    title: "Serious software your department can stand on",
+    blurb:
+      "Every program on one standard. Real depth, real accountability, and the visibility to answer any question about gear, money, or readiness on the spot.",
+    bullets: [
+      "One source of truth across every sport",
+      "Audit trails and roles on every change",
+      "Budget, spend, and fees reconciled live",
+      "Replace a half-dozen disconnected tools",
+    ],
+    foot: "ROI in one season of recovered gear and budget.",
+    feature: true,
+  },
+  {
+    role: "For districts",
+    title: "Readiness and reporting across every school",
+    blurb:
+      "Roll the whole region onto one platform. Compare readiness across schools, pull board-ready reports, and standardize accountability district-wide.",
+    bullets: [
+      "Cross-school readiness rollups",
+      "District-level audit and reporting",
+      "Standardized accountability everywhere",
+      "Guided rollout and onboarding support",
+    ],
+    foot: "Built for procurement and the board room.",
+  },
+];
 
 function Audiences() {
   return (
-    <section id="audiences" className="py-24 md:py-28">
-      <SectionIntro
-        eyebrow="Who it is for"
-        title={
-          <>
-            One system.
-            <br />
-            <span className="headline-italic">Three </span>
-            <span className="text-accent-brand">levels.</span>
-          </>
-        }
-        description="The same product serves the people closest to the team and the leaders responsible for school-wide accountability."
-      />
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid border-t border-b lg:grid-cols-3" style={{ borderColor: "var(--color-ink)" }}>
-          {ROLES.map((role, index) => (
-            <article
-              className="flex flex-col gap-4 p-8 md:p-10"
-              key={role.role}
-              style={{
-                borderRight: index === ROLES.length - 1 ? "0" : "1px solid var(--color-line)",
-                borderBottom: index === ROLES.length - 1 ? "0" : "1px solid var(--color-line)",
-              }}
-            >
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[color:var(--color-accent)]">
-                {role.role}
-              </p>
-              <h3 className="display max-w-[13ch]" style={{ fontSize: "clamp(28px, 2.7vw, 42px)", lineHeight: 0.95 }}>
-                {role.title}
-              </h3>
-              <p className="text-[15px] leading-[1.5] text-[color:var(--color-ink-soft)]">{role.desc}</p>
-              <ul className="mt-3 grid gap-2.5">
-                {role.bullets.map((bullet) => (
-                  <li className="flex items-baseline gap-2.5 text-[13.5px]" key={bullet}>
-                    <CheckCircle2 aria-hidden="true" className="size-4 shrink-0 translate-y-0.5 text-[color:var(--color-accent)]" />
-                    {bullet}
+    <section className="section" id="audiences">
+      <div className="container">
+        <div className="section-head reveal">
+          <h2 className="h-display h2">Coaches feel it. Directors and districts can prove it.</h2>
+          <p className="lead">
+            The same system serves the coach who buys on instinct and the administrator who buys on
+            evidence.
+          </p>
+        </div>
+        <div className="aud-grid reveal">
+          {AUDIENCES.map((a) => (
+            <div className={"aud-card" + (a.feature ? " feature" : "")} key={a.role}>
+              <div className="aud-role">{a.role}</div>
+              <h3>{a.title}</h3>
+              <p className="blurb">{a.blurb}</p>
+              <ul className="aud-bul">
+                {a.bullets.map((b) => (
+                  <li key={b}>
+                    <Ico.check className="ck" width="16" height="16" /> {b}
                   </li>
                 ))}
               </ul>
-            </article>
+              <div className="aud-foot">{a.foot}</div>
+            </div>
           ))}
         </div>
       </div>
@@ -699,161 +458,262 @@ function Audiences() {
   );
 }
 
+type Tier = {
+  name: string;
+  popular: boolean;
+  for: string;
+  price: string;
+  list: string;
+  everything: string | null;
+  feats: string[];
+  hook: ReactNode | null;
+  cta: string;
+  ctaCls: string;
+};
+
+const TIERS: Tier[] = [
+  {
+    name: "Coach",
+    popular: false,
+    for: "For the coach running the program day to day.",
+    price: "800",
+    list: "1,200",
+    everything: null,
+    feats: [
+      "Athletes, roster & family access",
+      "Schedule, attendance & game prep",
+      "Practice planning",
+      "Strength & training",
+      "Messaging + fair-use AI",
+    ],
+    hook: null,
+    cta: "Start as Coach",
+    ctaCls: "btn-ink",
+  },
+  {
+    name: "Director",
+    popular: true,
+    for: "For the head coach or director responsible for gear, budget, and staff.",
+    price: "1,600",
+    list: "2,400",
+    everything: "Everything in Coach, plus",
+    feats: ["Inventory & gear", "Budget & spend", "Media library for approved photos"],
+    hook: null,
+    cta: "Start as Director",
+    ctaCls: "btn-primary",
+  },
+  {
+    name: "Full Suite",
+    popular: false,
+    for: "For programs ready to generate revenue.",
+    price: "2,400",
+    list: "3,600",
+    everything: "Everything in Director, plus",
+    feats: ["Content Studio", "Sponsorship sales", "Fundraising tools", "Sponsor assets & public pages"],
+    hook: (
+      <>
+        Founding <b>Full Suite</b> costs what others pay for Director — the revenue tools only need to
+        earn that much to pay for themselves.
+      </>
+    ),
+    cta: "Start Full Suite",
+    ctaCls: "btn-ink",
+  },
+];
+
+const BANDS: { band: string; price: string; list: string | null; talk?: boolean }[] = [
+  { band: "1–10 programs", price: "$9,600", list: "$14,400" },
+  { band: "11–20 programs", price: "$19,200", list: "$28,800" },
+  { band: "21–30 programs", price: "$28,800", list: "$43,200" },
+  { band: "31+ or a district", price: "Let's talk", list: null, talk: true },
+];
+
 function Pricing() {
   return (
-    <section id="pricing" className="py-20 md:py-24" style={{ background: "var(--color-paper-2)" }}>
-      <SectionIntro
-        eyebrow="Pricing"
-        title={
-          <>
-            Easy to
-            <br />
-            <span className="headline-italic">say </span>
-            <span className="text-accent-brand">yes.</span>
-          </>
-        }
-        description="Founding members can lock in early annual pricing while we open the first program and school spots."
-      />
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <p className="mb-5 text-[13px] font-bold uppercase tracking-[0.12em] text-[color:var(--color-ink-soft)]">
-          One program — all levels, freshman through varsity
-        </p>
-        <div className="grid gap-5 lg:grid-cols-3">
-          <PlanCard
-            eyebrow="Coach"
-            name="Coach"
-            price="$800"
-            priceSuffix="/year"
-            comparePrice="$1,200/year"
-            sub="Founding price — first 40 programs."
-            desc="For the coach running the program day to day, from practice to game day."
-            features={["Athletes, roster, and family access", "Schedule, attendance, and game prep", "Practice planning and drill library", "Strength and training floor", "Messaging and fair-use AI"]}
-            cta="Start with Coach"
-          />
-          <PlanCard
-            featured
-            eyebrow="Director"
-            name="Director"
-            price="$1,600"
-            priceSuffix="/year"
-            comparePrice="$2,400/year"
-            sub="Founding price — first 40 programs."
-            desc="For the head coach or director responsible for the gear, the budget, and the staff."
-            features={["Everything in Coach", "Inventory and gear tracking", "Budget and spend visibility", "Staff roles and access", "Audit trails and reporting"]}
-            cta="Run the program"
-          />
-          <PlanCard
-            eyebrow="Full Suite"
-            name="Full Suite"
-            price="$2,400"
-            priceSuffix="/year"
-            comparePrice="$3,600/year"
-            sub="Founding Full Suite costs what others pay for Director."
-            desc="For programs ready to bring in money — sponsorships and fundraising that pay for the upgrade."
-            features={["Everything in Director", "Content Studio", "Sponsorship sales", "Fundraising tools", "Sponsor assets and public pages"]}
-            cta="Make it pay for itself"
-          />
+    <section className="section" id="pricing">
+      <div className="container">
+        <div className="section-head reveal" style={{ maxWidth: 820 }}>
+          <h2 className="h-display h2">
+            Start with one program. Grow into the whole department.
+          </h2>
+          <p className="lead">
+            Every plan covers one full program — one sport, one gender, all levels — so an
+            athlete&apos;s history follows them year over year. Boys&apos; and girls&apos; teams count
+            as separate programs; a true coed sport is one.
+          </p>
         </div>
-        <DepartmentPricing />
+
+        <div className="price-frame reveal" style={{ marginTop: 28 }}>
+          <span className="founding-note">
+            <Ico.check width="15" height="15" /> Founding members lock in <b>33% off for life</b> —
+            first 40 programs, 15 schools
+          </span>
+        </div>
+
+        <div className="plans reveal">
+          {TIERS.map((t) => (
+            <div className={"plan" + (t.popular ? " popular" : "")} key={t.name}>
+              {t.popular && <span className="plan-badge">Most popular</span>}
+              <div className="plan-name">{t.name}</div>
+              <div className="plan-for">{t.for}</div>
+              <div className="plan-price">
+                <span className="cur">$</span>
+                <span className="amt">{t.price}</span>
+                <span className="per">/year</span>
+              </div>
+              <div className="plan-list">
+                Founding price · list <s>${t.list}/yr</s>
+              </div>
+              <hr className="div" />
+              <ul className="plan-feats">
+                {t.everything && <li className="everything">{t.everything}</li>}
+                {t.feats.map((f) => (
+                  <li key={f}>
+                    <Ico.check className="ck" width="15" height="15" /> {f}
+                  </li>
+                ))}
+              </ul>
+              {t.hook && <p className="plan-hook">{t.hook}</p>}
+              <div className="plan-cta">
+                <a href="#access" className={"btn btn-block " + t.ctaCls}>
+                  {t.cta} <Ico.arrow />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Whole department */}
+        <div className="dept reveal">
+          <div className="dept-head">
+            <div>
+              <h3>Whole athletic department</h3>
+              <p>
+                Full Suite for every program, plus school-wide inventory, budget, and staff
+                visibility. Each sport counts as one program — boys and girls teams count separately.
+              </p>
+            </div>
+            <span className="founding-note" style={{ alignSelf: "center" }}>
+              33% off for life · founding schools
+            </span>
+          </div>
+          <div className="dept-rows">
+            {BANDS.map((b) => (
+              <div className={"dept-row" + (b.talk ? " talk" : "")} key={b.band}>
+                <span className="band">{b.band}</span>
+                <span className="price">
+                  {b.price}
+                  {!b.talk && (
+                    <span
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: 14,
+                        fontWeight: 500,
+                        color: "var(--muted)",
+                      }}
+                    >
+                      /yr
+                    </span>
+                  )}
+                </span>
+                {b.list && (
+                  <span className="list">
+                    list <s>{b.list}/yr</s>
+                  </span>
+                )}
+                {b.talk && <span className="list">districts &amp; large departments</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+
         <FoundingSpots />
+
+        <p className="price-foot">
+          Founding pricing locks your rate for the life of the account and is capped at the first 40
+          programs and 15 schools. Department pricing is banded by program count. Custom pricing
+          available for school districts with multiple schools.
+        </p>
       </div>
     </section>
   );
 }
 
-function FounderAccess() {
-  return (
-    <section id="founder-access" className="py-24 md:py-28">
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
-          <div>
-            <div className="mb-[18px]">
-              <Eyebrow>Founder access</Eyebrow>
-            </div>
-            <h2 className="display" style={{ fontSize: "clamp(36px, 4.8vw, 72px)" }}>
-              Bring your
-              <br />
-              <span className="headline-italic">program </span>
-              <span className="text-accent-brand">online.</span>
-            </h2>
-            <p
-              className="mt-6 max-w-[460px]"
-              style={{
-                color: "var(--color-ink-soft)",
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(18px, 1.8vw, 24px)",
-                fontStyle: "italic",
-                lineHeight: 1.3,
-              }}
-            >
-              Tell us where you want to start. We will follow up with the right setup path for your
-              sport, school, or district.
-            </p>
-            <ul className="mt-8 grid gap-3 text-[14px] text-[color:var(--color-ink)]">
-              {["Start with one Program or the whole school", "Use real product screens during onboarding", "Keep school, sport, team, and season work separated"].map((item) => (
-                <li className="flex items-baseline gap-2.5" key={item}>
-                  <span className="inline-block size-[6px] shrink-0 -translate-y-[1px] rounded-full bg-[color:var(--color-accent)]" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+const SPOTS = [
+  { num: 9, total: 40, label: "Program spots left", claimed: 31, sub: "31 of 40 founding programs claimed" },
+  { num: 4, total: 15, label: "School spots left", claimed: 11, sub: "11 of 15 founding schools claimed" },
+];
 
-          <form
-            action="/api/founder-access"
-            className="rounded-sm border bg-white p-6 md:p-8"
-            method="POST"
-            style={{ borderColor: "var(--color-line-strong)" }}
-          >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field id="name" label="Name" placeholder="Jane Coach" required />
-              <Field id="email" label="Email" placeholder="jane@school.edu" required type="email" />
-              <Field id="school" label="School" placeholder="Memorial HS" required />
-              <label>
-                <span className="field-label">Role</span>
-                <select className="field-select" defaultValue="" id="role" name="role" required>
-                  <option disabled value="">
-                    Select your role...
-                  </option>
-                  <option>Head Coach</option>
-                  <option>Assistant Coach</option>
-                  <option>Athletic Director</option>
-                  <option>District Admin</option>
-                  <option>Other</option>
-                </select>
-              </label>
-              <Field id="sports" label="Sport(s)" placeholder="Football, basketball..." required />
-              <label>
-                <span className="field-label">Where do you want to start?</span>
-                <select className="field-select" defaultValue="" id="plan" name="plan" required>
-                  <option disabled value="">
-                    Choose a starting point...
-                  </option>
-                  <option>Coach (one program)</option>
-                  <option>Director (one program)</option>
-                  <option>Full Suite (one program)</option>
-                  <option>Entire school</option>
-                  <option>District coverage</option>
-                  <option>Not sure yet</option>
-                </select>
-              </label>
-              <label className="sm:col-span-2">
-                <span className="field-label">What do you need help running?</span>
-                <textarea
-                  className="field-textarea"
-                  id="message"
-                  name="message"
-                  placeholder="Inventory, practice planning, training, attendance, budget, district reporting..."
-                />
-              </label>
+function FoundingSpots() {
+  return (
+    <div className="spots reveal">
+      {SPOTS.map((s) => (
+        <div className="spot" key={s.label}>
+          <div className="spot-top">
+            <div className="spot-num">
+              {s.num}
+              <span className="of"> / {s.total}</span>
             </div>
-            <button className="btn btn-primary btn-lg mt-6 w-full justify-center" type="submit">
-              Request founder access
-            </button>
-            <p className="mt-3 text-[11.5px] uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
-              We reply within one business day.
-            </p>
-          </form>
+            <div className="spot-label">{s.label}</div>
+          </div>
+          <div className="spot-bar">
+            <i style={{ width: (s.claimed / s.total) * 100 + "%" }} />
+          </div>
+          <div className="spot-sub">{s.sub}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const FAQ_ITEMS = [
+  {
+    q: 'What exactly is "one program"?',
+    a: "One program is one sport, one gender, with all of its levels — freshman, JV, and varsity together. Boys' and girls' teams of the same sport are two separate programs; a true coed sport counts as one. You're never charged per level, and because everything lives under the program, an athlete's history follows them from one season to the next.",
+  },
+  {
+    q: "How does founding pricing work?",
+    a: "Founding members lock in 33% off the regular list price for the life of the account — it doesn't reset or step up later. It's capped at the first 40 programs and 15 schools, so once those spots are claimed, pricing returns to list.",
+  },
+  {
+    q: "We run on spreadsheets and group texts today. Is switching painful?",
+    a: "No. Most programs start with the one area that hurts most — usually inventory or scheduling — and import their existing roster and gear lists. You can grow into the other modules whenever you're ready; nothing has to migrate twice.",
+  },
+  {
+    q: "Is this serious enough for a district procurement review?",
+    a: "Yes. Roles and permissions, full audit trails, budget and spend reconciliation, and board-ready reporting are built in. Administrators get the visibility and accountability a purchase of this size requires — not just a coach's convenience tool.",
+  },
+  {
+    q: "How is the whole-department price calculated?",
+    a: "It's banded by the number of programs, where each sport counts as one program and boys' and girls' teams count separately. 1–10 programs, 11–20, and 21–30 each have a set annual price; 31+ programs or a multi-school district requires a custom quote.",
+  },
+  {
+    q: "What do coaches actually do on their phones?",
+    a: "The coach app is phone-first: messaging, attendance, schedules, game-day readiness, and quick gear actions all work from the sideline. Training workflows are tuned for an iPad rack-side, so loads and groups get captured while the lift is happening.",
+  },
+  {
+    q: "Who built it, and who do we talk to?",
+    a: "The Program Suite was built by a high school coach who ran a program on the same scattered tools you're trying to replace. When you reach out, you're often talking to the founding coach — not a call center.",
+  },
+];
+
+function Faq() {
+  return (
+    <section className="section" id="faq">
+      <div className="container">
+        <div className="section-head center reveal">
+          <h2 className="h-display h2">Frequently asked questions</h2>
+        </div>
+        <div className="faq-list reveal">
+          {FAQ_ITEMS.map((it) => (
+            <details className="faq-item" key={it.q}>
+              <summary className="faq-q">
+                <span>{it.q}</span>
+                <span className="faq-ico">+</span>
+              </summary>
+              <div className="faq-a">{it.a}</div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
@@ -862,405 +722,36 @@ function FounderAccess() {
 
 function FinalCta() {
   return (
-    <section
-      className="border-t py-24 md:py-[120px]"
-      style={{ background: "var(--color-accent)", borderColor: "var(--color-ink)", color: "var(--color-accent-ink)" }}
-    >
-      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <div className="mb-6">
-          <span className="eyebrow" style={{ color: "var(--color-accent-ink)" }}>
-            <span className="dot" style={{ background: "var(--color-accent-ink)" }} />
-            Get started
-          </span>
-        </div>
-        <h2 className="display" style={{ color: "var(--color-accent-ink)", fontSize: "clamp(48px, 8vw, 132px)" }}>
-          Give every
-          <br />
-          sport a real
-          <br />
-          operating system.
-        </h2>
-        <div className="mt-12 flex flex-col items-stretch justify-between gap-6 md:flex-row md:items-end">
-          <p
-            className="max-w-[520px]"
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "clamp(18px, 1.8vw, 22px)",
-              fontStyle: "italic",
-              lineHeight: 1.3,
-            }}
-          >
-            Start with one Program, expand to the school, or bring district oversight into one shared
-            system.
-          </p>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <ArrowBtn href="#founder-access" large variant="ink">
-              Request access
-            </ArrowBtn>
-            <a
-              className="btn btn-lg"
-              href="#pricing"
-              style={{
-                background: "transparent",
-                borderColor: "var(--color-accent-ink)",
-                color: "var(--color-accent-ink)",
-              }}
-            >
-              Compare pricing
-            </a>
-          </div>
+    <section className="section final">
+      <div className="container reveal">
+        <h2 className="h-display">Your program deserves a system, not scraps.</h2>
+        <p>
+          Start with one program today, or bring the whole department onto one source of truth — and
+          lock your founding rate while spots last.
+        </p>
+        <div className="final-actions">
+          <a href="#access" className="btn btn-ink btn-lg">
+            Claim a founding spot <Ico.arrow />
+          </a>
+          <a href="#pricing" className="btn btn-ghost btn-lg">
+            See pricing
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-function SectionIntro({
-  description,
-  eyebrow,
-  title,
-}: {
-  description: string;
-  eyebrow: string;
-  title: ReactNode;
-}) {
+function MobileBar() {
   return (
-    <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-      <div className="mb-[18px]">
-        <Eyebrow>{eyebrow}</Eyebrow>
+    <div className="mobile-bar">
+      <div className="mb-info">
+        <div className="t">Founding pricing — 33% off</div>
+        <div className="s">9 of 40 program spots left</div>
       </div>
-      <div
-        className="mb-12 grid items-end gap-10 border-b pb-9 lg:grid-cols-[1fr_1.25fr] lg:gap-16"
-        style={{ borderColor: "var(--color-ink)" }}
-      >
-        <h2 className="display" style={{ fontSize: "clamp(36px, 5.5vw, 88px)" }}>
-          {title}
-        </h2>
-        <p
-          className="max-w-[560px]"
-          style={{
-            color: "var(--color-ink-soft)",
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(17px, 1.6vw, 24px)",
-            fontStyle: "italic",
-            lineHeight: 1.35,
-          }}
-        >
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function InfoPanel({ icon, items, title }: { icon: ReactNode; items: string[]; title: string }) {
-  return (
-    <article className="rounded-[8px] border border-[rgba(248,250,252,.18)] bg-[rgba(248,250,252,.06)] p-6">
-      <div className="mb-5 text-[color:var(--color-accent)]">{icon}</div>
-      <h3 className="display" style={{ fontSize: 34, lineHeight: 0.95 }}>
-        {title}
-      </h3>
-      <ul className="mt-5 grid gap-3">
-        {items.map((item) => (
-          <li className="flex items-baseline gap-2.5 text-[14px] text-[rgba(248,250,252,.78)]" key={item}>
-            <CheckCircle2 aria-hidden="true" className="size-4 shrink-0 translate-y-0.5 text-[color:var(--color-accent)]" />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-const SCHOOL_BANDS = [
-  { range: "1–10 programs", founding: "$9,600", list: "$14,400" },
-  { range: "11–20 programs", founding: "$19,200", list: "$28,800" },
-  { range: "21–30 programs", founding: "$28,800", list: "$43,200" },
-];
-
-function DepartmentPricing() {
-  return (
-    <div
-      className="mt-5 grid gap-6 rounded-[10px] border bg-white p-6 md:grid-cols-[0.85fr_1.15fr] md:items-center md:p-8"
-      style={{ borderColor: "var(--color-line-strong)" }}
-    >
-      <div>
-        <p className="text-[12px] font-black uppercase tracking-[0.14em] text-[color:var(--color-accent)]">
-          Whole athletic department
-        </p>
-        <h3 className="mt-2 text-[24px] font-black leading-tight tracking-tight text-[color:var(--color-ink)]">
-          Cover every program in the school.
-        </h3>
-        <p className="mt-3 max-w-[520px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-          Full Suite for every program, plus school-wide inventory, budget, and staff visibility. Priced by program
-          count — each sport counts as one program, and boys and girls teams count separately. Founding price is 33% off.
-        </p>
-        <a className="btn btn-ink mt-5 w-fit" href="#founder-access">
-          Cover the school
-        </a>
-      </div>
-
-      <div className="grid gap-2">
-        {SCHOOL_BANDS.map((band) => (
-          <div
-            className="flex items-center justify-between gap-4 rounded-[8px] border px-4 py-3"
-            key={band.range}
-            style={{ borderColor: "var(--color-line)" }}
-          >
-            <p className="text-[14px] font-bold text-[color:var(--color-ink)]">{band.range}</p>
-            <div className="text-right">
-              <p className="text-[17px] font-black text-[color:var(--color-ink)]">
-                {band.founding}
-                <span className="text-[12px] font-bold text-[color:var(--color-ink-soft)]">/year</span>
-              </p>
-              <p className="text-[12px] font-semibold text-[color:var(--color-ink-soft)]">list {band.list}/year</p>
-            </div>
-          </div>
-        ))}
-        <div
-          className="flex items-center justify-between gap-4 rounded-[8px] border px-4 py-3"
-          style={{ borderColor: "var(--color-line)" }}
-        >
-          <p className="text-[14px] font-bold text-[color:var(--color-ink)]">31+ programs or a district</p>
-          <a className="text-[15px] font-black text-[color:var(--color-accent)] hover:underline" href="#founder-access">
-            Let&apos;s talk
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FoundingSpots() {
-  const programRemaining = Math.max(FOUNDING_PROGRAM_LIMIT - FOUNDING_PROGRAMS_CLAIMED, 0);
-  const schoolRemaining = Math.max(FOUNDING_SCHOOL_LIMIT - FOUNDING_SCHOOLS_CLAIMED, 0);
-  const programProgress = Math.min((FOUNDING_PROGRAMS_CLAIMED / FOUNDING_PROGRAM_LIMIT) * 100, 100);
-  const schoolProgress = Math.min((FOUNDING_SCHOOLS_CLAIMED / FOUNDING_SCHOOL_LIMIT) * 100, 100);
-
-  return (
-    <div
-      className="mt-5 grid gap-5 rounded-[10px] border bg-white p-5 md:grid-cols-[1fr_minmax(260px,360px)] md:items-center md:p-6"
-      style={{ borderColor: "var(--color-line-strong)" }}
-    >
-      <div>
-        <p className="text-[12px] font-black uppercase tracking-[0.14em] text-[color:var(--color-accent)]">
-          Founding member window
-        </p>
-        <h3 className="mt-2 text-[22px] font-black tracking-tight text-[color:var(--color-ink)]">
-          Founding pricing is capped at {FOUNDING_PROGRAM_LIMIT} programs and {FOUNDING_SCHOOL_LIMIT} schools.
-        </h3>
-        <p className="mt-2 max-w-[760px] text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]">
-          Founding members lock in 33% off every plan — a program starts at $800 per year, and Full Suite is $2,400
-          per year (what others pay for Director). Whole-department pricing starts at $9,600 per year. Pricing stays
-          locked while the subscription stays active and applies to the original package scope.
-        </p>
-      </div>
-
-      <div className="grid gap-3">
-        <div className="rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[color:var(--color-muted)]">
-                Program spots left
-              </p>
-              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 46 }}>
-                {programRemaining}
-              </p>
-            </div>
-            <p className="pb-2 text-[13px] font-bold text-[color:var(--color-ink-soft)]">
-              of {FOUNDING_PROGRAM_LIMIT}
-            </p>
-          </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--color-accent-soft)]">
-            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${programProgress}%` }} />
-          </div>
-        </div>
-        <div className="rounded-[8px] border p-4" style={{ borderColor: "var(--color-line)" }}>
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[color:var(--color-muted)]">
-                School spots left
-              </p>
-              <p className="display mt-1 text-[color:var(--color-accent)]" style={{ fontSize: 46 }}>
-                {schoolRemaining}
-              </p>
-            </div>
-            <p className="pb-2 text-[13px] font-bold text-[color:var(--color-ink-soft)]">
-              of {FOUNDING_SCHOOL_LIMIT}
-            </p>
-          </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-[color:var(--color-accent-soft)]">
-            <div className="h-full rounded-full bg-[color:var(--color-accent)]" style={{ width: `${schoolProgress}%` }} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BeforeAfterPanel({ items, title, tone }: { items: string[]; title: string; tone: "bad" | "good" }) {
-  const isGood = tone === "good";
-  return (
-    <article
-      className="overflow-hidden rounded-[10px] border bg-white"
-      style={{
-        borderColor: isGood ? "rgba(36,138,61,.35)" : "rgba(215,0,21,.28)",
-        boxShadow: "0 18px 55px -38px rgba(15,23,42,.45)",
-      }}
-    >
-      <div
-        className="border-b px-5 py-4"
-        style={{
-          background: isGood ? "rgba(36,138,61,.08)" : "rgba(215,0,21,.06)",
-          borderColor: isGood ? "rgba(36,138,61,.22)" : "rgba(215,0,21,.18)",
-        }}
-      >
-        <h3 className="text-[16px] font-black text-[color:var(--color-ink)]">{title}</h3>
-      </div>
-      <ul className="grid gap-0">
-        {items.map((item) => (
-          <li
-            className="flex items-center gap-3 border-b px-5 py-4 text-[15px] last:border-b-0"
-            key={item}
-            style={{ borderColor: "var(--color-line)", color: "var(--color-ink-soft)" }}
-          >
-            <span
-              className="flex size-7 shrink-0 items-center justify-center rounded-full text-[16px] font-black"
-              style={{
-                background: isGood ? "rgba(36,138,61,.1)" : "rgba(215,0,21,.08)",
-                color: isGood ? "var(--color-good)" : "var(--color-bad)",
-              }}
-            >
-              {isGood ? "+" : "-"}
-            </span>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-function PlanCard({
-  comparePrice,
-  cta,
-  desc,
-  eyebrow,
-  featured = false,
-  features,
-  name,
-  price,
-  priceSuffix,
-  sub,
-}: {
-  comparePrice?: string;
-  cta: string;
-  desc: string;
-  eyebrow: string;
-  featured?: boolean;
-  features: string[];
-  name: string;
-  price: string;
-  priceSuffix?: string;
-  sub: string;
-}) {
-  const background = featured ? "var(--color-ink)" : "var(--color-paper)";
-  const foreground = featured ? "var(--color-paper)" : "var(--color-ink)";
-  const muted = featured ? "rgba(248,250,252,.74)" : "var(--color-ink-soft)";
-
-  return (
-    <article
-      className="flex min-h-[520px] flex-col rounded-[10px] border p-7 md:p-8"
-      style={{
-        background,
-        borderColor: featured ? "var(--color-ink)" : "var(--color-line-strong)",
-        color: foreground,
-        boxShadow: featured ? "0 28px 80px -40px rgba(15,23,42,.65)" : "0 16px 48px -40px rgba(15,23,42,.45)",
-      }}
-    >
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-[12px] font-black uppercase tracking-[0.12em] text-[color:var(--color-accent)]">
-          {eyebrow}
-        </p>
-        {featured ? (
-          <span className="rounded-full bg-[color:var(--color-accent)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.08em] text-white">
-            Most popular
-          </span>
-        ) : null}
-      </div>
-      <h3 className="display mt-3" style={{ color: foreground, fontSize: "clamp(34px, 3.2vw, 52px)", lineHeight: 0.9 }}>
-        {name}
-      </h3>
-      <p className="mt-4 text-[14.5px] leading-[1.5]" style={{ color: muted }}>
-        {desc}
-      </p>
-      <div className="my-7 h-px" style={{ background: featured ? "rgba(248,250,252,.16)" : "var(--color-line)" }} />
-      <div className="flex flex-wrap items-end gap-2">
-        <span className="display" style={{ color: foreground, fontSize: "clamp(52px, 5.4vw, 82px)", lineHeight: 0.88 }}>
-          {price}
-        </span>
-        {priceSuffix ? (
-          <span className="pb-2 text-[15px] font-bold" style={{ color: muted }}>
-            {priceSuffix}
-          </span>
-        ) : null}
-      </div>
-      {comparePrice ? (
-        <p className="mt-2 text-[13px] font-semibold" style={{ color: muted }}>
-          Annual list price: {comparePrice}
-        </p>
-      ) : null}
-      <p className="mt-2 text-[12px]" style={{ color: muted }}>
-        {sub}
-      </p>
-      <ul className="my-7 grid gap-3">
-        {features.map((feature) => (
-          <li className="flex items-baseline gap-2.5 text-[13.5px] leading-[1.4]" key={feature} style={{ color: muted }}>
-            <span className="inline-block size-[6px] shrink-0 -translate-y-[1px] rounded-full bg-[color:var(--color-accent)]" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-      <a className={`btn ${featured ? "btn-primary" : "btn-ink"} mt-auto justify-center`} href="#founder-access">
-        {cta}
+      <a href="#access" className="btn btn-primary">
+        Start one program
       </a>
-    </article>
-  );
-}
-
-function StickyMobileCta() {
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t bg-[color:var(--color-paper)]/95 p-3 shadow-[0_-12px_30px_-24px_rgba(15,23,42,.8)] backdrop-blur md:hidden">
-      <div className="flex items-center gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-[12px] font-black text-[color:var(--color-ink)]">Start one Program</p>
-          <p className="text-[11px] text-[color:var(--color-ink-soft)]">40 program spots. 15 school spots.</p>
-        </div>
-        <a className="btn btn-primary shrink-0" href="#founder-access" style={{ minHeight: 42, padding: "10px 14px" }}>
-          Start
-        </a>
-      </div>
     </div>
-  );
-}
-
-function Field({
-  id,
-  label,
-  placeholder,
-  required = false,
-  type = "text",
-}: {
-  id: string;
-  label: string;
-  placeholder: string;
-  required?: boolean;
-  type?: string;
-}) {
-  return (
-    <label>
-      <span className="field-label">{label}</span>
-      <input className="field-input" id={id} name={id} placeholder={placeholder} required={required} type={type} />
-    </label>
   );
 }
