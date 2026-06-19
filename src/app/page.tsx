@@ -640,8 +640,8 @@ function Pricing() {
 }
 
 const SPOTS = [
-  { num: 9, total: 40, label: "Program spots left", claimed: 31, sub: "31 of 40 founding programs claimed" },
-  { num: 4, total: 15, label: "School spots left", claimed: 11, sub: "11 of 15 founding schools claimed" },
+  { num: 40, total: 40, label: "Program spots left", claimed: 0, sub: "0 of 40 founding programs claimed" },
+  { num: 15, total: 15, label: "School spots left", claimed: 0, sub: "0 of 15 founding schools claimed" },
 ];
 
 function FoundingSpots() {
@@ -747,7 +747,7 @@ function MobileBar() {
     <div className="mobile-bar">
       <div className="mb-info">
         <div className="t">Founding pricing — 33% off</div>
-        <div className="s">9 of 40 program spots left</div>
+        <div className="s">40 of 40 program spots left</div>
       </div>
       <a href="#access" className="btn btn-primary">
         Start one program
