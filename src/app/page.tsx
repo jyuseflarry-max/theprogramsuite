@@ -56,7 +56,7 @@ function Hero() {
         <div className="hero-shot reveal">
           <Frame
             src="/marketing/screens/inventory-home.png"
-            url="app.theprogramsuite.com/memorial-hs/inventory"
+            url="app.theprogramsuite.com/summit-ridge/inventory"
             alt="The Program Suite — inventory command center showing tasks, kit readiness, buying needs, and team clearance"
           />
         </div>
@@ -158,7 +158,7 @@ function Founder() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/marketing/founder.png"
-              alt="The founding coach in a huddle with the Memorial girls basketball team"
+              alt="The founding coach in a huddle with the Summit Ridge girls basketball team"
             />
           </div>
           <div className="founder-body">

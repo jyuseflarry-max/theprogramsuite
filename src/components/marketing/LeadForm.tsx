@@ -47,7 +47,7 @@ export function LeadForm() {
               </div>
               <div className="field half">
                 <label htmlFor="f-school">School</label>
-                <input id="f-school" name="school" type="text" required placeholder="Memorial HS" />
+                <input id="f-school" name="school" type="text" required placeholder="Summit Ridge HS" />
               </div>
               <div className="field half">
                 <label htmlFor="f-role">Role</label>
