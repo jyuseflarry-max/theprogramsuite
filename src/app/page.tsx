@@ -340,9 +340,9 @@ function ContentStudio() {
           <div className="studio-visual">
             <div className="social-card">
               <div className="social-head">
-                <span className="social-ava">M</span>
+                <span className="social-ava">S</span>
                 <span className="social-meta">
-                  <span className="n">memorialmustangs</span>
+                  <span className="n">summitridgegrizzlies</span>
                   <span className="s">Sponsored · game day</span>
                 </span>
                 <span className="social-dots">•••</span>
@@ -351,7 +351,7 @@ function ContentStudio() {
               <img
                 className="social-img"
                 src="/marketing/content-studio.png"
-                alt="Game day social graphic — Memorial Mustangs vs Stratford Spartans, sponsored by Caldwell's Pizza Kitchen"
+                alt="Game day social graphic — Summit Ridge Grizzlies vs Cedar Canyon Coyotes, sponsored by Caldwell's Pizza Kitchen"
               />
               <div className="social-foot">
                 <div className="social-acts">
@@ -360,9 +360,9 @@ function ContentStudio() {
                   <Ico.send />
                 </div>
                 <div className="social-cap">
-                  <b>memorialmustangs</b> Thursday under the lights. 🏈 Proudly sponsored by{" "}
+                  <b>summitridgegrizzlies</b> Friday under the lights. 🏈 Proudly sponsored by{" "}
                   <span className="by">@caldwellspizza</span> — grab a game-day slice before kickoff.
-                  #RideTogether
+                  #GoGrizzlies
                 </div>
               </div>
             </div>
