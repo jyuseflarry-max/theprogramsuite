@@ -158,7 +158,7 @@ function Founder() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/marketing/founder.png"
-              alt="The founding coach in a huddle with the Summit Ridge girls basketball team"
+              alt="The founding coach in a huddle with the Memorial girls basketball team"
             />
           </div>
           <div className="founder-body">
@@ -285,7 +285,7 @@ const STUDIO_POINTS: { ico: IcoName; t: string; d: string }[] = [
   {
     ico: "handshake",
     t: "Sell the spot to a local business",
-    d: "Every graphic has a sponsor slot. Southwell's Hamburger Grill gets the whole town's game-day feed; you get a check.",
+    d: "Every graphic has a sponsor slot. Caldwell's Pizza Kitchen gets the whole town's game-day feed; you get a check.",
   },
   {
     ico: "cash",
@@ -351,7 +351,7 @@ function ContentStudio() {
               <img
                 className="social-img"
                 src="/marketing/content-studio.png"
-                alt="Game day social graphic — Memorial Mustangs vs Stratford Spartans, sponsored by Southwell's Hamburger Grill"
+                alt="Game day social graphic — Memorial Mustangs vs Stratford Spartans, sponsored by Caldwell's Pizza Kitchen"
               />
               <div className="social-foot">
                 <div className="social-acts">
@@ -361,7 +361,7 @@ function ContentStudio() {
                 </div>
                 <div className="social-cap">
                   <b>memorialmustangs</b> Thursday under the lights. 🏈 Proudly sponsored by{" "}
-                  <span className="by">@southwellsgrill</span> — go grab a burger before kickoff.
+                  <span className="by">@caldwellspizza</span> — grab a game-day slice before kickoff.
                   #RideTogether
                 </div>
               </div>
