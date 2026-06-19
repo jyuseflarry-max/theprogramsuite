@@ -57,10 +57,10 @@ const ROWS = [
 const MINIS: { real: boolean; src?: string; title: string; note: string }[] = [
   { real: true, src: "/marketing/screens/item-detail.png", title: "Athlete & item history", note: "every unit, condition, and hand-off tracked" },
   { real: true, src: "/marketing/screens/buying-needs.png", title: "Buying needs", note: "what to order before handout day" },
-  { real: false, title: "Coach home", note: "the daily command center for staff" },
-  { real: false, title: "Athlete profiles", note: "roster, family access, development notes" },
-  { real: false, title: "Practice planner", note: "install goals, drill library, staff blocks" },
-  { real: false, title: "Game day", note: "travel, attendance, staffing, readiness" },
+  { real: true, src: "/marketing/screens/athlete-profile.png", title: "Athlete 360 profiles", note: "roster, family access, development notes" },
+  { real: true, src: "/marketing/screens/game-day.png", title: "Game day", note: "travel, attendance, staffing, readiness" },
+  { real: true, src: "/marketing/screens/practice-planner.png", title: "Practice planner", note: "install goals, drill library, staff blocks" },
+  { real: true, src: "/marketing/screens/budget.png", title: "Budget & purchasing", note: "spend, approvals, and purchase orders" },
 ];
 
 function Lightbox({ shot, onClose }: { shot: Shot | null; onClose: () => void }) {
