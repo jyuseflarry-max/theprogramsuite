@@ -302,11 +302,11 @@ function ContentStudio() {
           <div className="studio-copy">
             <div className="eyebrow">
               <span className="dot" />
-              Content Studio · Full Suite
+              Content Studio · Showcase
             </div>
             <h2 className="h-display h2">Turn game day into revenue.</h2>
             <p className="lead">
-              The reason Full Suite pays for itself: generate the graphics a program would pay an
+              The reason Showcase pays for itself: generate the graphics a program would pay an
               agency for, then sell the sponsorship to local businesses who want in front of your
               community.
             </p>
@@ -329,7 +329,7 @@ function ContentStudio() {
               })}
             </ul>
             <a href="#pricing" className="btn btn-primary btn-lg">
-              See Full Suite pricing <Ico.arrow />
+              See Showcase pricing <Ico.arrow />
             </a>
             <div className="studio-tag">
               <Ico.cash width="15" height="15" /> Also powers <b>fundraising</b> &amp;{" "}
@@ -475,15 +475,16 @@ const TIERS: Tier[] = [
   {
     name: "Coach",
     popular: false,
-    for: "For the coach running the program day to day.",
+    for: "For the coach running the whole program day to day.",
     price: "800",
     list: "1,200",
     everything: null,
     feats: [
       "Athletes, roster & family access",
       "Schedule, attendance & game prep",
-      "Practice planning",
-      "Strength & training",
+      "Practice planning + strength & training",
+      "Inventory, gear & budget",
+      "Staff roles, access & audit",
       "Messaging + fair-use AI",
     ],
     hook: null,
@@ -491,40 +492,33 @@ const TIERS: Tier[] = [
     ctaCls: "btn-ink",
   },
   {
-    name: "Director",
+    name: "Showcase",
     popular: true,
-    for: "For the head coach or director responsible for gear, budget, and staff.",
+    for: "For programs ready to market themselves and generate revenue.",
     price: "1,600",
     list: "2,400",
     everything: "Everything in Coach, plus",
-    feats: ["Inventory & gear", "Budget & spend", "Media library for approved photos"],
-    hook: null,
-    cta: "Start as Director",
-    ctaCls: "btn-primary",
-  },
-  {
-    name: "Full Suite",
-    popular: false,
-    for: "For programs ready to generate revenue.",
-    price: "2,400",
-    list: "3,600",
-    everything: "Everything in Director, plus",
-    feats: ["Content Studio", "Sponsorship sales", "Fundraising tools", "Sponsor assets & public pages"],
+    feats: [
+      "Media gallery",
+      "Content Studio",
+      "Sponsorship sales",
+      "Fundraising tools",
+      "600 premium AI creations/yr (~50/mo)",
+    ],
     hook: (
       <>
-        Founding <b>Full Suite</b> costs what others pay for Director — the revenue tools only need to
-        earn that much to pay for themselves.
+        Founding <b>Showcase</b> is just $800 more than Coach — the revenue tools only need to earn
+        that back to pay for themselves.
       </>
     ),
-    cta: "Start Full Suite",
-    ctaCls: "btn-ink",
+    cta: "Start Showcase",
+    ctaCls: "btn-primary",
   },
 ];
 
 const BANDS: { band: string; price: string; list: string | null; talk?: boolean }[] = [
-  { band: "1–10 programs", price: "$9,600", list: "$14,400" },
-  { band: "11–20 programs", price: "$19,200", list: "$28,800" },
-  { band: "21–30 programs", price: "$28,800", list: "$43,200" },
+  { band: "1–12 programs", price: "$10,000", list: "$15,000" },
+  { band: "13–30 programs", price: "$16,000", list: "$24,000" },
   { band: "31+ or a district", price: "Let's talk", list: null, talk: true },
 ];
 
@@ -589,8 +583,10 @@ function Pricing() {
             <div>
               <h3>Whole athletic department</h3>
               <p>
-                Full Suite for every program, plus school-wide inventory, budget, and staff
-                visibility. Each sport counts as one program — boys and girls teams count separately.
+                Showcase for every program — the full content and revenue engine school-wide — plus a
+                department roll-up of inventory, budget, and staff for the AD. Coach-tier department
+                pricing is available too. Each sport counts as one program; boys&apos; and girls&apos;
+                teams count separately.
               </p>
             </div>
             <span className="founding-note" style={{ alignSelf: "center" }}>
@@ -685,7 +681,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How is the whole-department price calculated?",
-    a: "It's banded by the number of programs, where each sport counts as one program and boys' and girls' teams count separately. 1–10 programs, 11–20, and 21–30 each have a set annual price; 31+ programs or a multi-school district requires a custom quote.",
+    a: "It's banded by the number of programs, where each sport counts as one program and boys' and girls' teams count separately. There are two bands — 1–12 programs and 13–30 programs — each with a set annual price (for either tier); 31+ programs or a multi-school district gets a custom quote.",
   },
   {
     q: "What do coaches actually do on their phones?",

@@ -73,8 +73,7 @@ export function LeadForm() {
                 <label htmlFor="f-plan">Plan</label>
                 <select id="f-plan" name="plan" defaultValue="Not sure yet">
                   <option>Coach (one program)</option>
-                  <option>Director (one program)</option>
-                  <option>Full Suite (one program)</option>
+                  <option>Showcase (one program)</option>
                   <option>Entire school</option>
                   <option>District coverage</option>
                   <option>Not sure yet</option>
