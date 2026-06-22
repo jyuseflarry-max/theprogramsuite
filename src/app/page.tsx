@@ -6,6 +6,7 @@ import { Ico, ModIcon, type IcoName, type ModName } from "@/components/marketing
 import { LeadForm } from "@/components/marketing/LeadForm";
 import { ProductProof } from "@/components/marketing/ProductProof";
 import { Reveal } from "@/components/marketing/Reveal";
+import { SponsorshipCalculator } from "@/components/marketing/SponsorshipCalculator";
 
 export default function LandingPage() {
   return (
@@ -367,6 +368,17 @@ function ContentStudio() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="studio-calc reveal">
+          <div className="studio-calc-head">
+            <h3>What is your sponsorship worth?</h3>
+            <p>
+              Estimate a conservative season floor for sponsor placements on your game-day content —
+              then let Showcase capture it.
+            </p>
+          </div>
+          <SponsorshipCalculator />
         </div>
       </div>
     </section>
