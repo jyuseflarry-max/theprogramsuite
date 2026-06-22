@@ -461,6 +461,7 @@ function Audiences() {
 type Tier = {
   name: string;
   popular: boolean;
+  badge: string | null;
   for: string;
   price: string;
   list: string;
@@ -473,9 +474,10 @@ type Tier = {
 
 const TIERS: Tier[] = [
   {
-    name: "Coach",
+    name: "Command",
     popular: false,
-    for: "For the coach running the whole program day to day.",
+    badge: "Most popular",
+    for: "Everything you need to run the whole program day to day.",
     price: "800",
     list: "1,200",
     everything: null,
@@ -488,16 +490,17 @@ const TIERS: Tier[] = [
       "Messaging + fair-use AI",
     ],
     hook: null,
-    cta: "Start as Coach",
+    cta: "Start with Command",
     ctaCls: "btn-ink",
   },
   {
     name: "Showcase",
     popular: true,
-    for: "For programs ready to market themselves and generate revenue.",
+    badge: "Most valuable",
+    for: "Everything in Command, plus the ability to generate funds for your program.",
     price: "1,600",
     list: "2,400",
-    everything: "Everything in Coach, plus",
+    everything: "Everything in Command, plus",
     feats: [
       "Media gallery",
       "Content Studio",
@@ -507,7 +510,7 @@ const TIERS: Tier[] = [
     ],
     hook: (
       <>
-        Founding <b>Showcase</b> is just $800 more than Coach — the revenue tools only need to earn
+        Founding <b>Showcase</b> is just $800 more than Command — the revenue tools only need to earn
         that back to pay for themselves.
       </>
     ),
@@ -516,10 +519,17 @@ const TIERS: Tier[] = [
   },
 ];
 
-const BANDS: { band: string; price: string; list: string | null; talk?: boolean }[] = [
-  { band: "1–12 programs", price: "$10,000", list: "$15,000" },
-  { band: "13–30 programs", price: "$16,000", list: "$24,000" },
-  { band: "31+ or a district", price: "Let's talk", list: null, talk: true },
+const BANDS: {
+  band: string;
+  commandPrice?: string;
+  commandList?: string;
+  showPrice?: string;
+  showList?: string;
+  talk?: boolean;
+}[] = [
+  { band: "1–12 programs", commandPrice: "$6,000", commandList: "$9,000", showPrice: "$10,000", showList: "$15,000" },
+  { band: "13–30 programs", commandPrice: "$10,000", commandList: "$15,000", showPrice: "$16,000", showList: "$24,000" },
+  { band: "31+ or a district", talk: true },
 ];
 
 function Pricing() {
@@ -547,7 +557,9 @@ function Pricing() {
         <div className="plans reveal">
           {TIERS.map((t) => (
             <div className={"plan" + (t.popular ? " popular" : "")} key={t.name}>
-              {t.popular && <span className="plan-badge">Most popular</span>}
+              {t.badge && (
+                <span className={"plan-badge" + (t.popular ? "" : " plan-badge--soft")}>{t.badge}</span>
+              )}
               <div className="plan-name">{t.name}</div>
               <div className="plan-for">{t.for}</div>
               <div className="plan-price">
@@ -583,10 +595,9 @@ function Pricing() {
             <div>
               <h3>Whole athletic department</h3>
               <p>
-                Showcase for every program — the full content and revenue engine school-wide — plus a
-                department roll-up of inventory, budget, and staff for the AD. Coach-tier department
-                pricing is available too. Each sport counts as one program; boys&apos; and girls&apos;
-                teams count separately.
+                Bring the whole department onto Command or Showcase, plus a department roll-up of
+                inventory, budget, and staff for the AD. Each sport counts as one program; boys&apos;
+                and girls&apos; teams count separately.
               </p>
             </div>
             <span className="founding-note" style={{ alignSelf: "center" }}>
@@ -597,27 +608,35 @@ function Pricing() {
             {BANDS.map((b) => (
               <div className={"dept-row" + (b.talk ? " talk" : "")} key={b.band}>
                 <span className="band">{b.band}</span>
-                <span className="price">
-                  {b.price}
-                  {!b.talk && (
-                    <span
-                      style={{
-                        fontFamily: "var(--font-sans)",
-                        fontSize: 14,
-                        fontWeight: 500,
-                        color: "var(--muted)",
-                      }}
-                    >
-                      /yr
-                    </span>
-                  )}
-                </span>
-                {b.list && (
-                  <span className="list">
-                    list <s>{b.list}/yr</s>
-                  </span>
+                {b.talk ? (
+                  <>
+                    <span className="price">Let&apos;s talk</span>
+                    <span className="list">districts &amp; large departments</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="dept-tier">
+                      <span className="dept-tier-name">Command</span>
+                      <span className="price sm">
+                        {b.commandPrice}
+                        <i>/yr</i>
+                      </span>
+                      <span className="list">
+                        list <s>{b.commandList}/yr</s>
+                      </span>
+                    </div>
+                    <div className="dept-tier">
+                      <span className="dept-tier-name">Showcase</span>
+                      <span className="price sm">
+                        {b.showPrice}
+                        <i>/yr</i>
+                      </span>
+                      <span className="list">
+                        list <s>{b.showList}/yr</s>
+                      </span>
+                    </div>
+                  </>
                 )}
-                {b.talk && <span className="list">districts &amp; large departments</span>}
               </div>
             ))}
           </div>

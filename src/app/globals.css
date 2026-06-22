@@ -432,14 +432,20 @@ h1,h2,h3,h4 { margin: 0; }
 .dept-head { padding: 26px 30px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .dept-head h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.018em; }
 .dept-head p { font-size: 14.5px; color: var(--ink-soft); margin: 6px 0 0; max-width: 540px; }
-.dept-rows { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; }
+.dept-rows { display: grid; grid-template-columns: 1fr 1fr 1fr; }
 .dept-row { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 7px; }
 .dept-row:last-child { border-right: 0; }
 .dept-row .band { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
 .dept-row .price { font-family: var(--font-sans); font-weight: 700; font-size: 29px; color: var(--ink); letter-spacing: -0.02em; font-feature-settings: "tnum"; }
+.dept-row .price.sm { font-size: 22px; }
+.dept-row .price i { font-family: var(--font-sans); font-style: normal; font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 2px; }
 .dept-row .list { font-size: 12.5px; color: var(--faint); }
 .dept-row .list s { color: var(--faint); }
 .dept-row.talk .price { font-size: 24px; color: var(--accent-2); }
+.dept-tier { display: flex; flex-direction: column; gap: 3px; }
+.dept-tier + .dept-tier { margin-top: 14px; }
+.dept-tier-name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2); }
+.plan-badge--soft { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line-2); }
 
 .price-foot { font-size: 13px; color: var(--muted); text-align: center; margin-top: 26px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
@@ -522,9 +528,9 @@ details[open] .faq-ico { transform: rotate(45deg); }
 /* ============================================================ Responsive */
 @media (max-width: 1080px) {
   .cap-grid { grid-template-columns: repeat(2, 1fr); }
-  .dept-rows { grid-template-columns: 1fr 1fr; }
-  .dept-row:nth-child(2) { border-right: 0; }
-  .dept-row:nth-child(1), .dept-row:nth-child(2) { border-bottom: 1px solid var(--line); }
+  .dept-rows { grid-template-columns: 1fr; }
+  .dept-row { border-right: 0; border-bottom: 1px solid var(--line); }
+  .dept-row:last-child { border-bottom: 0; }
   .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
   .footer-about { grid-column: 1 / -1; max-width: 460px; }
 }
