@@ -58,6 +58,10 @@
   --accent-active:#0b4fa8;
   --accent-ink: #ffffff;
   --accent-soft:#e1efff;
+  /* Logo gold accent — use sparingly: fills/marks/icons, never body text or primary buttons */
+  --gold:       #fbb22c;
+  --gold-ink:   #1c1c1e;  /* dark text on a gold fill */
+  --gold-deep:  #8a5a00;  /* gold-toned text/emphasis on light backgrounds */
 
   --good:       #34c759;
   --good-soft:  #d8f3df;
@@ -114,7 +118,7 @@ h1,h2,h3,h4 { margin: 0; }
   color: var(--accent-2);
   display: inline-flex; align-items: center; gap: 9px;
 }
-.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
 
 .h-display {
   font-weight: 700;
@@ -193,7 +197,7 @@ h1,h2,h3,h4 { margin: 0; }
 
 /* Logo */
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-img { width: 34px; height: 34px; object-fit: contain; display: block; }
+.logo-img { height: 30px; width: auto; object-fit: contain; display: block; }
 .logo-word {
   font-family: var(--font-sans); font-weight: 600;
   font-size: 19px; letter-spacing: -0.02em; line-height: 1;
@@ -204,7 +208,7 @@ h1,h2,h3,h4 { margin: 0; }
 .hero { padding: 76px 0 0; }
 .hero-top { max-width: 880px; }
 .hero h1 { margin-bottom: 22px; }
-.hero h1 .accent { color: var(--accent-2); }
+.hero h1 .accent { color: var(--accent-2); background-image: linear-gradient(var(--gold), var(--gold)); background-repeat: no-repeat; background-position: 0 100%; background-size: 100% 5px; padding-bottom: 0.04em; }
 .hero-lead { max-width: 620px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
 .hero-shot { margin-top: 56px; }
@@ -263,7 +267,7 @@ h1,h2,h3,h4 { margin: 0; }
 .ba-before .ba-list li { color: var(--ink-soft); }
 .ba-before .ba-list li .mk { color: var(--bad); flex: 0 0 auto; font-weight: 700; }
 .ba-after .ba-list li { color: rgba(255,255,255,.92); }
-.ba-after .ba-list li .mk { color: var(--accent); flex: 0 0 auto; }
+.ba-after .ba-list li .mk { color: var(--gold); flex: 0 0 auto; }
 
 /* ============================================================ Content Studio (revenue spotlight) */
 .studio { background: var(--cream); }
@@ -409,7 +413,7 @@ h1,h2,h3,h4 { margin: 0; }
 .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 40px; max-width: 760px; margin-left: auto; margin-right: auto; }
 .plan { position: relative; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 32px 28px 30px; display: flex; flex-direction: column; box-shadow: var(--shadow-card); }
 .plan.popular { border-color: var(--accent); box-shadow: var(--shadow-lift); }
-.plan-badge { position: absolute; top: -12px; left: 28px; background: var(--accent); color: var(--accent-ink); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: 7px; }
+.plan-badge { position: absolute; top: -12px; left: 28px; background: var(--gold); color: var(--gold-ink); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: 7px; }
 .plan-name { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
 .plan-for { font-size: 14px; color: var(--muted); margin-top: 4px; min-height: 40px; }
 .plan-price { display: flex; align-items: baseline; gap: 4px; margin: 20px 0 4px; }
@@ -465,10 +469,10 @@ h1,h2,h3,h4 { margin: 0; }
 .calc-sub { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 8px 0 0; }
 .calc-imp { font-size: 13.5px; font-weight: 600; color: var(--ink); margin: 10px 0 0; font-feature-settings: "tnum"; }
 .calc-zipnote { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
-.calc-roi { margin-top: 16px; border: 1px solid var(--accent-soft); background: var(--accent-soft); border-radius: var(--radius-sm); padding: 12px 14px; }
-.calc-roi-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2); }
+.calc-roi { margin-top: 16px; border: 1px solid color-mix(in srgb, var(--gold) 42%, transparent); background: color-mix(in srgb, var(--gold) 14%, white); border-radius: var(--radius-sm); padding: 12px 14px; }
+.calc-roi-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); }
 .calc-roi p { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin: 5px 0 0; }
-.calc-roi b { color: var(--accent-2); }
+.calc-roi b { color: var(--gold-deep); }
 .calc-info { display: flex; gap: 9px; align-items: flex-start; margin-top: 14px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-sm); padding: 12px; }
 .calc-info-ico { flex: 0 0 auto; margin-top: 1px; color: var(--accent); }
 .calc-info p { font-size: 12px; line-height: 1.5; color: var(--muted); margin: 0; }
@@ -488,7 +492,7 @@ h1,h2,h3,h4 { margin: 0; }
 .spot-num .of { color: rgba(255,255,255,.5); font-size: 22px; }
 .spot-label { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,.7); text-align: right; }
 .spot-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,.12); margin-top: 16px; overflow: hidden; }
-.spot-bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.spot-bar i { display: block; height: 100%; background: var(--gold); border-radius: 999px; }
 .spot-sub { font-size: 13px; color: rgba(255,255,255,.66); margin-top: 12px; }
 
 /* ============================================================ Lead form */
