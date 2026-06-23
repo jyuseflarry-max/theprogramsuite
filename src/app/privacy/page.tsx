@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Privacy Policy for The Program Suite sports management platform.",
 };
 
-const EFFECTIVE_DATE = "April 10, 2026";
+const EFFECTIVE_DATE = "June 22, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <p>
             The Program Suite ("we," "us," or "our") is a Texas-based sports management platform that provides
             coaching, athletic administration, and program management tools to high school and college athletic
-            programs. We operate the application at <strong>tpscoach.com</strong> and the marketing website at{" "}
+            programs. We operate the application at <strong>app.theprogramsuite.com</strong> and the marketing website at{" "}
             <strong>theprogramsuite.com</strong> (collectively, the "Service"). Both sites are owned and operated
             by the same entity under the laws of the State of Texas.
           </p>
@@ -171,6 +171,8 @@ export default function PrivacyPage() {
                 ["Resend", "Transactional and notification email delivery"],
                 ["Cloudflare", "CDN, DDoS protection, and security filtering"],
                 ["Upstash", "API rate limiting (temporary IP processing)"],
+                ["OpenAI", "AI image generation for Content Studio and athlete creations — prompts, captions, and any reference images you provide are processed to generate content"],
+                ["Google", "AI analysis of coach-provided video links for the drill and exercise import feature (Gemini)"],
                 ["Stripe", "Payment processing (when billing is enabled — card data is processed by Stripe and never stored by us)"],
               ].map(([name, purpose]) => (
                 <tr key={name} className="bg-white">

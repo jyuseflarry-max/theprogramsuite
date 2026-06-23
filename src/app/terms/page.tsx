@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Terms of Service for The Program Suite sports management platform.",
 };
 
-const EFFECTIVE_DATE = "April 10, 2026";
+const EFFECTIVE_DATE = "June 22, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -59,7 +59,7 @@ export default function TermsPage() {
         <Section title="1. The Service">
           <p>
             The Program Suite ("we," "us," or "our") provides a cloud-based athletic program management
-            platform accessible at <strong>tpscoach.com</strong>, with a marketing presence at{" "}
+            platform accessible at <strong>app.theprogramsuite.com</strong>, with a marketing presence at{" "}
             <strong>theprogramsuite.com</strong>. Both sites are operated by The Program Suite, a Texas
             entity. The Service includes tools for practice planning, athlete management, attendance
             tracking, scheduling, strength and conditioning logging, scouting, communications, and
