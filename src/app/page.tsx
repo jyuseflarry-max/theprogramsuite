@@ -128,25 +128,36 @@ const PROBLEM_TILES: { ico: IcoName; t: string }[] = [
 
 function Problem() {
   return (
-    <section className="section rx-problem" id="why">
-      <div className="container">
-        <div className="rx-problem-grid">
-          <div className="rx-problem-left reveal">
+    <section className="rx-problem2" id="why">
+      <Photo
+        id="problem-buried"
+        ratio="16 / 10"
+        tone="dark"
+        label="Coach buried in tablets, a laptop, phones & paperwork at his desk"
+        alt="A stressed coach at a cluttered desk surrounded by tablets, a laptop, phones, sticky notes, and binders"
+        className="rx-problem2-photo"
+      />
+      <div className="rx-problem2-overlay">
+        <div className="container">
+          <div className="rx-problem2-copy reveal">
             <span className="rx-eyebrow rx-eyebrow--bad">The problem</span>
             <h2 className="rx-display rx-h2">
-              More apps. More administration.
-              <span className="rx-h2-gold"> Less coaching.</span>
+              More apps.
+              <br />
+              More administration.
+              <br />
+              <span className="rx-h2-gold">Less coaching.</span>
             </h2>
-            <p className="rx-lead">
+            <p className="rx-lead rx-lead--light">
               Coaches are buried in disconnected tools, manual work, and constant fires — stealing
               time from what matters most. Every spreadsheet, group text, and one-off app is one
               more thing between you and your athletes.
             </p>
-            <ul className="rx-tiles">
+            <ul className="rx-problem2-tiles">
               {PROBLEM_TILES.map((t) => {
                 const Glyph = Ico[t.ico];
                 return (
-                  <li key={t.t} className="rx-tile">
+                  <li key={t.t} className="rx-tile2">
                     <span className="rx-tile-ico">
                       <Glyph />
                     </span>
@@ -155,30 +166,6 @@ function Problem() {
                 );
               })}
             </ul>
-          </div>
-
-          <div className="rx-problem-right reveal">
-            <Photo
-              id="problem-embrace"
-              ratio="5 / 6"
-              label="Coach hugging their child at home"
-              alt="A coach embracing their young daughter at home, fully present"
-              className="rx-problem-photo"
-            />
-            <div className="rx-moments">
-              <h3 className="rx-display">
-                The people who need your best aren&apos;t <i>only</i> on your roster.
-              </h3>
-              <ul className="rx-moments-list">
-                <li>Every hour saved is another dinner together.</li>
-                <li>Another bedtime story.</li>
-                <li>Another game in the backyard.</li>
-                <li>Another moment you don&apos;t get back.</li>
-              </ul>
-              <p className="rx-moments-tag">
-                We protect the <span className="rx-h2-gold">moments that matter most.</span>
-              </p>
-            </div>
           </div>
         </div>
       </div>

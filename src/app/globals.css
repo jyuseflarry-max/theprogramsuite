@@ -885,29 +885,31 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .rx-stat-text b { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .01em; font-size: 18px; color: #fff; }
 .rx-stat-text span { font-size: 12.5px; color: rgba(255,255,255,.6); }
 
-/* ============================================================ Problem */
-.rx-problem { background: var(--paper); }
-.rx-problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.rx-problem-left .rx-h2 { margin-bottom: 18px; }
-.rx-problem-left .rx-lead { max-width: 520px; margin-bottom: 26px; }
-.rx-tiles { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 460px; }
-.rx-tile { display: flex; align-items: center; gap: 12px; background: var(--ink); color: #fff; border-radius: 14px; padding: 14px 16px; font-weight: 600; font-size: 14.5px; }
+/* ============================================================ Problem (full-bleed) */
+.rx-problem2 { position: relative; overflow: hidden; background: var(--night); display: flex; align-items: center; min-height: clamp(620px, 86vh, 880px); }
+.rx-problem2 .rx-photo, .rx-problem2 .rx-ph {
+  position: absolute !important; inset: 0; width: 100%; height: 100%;
+  aspect-ratio: auto !important; border-radius: 0; object-fit: cover; object-position: center;
+}
+.rx-problem2-overlay {
+  position: relative; z-index: 1; width: 100%; padding: 80px 0;
+  background: linear-gradient(90deg,
+    rgba(6,9,15,.96) 0%, rgba(6,9,15,.9) 26%, rgba(6,9,15,.58) 50%,
+    rgba(6,9,15,.16) 76%, rgba(6,9,15,0) 100%);
+}
+.rx-problem2-copy { max-width: 560px; color: #fff; }
+.rx-problem2-copy .rx-eyebrow { margin-bottom: 18px; }
+.rx-problem2-copy .rx-h2 { color: #fff; margin-bottom: 20px; }
+.rx-problem2-copy .rx-lead { max-width: 430px; margin-bottom: 28px; }
+.rx-problem2-tiles { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; max-width: 300px; }
+.rx-tile2 {
+  display: flex; align-items: center; gap: 13px;
+  background: rgba(11,17,30,.62); border: 1px solid var(--night-line); border-radius: 12px;
+  padding: 13px 16px; font-weight: 600; font-size: 14.5px; color: #fff;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
 .rx-tile-ico { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--gold); background: rgba(255,255,255,.07); border: 1px solid var(--night-line); }
 .rx-tile-ico svg { width: 18px; height: 18px; }
-
-.rx-problem-right { position: relative; }
-.rx-problem-right .rx-ph, .rx-problem-right .rx-photo { border-radius: var(--radius); box-shadow: var(--shadow-lift); }
-.rx-moments {
-  position: relative; margin: -56px 22px 0 auto; max-width: 88%;
-  background: var(--ink); color: #fff; border-radius: var(--radius);
-  padding: 26px 28px; box-shadow: 0 30px 70px -30px rgba(0,0,0,.5);
-}
-.rx-moments h3 { font-size: clamp(20px, 2.2vw, 27px); line-height: 1.06; margin-bottom: 16px; color: #fff; }
-.rx-moments h3 i { font-style: italic; color: var(--gold); font-family: var(--font-script); text-transform: none; font-size: 1.15em; }
-.rx-moments-list { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 8px; }
-.rx-moments-list li { position: relative; padding-left: 18px; font-size: 14.5px; color: rgba(255,255,255,.86); }
-.rx-moments-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--rx-blue); }
-.rx-moments-tag { font-family: var(--font-display); text-transform: uppercase; font-size: 19px; font-weight: 700; line-height: 1.1; margin: 0; }
 
 /* ============================================================ Founder */
 .rx-founder { background: var(--night); color: #fff; }
@@ -1042,7 +1044,7 @@ details[open] .faq-ico { transform: rotate(45deg); }
   .rx-hero-media { max-width: 460px; }
   .rx-hero-card { left: auto; right: 0; }
   .rx-stats { grid-template-columns: 1fr 1fr; gap: 18px 24px; }
-  .rx-problem-grid, .rx-founder-grid, .rx-platform-grid { grid-template-columns: 1fr; gap: 40px; }
+  .rx-founder-grid, .rx-platform-grid { grid-template-columns: 1fr; gap: 40px; }
   .rx-founder-media { max-width: 320px; }
   .rx-platform-copy { text-align: left; }
   .rx-stories-grid { grid-template-columns: 1fr; }
@@ -1051,11 +1053,13 @@ details[open] .faq-ico { transform: rotate(45deg); }
 }
 @media (max-width: 760px) {
   .rx-tools-grid { grid-template-columns: repeat(2, 1fr); }
-  .rx-tiles { grid-template-columns: 1fr 1fr; }
   .rx-stories-strip { grid-template-columns: 1fr; }
   .rx-footer-grid { grid-template-columns: 1fr 1fr; }
   .rx-footer-about { grid-column: 1 / -1; }
-  .rx-moments { margin-left: 0; max-width: 100%; }
+  .rx-problem2 { min-height: 0; }
+  .rx-problem2 .rx-photo, .rx-problem2 .rx-ph { object-position: 64% center; }
+  .rx-problem2-overlay { padding: 60px 0; background: linear-gradient(180deg, rgba(6,9,15,.74) 0%, rgba(6,9,15,.9) 52%, rgba(6,9,15,.96) 100%); }
+  .rx-problem2-tiles { max-width: 100%; }
 }
 @media (max-width: 620px) {
   .rx-nav-login { display: none; }

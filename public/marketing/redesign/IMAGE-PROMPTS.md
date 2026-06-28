@@ -20,7 +20,8 @@ That's the only change — no layout edits.
 | id | aspect | what to generate |
 |----|--------|------------------|
 | `hero-coach` | 4:5 (portrait) | A coach (40s) sitting courtside on a bench in a dim empty gym at dusk, looking at a phone, gym lights glowing behind. Reflective, calm, hopeful. |
-| `problem-embrace` | 5:6 (portrait) | The same coach at home embracing his young daughter, fully present, warm interior light. Tender, off-duty. |
+| `problem-buried` | 16:10 (wide) | **Full-bleed background for the Problem section.** A stressed coach at a cluttered dark office desk, head in hand, surrounded by tablets/laptop/phones showing different apps (inbox, inventory, practice plan, team chat), sticky notes, a "To Do List" notepad, stacked binders ("Practice Plans", "Equipment", "Game Day"), a "Focus Family Football" poster. Moody, cinematic. **Export WITHOUT any overlaid headline/marketing text** — the site renders the words live over the dark left side. Keep the left third in shadow for legibility. |
+| `problem-embrace` | 5:6 (portrait) | _(Currently unused — kept for future use.)_ The coach at home embracing his young daughter, fully present, warm interior light. |
 | `tools-practice` | 9:19 (phone screen) | A clean mobile app screen for a "Practice Planner" — schedule blocks, dark UI, blue accents. (Or reuse a real product screenshot.) |
 | `tools-training` | 9:19 | Mobile "Training" screen — strength groups, load tracking, dark UI. |
 | `tools-communication` | 9:19 | Mobile "Communication" screen — team chat / announcements, dark UI. |
