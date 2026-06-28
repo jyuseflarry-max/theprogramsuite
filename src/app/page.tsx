@@ -13,6 +13,7 @@ export default function LandingPage() {
       <SiteNav />
       <Hero />
       <Problem />
+      <Truth />
       <Founder />
       <Platform />
       <Tools />
@@ -28,95 +29,68 @@ export default function LandingPage() {
   );
 }
 
-/* ============================================================ Hero */
+/* ============================================================ Hero (full-bleed) */
 function Hero() {
   return (
-    <header className="rx-hero">
-      <div className="rx-hero-bg" aria-hidden="true">
-        <span className="rx-hero-glow" />
-        <span className="rx-hero-grid" />
-      </div>
-      <div className="container rx-hero-inner">
-        <div className="rx-hero-copy reveal">
-          <span className="rx-eyebrow rx-eyebrow--light">
-            <span className="dot" /> Your program. Your way.
-          </span>
-          <h1 className="rx-display rx-h1">
-            Give coaches the freedom to focus on
-            <span className="rx-script rx-script--hero"> Changing Lives.</span>
-          </h1>
-          <p className="rx-lead rx-lead--light">
-            You became a coach to build relationships, develop athletes, and leave a lasting
-            impact. The Program Suite handles everything else — so the work that matters most is
-            the work you get to do.
-          </p>
-          <div className="rx-hero-actions">
+    <header className="rx-hero2">
+      <Photo
+        id="hero-field"
+        ratio="16 / 9"
+        tone="dark"
+        label="Coach from behind on the field at night, team under the lights"
+        alt="A coach seen from behind standing on a football field at night, his team in front under the stadium lights"
+        className="rx-hero2-photo"
+      />
+      <div className="rx-hero2-overlay">
+        <div className="container">
+          <div className="rx-hero2-copy reveal">
+            <h1 className="rx-display rx-h1">
+              The operating system for
+              <br />
+              <span className="rx-h2-gold">Coaches.</span>
+            </h1>
+            <p className="rx-lead rx-lead--light">
+              Everything your program needs. One platform. More coaching. Less administration.
+            </p>
             <a href="#access" className="btn btn-primary btn-lg">
-              <Ico.play /> Watch the story
-            </a>
-            <a href="#platform" className="btn btn-on-ink btn-ghost btn-lg">
-              Explore the platform <Ico.arrow />
+              Request a demo <Ico.arrow />
             </a>
           </div>
         </div>
-
-        <div className="rx-hero-media reveal">
-          <Photo
-            id="hero-coach"
-            ratio="4 / 5"
-            label="Coach courtside at dusk, phone in hand"
-            alt="A coach sitting courtside in an empty gym at dusk, checking The Program Suite on a phone"
-            className="rx-hero-photo"
-          />
-          <div className="rx-hero-card" aria-hidden="true">
-            <div className="rx-hc-head">
-              <span className="rx-hc-dot" />
-              Dashboard
-            </div>
-            <div className="rx-hc-row">
-              <span className="rx-hc-k">Practice today</span>
-              <span className="rx-hc-v">4:00 PM · Offensive install</span>
-            </div>
-            <div className="rx-hc-row">
-              <span className="rx-hc-k">Roster availability</span>
-              <span className="rx-hc-v rx-hc-good">18 / 22</span>
-            </div>
-            <div className="rx-hc-row">
-              <span className="rx-hc-k">Equipment status</span>
-              <span className="rx-hc-v rx-hc-good">All good</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <ul className="rx-stats reveal">
-          {STATS.map((s) => {
-            const Glyph = Ico[s.ico];
-            return (
-              <li key={s.t} className="rx-stat">
-                <span className="rx-stat-ico">
-                  <Glyph />
-                </span>
-                <span className="rx-stat-text">
-                  <b>{s.t}</b>
-                  <span>{s.d}</span>
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+        <span className="rx-hero2-script" aria-hidden="true">
+          Built for <em>the moments</em>
+          <br />
+          that matter.
+        </span>
       </div>
     </header>
   );
 }
 
-const STATS: { ico: IcoName; t: string; d: string }[] = [
-  { ico: "clock", t: "Hours saved", d: "Every single week" },
-  { ico: "family", t: "More time for", d: "Family & friends" },
-  { ico: "prep", t: "Better prepared", d: "Every practice" },
-  { ico: "impact", t: "Stronger impact", d: "On & off the field" },
-];
+/* ============================================================ The Truth */
+function Truth() {
+  return (
+    <section className="rx-truth" id="truth">
+      <div className="container">
+        <div className="rx-truth-inner reveal">
+          <span className="rx-eyebrow rx-eyebrow--blue">The truth</span>
+          <h2 className="rx-display rx-h2">
+            Coaches don&apos;t need more software.
+            <br />
+            <span className="rx-h2-gold">
+              They need one place where everything works together.
+            </span>
+          </h2>
+          <p className="rx-lead rx-lead--light">
+            That&apos;s why we built The Program Suite — an all-in-one operating system that
+            simplifies your day, connects your entire program, and gives you the time back that
+            matters most.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ============================================================ Problem */
 const PROBLEM_TILES: { ico: IcoName; t: string }[] = [

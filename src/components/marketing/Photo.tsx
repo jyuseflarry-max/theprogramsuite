@@ -13,6 +13,7 @@
  */
 
 export type PhotoId =
+  | "hero-field"
   | "hero-coach"
   | "problem-buried"
   | "problem-embrace"
@@ -30,6 +31,7 @@ export type PhotoId =
 
 /** Set a value to a path string once the real image exists; null = placeholder. */
 const PHOTOS: Record<PhotoId, string | null> = {
+  "hero-field": null,
   "hero-coach": "/marketing/redesign/hero-coach.jpg",
   "problem-buried": null,
   "problem-embrace": "/marketing/redesign/problem-embrace.jpg",
