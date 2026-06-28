@@ -46,7 +46,7 @@ function Hero() {
         <div className="container">
           <div className="rx-hero2-copy reveal">
             <h1 className="rx-display rx-h1">
-              The operating system for
+              The system for
               <br />
               <span className="rx-h2-gold">Coaches.</span>
             </h1>

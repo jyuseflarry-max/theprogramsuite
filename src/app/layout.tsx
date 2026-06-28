@@ -36,12 +36,12 @@ export const metadata: Metadata = {
   // Canonical host is www — the apex (theprogramsuite.com) 307-redirects to www,
   // so og:url / canonical must match to avoid a redirect mismatch.
   metadataBase: new URL("https://www.theprogramsuite.com"),
-  title: "The Program Suite — The Operating System for Coaches",
+  title: "The Program Suite — The System for Coaches",
   description:
     "You coach. We'll handle the rest. The all-in-one operating system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "The Program Suite — The Operating System for Coaches",
+    title: "The Program Suite — The System for Coaches",
     description:
       "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
     type: "website",
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
         url: "/images/og-coach.jpg",
         width: 1200,
         height: 675,
-        alt: "The Program Suite — the operating system for coaches",
+        alt: "The Program Suite — the system for coaches",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Program Suite — The Operating System for Coaches",
+    title: "The Program Suite — The System for Coaches",
     description:
       "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
     images: ["/images/og-coach.jpg"],
