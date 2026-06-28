@@ -3,23 +3,24 @@ import Link from "next/link";
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const NAV_LINKS = [
-  { href: "/#story", label: "Story" },
-  { href: "/#capabilities", label: "Capabilities" },
-  { href: "/#audiences", label: "Who it's for" },
+  { href: "/#platform", label: "Platform" },
+  { href: "/#tools", label: "Features" },
+  { href: "/#stories", label: "Stories" },
   { href: "/#pricing", label: "Pricing" },
+  { href: "/#story", label: "About" },
 ];
 
 export function SiteNav() {
   return (
-    <nav className="nav" id="top">
-      <div className="container nav-inner">
-        <div className="nav-left">
+    <nav className="rx-nav" id="top">
+      <div className="container rx-nav-inner">
+        <div className="rx-nav-left">
           <Link href="/" className="logo" aria-label="The Program Suite — home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="logo-img" src="/marketing/logo-mark.png" alt="" />
             <span className="logo-word">The Program Suite</span>
           </Link>
-          <div className="nav-links">
+          <div className="rx-nav-links">
             {NAV_LINKS.map((link) => (
               <a key={link.href} href={link.href}>
                 {link.label}
@@ -27,16 +28,12 @@ export function SiteNav() {
             ))}
           </div>
         </div>
-        <div className="nav-cta">
-          <a href={APP_LOGIN_URL} className="nav-login">
+        <div className="rx-nav-cta">
+          <a href={APP_LOGIN_URL} className="rx-nav-login">
             Log in
           </a>
-          <a
-            href="/#pricing"
-            className="btn btn-primary"
-            style={{ minHeight: 42, padding: "10px 18px", fontSize: 14.5 }}
-          >
-            Start one program
+          <a href="/#access" className="btn btn-primary rx-nav-btn">
+            Request a demo
           </a>
         </div>
       </div>

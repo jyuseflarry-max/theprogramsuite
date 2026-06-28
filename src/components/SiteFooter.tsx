@@ -1,45 +1,64 @@
 import Link from "next/link";
+import { Ico } from "@/components/marketing/icons";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const COLS = [
   {
-    h: "Explore",
+    h: "Platform",
     links: [
-      { l: "Story", href: "/#story" },
-      { l: "Capabilities", href: "/#capabilities" },
-      { l: "Who it's for", href: "/#audiences" },
+      { l: "Platform", href: "/#platform" },
+      { l: "Features", href: "/#tools" },
+      { l: "Stories", href: "/#stories" },
       { l: "Pricing", href: "/#pricing" },
     ],
   },
   {
-    h: "Get started",
+    h: "Company",
     links: [
-      { l: "Start one program", href: "/#pricing" },
-      { l: "Founder access", href: "/#access" },
+      { l: "About", href: "/#story" },
+      { l: "Resources", href: "/#faq" },
+      { l: "Contact", href: "/#access" },
       { l: "Log in", href: APP_LOGIN_URL },
     ],
   },
 ];
 
+const SOCIALS: { l: string; ico: keyof typeof Ico }[] = [
+  { l: "Instagram", ico: "instagram" },
+  { l: "YouTube", ico: "youtube" },
+  { l: "LinkedIn", ico: "linkedin" },
+  { l: "X", ico: "xSocial" },
+];
+
 export function SiteFooter() {
   return (
-    <footer className="footer">
+    <footer className="rx-footer">
       <div className="container">
-        <div className="footer-grid">
-          <div className="footer-about">
+        <div className="rx-footer-grid">
+          <div className="rx-footer-about">
             <Link href="/" className="logo" aria-label="The Program Suite — home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="logo-img" src="/marketing/logo-mark.png" alt="" />
               <span className="logo-word">The Program Suite</span>
             </Link>
             <p>
-              The operating system for school sports. One source of truth for staff, athletes, and
-              families — built by a coach who lived the chaos.
+              The all-in-one operating system for athletic programs — so coaches get the freedom to
+              focus on changing lives. Built by a coach who lived the chaos.
             </p>
+            <div className="rx-socials">
+              {SOCIALS.map((s) => {
+                const Glyph = Ico[s.ico];
+                return (
+                  <a key={s.l} href="#top" aria-label={s.l} className="rx-social">
+                    <Glyph width="18" height="18" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
           {COLS.map((c) => (
-            <div className="footer-col" key={c.h}>
+            <div className="rx-footer-col" key={c.h}>
               <h4>{c.h}</h4>
               <ul>
                 {c.links.map((it) => (
@@ -51,9 +70,11 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <div className="footer-meta">
+        <div className="rx-footer-meta">
           <span>© 2026 The Program Suite</span>
-          <span>Made for coaches, ADs, and the people who run school sports.</span>
+          <span>
+            <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+          </span>
         </div>
       </div>
     </footer>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oswald, Caveat } from "next/font/google";
 import "./globals.css";
 
-/* Geist — the only typeface for the site (body + display) */
+/* Geist — body + UI */
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
@@ -13,6 +13,22 @@ const geist = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+/* Oswald — condensed athletic display headlines */
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+/* Caveat — handwritten script accent ("Changing Lives", "Live better.") */
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -37,7 +53,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geist.variable} ${geistMono.variable} ${oswald.variable} ${caveat.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
