@@ -31,9 +31,9 @@ export type PhotoId =
 
 /** Set a value to a path string once the real image exists; null = placeholder. */
 const PHOTOS: Record<PhotoId, string | null> = {
-  "hero-field": null,
+  "hero-field": "/marketing/redesign/hero-field.jpg",
   "hero-coach": "/marketing/redesign/hero-coach.jpg",
-  "problem-buried": null,
+  "problem-buried": "/marketing/redesign/problem-buried.jpg",
   "problem-embrace": "/marketing/redesign/problem-embrace.jpg",
   // We already ship a founder photo — wire it straight in.
   founder: "/marketing/founder.png",
