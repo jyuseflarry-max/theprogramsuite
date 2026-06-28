@@ -192,14 +192,14 @@ function Founder() {
 
 /* ============================================================ Platform (connected modules) */
 const MODULES: { ico: ModName | null; gico?: IcoName; t: string }[] = [
-  { ico: "practice", t: "Practice Planner" },
+  { ico: "practice", t: "Practice" },
+  { ico: "training", t: "Athlete Development" },
   { ico: null, gico: "chat", t: "Communication" },
-  { ico: null, gico: "bolt", t: "Graphics" },
-  { ico: "inventory", t: "Inventory" },
-  { ico: null, gico: "handshake", t: "Sponsor Showcase" },
-  { ico: "training", t: "Training" },
-  { ico: "district", t: "Analytics" },
   { ico: "season", t: "Scheduling" },
+  { ico: "athlete", t: "Team Management" },
+  { ico: "district", t: "Analytics" },
+  { ico: "inventory", t: "Operations" },
+  { ico: null, gico: "picture", t: "Media" },
 ];
 
 // Even points around a circle (top, clockwise), as % within the ring box.
@@ -220,14 +220,15 @@ function Platform() {
       <div className="container">
         <div className="rx-platform-grid">
           <div className="rx-platform-copy reveal">
-            <span className="rx-eyebrow rx-eyebrow--light">One platform</span>
+            <span className="rx-eyebrow rx-eyebrow--blue">The solution</span>
             <h2 className="rx-display rx-h2">
-              One platform. <span className="rx-h2-gold">Everything connected.</span>
+              One platform.
+              <br />
+              <span className="rx-h2-blue">Every part</span> of your program.
             </h2>
-            <p className="rx-lead rx-lead--light">
-              The all-in-one operating system built for athletic programs. Eight connected modules,
-              one source of truth — start with what you need today and grow into the rest without
-              migrating anything.
+            <p className="rx-lead">
+              All the systems you need. Working together. In real time — one source of truth for
+              your staff, athletes, and families.
             </p>
             <a href="#tools" className="btn btn-primary btn-lg">
               See the platform <Ico.arrow />
@@ -238,6 +239,7 @@ function Platform() {
             <div className="rx-ring-core">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/marketing/logo-mark.png" alt="The Program Suite" />
+              <span className="rx-ring-core-t">The Program Suite</span>
             </div>
             <svg className="rx-ring-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               {RING_POS.map((p, i) => (
@@ -256,7 +258,10 @@ function Platform() {
                   <span className="rx-node-ico">
                     {m.ico ? <ModIcon name={m.ico} /> : Glyph ? <Glyph /> : null}
                   </span>
-                  <span className="rx-node-t">{m.t}</span>
+                  <span className="rx-node-t">
+                    {m.t}
+                    <small>System</small>
+                  </span>
                 </div>
               );
             })}

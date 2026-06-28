@@ -956,34 +956,36 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .rx-sign-name { font-family: var(--font-script); font-size: 40px; line-height: 1; color: #fff; }
 .rx-sign-role { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,.5); }
 
-/* ============================================================ Platform ring */
-.rx-platform { background: var(--night-2); color: #fff; }
+/* ============================================================ Platform ring (light "The Solution") */
+.rx-platform { background: var(--surface); color: var(--ink); }
 .rx-platform-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 56px; align-items: center; }
 .rx-platform-copy .rx-h2 { margin-bottom: 18px; }
-.rx-platform-copy .rx-lead { max-width: 460px; margin-bottom: 26px; }
-.rx-ring { position: relative; width: min(460px, 100%); aspect-ratio: 1 / 1; margin: 0 auto; }
+.rx-platform-copy .rx-lead { max-width: 420px; margin-bottom: 26px; }
+.rx-h2-blue { color: var(--rx-blue); }
+.rx-ring { position: relative; width: min(480px, 100%); aspect-ratio: 1 / 1; margin: 0 auto; }
 .rx-ring-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-.rx-ring-lines line { stroke: rgba(47,123,255,.35); stroke-width: .4; }
+.rx-ring-lines line { stroke: var(--line-2); stroke-width: .4; }
 .rx-ring-core {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2;
-  width: 116px; height: 116px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: radial-gradient(circle at 50% 35%, #16233d, #0b1322);
-  border: 1px solid rgba(47,123,255,.4);
-  box-shadow: 0 0 0 8px rgba(47,123,255,.08), 0 0 60px rgba(47,123,255,.25);
+  width: 156px; height: 156px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  background: #fff; border: 1px solid var(--line-2);
+  box-shadow: 0 0 0 10px rgba(47,123,255,.06), var(--shadow-card);
 }
-.rx-ring-core img { width: 60px; height: auto; }
+.rx-ring-core img { width: 52px; height: auto; }
+.rx-ring-core-t { font-weight: 700; font-size: 12.5px; letter-spacing: -0.01em; color: var(--ink); }
 .rx-node {
   position: absolute; transform: translate(-50%,-50%); z-index: 1;
-  display: flex; flex-direction: column; align-items: center; gap: 7px; width: 96px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; width: 108px; text-align: center;
 }
 .rx-node-ico {
-  width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
-  background: var(--night-card); border: 1px solid var(--night-line); color: var(--rx-blue-2);
-  box-shadow: 0 12px 26px -14px rgba(0,0,0,.7);
+  width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; border: 1px solid var(--line-2); color: var(--rx-blue);
+  box-shadow: var(--shadow-sm);
 }
-.rx-node-ico svg, .rx-node-ico .cap-ico { width: 26px; height: 26px; color: inherit; }
-.rx-node-t { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; color: rgba(255,255,255,.82); line-height: 1.2; }
+.rx-node-ico svg, .rx-node-ico .cap-ico { width: 25px; height: 25px; color: inherit; }
+.rx-node-t { font-family: var(--font-sans); font-weight: 600; font-size: 12.5px; letter-spacing: -0.01em; color: var(--ink); line-height: 1.15; }
+.rx-node-t small { display: block; font-weight: 500; font-size: 11px; color: var(--muted); }
 
 /* ============================================================ Tools */
 .rx-tools { background: var(--paper); }
@@ -1107,13 +1109,15 @@ details[open] .faq-ico { transform: rotate(45deg); }
 }
 @media (max-width: 520px) {
   .rx-stats { grid-template-columns: 1fr; }
-  .rx-ring { width: min(400px, 94%); }
-  .rx-node { width: 80px; }
+  .rx-ring { width: min(400px, 96%); }
+  .rx-node { width: 84px; }
   .rx-node-ico { width: 46px; height: 46px; }
   .rx-node-ico svg, .rx-node-ico .cap-ico { width: 23px; height: 23px; }
-  .rx-node-t { font-size: 10px; }
-  .rx-ring-core { width: 92px; height: 92px; }
-  .rx-ring-core img { width: 48px; }
+  .rx-node-t { font-size: 10.5px; }
+  .rx-node-t small { font-size: 9.5px; }
+  .rx-ring-core { width: 104px; height: 104px; gap: 4px; }
+  .rx-ring-core img { width: 42px; }
+  .rx-ring-core-t { font-size: 10px; }
   .rx-trust-grid { grid-template-columns: 1fr; }
   .rx-trust-item { border-left: 0; padding-left: 0; }
   .rx-tools-grid { grid-template-columns: 1fr; max-width: 280px; margin-left: auto; margin-right: auto; }

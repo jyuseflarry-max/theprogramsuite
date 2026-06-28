@@ -36,3 +36,19 @@ That's the only change — no layout edits.
 > Note: `founder` already uses the existing `/marketing/founder.png`. The five
 > `tools-*` slots can also be filled with real app screenshots from
 > `public/images/current-app/` if you prefer real UI over generated mockups.
+
+## Phase 3 (upcoming — generate these next)
+
+These power the sections we build next: the "What it gives you back" 4-card
+band, the product "sneak peek", and the "Two hours back" CTA. Same shared style
+as above. Each card photo has a dark overlay, so faces/action should sit in the
+upper half; keep the lower third uncluttered for the caption.
+
+| id | aspect | what to generate |
+|----|--------|------------------|
+| `gives-coach` | 3:4 (portrait) | A coach on the sideline coaching, clipboard/whistle, fully in his element. ("You coach. We'll handle the busy work.") |
+| `gives-athletes` | 3:4 | Young athletes in a tight team huddle, arms around each other, a coach leaning in. ("Your athletes deserve your attention.") |
+| `gives-family` | 3:4 | A coach at home at dinner with his family, warm light, laughing. ("Your family deserves your evenings.") |
+| `gives-consistency` | 3:4 | A team lifting a trophy / celebrating a win together, confetti or stadium lights. ("Great programs are built with consistency.") |
+| `cta-sunset` | 16:7 (wide) | A coach walking off the field at sunset with his young child, silhouetted, holding hands. Warm golden backlight. Right side darker for an overlaid card. ("Imagine getting two hours of your week back.") |
+| `product-dashboard` | use real UI | The "sneak peek" product shot — a phone + web dashboard. Best filled with a **real** screenshot from `public/images/` rather than generated, so the UI is authentic. |
