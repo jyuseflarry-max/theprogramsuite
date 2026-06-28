@@ -34,20 +34,31 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theprogramsuite.com"),
-  title: "The Program Suite - Operating System for School Sports",
+  title: "The Program Suite — The Operating System for Coaches",
   description:
-    "The operating system for school sports: athletes, practice, training, inventory, budget, sponsorships, content creation, and district oversight.",
+    "You coach. We'll handle the rest. The all-in-one operating system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
   openGraph: {
-    title: "The Program Suite",
+    title: "The Program Suite — The Operating System for Coaches",
     description:
-      "Run the program, protect inventory dollars, and create sponsor-ready content from one school sports operating system.",
+      "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
     type: "website",
-    images: [{ url: "/images/the-program-suite-og.png", width: 1200, height: 630 }],
+    url: "https://theprogramsuite.com",
+    siteName: "The Program Suite",
+    images: [
+      {
+        url: "/images/og-coach.jpg",
+        width: 1200,
+        height: 675,
+        alt: "The Program Suite — the operating system for coaches",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Program Suite",
-    description: "Run the program, protect the budget, and create sponsor-ready content.",
+    title: "The Program Suite — The Operating System for Coaches",
+    description:
+      "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
+    images: ["/images/og-coach.jpg"],
   },
 };
 
