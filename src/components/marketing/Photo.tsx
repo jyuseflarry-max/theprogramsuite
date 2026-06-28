@@ -30,21 +30,21 @@ export type PhotoId =
 
 /** Set a value to a path string once the real image exists; null = placeholder. */
 const PHOTOS: Record<PhotoId, string | null> = {
-  "hero-coach": "/marketing/redesign/hero-coach.png",
+  "hero-coach": "/marketing/redesign/hero-coach.jpg",
   "problem-buried": null,
-  "problem-embrace": "/marketing/redesign/problem-embrace.png",
+  "problem-embrace": "/marketing/redesign/problem-embrace.jpg",
   // We already ship a founder photo — wire it straight in.
   founder: "/marketing/founder.png",
-  "tools-practice": "/marketing/redesign/tools-practice.png",
-  "tools-training": "/marketing/redesign/tools-training.png",
-  "tools-communication": "/marketing/redesign/tools-communication.png",
-  "tools-graphics": "/marketing/redesign/tools-graphics.png",
-  "tools-inventory": "/marketing/redesign/tools-inventory.png",
-  "story-1": "/marketing/redesign/story-1.png",
-  "story-2": "/marketing/redesign/story-2.png",
-  "story-3": "/marketing/redesign/story-3.png",
+  "tools-practice": "/marketing/redesign/tools-practice.jpg",
+  "tools-training": "/marketing/redesign/tools-training.jpg",
+  "tools-communication": "/marketing/redesign/tools-communication.jpg",
+  "tools-graphics": "/marketing/redesign/tools-graphics.jpg",
+  "tools-inventory": "/marketing/redesign/tools-inventory.jpg",
+  "story-1": "/marketing/redesign/story-1.jpg",
+  "story-2": "/marketing/redesign/story-2.jpg",
+  "story-3": "/marketing/redesign/story-3.jpg",
   "story-4": null,
-  "live-better": "/marketing/redesign/live-better.png",
+  "live-better": "/marketing/redesign/live-better.jpg",
 };
 
 type PhotoProps = {
