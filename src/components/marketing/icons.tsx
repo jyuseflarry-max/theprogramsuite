@@ -92,6 +92,18 @@ export const Ico = {
   picture: (p: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" {...p}><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" /><circle cx="8.5" cy="10" r="1.6" stroke="currentColor" strokeWidth="1.6" /><path d="M4 17l5-4.5 3.5 3L16 12l4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
   ),
+  users: (p: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" {...p}><circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.6" /><path d="M3.5 19a5.5 5.5 0 0111 0M16 7a3 3 0 010 6M20.5 19a5.5 5.5 0 00-4-5.3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+  ),
+  film: (p: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" {...p}><rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" /><path d="M8 5v14M16 5v14M3.5 9.5h4.5M16 9.5h4.5M3.5 14.5h4.5M16 14.5h4.5" stroke="currentColor" strokeWidth="1.6" /></svg>
+  ),
+  utensils: (p: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M7 3v8a2 2 0 01-2 2H4M5 3v18M9 3v6M9 3v18M9 9a2 2 0 01-2 2M15 3v18M19 3c-2 0-3 2-3 5s1 4 3 4v9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+  ),
+  moon: (p: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" /></svg>
+  ),
 };
 
 export type IcoName = keyof typeof Ico;

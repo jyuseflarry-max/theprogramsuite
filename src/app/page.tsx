@@ -16,9 +16,10 @@ export default function LandingPage() {
       <Truth />
       <Founder />
       <Platform />
-      <Tools />
+      <GivesBack />
+      <SneakPeek />
       {/* <Stories /> — hidden until we have real, attributable testimonials */}
-      <LiveBetter />
+      <TwoHours />
       <Pricing />
       <LeadForm />
       <Faq />
@@ -272,47 +273,159 @@ function Platform() {
   );
 }
 
-/* ============================================================ Tools */
-const TOOLS: { id: PhotoId; t: string; line1: string; line2: string }[] = [
-  { id: "tools-practice", t: "Practice Planner", line1: "Plan smarter.", line2: "Coach better." },
-  { id: "tools-training", t: "Training", line1: "Build athletes.", line2: "Develop people." },
-  { id: "tools-communication", t: "Communication", line1: "Connect staff,", line2: "players & parents." },
-  { id: "tools-graphics", t: "Graphics", line1: "Create like a pro.", line2: "In minutes." },
-  { id: "tools-inventory", t: "Inventory", line1: "Track everything.", line2: "Know what you have." },
+/* ============================================================ What it gives you back */
+const GIVES: { id: PhotoId; ico: IcoName; t: string; d: string }[] = [
+  {
+    id: "gives-coach",
+    ico: "whistle",
+    t: "You coach. We'll handle the busy work.",
+    d: "Save hours every week by automating the administration.",
+  },
+  {
+    id: "gives-athletes",
+    ico: "users",
+    t: "Your athletes deserve your attention.",
+    d: "More intentional time to develop, connect, and lead.",
+  },
+  {
+    id: "gives-family",
+    ico: "family",
+    t: "Your family deserves your evenings.",
+    d: "Get the moments back that you can't get anywhere else.",
+  },
+  {
+    id: "gives-consistency",
+    ico: "impact",
+    t: "Great programs are built with consistency.",
+    d: "Stay organized, align your staff, and elevate your entire culture.",
+  },
 ];
 
-function Tools() {
+function GivesBack() {
   return (
-    <section className="section rx-tools" id="tools">
+    <section className="rx-gives" id="gives">
       <div className="container">
-        <div className="section-head center reveal" style={{ margin: "0 auto", maxWidth: 720 }}>
-          <span className="rx-eyebrow">Powerful tools. Simple to use.</span>
-          <h2 className="rx-display rx-h2">Everything your program runs on, in one place.</h2>
-          <p className="rx-lead">
-            Pro-grade depth where you need it, an interface anyone on staff can pick up in an
-            afternoon. Here&apos;s a look at the daily drivers.
-          </p>
+        <div className="rx-gives-head reveal">
+          <span className="rx-eyebrow rx-eyebrow--blue">What it gives you back</span>
         </div>
-        <div className="rx-tools-grid reveal">
-          {TOOLS.map((tool) => (
-            <article className="rx-tool" key={tool.t}>
-              <div className="rx-tool-phone">
-                <Photo
-                  id={tool.id}
-                  ratio="9 / 19"
-                  label={tool.t + " screen"}
-                  alt={tool.t + " on a phone"}
-                  className="rx-tool-shot"
-                />
+      </div>
+      <div className="rx-gives-grid reveal">
+        {GIVES.map((g) => {
+          const Glyph = Ico[g.ico];
+          return (
+            <article className="rx-give" key={g.t}>
+              <Photo
+                id={g.id}
+                ratio="3 / 4"
+                tone="dark"
+                label={g.t}
+                alt={g.t}
+                className="rx-give-photo"
+              />
+              <div className="rx-give-body">
+                <span className="rx-give-ico">
+                  <Glyph />
+                </span>
+                <h3 className="rx-display">{g.t}</h3>
+                <p>{g.d}</p>
               </div>
-              <h3>{tool.t}</h3>
-              <p>
-                {tool.line1}
-                <br />
-                {tool.line2}
-              </p>
             </article>
-          ))}
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================ Sneak peek (product) */
+function SneakPeek() {
+  return (
+    <section className="section rx-peek" id="tools">
+      <div className="container">
+        <div className="rx-peek-grid">
+          <div className="rx-peek-copy reveal">
+            <span className="rx-eyebrow rx-eyebrow--blue">A sneak peek</span>
+            <h2 className="rx-display rx-h2">Powerful. Simple. Built for coaches.</h2>
+            <p className="rx-lead rx-lead--light">
+              A modern experience designed to bring clarity to your day and focus back to your
+              program — on the web and in your pocket.
+            </p>
+            <a href="#access" className="btn btn-primary btn-lg">
+              Request a demo <Ico.arrow />
+            </a>
+          </div>
+          <div className="rx-peek-media reveal">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="rx-peek-dash"
+              src="/images/practice-dashboard-hero.png"
+              alt="The Program Suite web dashboard"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="rx-peek-phone"
+              src="/images/current-app/mobile-home.png"
+              alt="The Program Suite mobile app"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================ Two hours back (CTA) */
+const TWO_HOURS: { ico: IcoName; t: string }[] = [
+  { ico: "whistle", t: "Coach more" },
+  { ico: "film", t: "Study film" },
+  { ico: "utensils", t: "Eat dinner together" },
+  { ico: "heart", t: "Watch them play" },
+  { ico: "moon", t: "Rest" },
+];
+
+function TwoHours() {
+  return (
+    <section className="rx-twohours" id="cta">
+      <Photo
+        id="cta-sunset"
+        ratio="16 / 7"
+        tone="dark"
+        label="Coach walking off the field at sunset with a child"
+        alt="A coach walking off the field at sunset holding a child's hand"
+        className="rx-twohours-photo"
+      />
+      <div className="rx-twohours-overlay">
+        <div className="container rx-twohours-grid">
+          <div className="rx-twohours-copy reveal">
+            <h2 className="rx-display rx-h2">
+              Imagine getting <span className="rx-h2-gold">two hours</span> of your week back.
+            </h2>
+            <p className="rx-twohours-q">What would you do with them?</p>
+            <ul className="rx-twohours-icons">
+              {TWO_HOURS.map((i) => {
+                const Glyph = Ico[i.ico];
+                return (
+                  <li key={i.t}>
+                    <span className="rx-th-ico">
+                      <Glyph />
+                    </span>
+                    {i.t}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="rx-twohours-card reveal">
+            <p>
+              Be the first to see <b>The Program Suite</b> in action.
+            </p>
+            <a href="#access" className="btn btn-primary btn-lg btn-block">
+              Request a demo <Ico.arrow />
+            </a>
+            <a href="#access" className="rx-waitlist">
+              Or join the waitlist <Ico.arrow width="14" height="14" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -401,47 +514,6 @@ function Stories() {
   );
 }
 */
-
-/* ============================================================ Live better */
-function LiveBetter() {
-  return (
-    <section className="rx-live">
-      <Photo
-        id="live-better"
-        ratio="16 / 7"
-        label="Coach at the dinner table with family, laughing"
-        alt="A coach at the dinner table laughing with their family"
-        className="rx-live-photo"
-        tone="dark"
-      />
-      <div className="rx-live-overlay">
-        <div className="container">
-          <div className="rx-live-copy reveal">
-            <h2 className="rx-script rx-script--live">
-              Coach better.
-              <br />
-              Lead better.
-              <br />
-              Live better.
-            </h2>
-            <p>
-              The Program Suite gives you time back for the moments that matter most. Run the whole
-              program from one place — and be home for the rest.
-            </p>
-            <div className="rx-live-actions">
-              <a href="#access" className="btn btn-primary btn-lg">
-                Request a demo <Ico.arrow />
-              </a>
-              <a href="#tools" className="btn btn-on-ink btn-ghost btn-lg">
-                <Ico.play /> See how it works
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ============================================================ Pricing (retained, restyled) */
 type Tier = {

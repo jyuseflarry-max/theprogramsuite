@@ -27,7 +27,12 @@ export type PhotoId =
   | "story-2"
   | "story-3"
   | "story-4"
-  | "live-better";
+  | "live-better"
+  | "gives-coach"
+  | "gives-athletes"
+  | "gives-family"
+  | "gives-consistency"
+  | "cta-sunset";
 
 /** Set a value to a path string once the real image exists; null = placeholder. */
 const PHOTOS: Record<PhotoId, string | null> = {
@@ -47,6 +52,11 @@ const PHOTOS: Record<PhotoId, string | null> = {
   "story-3": "/marketing/redesign/story-3.jpg",
   "story-4": null,
   "live-better": "/marketing/redesign/live-better.jpg",
+  "gives-coach": "/marketing/redesign/gives-coach.jpg",
+  "gives-athletes": "/marketing/redesign/gives-athletes.jpg",
+  "gives-family": "/marketing/redesign/gives-family.jpg",
+  "gives-consistency": "/marketing/redesign/gives-consistency.jpg",
+  "cta-sunset": "/marketing/redesign/cta-sunset.jpg",
 };
 
 type PhotoProps = {
