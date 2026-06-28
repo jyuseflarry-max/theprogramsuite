@@ -33,16 +33,19 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://theprogramsuite.com"),
+  // Canonical host is www — the apex (theprogramsuite.com) 307-redirects to www,
+  // so og:url / canonical must match to avoid a redirect mismatch.
+  metadataBase: new URL("https://www.theprogramsuite.com"),
   title: "The Program Suite — The Operating System for Coaches",
   description:
     "You coach. We'll handle the rest. The all-in-one operating system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "The Program Suite — The Operating System for Coaches",
     description:
       "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
     type: "website",
-    url: "https://theprogramsuite.com",
+    url: "https://www.theprogramsuite.com",
     siteName: "The Program Suite",
     images: [
       {
