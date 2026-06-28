@@ -16,7 +16,7 @@ export default function LandingPage() {
       <Founder />
       <Platform />
       <Tools />
-      <Stories />
+      {/* <Stories /> — hidden until we have real, attributable testimonials */}
       <LiveBetter />
       <Pricing />
       <LeadForm />
@@ -353,7 +353,11 @@ function Tools() {
   );
 }
 
-/* ============================================================ Stories */
+/* ============================================================ Stories (HIDDEN)
+   Hidden until real, attributable coach testimonials exist. Re-enable by
+   uncommenting <Stories /> in LandingPage above and this block.
+*/
+/*
 type Story = { id: PhotoId; quote: string; name: string; role: string };
 const STORIES: Story[] = [
   {
@@ -430,6 +434,7 @@ function Stories() {
     </section>
   );
 }
+*/
 
 /* ============================================================ Live better */
 function LiveBetter() {

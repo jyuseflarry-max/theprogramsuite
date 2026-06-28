@@ -9,7 +9,6 @@ const COLS = [
     links: [
       { l: "Platform", href: "/#platform" },
       { l: "Features", href: "/#tools" },
-      { l: "Stories", href: "/#stories" },
       { l: "Pricing", href: "/#pricing" },
     ],
   },
