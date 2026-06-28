@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.theprogramsuite.com"),
   title: "The Program Suite — The System for Coaches",
   description:
-    "You coach. We'll handle the rest. The all-in-one operating system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
+    "You coach. We'll handle the rest. The all-in-one system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "The Program Suite — The System for Coaches",

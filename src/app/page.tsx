@@ -83,7 +83,7 @@ function Truth() {
             </span>
           </h2>
           <p className="rx-lead rx-lead--light">
-            That&apos;s why we built The Program Suite — an all-in-one operating system that
+            That&apos;s why we built The Program Suite — an all-in-one system that
             simplifies your day, connects your entire program, and gives you the time back that
             matters most.
           </p>
@@ -175,7 +175,7 @@ function Founder() {
               </p>
               <p>
                 Nothing on the market was built for the way a program actually works, so I built
-                it. The Program Suite is the all-in-one operating system I needed back then:
+                it. The Program Suite is the all-in-one system I needed back then:
                 designed by a coach, built for every coach.
               </p>
             </div>

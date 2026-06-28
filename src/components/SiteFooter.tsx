@@ -42,7 +42,7 @@ export function SiteFooter() {
               <span className="logo-word">The Program Suite</span>
             </Link>
             <p>
-              The all-in-one operating system for athletic programs — so coaches get the freedom to
+              The all-in-one system for athletic programs — so coaches get the freedom to
               focus on changing lives. Built by a coach who lived the chaos.
             </p>
             <div className="rx-socials">
