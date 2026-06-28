@@ -15,6 +15,7 @@
 export type PhotoId =
   | "hero-field"
   | "hero-coach"
+  | "founder-wide"
   | "problem-buried"
   | "problem-embrace"
   | "founder"
@@ -38,6 +39,8 @@ export type PhotoId =
 const PHOTOS: Record<PhotoId, string | null> = {
   "hero-field": "/marketing/redesign/hero-field.jpg",
   "hero-coach": "/marketing/redesign/hero-coach.jpg",
+  // Wide 16:9 founder huddle — drop in as /marketing/redesign/founder-wide.jpg
+  "founder-wide": "/marketing/redesign/founder-wide.jpg",
   "problem-buried": "/marketing/redesign/problem-buried.jpg",
   "problem-embrace": "/marketing/redesign/problem-embrace.jpg",
   // We already ship a founder photo — wire it straight in.

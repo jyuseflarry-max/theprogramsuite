@@ -151,19 +151,18 @@ function Problem() {
 /* ============================================================ Founder */
 function Founder() {
   return (
-    <section className="section rx-founder" id="story">
-      <div className="container">
-        <div className="rx-founder-grid reveal">
-          <div className="rx-founder-media">
-            <Photo
-              id="founder"
-              ratio="4 / 5"
-              label="Jyusef Larry, founder & head coach"
-              alt="Jyusef Larry, founder and head coach"
-              className="rx-founder-photo"
-            />
-          </div>
-          <div className="rx-founder-body">
+    <section className="rx-founder2" id="story">
+      <Photo
+        id="founder-wide"
+        ratio="16 / 9"
+        tone="dark"
+        label="The founding coach in a team huddle (wide)"
+        alt="Jyusef Larry, founder and head coach, in a huddle with his team"
+        className="rx-founder2-photo"
+      />
+      <div className="rx-founder2-overlay">
+        <div className="container">
+          <div className="rx-founder2-body reveal">
             <span className="rx-eyebrow rx-eyebrow--light">Why I built this</span>
             <h2 className="rx-display rx-h2">
               I built The Program Suite because <span className="rx-h2-gold">I live it.</span>
