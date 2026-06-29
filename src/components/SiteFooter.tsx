@@ -23,11 +23,9 @@ const COLS = [
   },
 ];
 
-const SOCIALS: { l: string; ico: keyof typeof Ico }[] = [
-  { l: "Instagram", ico: "instagram" },
-  { l: "YouTube", ico: "youtube" },
-  { l: "LinkedIn", ico: "linkedin" },
-  { l: "X", ico: "xSocial" },
+const SOCIALS: { l: string; ico: keyof typeof Ico; href: string }[] = [
+  { l: "Instagram", ico: "instagram", href: "https://www.instagram.com/theprogramsuite/" },
+  { l: "Facebook", ico: "facebook", href: "https://www.facebook.com/profile.php?id=61591450102636" },
 ];
 
 export function SiteFooter() {
@@ -49,7 +47,14 @@ export function SiteFooter() {
               {SOCIALS.map((s) => {
                 const Glyph = Ico[s.ico];
                 return (
-                  <a key={s.l} href="#top" aria-label={s.l} className="rx-social">
+                  <a
+                    key={s.l}
+                    href={s.href}
+                    aria-label={s.l}
+                    className="rx-social"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Glyph width="18" height="18" />
                   </a>
                 );

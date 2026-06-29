@@ -372,7 +372,6 @@ function SneakPeek() {
 /* ============================================================ Two hours back (CTA) */
 const TWO_HOURS: { ico: IcoName; t: string }[] = [
   { ico: "whistle", t: "Coach more" },
-  { ico: "film", t: "Study film" },
   { ico: "utensils", t: "Eat dinner together" },
   { ico: "heart", t: "Watch them play" },
   { ico: "moon", t: "Rest" },
@@ -409,17 +408,6 @@ function TwoHours() {
                 );
               })}
             </ul>
-          </div>
-          <div className="rx-twohours-card reveal">
-            <p>
-              Be the first to see <b>The Program Suite</b> in action.
-            </p>
-            <a href="#access" className="btn btn-primary btn-lg btn-block">
-              Request a demo <Ico.arrow />
-            </a>
-            <a href="#access" className="rx-waitlist">
-              Or join the waitlist <Ico.arrow width="14" height="14" />
-            </a>
           </div>
         </div>
       </div>

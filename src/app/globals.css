@@ -1068,22 +1068,13 @@ details[open] .faq-ico { transform: rotate(45deg); }
   position: relative; z-index: 1; width: 100%; padding: 84px 0;
   background: linear-gradient(90deg, rgba(6,9,15,.92) 0%, rgba(6,9,15,.72) 46%, rgba(6,9,15,.5) 100%);
 }
-.rx-twohours-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 48px; align-items: center; }
 .rx-twohours-copy { color: #fff; }
-.rx-twohours-copy .rx-h2 { color: #fff; max-width: 540px; margin-bottom: 14px; }
+.rx-twohours-copy .rx-h2 { color: #fff; max-width: 560px; margin-bottom: 14px; }
 .rx-twohours-q { font-size: 17px; color: rgba(255,255,255,.82); margin: 0 0 26px; }
 .rx-twohours-icons { list-style: none; padding: 0; margin: 0; display: flex; gap: 22px; flex-wrap: wrap; }
 .rx-twohours-icons li { display: flex; flex-direction: column; align-items: center; gap: 9px; width: 78px; text-align: center; font-size: 12.5px; color: rgba(255,255,255,.86); }
 .rx-th-ico { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.08); border: 1px solid var(--night-line); color: var(--gold); }
 .rx-th-ico svg { width: 22px; height: 22px; }
-.rx-twohours-card {
-  background: rgba(9,14,24,.84); border: 1px solid var(--night-line); border-radius: var(--radius);
-  padding: 30px 28px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-lift);
-}
-.rx-twohours-card p { font-size: 18px; font-weight: 600; color: #fff; margin: 0 0 18px; line-height: 1.32; }
-.rx-twohours-card p b { color: var(--gold); }
-.rx-waitlist { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 14px; font-weight: 500; color: var(--gold); }
-.rx-waitlist:hover { color: #fff; }
 
 /* ============================================================ Pricing / FAQ section shells */
 .rx-pricing { background: var(--paper); }
@@ -1142,9 +1133,7 @@ details[open] .faq-ico { transform: rotate(45deg); }
   .rx-give { min-height: 420px; }
   .rx-peek-grid { grid-template-columns: 1fr; gap: 40px; }
   .rx-peek-media { max-width: 480px; margin: 0 auto; padding: 0 24px 24px 8px; }
-  .rx-twohours-grid { grid-template-columns: 1fr; gap: 36px; }
   .rx-twohours-overlay { background: linear-gradient(180deg, rgba(6,9,15,.78) 0%, rgba(6,9,15,.86) 60%, rgba(6,9,15,.94) 100%); }
-  .rx-twohours-card { max-width: 420px; }
 }
 @media (max-width: 760px) {
   /* Phone screenshot is taller than the dashboard — give the media top room so it

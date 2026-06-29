@@ -83,6 +83,9 @@ export const Ico = {
   youtube: (p: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" {...p}><rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" strokeWidth="1.6" /><path d="M10 9l5 3-5 3z" fill="currentColor" /></svg>
   ),
+  facebook: (p: SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M14 7.5h2V4.6h-2.3c-2 0-3.2 1.2-3.2 3.3V10H8.4v2.9h2.1V20h3v-7.1h2.2l.4-2.9h-2.6V8.4c0-.6.3-.9 1.1-.9z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" /></svg>
+  ),
   linkedin: (p: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" {...p}><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.6" /><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 17v-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
   ),
