@@ -1141,12 +1141,16 @@ details[open] .faq-ico { transform: rotate(45deg); }
   .rx-gives-grid { grid-template-columns: 1fr 1fr; }
   .rx-give { min-height: 420px; }
   .rx-peek-grid { grid-template-columns: 1fr; gap: 40px; }
-  .rx-peek-media { max-width: 560px; padding-bottom: 24px; }
+  .rx-peek-media { max-width: 480px; margin: 0 auto; padding: 0 24px 24px 8px; }
   .rx-twohours-grid { grid-template-columns: 1fr; gap: 36px; }
   .rx-twohours-overlay { background: linear-gradient(180deg, rgba(6,9,15,.78) 0%, rgba(6,9,15,.86) 60%, rgba(6,9,15,.94) 100%); }
   .rx-twohours-card { max-width: 420px; }
 }
 @media (max-width: 760px) {
+  /* Phone screenshot is taller than the dashboard — give the media top room so it
+     doesn't overhang into the copy, and shrink it so it sits over the dashboard. */
+  .rx-peek-media { padding-top: 78px; }
+  .rx-peek-phone { width: 116px; left: 2px; }
   .rx-tools-grid { grid-template-columns: repeat(2, 1fr); }
   .rx-stories-strip { grid-template-columns: 1fr; }
   .rx-footer-grid { grid-template-columns: 1fr 1fr; }
