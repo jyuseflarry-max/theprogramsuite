@@ -557,9 +557,6 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .footer-col a:hover { color: var(--accent); }
 .footer-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 52px; padding-top: 28px; border-top: 1px solid var(--line-on-ink); font-size: 13px; color: rgba(255,255,255,.5); }
 
-/* ============================================================ Sticky mobile CTA bar */
-.mobile-bar { display: none; }
-
 /* ============================================================ Responsive */
 @media (max-width: 1080px) {
   .cap-grid { grid-template-columns: repeat(2, 1fr); }
@@ -600,21 +597,6 @@ details[open] .faq-ico { transform: rotate(45deg); }
   .dept-rows { grid-template-columns: 1fr; }
   .dept-row { border-right: 0; border-bottom: 1px solid var(--line); }
   .dept-row:last-child { border-bottom: 0; }
-
-  /* sticky mobile cta */
-  .mobile-bar {
-    display: flex; align-items: center; gap: 10px;
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--paper) 92%, transparent);
-    backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%);
-    border-top: 1px solid var(--line-2);
-  }
-  .mobile-bar .mb-info { flex: 1; min-width: 0; }
-  .mobile-bar .mb-info .t { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; }
-  .mobile-bar .mb-info .s { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); white-space: nowrap; }
-  .mobile-bar .btn { flex: 0 0 auto; }
-  body { padding-bottom: 76px; }
 }
 
 @media (max-width: 480px) {

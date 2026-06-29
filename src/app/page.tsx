@@ -25,7 +25,6 @@ export default function LandingPage() {
       <Faq />
       <Trust />
       <SiteFooter />
-      <MobileBar />
     </div>
   );
 }
@@ -349,9 +348,6 @@ function SneakPeek() {
               A modern experience designed to bring clarity to your day and focus back to your
               program — on the web and in your pocket.
             </p>
-            <a href="#access" className="btn btn-primary btn-lg">
-              Request a demo <Ico.arrow />
-            </a>
           </div>
           <div className="rx-peek-media reveal">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -818,20 +814,5 @@ function Trust() {
         </ul>
       </div>
     </section>
-  );
-}
-
-/* ============================================================ Sticky mobile CTA */
-function MobileBar() {
-  return (
-    <div className="mobile-bar">
-      <div className="mb-info">
-        <div className="t">Founding pricing — 33% off</div>
-        <div className="s">37 of 40 program spots left</div>
-      </div>
-      <a href="#access" className="btn btn-primary">
-        Request a demo
-      </a>
-    </div>
   );
 }
