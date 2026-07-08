@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             Privacy <span className="headline-italic">policy.</span>
           </h1>
           <p className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
-            Effective: {EFFECTIVE_DATE} · Operator: The Program Suite · Jurisdiction: Texas, USA
+            Effective: {EFFECTIVE_DATE} · Operator: CJ3 Legacy Holdings, LLC · Jurisdiction: Texas, USA
           </p>
           <div className="mt-4">
             <Link
@@ -46,9 +46,10 @@ export default function PrivacyPage() {
           <p>
             The Program Suite ("we," "us," or "our") is a Texas-based sports management platform that provides
             coaching, athletic administration, and program management tools to high school and college athletic
-            programs. We operate the application at <strong>app.theprogramsuite.com</strong> and the marketing website at{" "}
+            programs. The Program Suite is owned and operated by <strong>CJ3 Legacy Holdings, LLC</strong>, a Texas
+            limited liability company. We operate the application at <strong>app.theprogramsuite.com</strong> and the marketing website at{" "}
             <strong>theprogramsuite.com</strong> (collectively, the "Service"). Both sites are owned and operated
-            by the same entity under the laws of the State of Texas.
+            by CJ3 Legacy Holdings, LLC under the laws of the State of Texas.
           </p>
           <p className="mt-3">
             Questions about this Policy may be directed to:{" "}

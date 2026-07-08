@@ -75,7 +75,7 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="rx-footer-meta">
-          <span>© 2026 The Program Suite</span>
+          <span>© 2026 The Program Suite, a product of CJ3 Legacy Holdings, LLC</span>
           <span>
             <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
           </span>

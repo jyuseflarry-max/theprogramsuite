@@ -26,7 +26,7 @@ export default function TermsPage() {
             Terms of <span className="headline-italic">service.</span>
           </h1>
           <p className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
-            Effective: {EFFECTIVE_DATE} · Operator: The Program Suite · Jurisdiction: Texas, USA
+            Effective: {EFFECTIVE_DATE} · Operator: CJ3 Legacy Holdings, LLC · Jurisdiction: Texas, USA
           </p>
           <div className="mt-4">
             <Link
@@ -60,8 +60,8 @@ export default function TermsPage() {
           <p>
             The Program Suite ("we," "us," or "our") provides a cloud-based athletic program management
             platform accessible at <strong>app.theprogramsuite.com</strong>, with a marketing presence at{" "}
-            <strong>theprogramsuite.com</strong>. Both sites are operated by The Program Suite, a Texas
-            entity. The Service includes tools for practice planning, athlete management, attendance
+            <strong>theprogramsuite.com</strong>. The Program Suite is owned and operated by{" "}
+            <strong>CJ3 Legacy Holdings, LLC</strong>, a Texas limited liability company. The Service includes tools for practice planning, athlete management, attendance
             tracking, scheduling, strength and conditioning logging, scouting, communications, and
             related athletic program administration features (collectively, the "Service").
           </p>
