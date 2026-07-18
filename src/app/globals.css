@@ -420,8 +420,10 @@ h1,h2,h3,h4 { margin: 0; }
 .plan-price .amt { font-family: var(--font-sans); font-weight: 700; font-size: 50px; line-height: 0.9; letter-spacing: -0.02em; color: var(--ink); font-feature-settings: "tnum"; }
 .plan-price .cur { font-family: var(--font-sans); font-weight: 700; font-size: 28px; color: var(--ink); }
 .plan-price .per { font-size: 14px; color: var(--muted); font-weight: 500; }
-.plan-list { font-size: 13.5px; color: var(--muted); margin: 0 0 22px; }
+.plan-list { font-size: 13.5px; color: var(--muted); margin: 0 0 6px; }
 .plan-list s { color: var(--faint); }
+.plan-monthly { font-size: 13.5px; color: var(--muted); margin: 0 0 22px; }
+.plan-monthly b { color: var(--ink); font-weight: 700; }
 .plan hr.div { border: 0; height: 1px; background: var(--line); margin: 4px 0 18px; }
 .plan-feats { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 9px; }
 .plan-feats .everything { font-size: 13px; font-weight: 600; color: var(--ink); }

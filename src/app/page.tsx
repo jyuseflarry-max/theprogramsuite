@@ -3,6 +3,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Ico, ModIcon, type IcoName, type ModName } from "@/components/marketing/icons";
 import { LeadForm } from "@/components/marketing/LeadForm";
+import { PlanPrefill } from "@/components/marketing/PlanPrefill";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Photo, type PhotoId } from "@/components/marketing/Photo";
 
@@ -10,6 +11,7 @@ export default function LandingPage() {
   return (
     <div className="rx">
       <Reveal />
+      <PlanPrefill />
       <SiteNav />
       <Hero />
       <Problem />
@@ -506,6 +508,7 @@ type Tier = {
   for: string;
   price: string;
   list: string;
+  monthly: string | null;
   everything: string | null;
   feats: string[];
   hook: ReactNode | null;
@@ -521,6 +524,7 @@ const TIERS: Tier[] = [
     for: "Everything you need to run the whole program day to day.",
     price: "800",
     list: "1,200",
+    monthly: "125",
     everything: null,
     feats: [
       "Athletes, roster & family access",
@@ -541,6 +545,7 @@ const TIERS: Tier[] = [
     for: "Everything in Command, plus the ability to generate funds for your program.",
     price: "1,600",
     list: "2,400",
+    monthly: null,
     everything: "Everything in Command, plus",
     feats: [
       "Media gallery",
@@ -610,6 +615,11 @@ function Pricing() {
               <div className="plan-list">
                 Founding price · list <s>${t.list}/yr</s>
               </div>
+              {t.monthly && (
+                <div className="plan-monthly">
+                  or <b>${t.monthly}/mo</b> billed monthly
+                </div>
+              )}
               <hr className="div" />
               <ul className="plan-feats">
                 {t.everything && <li className="everything">{t.everything}</li>}
@@ -621,7 +631,11 @@ function Pricing() {
               </ul>
               {t.hook && <p className="plan-hook">{t.hook}</p>}
               <div className="plan-cta">
-                <a href="#access" className={"btn btn-block " + t.ctaCls}>
+                <a
+                  href="#access"
+                  data-plan={`${t.name} (one program)`}
+                  className={"btn btn-block " + t.ctaCls}
+                >
                   {t.cta} <Ico.arrow />
                 </a>
               </div>
