@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 
 const requiredFields = ["name", "email", "school", "role", "sports", "plan"] as const;
 
@@ -19,24 +18,25 @@ type Lead = {
 };
 
 /**
- * Forward the lead into the app's Company Ops CRM (/api/leads/ingest) so it
- * lands in the Opps pipeline, not just an inbox. Best-effort: any failure here
- * is swallowed so the founder-access email flow still completes. Requires
- * LEADS_INGEST_URL + LEADS_INGEST_SECRET; skips silently when unset.
+ * Forward the lead to the app's Company Ops CRM (/api/leads/ingest). The app is
+ * the single system of record: it stores the lead in company_ops.leads AND
+ * sends the one notification email (LEADS_NOTIFY_EMAIL). This route no longer
+ * emails directly. Returns whether the lead was accepted so the caller can send
+ * the visitor to the thanks or error page instead of silently dropping a lead.
  */
-async function forwardToCrm(lead: Lead) {
+async function forwardToCrm(lead: Lead): Promise<boolean> {
   const url = process.env.LEADS_INGEST_URL;
   const secret = process.env.LEADS_INGEST_SECRET;
 
   if (!url || !secret) {
-    return;
+    return false;
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 5000);
+  const timeout = setTimeout(() => controller.abort(), 8000);
 
   try {
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,8 +45,10 @@ async function forwardToCrm(lead: Lead) {
       body: JSON.stringify({ ...lead, source: "marketing-site" }),
       signal: controller.signal
     });
+
+    return response.ok;
   } catch {
-    // Non-blocking: the email flow below is the source of truth if the CRM is down.
+    return false;
   } finally {
     clearTimeout(timeout);
   }
@@ -82,42 +84,11 @@ export async function POST(request: Request) {
     sports: field(formData, "sports")
   };
 
-  await forwardToCrm(lead);
+  const accepted = await forwardToCrm(lead);
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.FOUNDER_LEADS_TO_EMAIL ?? "founders@theprogramsuite.com";
-  const fromEmail = process.env.FOUNDER_LEADS_FROM_EMAIL ?? "The Program Suite <founders@theprogramsuite.com>";
-
-  if (!apiKey) {
+  if (!accepted) {
     const redirectUrl = new URL("/founder-access/error", appUrl(request));
-    redirectUrl.searchParams.set("reason", "email");
-    return NextResponse.redirect(redirectUrl, { status: 303 });
-  }
-
-  const resend = new Resend(apiKey);
-  const result = await resend.emails.send({
-    from: fromEmail,
-    replyTo: lead.email,
-    subject: `Founder access request - ${lead.plan}`,
-    to: toEmail,
-    text: [
-      "New founder access request",
-      "",
-      `Name: ${lead.name}`,
-      `Email: ${lead.email}`,
-      `School: ${lead.school}`,
-      `Role: ${lead.role}`,
-      `Sport(s): ${lead.sports}`,
-      `Plan: ${lead.plan}`,
-      "",
-      "Biggest thing they need help managing:",
-      lead.message || "Not provided"
-    ].join("\n")
-  });
-
-  if (result.error) {
-    const redirectUrl = new URL("/founder-access/error", appUrl(request));
-    redirectUrl.searchParams.set("reason", "email");
+    redirectUrl.searchParams.set("reason", "send");
     return NextResponse.redirect(redirectUrl, { status: 303 });
   }
 

@@ -46,13 +46,13 @@ export default async function FounderAccessErrorPage({
           <p className="mt-5 text-[16px] leading-[1.55] text-[color:var(--color-ink-soft)]">
             {isMissing
               ? "Please complete every required field and try again."
-              : "Email delivery is not configured yet. Please email founders@theprogramsuite.com directly."}
+              : "Something went wrong sending your request. Please try again, or email coach@theprogramsuite.com directly."}
           </p>
           <div className="mt-10 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row">
             <Link className="btn btn-primary" href="/#founder-access">
               Try again
             </Link>
-            <a className="btn btn-ghost" href="mailto:founders@theprogramsuite.com">
+            <a className="btn btn-ghost" href="mailto:coach@theprogramsuite.com">
               Email us
             </a>
           </div>
