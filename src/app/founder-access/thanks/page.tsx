@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
@@ -13,14 +12,17 @@ export default function FounderAccessThanksPage() {
           className="w-full max-w-[640px] border bg-white p-8 text-center md:p-12"
           style={{ borderColor: "var(--color-line-strong)" }}
         >
-          <Image
-            alt="The Program Suite"
-            className="mx-auto h-14 w-auto object-contain"
-            height={176}
-            priority
-            src="/the-program-suite-wordmark.svg"
-            width={900}
-          />
+          <div className="flex items-center justify-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt="The Program Suite"
+              className="h-12 w-auto object-contain"
+              src="/marketing/logo-mark.png"
+            />
+            <span className="logo-word" style={{ color: "var(--color-ink)", fontSize: 26 }}>
+              The Program Suite
+            </span>
+          </div>
           <CheckCircle2
             aria-hidden="true"
             className="mx-auto mt-10 size-14 text-[color:var(--color-accent)]"
