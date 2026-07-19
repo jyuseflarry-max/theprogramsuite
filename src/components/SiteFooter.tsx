@@ -78,6 +78,7 @@ export function SiteFooter() {
           <span>© 2026 The Program Suite, a product of CJ3 Legacy Holdings, LLC</span>
           <span>
             <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·{" "}
+            <a href="/childrens-privacy">Children&apos;s Privacy</a> ·{" "}
             <a href="/subprocessors">Sub-processors</a>
           </span>
         </div>

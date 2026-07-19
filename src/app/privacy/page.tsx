@@ -127,7 +127,7 @@ export default function PrivacyPage() {
             <li><strong>To coordinate medical information</strong> — routing doctor's notes to athletic training staff and notifying coaches of clearance status changes</li>
             <li><strong>To send transactional emails</strong> — account invitations, password resets, notification of submitted medical notes, and other service-driven communications. These emails are sent to all user types.</li>
             <li><strong>To send marketing communications</strong> — we send promotional emails about The Program Suite only to head coaches who are account holders. Athletes, family members, and other staff are never sent marketing or promotional email. Coaches may opt out at any time.</li>
-            <li><strong>To manage accounts for minors</strong> — we use date of birth and enrollment details to administer accounts for athletes, including minors and children under 13, who are enrolled through a school, program, parent, or legal guardian. See the <a href="#childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a> section for how we obtain consent and limit our use of children's information.</li>
+            <li><strong>To manage accounts for minors</strong> — we use date of birth and enrollment details to administer accounts for athletes, including minors and children under 13, who are enrolled through a school, program, parent, or legal guardian. See our <a href="/childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a> notice for how we obtain consent and limit our use of children's information.</li>
             <li><strong>To improve the Service</strong> — aggregate, anonymized usage data helps us understand how the platform is used and where to focus improvements</li>
             <li><strong>To comply with legal obligations</strong> — we may use or retain data as required by applicable law, court order, or governmental authority</li>
           </ul>
@@ -139,9 +139,9 @@ export default function PrivacyPage() {
             with third parties for their own marketing purposes. Where a school or program authorizes
             our collection of student data on behalf of parents, we process that student data only for
             the educational purpose the school directs and never for our own commercial purposes,
-            consistent with the Federal Trade Commission's COPPA school-authorization guidance and the{" "}
-            <a href="#childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a>{" "}
-            section below.
+            consistent with the Federal Trade Commission's COPPA school-authorization guidance and our{" "}
+            <a href="/childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a>{" "}
+            notice.
           </p>
           <p className="mt-3">We share information in the following limited circumstances:</p>
 
@@ -225,70 +225,16 @@ export default function PrivacyPage() {
             personal information about a child under the age of 13 only when a school or athletic program
             enrolls the child, or when a parent or legal guardian registers the child.
           </p>
-
-          <Subhead>How we obtain consent</Subhead>
-          <p>
-            For children under 13, we rely on one of two bases permitted by the Children's Online
-            Privacy Protection Act ("COPPA"):
-          </p>
-          <ol className="list-decimal pl-5 space-y-2 mt-2">
-            <li>
-              <strong>School authorization.</strong> When a school or program uses the Service for an
-              educational purpose, the school may authorize the collection of a student's personal
-              information on behalf of the student's parents (acting in loco parentis), consistent with
-              the guidance of the Federal Trade Commission. In that case, the school is responsible for
-              providing any notice to and obtaining any consent from parents that applicable law requires,
-              and our collection is limited to the educational purpose the school directs.
-            </li>
-            <li>
-              <strong>Verifiable parental consent.</strong> When a parent or legal guardian registers a
-              child directly, we obtain the parent's or guardian's consent at registration.
-            </li>
-          </ol>
-
-          <Subhead>What we collect from children and why</Subhead>
-          <p>
-            We collect only the information needed to run the athletic program — for example, name, team
-            and roster details, date of birth, attendance, scheduling, training and participation records,
-            and, where a guardian is linked, guardian contact information. We use this information solely
-            to provide the Service to the school, program, and family.
-          </p>
-
-          <Subhead>What we do not do</Subhead>
-          <p>
-            We do not use children's personal information for targeted advertising, and we do not sell or
-            rent it. We do not use children's information to train artificial intelligence or
-            machine-learning models. We do not condition a child's participation on disclosing more
-            information than is reasonably necessary. We do not use a child's name, image, likeness, or
-            content in promotional, sponsorship, or publicly published marketing materials without
-            separate, specific consent from the child's parent, legal guardian, or authorizing school.
-          </p>
-
-          <Subhead>Parent and guardian rights</Subhead>
-          <p>
-            A parent or legal guardian (or the authorizing school on their behalf) may review the personal
-            information we have collected from their child, request that we delete it, and refuse to permit
-            its further collection or use. To exercise these rights, contact us at{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 underline">{CONTACT_EMAIL}</a>, or
-            ask your child's school or program, which can act on your behalf. We will honor a request to
-            stop collecting a child's information, understanding that doing so may mean the child can no
-            longer use the Service.
-          </p>
-
-          <Subhead>Data minimization and retention</Subhead>
-          <p>
-            We retain a child's personal information only as long as needed for the educational purpose it
-            was collected for, and we delete it on the schedule described in the{" "}
-            <a href="#data-retention" className="text-blue-600 underline">Data Retention</a> section of
-            this policy (and in our agreement with the school), unless the school, parent, or guardian asks
-            us to delete it sooner.
-          </p>
-
           <p className="mt-3">
-            If you believe we have collected information from a child without the required school
-            authorization or parental consent, contact us at{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 underline">{CONTACT_EMAIL}</a>{" "}
-            and we will promptly delete it or obtain the required consent.
+            Our full notice for children under 13 — how we obtain consent (school authorization and
+            verifiable parental consent), what we collect from children and why, what we never do with
+            that information, and how parents, guardians, and schools can review or delete it — is
+            published as a dedicated page:
+          </p>
+          <p className="mt-3">
+            <Link href="/childrens-privacy" className="text-blue-600 underline font-medium">
+              Children&apos;s Privacy (COPPA) →
+            </Link>
           </p>
         </Section>
 

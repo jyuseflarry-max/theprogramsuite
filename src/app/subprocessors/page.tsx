@@ -158,11 +158,11 @@ export default function SubprocessorsPage() {
           <p className="mt-3">
             Where a school or program authorizes our collection of student data on behalf of parents, our
             sub-processors process that student data only for the educational purpose the school directs,
-            consistent with the Federal Trade Commission's COPPA school-authorization guidance and the{" "}
-            <Link href="/privacy#childrens-privacy" className="underline font-medium">
+            consistent with the Federal Trade Commission's COPPA school-authorization guidance and our{" "}
+            <Link href="/childrens-privacy" className="underline font-medium">
               Children&apos;s Privacy (COPPA)
             </Link>{" "}
-            section of our Privacy Policy.
+            notice.
           </p>
         </Section>
 
