@@ -36,14 +36,14 @@ const SUBPROCESSORS: {
   },
   {
     name: "Resend",
-    purpose: "Transactional and notification email delivery",
+    purpose: "General transactional and notification email (account invitations, password resets, service notices)",
     data: "Recipient name and email address; email subject and body content",
     location: "United States",
   },
   {
     name: "Postmark",
-    purpose: "Transactional and notification email delivery",
-    data: "Recipient name and email address; email subject and body content",
+    purpose: "Delivery of internal injury and clearance-status notifications between athletic training staff and coaches",
+    data: "Sender/recipient name and email address; injury and participation-clearance details, which may include health/medical information, and any attached notes",
     location: "United States",
   },
   {
