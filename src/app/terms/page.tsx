@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Terms of Service for The Program Suite sports management platform.",
 };
 
-const EFFECTIVE_DATE = "June 22, 2026";
+const EFFECTIVE_DATE = "July 19, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -66,18 +66,53 @@ export default function TermsPage() {
             related athletic program administration features (collectively, the "Service").
           </p>
           <p className="mt-3">
-            The Service is intended for use by athletic programs, their coaching and administrative staff,
-            athletes aged 13 and older, and the families of those athletes.
+            The Service is intended for use by athletic programs and schools, their coaching and
+            administrative staff, athletes, and the families of those athletes. The Service is offered
+            for enrollment through schools and athletic programs; it is not a general-audience service
+            and is not made available for independent self-registration by children. Where a program
+            enrolls athletes under the age of 13, their accounts are created only through the school or
+            a parent or legal guardian, and only as described in Section 2 and in our{" "}
+            <Link href="/privacy" className="underline font-medium">Privacy Policy</Link>.
           </p>
         </Section>
 
         <Section title="2. Account Registration and Eligibility">
-          <Subhead>Minimum Age</Subhead>
+          <Subhead>Eligibility and Accounts for Minors</Subhead>
           <p>
-            You must be at least 13 years of age to hold an account on the Service. The platform
-            enforces this requirement at registration by requiring a date of birth. Accounts will not be
-            created for individuals under 13. If we learn that an account has been created in violation
-            of this requirement, we will terminate the account and delete associated data without notice.
+            Adults aged 18 or older may register for an account on their own behalf.
+          </p>
+          <p className="mt-3">
+            Accounts for individuals under 18 ("minors"), including children under the age of 13, are
+            created only through one of the following, never by the child acting alone:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 mt-2">
+            <li>
+              <strong>Through a school or athletic program.</strong> A school or program with authority
+              to act on behalf of parents for educational purposes may enroll its athletes, consistent
+              with our Privacy Policy and any data privacy agreement between us and the institution. The
+              enrolling institution represents that it has the authority to do so and has provided any
+              parental notice or obtained any parental consent required by applicable law, including the
+              Children's Online Privacy Protection Act ("COPPA") and the Family Educational Rights and
+              Privacy Act ("FERPA").
+            </li>
+            <li>
+              <strong>Through a parent or legal guardian.</strong> A parent or legal guardian may register
+              an account for their child. By doing so, you represent that you are the parent or legal
+              guardian of that child and you consent to the collection and use of the child's information
+              as described in our Privacy Policy.
+            </li>
+          </ul>
+          <p className="mt-3">
+            For athletes aged 13 to 17 who are enrolled by a school or program, a parent or legal
+            guardian's name and email may be collected so that an associated family account can be created
+            and the guardian can exercise the rights described in our Privacy Policy.
+          </p>
+          <p className="mt-3">
+            The Service does not knowingly permit a child under 13 to create an account for themselves
+            without the involvement of a school, program, parent, or legal guardian as described above.
+            If we learn that a child's information has been collected without the school authorization or
+            parental consent required by law, we will delete that information or obtain the required
+            consent, as appropriate.
           </p>
 
           <Subhead>Athlete Accounts</Subhead>
@@ -323,6 +358,12 @@ export default function TermsPage() {
             educational records only on behalf of and under the direction of the institution. Institutions
             are responsible for ensuring their use of the Service complies with FERPA and any applicable
             state student privacy laws.
+          </p>
+          <p className="mt-3">
+            Where a school or program enrolls athletes under the age of 13, the institution and The
+            Program Suite each rely on the school's authorization, acting on behalf of parents for the
+            educational purposes for which the information is collected, or on verifiable parental consent,
+            consistent with COPPA and the Children's Privacy section of our Privacy Policy.
           </p>
         </Section>
 

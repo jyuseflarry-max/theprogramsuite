@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Privacy Policy for The Program Suite sports management platform.",
 };
 
-const EFFECTIVE_DATE = "June 22, 2026";
+const EFFECTIVE_DATE = "July 19, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
             <li>Role within a program (coach, admin, athlete, family member)</li>
             <li>Profile photo (optional, uploaded by the user)</li>
             <li>Jersey number and athletic position (athlete accounts)</li>
-            <li>Date of birth (required for athlete accounts to verify minimum age)</li>
+            <li>Date of birth (collected for athlete accounts to administer age-appropriate features and rosters)</li>
           </ul>
 
           <Subhead>Guardian and Family Information</Subhead>
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
             <li><strong>To coordinate medical information</strong> — routing doctor's notes to athletic training staff and notifying coaches of clearance status changes</li>
             <li><strong>To send transactional emails</strong> — account invitations, password resets, notification of submitted medical notes, and other service-driven communications. These emails are sent to all user types.</li>
             <li><strong>To send marketing communications</strong> — we send promotional emails about The Program Suite only to head coaches who are account holders. Athletes, family members, and other staff are never sent marketing or promotional email. Coaches may opt out at any time.</li>
-            <li><strong>To enforce age requirements</strong> — we use date of birth to verify that athlete accounts meet the minimum age of 13 years. We do not create accounts for individuals under 13.</li>
+            <li><strong>To manage accounts for minors</strong> — we use date of birth and enrollment details to administer accounts for athletes, including minors and children under 13, who are enrolled through a school, program, parent, or legal guardian. See the <a href="#childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a> section for how we obtain consent and limit our use of children's information.</li>
             <li><strong>To improve the Service</strong> — aggregate, anonymized usage data helps us understand how the platform is used and where to focus improvements</li>
             <li><strong>To comply with legal obligations</strong> — we may use or retain data as required by applicable law, court order, or governmental authority</li>
           </ul>
@@ -136,7 +136,12 @@ export default function PrivacyPage() {
         <Section title="4. How We Share Your Information">
           <p>
             We do not sell your personal information. We do not share your personal information
-            with third parties for their own marketing purposes.
+            with third parties for their own marketing purposes. Where a school or program authorizes
+            our collection of student data on behalf of parents, we process that student data only for
+            the educational purpose the school directs and never for our own commercial purposes,
+            consistent with the Federal Trade Commission's COPPA school-authorization guidance and the{" "}
+            <a href="#childrens-privacy" className="text-blue-600 underline">Children's Privacy (COPPA)</a>{" "}
+            section below.
           </p>
           <p className="mt-3">We share information in the following limited circumstances:</p>
 
@@ -226,27 +231,77 @@ export default function PrivacyPage() {
           </p>
         </Section>
 
-        <Section title="6. Children's Privacy">
+        <Section title="6. Children's Privacy (COPPA)" id="childrens-privacy">
           <p>
-            The Service is designed for use by athletic programs, coaches, and athletes. <strong>We
-            do not knowingly create accounts for children under the age of 13.</strong> Athlete
-            account registration requires entry of a date of birth, and the platform will not permit
-            account creation for individuals who are younger than 13 years of age.
+            The Program Suite is offered to schools and athletic programs, not directly to children,
+            and it is not a general-audience service. Children do not sign up on their own. We collect
+            personal information about a child under the age of 13 only when a school or athletic program
+            enrolls the child, or when a parent or legal guardian registers the child.
           </p>
-          <p className="mt-3">
-            For athletes between the ages of 13 and 17, we require a parent or legal guardian's
-            name and email address at the time of registration. An account is automatically created
-            for the guardian, and an invitation is sent to the provided email address. We encourage
-            parents and guardians to stay involved in their athlete's account and to contact us
-            at {" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 underline">{CONTACT_EMAIL}</a>
-            {" "} with any concerns.
+
+          <Subhead>How we obtain consent</Subhead>
+          <p>
+            For children under 13, we rely on one of two bases permitted by the Children's Online
+            Privacy Protection Act ("COPPA"):
           </p>
+          <ol className="list-decimal pl-5 space-y-2 mt-2">
+            <li>
+              <strong>School authorization.</strong> When a school or program uses the Service for an
+              educational purpose, the school may authorize the collection of a student's personal
+              information on behalf of the student's parents (acting in loco parentis), consistent with
+              the guidance of the Federal Trade Commission. In that case, the school is responsible for
+              providing any notice to and obtaining any consent from parents that applicable law requires,
+              and our collection is limited to the educational purpose the school directs.
+            </li>
+            <li>
+              <strong>Verifiable parental consent.</strong> When a parent or legal guardian registers a
+              child directly, we obtain the parent's or guardian's consent at registration.
+            </li>
+          </ol>
+
+          <Subhead>What we collect from children and why</Subhead>
+          <p>
+            We collect only the information needed to run the athletic program — for example, name, team
+            and roster details, date of birth, attendance, scheduling, training and participation records,
+            and, where a guardian is linked, guardian contact information. We use this information solely
+            to provide the Service to the school, program, and family.
+          </p>
+
+          <Subhead>What we do not do</Subhead>
+          <p>
+            We do not use children's personal information for targeted advertising, and we do not sell or
+            rent it. We do not use children's information to train artificial intelligence or
+            machine-learning models. We do not condition a child's participation on disclosing more
+            information than is reasonably necessary. We do not use a child's name, image, likeness, or
+            content in promotional, sponsorship, or publicly published marketing materials without
+            separate, specific consent from the child's parent, legal guardian, or authorizing school.
+          </p>
+
+          <Subhead>Parent and guardian rights</Subhead>
+          <p>
+            A parent or legal guardian (or the authorizing school on their behalf) may review the personal
+            information we have collected from their child, request that we delete it, and refuse to permit
+            its further collection or use. To exercise these rights, contact us at{" "}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 underline">{CONTACT_EMAIL}</a>, or
+            ask your child's school or program, which can act on your behalf. We will honor a request to
+            stop collecting a child's information, understanding that doing so may mean the child can no
+            longer use the Service.
+          </p>
+
+          <Subhead>Data minimization and retention</Subhead>
+          <p>
+            We retain a child's personal information only as long as needed for the educational purpose it
+            was collected for, and we delete it on the schedule described in the{" "}
+            <a href="#data-retention" className="text-blue-600 underline">Data Retention</a> section of
+            this policy (and in our agreement with the school), unless the school, parent, or guardian asks
+            us to delete it sooner.
+          </p>
+
           <p className="mt-3">
-            If we learn that we have inadvertently collected personal information from a child under
-            13 without verifiable parental consent, we will delete that information promptly. If you
-            believe a child under 13 has provided us with personal information, please contact us
-            immediately.
+            If you believe we have collected information from a child without the required school
+            authorization or parental consent, contact us at{" "}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 underline">{CONTACT_EMAIL}</a>{" "}
+            and we will promptly delete it or obtain the required consent.
           </p>
         </Section>
 
@@ -274,7 +329,7 @@ export default function PrivacyPage() {
           </p>
         </Section>
 
-        <Section title="8. Data Retention">
+        <Section title="8. Data Retention" id="data-retention">
           <p>
             We retain your personal information for as long as your account is active and for a
             period following account closure or program cancellation as described below:
@@ -283,6 +338,13 @@ export default function PrivacyPage() {
             <li>
               <strong>Active accounts:</strong> Data is retained for the duration of the account
               and updated as the Service is used.
+            </li>
+            <li>
+              <strong>Student data:</strong> Where a school or program enrolls a student, we retain the
+              student's personal information only as long as needed for the educational purpose it was
+              collected for and as set out in our agreement with the institution. It is deleted on the
+              same 90-day post-cancellation schedule described here (with backups cycling out within an
+              additional 30 days), unless the school, parent, or guardian asks us to delete it sooner.
             </li>
             <li>
               <strong>After cancellation or deletion:</strong> We retain your data for <strong>90 days</strong>{" "}
@@ -408,9 +470,9 @@ export default function PrivacyPage() {
 
 // ── Layout helpers ─────────────────────────────────────────────────────────
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
   return (
-    <section>
+    <section id={id} className={id ? "scroll-mt-24" : undefined}>
       <h2>{title}</h2>
       <div>{children}</div>
     </section>
