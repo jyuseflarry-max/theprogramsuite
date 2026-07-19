@@ -162,32 +162,19 @@ export default function PrivacyPage() {
           </p>
 
           <Subhead>Data Processors (Service Providers)</Subhead>
-          <p>We use the following sub-processors to operate the Service. Each is bound to process data only on our instructions:</p>
-          <table className="w-full text-sm mt-3 border border-gray-200 rounded-lg overflow-hidden">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="text-left px-4 py-2 font-semibold text-gray-700">Provider</th>
-                <th className="text-left px-4 py-2 font-semibold text-gray-700">Purpose</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {[
-                ["Supabase", "Database, file storage, and user authentication"],
-                ["Vercel", "Application hosting and privacy-first page analytics"],
-                ["Resend", "Transactional and notification email delivery"],
-                ["Cloudflare", "CDN, DDoS protection, and security filtering"],
-                ["Upstash", "API rate limiting (temporary IP processing)"],
-                ["OpenAI", "AI image generation for Content Studio and athlete creations — prompts, captions, and any reference images you provide are processed to generate content"],
-                ["Google", "AI analysis of coach-provided video links for the drill and exercise import feature (Gemini)"],
-                ["Stripe", "Payment processing (when billing is enabled — card data is processed by Stripe and never stored by us)"],
-              ].map(([name, purpose]) => (
-                <tr key={name} className="bg-white">
-                  <td className="px-4 py-2 font-medium">{name}</td>
-                  <td className="px-4 py-2 text-gray-600">{purpose}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <p>
+            We use a set of third-party sub-processors to operate the Service — for hosting, our
+            database, email delivery, security, payments, and related functions. Each is bound to process
+            data only on our documented instructions and to maintain appropriate security. Where a school
+            or program authorizes our collection of student data, our sub-processors process that data only
+            for the educational purpose the school directs.
+          </p>
+          <p className="mt-3">
+            Our current sub-processors, the purpose of each, the categories of data they process, and their
+            processing location are listed on our{" "}
+            <Link href="/subprocessors" className="text-blue-600 underline">Sub-processors</Link> page,
+            which we keep up to date as the Service evolves.
+          </p>
 
           <Subhead>Legal Requirements</Subhead>
           <p>
