@@ -41,6 +41,12 @@ const SUBPROCESSORS: {
     location: "United States",
   },
   {
+    name: "Postmark",
+    purpose: "Transactional and notification email delivery",
+    data: "Recipient name and email address; email subject and body content",
+    location: "United States",
+  },
+  {
     name: "Cloudflare",
     purpose: "CDN, DDoS protection, and security filtering",
     data: "IP address and request metadata (processed transiently for security)",
