@@ -8,6 +8,50 @@ function field(formData: FormData, name: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+type Lead = {
+  email: string;
+  message: string;
+  name: string;
+  plan: string;
+  role: string;
+  school: string;
+  sports: string;
+};
+
+/**
+ * Forward the lead into the app's Company Ops CRM (/api/leads/ingest) so it
+ * lands in the Opps pipeline, not just an inbox. Best-effort: any failure here
+ * is swallowed so the founder-access email flow still completes. Requires
+ * LEADS_INGEST_URL + LEADS_INGEST_SECRET; skips silently when unset.
+ */
+async function forwardToCrm(lead: Lead) {
+  const url = process.env.LEADS_INGEST_URL;
+  const secret = process.env.LEADS_INGEST_SECRET;
+
+  if (!url || !secret) {
+    return;
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${secret}`
+      },
+      body: JSON.stringify({ ...lead, source: "marketing-site" }),
+      signal: controller.signal
+    });
+  } catch {
+    // Non-blocking: the email flow below is the source of truth if the CRM is down.
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 function appUrl(request: Request) {
   const configured = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -37,6 +81,9 @@ export async function POST(request: Request) {
     school: field(formData, "school"),
     sports: field(formData, "sports")
   };
+
+  await forwardToCrm(lead);
+
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.FOUNDER_LEADS_TO_EMAIL ?? "founders@theprogramsuite.com";
   const fromEmail = process.env.FOUNDER_LEADS_FROM_EMAIL ?? "The Program Suite <founders@theprogramsuite.com>";
