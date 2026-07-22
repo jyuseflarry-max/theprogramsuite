@@ -700,7 +700,9 @@ function Pricing() {
         <p className="price-foot">
           Founding pricing locks your rate for the life of the account and is capped at the first 40
           programs and 15 schools. Department pricing is banded by program count. Custom pricing
-          available for school districts with multiple schools.
+          available for school districts with multiple schools. For scale: equipment-only trackers
+          run $800&ndash;$1,600 a year just to count gear &mdash; <a href="/equipment">Command runs the
+          entire program for less</a>.
         </p>
       </div>
     </section>
@@ -747,6 +749,18 @@ const FAQ_ITEMS = [
   {
     q: "We run on spreadsheets and group texts today. Is switching painful?",
     a: "No. Most programs start with the one area that hurts most — usually inventory or scheduling — and import their existing roster and gear lists. You can grow into the other modules whenever you're ready; nothing has to migrate twice.",
+  },
+  {
+    q: "How is this different from an equipment-inventory app?",
+    a: (
+      <>
+        Equipment-only trackers count gear and log check-outs, and charge $800&ndash;$1,600 a year to
+        do it. Inventory here goes further &mdash; automatic lost-gear fees, athlete and family
+        self-service, QR labels, purchasing and budget &mdash; and it&apos;s one module of a platform
+        that runs the entire program for less than most gear trackers cost alone.{" "}
+        <a href="/equipment">See the equipment &amp; inventory tour &rarr;</a>
+      </>
+    ),
   },
   {
     q: "Is this serious enough for a district procurement review?",
