@@ -18,6 +18,7 @@ const COLS = [
     links: [
       { l: "About", href: "/#story" },
       { l: "Resources", href: "/#faq" },
+      { l: "Support", href: "/support" },
       { l: "Contact", href: "/#access" },
       { l: "Log in", href: APP_LOGIN_URL },
     ],
@@ -78,7 +79,8 @@ export function SiteFooter() {
         <div className="rx-footer-meta">
           <span>© 2026 The Program Suite, a product of CJ3 Legacy Holdings, LLC</span>
           <span>
-            <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·{" "}
+            <a href="/support">Support</a> · <a href="/privacy">Privacy</a> ·{" "}
+            <a href="/terms">Terms</a> ·{" "}
             <a href="/childrens-privacy">Children&apos;s Privacy</a> ·{" "}
             <a href="/subprocessors">Sub-processors</a>
           </span>
