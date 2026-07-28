@@ -375,6 +375,14 @@ export default function PrivacyPage() {
             <li>Access to production systems is restricted to authorized personnel</li>
           </ul>
           <p className="mt-3">
+            <strong>Biometric sign-in (mobile app).</strong> Our native iOS app, The Program Suite — Coach,
+            optionally lets you use Face ID or Touch ID to unlock the app and sign in. This authentication
+            is performed entirely on your device by Apple's operating system; your face or fingerprint data
+            never leaves your device and is never transmitted to, received by, or stored by us. iOS only
+            tells the app whether authentication succeeded. You can turn biometric sign-in off at any time
+            in the app or in your device settings.
+          </p>
+          <p className="mt-3">
             No security system is impenetrable. In the event of a data breach that affects your
             personal information, we will notify affected users in accordance with applicable law.
           </p>
