@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "The third-party service providers The Program Suite uses to process personal and student data.",
 };
 
-const EFFECTIVE_DATE = "July 19, 2026";
+const EFFECTIVE_DATE = "July 27, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -72,14 +72,14 @@ const SUBPROCESSORS: {
   },
   {
     name: "Google",
-    purpose: "AI analysis of coach-provided video links for drill and exercise import (Gemini)",
-    data: "Coach-provided video URLs and derived drill/exercise metadata",
+    purpose: "Push notification delivery for the iOS app (Firebase Cloud Messaging); AI analysis of coach-provided video links for drill and exercise import (Gemini)",
+    data: "Device push token (for notification delivery); coach-provided video URLs and derived drill/exercise metadata",
     location: "United States",
   },
   {
     name: "Apple",
-    purpose: "Weather data for scheduling and event planning (WeatherKit)",
-    data: "Event or venue location coordinates (no personal identifiers)",
+    purpose: "iOS app distribution via the App Store and push notification delivery (Apple Push Notification service); weather data for scheduling and event planning (WeatherKit)",
+    data: "Device push token (for notification delivery); event or venue location coordinates (no personal identifiers)",
     location: "United States",
   },
   {

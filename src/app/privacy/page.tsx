@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "July 19, 2026";
+const LAST_UPDATED   = "July 27, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -26,7 +27,7 @@ export default function PrivacyPage() {
             Privacy <span className="headline-italic">policy.</span>
           </h1>
           <p className="mt-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-[color:var(--color-muted)]">
-            Effective: {EFFECTIVE_DATE} · Operator: CJ3 Legacy Holdings, LLC · Jurisdiction: Texas, USA
+            Effective: {EFFECTIVE_DATE} · Last updated: {LAST_UPDATED} · Operator: CJ3 Legacy Holdings, LLC · Jurisdiction: Texas, USA
           </p>
           <div className="mt-4">
             <Link
@@ -88,7 +89,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1">
             <li>Doctor's notes, medical clearance status, and participation restrictions submitted by athletes or coaching staff</li>
             <li>Injury status flags set by coaching staff for scheduling and attendance purposes</li>
-            <li>Body weight and biometric data entered in the strength and conditioning module (stored encrypted at rest)</li>
+            <li>Body weight and other athletic performance and health metrics — such as readiness, training load, and strength and conditioning entries — recorded in the strength and conditioning module (stored encrypted at rest)</li>
           </ul>
 
           <Subhead>Program and Performance Data</Subhead>
@@ -118,6 +119,12 @@ export default function PrivacyPage() {
             <li>Browser type and device type inferred from your User-Agent header</li>
             <li>Login timestamps</li>
           </ul>
+          <p className="mt-3">
+            The analytics and usage data described above is collected only through our websites
+            (theprogramsuite.com and the app.theprogramsuite.com web interface). Our native iOS app,
+            <strong> The Program Suite — Coach</strong>, does not include Vercel Analytics or any other
+            third-party analytics, usage-tracking, or advertising SDK.
+          </p>
         </Section>
 
         <Section title="3. How We Use Your Information">
@@ -174,6 +181,22 @@ export default function PrivacyPage() {
             processing location are listed on our{" "}
             <Link href="/subprocessors" className="text-blue-600 underline">Sub-processors</Link> page,
             which we keep up to date as the Service evolves.
+          </p>
+
+          <Subhead>Push Notifications (Mobile App)</Subhead>
+          <p>
+            Our native iOS app, <strong>The Program Suite — Coach</strong>, can send push notifications
+            to your device to deliver Service-related messages such as announcements, schedule changes,
+            and clearance updates. Push delivery relies on two providers: Apple Push Notification service
+            (APNs) and Firebase Cloud Messaging, a Google service. To route a notification to the correct
+            device, these services use a device-level push token that identifies your specific device. We
+            use this token only to deliver Service notifications, and you can turn notifications off at any
+            time in your device settings.
+          </p>
+          <p className="mt-3">
+            We use Firebase Cloud Messaging solely to deliver these messages. We do not use Firebase
+            Analytics, Firebase Crashlytics, or any other third-party analytics or advertising SDK inside
+            the app, and the push token is not used to track you across apps or websites.
           </p>
 
           <Subhead>Legal Requirements</Subhead>
@@ -346,7 +369,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1 mt-2">
             <li>All data is transmitted over encrypted HTTPS connections</li>
             <li>Passwords are hashed using industry-standard algorithms and are never stored in plaintext</li>
-            <li>Sensitive data fields (biometric measurements) are encrypted at rest using AES-256-GCM</li>
+            <li>Sensitive data fields (athletic performance and health metrics) are encrypted at rest using AES-256-GCM</li>
             <li>File storage is hosted in private, access-controlled buckets; sensitive files are served via short-lived signed URLs</li>
             <li>Database access is governed by row-level security policies tied to each program's tenant context</li>
             <li>Access to production systems is restricted to authorized personnel</li>
