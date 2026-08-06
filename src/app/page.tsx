@@ -559,7 +559,7 @@ const TIERS: Tier[] = [
       "Content Studio",
       "Sponsorship sales",
       "Fundraising tools",
-      "600 premium AI creations/yr (~50/mo)",
+      "365 premium AI creations/yr (~1 a day)",
     ],
     hook: (
       <>
