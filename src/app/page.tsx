@@ -506,9 +506,8 @@ type Tier = {
   popular: boolean;
   badge: string | null;
   for: string;
-  price: string;
-  list: string;
-  monthly: string | null;
+  bands: Band[];
+  monthly: boolean;
   everything: string | null;
   feats: string[];
   hook: ReactNode | null;
@@ -516,15 +515,20 @@ type Tier = {
   ctaCls: string;
 };
 
+type Band = { size: string; founding: string; list: string };
+
 const TIERS: Tier[] = [
   {
     name: "Command",
     popular: false,
     badge: "Most popular",
     for: "Everything you need to run the whole program day to day.",
-    price: "800",
-    list: "1,200",
-    monthly: "125",
+    bands: [
+      { size: "Small · 1–2A", founding: "600", list: "800" },
+      { size: "Mid · 3–4A", founding: "900", list: "1,200" },
+      { size: "Large · 5–6A", founding: "1,200", list: "1,600" },
+    ],
+    monthly: true,
     everything: null,
     feats: [
       "Athletes, roster & family access",
@@ -543,9 +547,12 @@ const TIERS: Tier[] = [
     popular: true,
     badge: "Most valuable",
     for: "Everything in Command, plus the ability to generate funds for your program.",
-    price: "1,600",
-    list: "2,400",
-    monthly: null,
+    bands: [
+      { size: "Small · 1–2A", founding: "1,200", list: "1,600" },
+      { size: "Mid · 3–4A", founding: "1,800", list: "2,400" },
+      { size: "Large · 5–6A", founding: "2,400", list: "3,200" },
+    ],
+    monthly: false,
     everything: "Everything in Command, plus",
     feats: [
       "Media gallery",
@@ -556,7 +563,7 @@ const TIERS: Tier[] = [
     ],
     hook: (
       <>
-        Founding <b>Showcase</b> is just $800 more than Command — the revenue tools only need to earn
+        <b>Showcase</b> is double Command at every school size — the revenue tools only need to earn
         that back to pay for themselves.
       </>
     ),
@@ -573,9 +580,10 @@ const BANDS: {
   showList?: string;
   talk?: boolean;
 }[] = [
-  { band: "1–12 programs", commandPrice: "$6,000", commandList: "$9,000", showPrice: "$10,000", showList: "$15,000" },
-  { band: "13–30 programs", commandPrice: "$10,000", commandList: "$15,000", showPrice: "$16,000", showList: "$24,000" },
-  { band: "31+ or a district", talk: true },
+  { band: "Small · 1–2A", commandPrice: "$3,375", commandList: "$4,500", showPrice: "$6,750", showList: "$9,000" },
+  { band: "Mid · 3–4A", commandPrice: "$7,500", commandList: "$10,000", showPrice: "$15,000", showList: "$20,000" },
+  { band: "Large · 5–6A", commandPrice: "$15,000", commandList: "$20,000", showPrice: "$30,000", showList: "$40,000" },
+  { band: "31+ or multi-school", talk: true },
 ];
 
 function Pricing() {
@@ -594,7 +602,7 @@ function Pricing() {
 
         <div className="price-frame reveal" style={{ marginTop: 28, justifyContent: "center" }}>
           <span className="founding-note">
-            <Ico.check width="15" height="15" /> Founding members lock in <b>33% off for life</b> —
+            <Ico.check width="15" height="15" /> Founding members lock in <b>25% off for 3 years</b> —
             first 40 programs, 15 schools
           </span>
         </div>
@@ -608,16 +616,29 @@ function Pricing() {
               <div className="plan-name">{t.name}</div>
               <div className="plan-for">{t.for}</div>
               <div className="plan-price">
+                <span className="from">from</span>
                 <span className="cur">$</span>
-                <span className="amt">{t.price}</span>
+                <span className="amt">{t.bands[0].founding}</span>
                 <span className="per">/year</span>
               </div>
-              <div className="plan-list">
-                Founding price · list <s>${t.list}/yr</s>
-              </div>
+              <div className="plan-list">Founding price by school size — list struck through</div>
+              <ul className="plan-bands">
+                {t.bands.map((b) => (
+                  <li key={b.size}>
+                    <span className="band">{b.size}</span>
+                    <span className="amt">
+                      ${b.founding}
+                      <i>/yr</i>
+                    </span>
+                    <span className="list">
+                      <s>${b.list}</s>
+                    </span>
+                  </li>
+                ))}
+              </ul>
               {t.monthly && (
                 <div className="plan-monthly">
-                  or <b>${t.monthly}/mo</b> billed monthly
+                  or pay <b>monthly</b> (+25%) — Command only
                 </div>
               )}
               <hr className="div" />
@@ -654,7 +675,7 @@ function Pricing() {
               </p>
             </div>
             <span className="founding-note" style={{ alignSelf: "center" }}>
-              33% off for life · founding schools
+              25% off for 3 years · founding schools
             </span>
           </div>
           <div className="dept-rows">
@@ -698,11 +719,11 @@ function Pricing() {
         <FoundingSpots />
 
         <p className="price-foot">
-          Founding pricing locks your rate for the life of the account and is capped at the first 40
-          programs and 15 schools. Department pricing is banded by program count. Custom pricing
-          available for school districts with multiple schools. For scale: equipment-only trackers
-          run $800&ndash;$1,600 a year just to count gear &mdash; <a href="/equipment">Command runs the
-          entire program for less</a>.
+          Founding pricing locks your rate for 3 years and is capped at the first 40
+          programs and 15 schools. Pricing is banded by school size (enrollment / state
+          classification). Custom pricing available for school districts with multiple schools. For
+          scale: equipment-only trackers run $800&ndash;$1,600 a year just to count gear &mdash;{" "}
+          <a href="/equipment">Command runs the entire program for less</a>.
         </p>
       </div>
     </section>
@@ -744,7 +765,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How does founding pricing work?",
-    a: "Founding members lock in 33% off the regular list price for the life of the account — it doesn't reset or step up later. It's capped at the first 40 programs and 15 schools, so once those spots are claimed, pricing returns to list.",
+    a: "Founding members lock in 25% off the regular list price for 3 years — your rate is held there and doesn't step up during that window. It's capped at the first 40 programs and 15 schools, so once those spots are claimed, pricing returns to list.",
   },
   {
     q: "We run on spreadsheets and group texts today. Is switching painful?",

@@ -142,7 +142,7 @@ export default function EquipmentPage() {
               <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>
                 The Program Suite — Command
               </p>
-              <p className="mt-3 text-[34px] font-semibold">$1,200<span className="text-[16px] font-normal opacity-70">/yr list · $800 founding</span></p>
+              <p className="mt-3 text-[34px] font-semibold">from $800<span className="text-[16px] font-normal opacity-70">/yr list · from $600 founding</span></p>
               <p className="mt-3 text-[15px] leading-[1.6] opacity-85">
                 Inventory at this depth — plus practice planning, training, scheduling, attendance,
                 messaging, compliance, travel, and the rest of the program. One login, one price.
@@ -162,7 +162,7 @@ export default function EquipmentPage() {
             Spend the season coaching, <span className="headline-italic">not counting.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">
-            Founding members lock in 33% off for the life of the account. Most programs start with
+            Founding members lock in 25% off, locked for 3 years. Most programs start with
             inventory — and grow into the rest whenever they&apos;re ready.
           </p>
           <div className="mt-8 flex justify-center">

@@ -17,7 +17,7 @@ export function LeadForm() {
             <h2 className="h-display h2">Lock your founding rate.</h2>
             <p>
               Tell us about your program and we&apos;ll get you set up — and hold your
-              33%-off-for-life founding pricing while spots last.
+              25%-off, 3-year-locked founding pricing while spots last.
             </p>
             <ul className="lead-assure">
               <li>
