@@ -583,7 +583,7 @@ const BANDS: {
   { band: "Small · 1–2A", commandPrice: "$3,375", commandList: "$4,500", showPrice: "$6,750", showList: "$9,000" },
   { band: "Mid · 3–4A", commandPrice: "$7,500", commandList: "$10,000", showPrice: "$15,000", showList: "$20,000" },
   { band: "Large · 5–6A", commandPrice: "$15,000", commandList: "$20,000", showPrice: "$30,000", showList: "$40,000" },
-  { band: "31+ or multi-school", talk: true },
+  { band: "School district", talk: true },
 ];
 
 function Pricing() {
@@ -685,7 +685,7 @@ function Pricing() {
                 {b.talk ? (
                   <>
                     <span className="price">Let&apos;s talk</span>
-                    <span className="list">districts &amp; large departments</span>
+                    <span className="list">high schools &amp; middle schools, district-wide</span>
                   </>
                 ) : (
                   <>
@@ -721,7 +721,7 @@ function Pricing() {
         <p className="price-foot">
           Founding pricing locks your rate for 3 years and is capped at the first 40
           programs and 15 schools. Pricing is banded by school size (enrollment / state
-          classification). Custom pricing available for school districts with multiple schools. For
+          classification). School District pricing covers a district&apos;s high schools and middle schools together. For
           scale: equipment-only trackers run $800&ndash;$1,600 a year just to count gear &mdash;{" "}
           <a href="/equipment">Command runs the entire program for less</a>.
         </p>
