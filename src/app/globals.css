@@ -424,6 +424,14 @@ h1,h2,h3,h4 { margin: 0; }
 .plan-list s { color: var(--faint); }
 .plan-monthly { font-size: 13.5px; color: var(--muted); margin: 0 0 22px; }
 .plan-monthly b { color: var(--ink); font-weight: 700; }
+.plan-price .from { font-size: 15px; color: var(--muted); font-weight: 600; align-self: center; margin-right: 2px; }
+.plan-bands { list-style: none; margin: 0 0 20px; padding: 12px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 7px; }
+.plan-bands li { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 10px; }
+.plan-bands .band { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.03em; color: var(--muted); }
+.plan-bands .amt { font-weight: 700; font-size: 14px; color: var(--ink); font-feature-settings: "tnum"; }
+.plan-bands .amt i { font-style: normal; font-size: 11px; font-weight: 500; color: var(--muted); margin-left: 1px; }
+.plan-bands .list { font-size: 12px; color: var(--faint); }
+.plan-bands .list s { color: var(--faint); }
 .plan hr.div { border: 0; height: 1px; background: var(--line); margin: 4px 0 18px; }
 .plan-feats { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 9px; }
 .plan-feats .everything { font-size: 13px; font-weight: 600; color: var(--ink); }
@@ -438,7 +446,7 @@ h1,h2,h3,h4 { margin: 0; }
 .dept-head { padding: 26px 30px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .dept-head h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.018em; }
 .dept-head p { font-size: 14.5px; color: var(--ink-soft); margin: 6px 0 0; max-width: 540px; }
-.dept-rows { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.dept-rows { display: grid; grid-template-columns: repeat(4, 1fr); }
 .dept-row { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 7px; }
 .dept-row:last-child { border-right: 0; }
 .dept-row .band { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }

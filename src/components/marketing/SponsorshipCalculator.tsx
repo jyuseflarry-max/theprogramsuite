@@ -17,7 +17,7 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  */
 
 /** Founding annual price of the Showcase tier (the ROI anchor). */
-const SHOWCASE_FOUNDING_PRICE = 1_600;
+const SHOWCASE_START_PRICE = 1_600;
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -124,9 +124,9 @@ export function SponsorshipCalculator() {
           ? "Using the national average for now."
           : "Add a ZIP to adjust for your community's income.";
 
-  // Showcase ROI tie-in: does the estimate clear the founding price of Showcase?
+  // Showcase ROI tie-in: does the estimate clear the starting price of Showcase?
   const pointDollars = result.pointCents / 100;
-  const clearsShowcase = pointDollars >= SHOWCASE_FOUNDING_PRICE;
+  const clearsShowcase = pointDollars >= SHOWCASE_START_PRICE;
   const roiNote = clearsShowcase
     ? "Your estimate already clears it — the rest is money back in the program."
     : "A sponsor or two clears it — the rest is money back in the program.";
@@ -194,7 +194,7 @@ export function SponsorshipCalculator() {
             <span className="calc-roi-eyebrow">Showcase pays for itself</span>
             <p>
               <b>Showcase</b> is the toolset that generates these graphics and sells the placement —{" "}
-              <b>{usd.format(SHOWCASE_FOUNDING_PRICE)}/yr</b> founding. {roiNote}
+              <b>{usd.format(SHOWCASE_START_PRICE)}/yr</b> to start. {roiNote}
             </p>
           </div>
         ) : null}
