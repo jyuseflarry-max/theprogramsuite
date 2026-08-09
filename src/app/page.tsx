@@ -536,7 +536,7 @@ const TIERS: Tier[] = [
       "Practice planning + strength & training",
       "Inventory, gear & budget",
       "Staff roles, access & audit",
-      "Messaging + fair-use AI",
+      "MAAPP-aligned messaging + fair-use AI",
     ],
     hook: null,
     cta: "Start with Command",
@@ -786,6 +786,10 @@ const FAQ_ITEMS = [
   {
     q: "Is this serious enough for a district procurement review?",
     a: "Yes. Roles and permissions, full audit trails, budget and spend reconciliation, and board-ready reporting are built in. Administrators get the visibility and accountability a purchase of this size requires — not just a coach's convenience tool.",
+  },
+  {
+    q: "How do you keep coach–athlete messaging safe?",
+    a: "Messaging is MAAPP-aligned: open, monitored, and auditable. A minor can never end up in a private one-to-one channel with an adult — a parent or guardian is automatically part of every direct conversation, and when no family account exists, a second adult from the program is added instead. Group messages and announcements follow our Silent Guardian model: families of minors can always see everything sent to their athlete, without their phone buzzing for every routine update. And when a coach needs to raise something sensitive about one athlete — discipline, eligibility, health — it has to happen in that athlete's own conversation, so each family only ever sees their own athlete's business. Every message is scanned on send, anyone can flag one, and the full history is retained for athletic-director review.",
   },
   {
     q: "What do coaches actually do on their phones?",
