@@ -64,7 +64,7 @@ export default function EquipmentPage() {
             issue it, track it, collect it, settle the fees, and reorder what&apos;s short.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href="/#access" large>Request access</ArrowBtn>
+            <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
             <ArrowBtn href="/#pricing" variant="ghost" large>See pricing</ArrowBtn>
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function EquipmentPage() {
             they&apos;re ready.
           </p>
           <div className="mt-8 flex justify-center">
-            <ArrowBtn href="/#access" large>Request access</ArrowBtn>
+            <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
           </div>
         </div>
       </section>

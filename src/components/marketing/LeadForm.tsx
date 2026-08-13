@@ -90,9 +90,9 @@ export function LeadForm() {
               </div>
               <div className="form-actions">
                 <button type="submit" className="btn btn-primary btn-lg">
-                  Request access <Ico.arrow />
+                  Request a demo <Ico.arrow />
                 </button>
-                <span className="form-note">We reply personally — usually same day.</span>
+                <span className="form-note">Our team replies — usually same day.</span>
               </div>
             </div>
           </form>

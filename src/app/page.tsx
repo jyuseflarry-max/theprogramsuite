@@ -344,7 +344,7 @@ function SneakPeek() {
       <div className="container">
         <div className="rx-peek-grid">
           <div className="rx-peek-copy reveal">
-            <span className="rx-eyebrow rx-eyebrow--blue">A sneak peek</span>
+            <span className="rx-eyebrow rx-eyebrow--blue">Inside the platform</span>
             <h2 className="rx-display rx-h2">Powerful. Simple. Built for coaches.</h2>
             <p className="rx-lead rx-lead--light">
               A modern experience designed to bring clarity to your day and focus back to your
