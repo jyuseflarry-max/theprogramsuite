@@ -157,27 +157,27 @@ function Founder() {
         id="founder-wide"
         ratio="16 / 9"
         tone="dark"
-        label="The founding coach in a team huddle (wide)"
+        label="A head coach in a team huddle (wide)"
         alt="Jyusef Larry, founder and head coach, in a huddle with his team"
         className="rx-founder2-photo"
       />
       <div className="rx-founder2-overlay">
         <div className="container">
           <div className="rx-founder2-body reveal">
-            <span className="rx-eyebrow rx-eyebrow--light">Why I built this</span>
+            <span className="rx-eyebrow rx-eyebrow--light">Why we built this</span>
             <h2 className="rx-display rx-h2">
-              I built The Program Suite because <span className="rx-h2-gold">I live it.</span>
+              We built The Program Suite because <span className="rx-h2-gold">we live it.</span>
             </h2>
             <div className="rx-founder-text">
               <p>
-                23 years ago I became a coach to change lives. Somewhere along the way, I found
-                myself managing software instead of athletes — and missing the moments that
-                mattered most.
+                We&apos;ve spent years on the sideline. Coaching changes lives — but somewhere
+                along the way, we found ourselves managing software instead of athletes, and
+                missing the moments that mattered most.
               </p>
               <p>
-                Nothing on the market was built for the way a program actually works, so I built
-                it. The Program Suite is the all-in-one system I needed back then:
-                designed by a coach, built for every coach.
+                Nothing on the market was built for the way a program actually works, so we built
+                it. The Program Suite is the all-in-one system we needed back then:
+                designed by coaches, built for every coach.
               </p>
             </div>
             <div className="rx-sign">
@@ -290,7 +290,7 @@ const GIVES: { id: PhotoId; ico: IcoName; t: string; d: string }[] = [
   {
     id: "gives-family",
     ico: "family",
-    t: "Your family deserves your evenings.",
+    t: "Your friends and family deserve your evenings.",
     d: "Get the moments back that you can't get anywhere else.",
   },
   {
@@ -515,7 +515,7 @@ type Tier = {
   ctaCls: string;
 };
 
-type Band = { size: string; founding: string; list: string };
+type Band = { size: string; price: string };
 
 const TIERS: Tier[] = [
   {
@@ -524,9 +524,9 @@ const TIERS: Tier[] = [
     badge: "Most popular",
     for: "Everything you need to run the whole program day to day.",
     bands: [
-      { size: "Small · under 500", founding: "600", list: "800" },
-      { size: "Mid · 500–1,500", founding: "900", list: "1,200" },
-      { size: "Large · 1,500+", founding: "1,200", list: "1,600" },
+      { size: "Small · under 500", price: "800" },
+      { size: "Mid · 500–1,500", price: "1,200" },
+      { size: "Large · 1,500+", price: "1,600" },
     ],
     monthly: true,
     everything: null,
@@ -548,9 +548,9 @@ const TIERS: Tier[] = [
     badge: "Most valuable",
     for: "Everything in Command, plus the ability to generate funds for your program.",
     bands: [
-      { size: "Small · under 500", founding: "1,200", list: "1,600" },
-      { size: "Mid · 500–1,500", founding: "1,800", list: "2,400" },
-      { size: "Large · 1,500+", founding: "2,400", list: "3,200" },
+      { size: "Small · under 500", price: "1,600" },
+      { size: "Mid · 500–1,500", price: "2,400" },
+      { size: "Large · 1,500+", price: "3,200" },
     ],
     monthly: false,
     everything: "Everything in Command, plus",
@@ -575,14 +575,12 @@ const TIERS: Tier[] = [
 const BANDS: {
   band: string;
   commandPrice?: string;
-  commandList?: string;
   showPrice?: string;
-  showList?: string;
   talk?: boolean;
 }[] = [
-  { band: "Small · under 500", commandPrice: "$3,375", commandList: "$4,500", showPrice: "$6,750", showList: "$9,000" },
-  { band: "Mid · 500–1,500", commandPrice: "$7,500", commandList: "$10,000", showPrice: "$15,000", showList: "$20,000" },
-  { band: "Large · 1,500+", commandPrice: "$15,000", commandList: "$20,000", showPrice: "$30,000", showList: "$40,000" },
+  { band: "Small · under 500", commandPrice: "$4,500", showPrice: "$9,000" },
+  { band: "Mid · 500–1,500", commandPrice: "$10,000", showPrice: "$20,000" },
+  { band: "Large · 1,500+", commandPrice: "$20,000", showPrice: "$40,000" },
   { band: "School district", talk: true },
 ];
 
@@ -600,13 +598,6 @@ function Pricing() {
           </p>
         </div>
 
-        <div className="price-frame reveal" style={{ marginTop: 28, justifyContent: "center" }}>
-          <span className="founding-note">
-            <Ico.check width="15" height="15" /> Founding members lock in <b>25% off for 3 years</b> —
-            first 40 programs, 15 schools
-          </span>
-        </div>
-
         <div className="plans reveal">
           {TIERS.map((t) => (
             <div className={"plan" + (t.popular ? " popular" : "")} key={t.name}>
@@ -618,20 +609,17 @@ function Pricing() {
               <div className="plan-price">
                 <span className="from">from</span>
                 <span className="cur">$</span>
-                <span className="amt">{t.bands[0].founding}</span>
+                <span className="amt">{t.bands[0].price}</span>
                 <span className="per">/year</span>
               </div>
-              <div className="plan-list">Founding price by student enrollment — list struck through</div>
+              <div className="plan-list">Priced by student enrollment</div>
               <ul className="plan-bands">
                 {t.bands.map((b) => (
                   <li key={b.size}>
                     <span className="band">{b.size}</span>
                     <span className="amt">
-                      ${b.founding}
+                      ${b.price}
                       <i>/yr</i>
-                    </span>
-                    <span className="list">
-                      <s>${b.list}</s>
                     </span>
                   </li>
                 ))}
@@ -674,9 +662,6 @@ function Pricing() {
                 and girls&apos; teams count separately.
               </p>
             </div>
-            <span className="founding-note" style={{ alignSelf: "center" }}>
-              25% off for 3 years · founding schools
-            </span>
           </div>
           <div className="dept-rows">
             {BANDS.map((b) => (
@@ -695,18 +680,12 @@ function Pricing() {
                         {b.commandPrice}
                         <i>/yr</i>
                       </span>
-                      <span className="list">
-                        list <s>{b.commandList}/yr</s>
-                      </span>
                     </div>
                     <div className="dept-tier">
                       <span className="dept-tier-name">Showcase</span>
                       <span className="price sm">
                         {b.showPrice}
                         <i>/yr</i>
-                      </span>
-                      <span className="list">
-                        list <s>{b.showList}/yr</s>
                       </span>
                     </div>
                   </>
@@ -716,11 +695,8 @@ function Pricing() {
           </div>
         </div>
 
-        <FoundingSpots />
-
         <p className="price-foot">
-          Founding pricing locks your rate for 3 years and is capped at the first 40
-          programs and 15 schools. Pricing is banded by student enrollment (your school&apos;s size), so it
+          Pricing is banded by student enrollment (your school&apos;s size), so it
           works the same in every state. School District pricing covers a district&apos;s high schools and middle schools together. For
           scale: equipment-only trackers run $800&ndash;$1,600 a year just to count gear &mdash;{" "}
           <a href="/equipment">Command runs the entire program for less</a>.
@@ -730,42 +706,11 @@ function Pricing() {
   );
 }
 
-const SPOTS = [
-  { num: 37, total: 40, label: "Program spots left", claimed: 3, sub: "3 of 40 founding programs claimed" },
-  { num: 15, total: 15, label: "School spots left", claimed: 0, sub: "0 of 15 founding schools claimed" },
-];
-
-function FoundingSpots() {
-  return (
-    <div className="spots reveal">
-      {SPOTS.map((s) => (
-        <div className="spot" key={s.label}>
-          <div className="spot-top">
-            <div className="spot-num">
-              {s.num}
-              <span className="of"> / {s.total}</span>
-            </div>
-            <div className="spot-label">{s.label}</div>
-          </div>
-          <div className="spot-bar">
-            <i style={{ width: (s.claimed / s.total) * 100 + "%" }} />
-          </div>
-          <div className="spot-sub">{s.sub}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ============================================================ FAQ */
 const FAQ_ITEMS = [
   {
     q: 'What exactly is "one program"?',
     a: "One program is one sport, one gender, with all of its levels — freshman, JV, and varsity together. Boys' and girls' teams of the same sport are two separate programs; a true coed sport counts as one. You're never charged per level, and because everything lives under the program, an athlete's history follows them from one season to the next.",
-  },
-  {
-    q: "How does founding pricing work?",
-    a: "Founding members lock in 25% off the regular list price for 3 years — your rate is held there and doesn't step up during that window. It's capped at the first 40 programs and 15 schools, so once those spots are claimed, pricing returns to list.",
   },
   {
     q: "We run on spreadsheets and group texts today. Is switching painful?",
@@ -797,7 +742,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Who built it, and who do we talk to?",
-    a: "The Program Suite was built by a high school coach who ran a program on the same scattered tools you're trying to replace. When you reach out, you're often talking to the founding coach — not a call center.",
+    a: "The Program Suite was built by coaches who ran programs on the same scattered tools you're trying to replace. When you reach out, you're talking to people who've run a program — not a call center.",
   },
 ];
 
@@ -829,7 +774,7 @@ function Faq() {
 const TRUST: { ico: IcoName; t: string; d: string }[] = [
   { ico: "shield", t: "Trusted by coaches", d: "Across every sport" },
   { ico: "lock", t: "Secure & reliable", d: "Your data. Your program." },
-  { ico: "whistle", t: "Built by a coach", d: "Backed by experience" },
+  { ico: "whistle", t: "Built by coaches", d: "Backed by experience" },
   { ico: "devices", t: "Web & mobile", d: "Always with you" },
 ];
 

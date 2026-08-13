@@ -1,11 +1,11 @@
 import { Ico } from "./icons";
 
 /**
- * Founder-access lead form.
+ * Access-request lead form.
  *
- * Plain server-rendered POST to /api/founder-access — the route validates the
+ * Plain server-rendered POST to /api/request-access — the route validates the
  * required fields (name, email, school, role, sports, plan) and 303-redirects
- * to /founder-access/thanks on success or /founder-access/error on failure, so
+ * to /request-access/thanks on success or /request-access/error on failure, so
  * no client-side JavaScript is needed. `sports` is required to match the API.
  */
 export function LeadForm() {
@@ -14,19 +14,18 @@ export function LeadForm() {
       <div className="container">
         <div className="lead-grid">
           <div className="lead-intro reveal">
-            <h2 className="h-display h2">Lock your founding rate.</h2>
+            <h2 className="h-display h2">See it working for your program.</h2>
             <p>
-              Tell us about your program and we&apos;ll get you set up — and hold your
-              25%-off, 3-year-locked founding pricing while spots last.
+              Tell us about your program and we&apos;ll get you set up — with the right
+              plan for your school and sport.
             </p>
             <ul className="lead-assure">
               <li>
-                <Ico.check className="ck" width="16" height="16" /> A real person — often the founding
-                coach — replies
+                <Ico.check className="ck" width="16" height="16" /> A real person replies — coaches,
+                not a call center
               </li>
               <li>
-                <Ico.check className="ck" width="16" height="16" /> No card required to claim a founding
-                spot
+                <Ico.check className="ck" width="16" height="16" /> No card required to get started
               </li>
               <li>
                 <Ico.check className="ck" width="16" height="16" /> Up and running in your sport within a
@@ -35,7 +34,7 @@ export function LeadForm() {
             </ul>
           </div>
 
-          <form className="lead-form reveal" action="/api/founder-access" method="POST">
+          <form className="lead-form reveal" action="/api/request-access" method="POST">
             <div className="form-grid">
               <div className="field half">
                 <label htmlFor="f-name">Name</label>
@@ -91,7 +90,7 @@ export function LeadForm() {
               </div>
               <div className="form-actions">
                 <button type="submit" className="btn btn-primary btn-lg">
-                  Claim a founding spot <Ico.arrow />
+                  Request access <Ico.arrow />
                 </button>
                 <span className="form-note">We reply personally — usually same day.</span>
               </div>

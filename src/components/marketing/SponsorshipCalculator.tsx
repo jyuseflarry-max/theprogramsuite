@@ -16,7 +16,7 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  * Plan: docs/sponsorship-valuation-plan.md (Phase 2)
  */
 
-/** Founding annual price of the Showcase tier (the ROI anchor). */
+/** Starting annual price of the Showcase tier (the ROI anchor). */
 const SHOWCASE_START_PRICE = 1_600;
 
 const usd = new Intl.NumberFormat("en-US", {

@@ -69,7 +69,7 @@ export async function POST(request: Request) {
   const missing = requiredFields.filter((name) => !field(formData, name));
 
   if (missing.length > 0) {
-    const redirectUrl = new URL("/founder-access/error", appUrl(request));
+    const redirectUrl = new URL("/request-access/error", appUrl(request));
     redirectUrl.searchParams.set("reason", "missing");
     return NextResponse.redirect(redirectUrl, { status: 303 });
   }
@@ -87,10 +87,10 @@ export async function POST(request: Request) {
   const accepted = await forwardToCrm(lead);
 
   if (!accepted) {
-    const redirectUrl = new URL("/founder-access/error", appUrl(request));
+    const redirectUrl = new URL("/request-access/error", appUrl(request));
     redirectUrl.searchParams.set("reason", "send");
     return NextResponse.redirect(redirectUrl, { status: 303 });
   }
 
-  return NextResponse.redirect(new URL("/founder-access/thanks", appUrl(request)), { status: 303 });
+  return NextResponse.redirect(new URL("/request-access/thanks", appUrl(request)), { status: 303 });
 }

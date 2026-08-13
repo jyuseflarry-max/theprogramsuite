@@ -1,9 +1,20 @@
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export default function FounderAccessThanksPage() {
+type RequestAccessErrorPageProps = {
+  searchParams?: Promise<{
+    reason?: string;
+  }>;
+};
+
+export default async function RequestAccessErrorPage({
+  searchParams,
+}: RequestAccessErrorPageProps) {
+  const params = await searchParams;
+  const isMissing = params?.reason === "missing";
+
   return (
     <main className="min-h-screen bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
       <SiteNav />
@@ -23,7 +34,7 @@ export default function FounderAccessThanksPage() {
               The Program Suite
             </span>
           </div>
-          <CheckCircle2
+          <AlertTriangle
             aria-hidden="true"
             className="mx-auto mt-10 size-14 text-[color:var(--color-accent)]"
             strokeWidth={1.5}
@@ -32,19 +43,19 @@ export default function FounderAccessThanksPage() {
             className="display mt-6"
             style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
           >
-            Founder access
-            <br />
-            <span className="headline-italic">request received.</span>
+            Request <span className="headline-italic">not sent.</span>
           </h1>
           <p className="mt-5 text-[16px] leading-[1.55] text-[color:var(--color-ink-soft)]">
-            We will follow up with the right setup path, founder pricing details, and payment link.
+            {isMissing
+              ? "Please complete every required field and try again."
+              : "Something went wrong sending your request. Please try again, or email coach@theprogramsuite.com directly."}
           </p>
           <div className="mt-10 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row">
-            <Link className="btn btn-primary" href="/">
-              Back to home
+            <Link className="btn btn-primary" href="/#access">
+              Try again
             </Link>
-            <a className="btn btn-ghost" href="https://app.theprogramsuite.com/login">
-              Sign in
+            <a className="btn btn-ghost" href="mailto:coach@theprogramsuite.com">
+              Email us
             </a>
           </div>
         </div>
