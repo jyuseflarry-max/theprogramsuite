@@ -1356,6 +1356,8 @@ details[open] .faq-ico { transform: rotate(45deg); }
   }
   .v3-cats-row::-webkit-scrollbar { display: none; }
   .v3-cat { scroll-snap-align: start; }
+  /* module cards go full width on phones — 2-up is too cramped for this copy */
+  .v3-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .v3-gives-row { grid-template-columns: 1fr; }
