@@ -316,7 +316,7 @@ const MODS: Mod[] = [
     ),
   },
   {
-    name: "Content Studio",
+    name: "Studio",
     desc: "School-branded graphics, an approval queue, scheduled posting — and sponsors sold, fulfilled, and proven.",
     tint: "var(--gold)",
     dark: true,
@@ -393,7 +393,7 @@ function Spotlights() {
         <div className="reveal">
           <h3 className="rx-display v3-spot-h3">The program that funds itself.</h3>
           <p className="v3-spot-lead">
-            Content Studio turns every game into school-branded content — and every banner, post,
+            Studio turns every game into school-branded content — and every banner, post,
             and scoreboard slot into sponsorship revenue you can prove.
           </p>
           <ul className="v3-spot-list">
@@ -428,7 +428,7 @@ function Spotlights() {
           </ul>
           <div className="v3-spot-cta">
             <a className="btn btn-ink" href="#access">
-              Explore Content Studio <Ico.arrow />
+              Explore Studio <Ico.arrow />
             </a>
             <a href="#pricing" className="v3-spot-alt">
               See Showcase pricing
@@ -458,11 +458,10 @@ function Spotlights() {
 
       <div className="v3-spot v3-spot--flip" id="strategy">
         <div className="reveal">
-          <h3 className="rx-display v3-spot-h3">College-grade analytics. High-school staff size.</h3>
+          <h3 className="rx-display v3-spot-h3">College-grade tools. High-school staff size.</h3>
           <p className="v3-spot-lead">
-            Every sport gets its own Strategy tab. Basketball staffs tag possessions live and get
-            shot quality, lineup net ratings, and a box score that reconciles against the official
-            book.
+            Every sport gets its own Strategy tab — design the scheme in your own terminology, scout
+            the opponent, and read the numbers that used to take a college staff.
           </p>
           <ul className="v3-spot-list">
             <li>
@@ -496,34 +495,11 @@ function Spotlights() {
             </a>
           </div>
         </div>
-        <div className="v3-spot-media v3-shotwrap reveal">
-          <svg viewBox="0 0 420 250" fill="none" style={{ width: "100%" }} aria-hidden="true">
-            <rect x="4" y="4" width="412" height="242" rx="10" stroke="#b7cbe8" strokeWidth="2" />
-            <path d="M110 246 a100 100 0 0 1 200 0" stroke="#b7cbe8" strokeWidth="2" />
-            <rect x="150" y="176" width="120" height="70" stroke="#b7cbe8" strokeWidth="2" />
-            <circle cx="210" cy="176" r="34" stroke="#b7cbe8" strokeWidth="2" />
-            <circle cx="140" cy="120" r="9" fill="#34c759" opacity=".9" />
-            <circle cx="250" cy="80" r="12" fill="#34c759" opacity=".75" />
-            <circle cx="300" cy="150" r="8" fill="#ff9500" opacity=".9" />
-            <circle cx="180" cy="60" r="7" fill="#ff3b30" opacity=".8" />
-            <circle cx="90" cy="190" r="10" fill="#34c759" opacity=".6" />
-            <circle cx="330" cy="60" r="9" fill="#ff9500" opacity=".7" />
-            <circle cx="210" cy="205" r="13" fill="#34c759" opacity=".9" />
-          </svg>
-          <div className="v3-shot-stats">
-            <div className="v3-stat">
-              <b className="up">+12.4</b>
-              <span>Lineup net rtg</span>
-            </div>
-            <div className="v3-stat">
-              <b>1.08</b>
-              <span>Pts per shot</span>
-            </div>
-            <div className="v3-stat">
-              <b className="up">+.06</b>
-              <span>vs expected</span>
-            </div>
-          </div>
+        <div className="v3-spot-media reveal">
+          <Shot
+            src="/marketing/screens/strategy-playbook.png"
+            alt="The basketball play designer: a half-court diagram with players, defenders, and movement arrows, beside the play editor"
+          />
         </div>
       </div>
 
@@ -723,7 +699,7 @@ const TIERS: Tier[] = [
     everything: "Everything in Command, plus",
     feats: [
       "Media gallery",
-      "Content Studio",
+      "Studio",
       "Sponsorship sales",
       "Fundraising tools",
       "365 premium AI creations/yr (~1 a day)",

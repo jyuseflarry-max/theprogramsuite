@@ -66,7 +66,7 @@ const SUBPROCESSORS: {
   },
   {
     name: "OpenAI",
-    purpose: "AI image generation for Content Studio and athlete creations",
+    purpose: "AI image generation for Studio and athlete creations",
     data: "Prompts, captions, and any reference images the user provides",
     location: "United States",
   },
