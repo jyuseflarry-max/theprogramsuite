@@ -1340,8 +1340,24 @@ details[open] .faq-ico { transform: rotate(45deg); }
     linear-gradient(90deg, rgba(247,250,253,.96) 0%, rgba(247,250,253,.84) 46%, rgba(247,250,253,.35) 80%),
     linear-gradient(0deg, rgba(242,242,247,.92) 0%, rgba(242,242,247,0) 34%); }
 }
+@media (max-width: 640px) {
+  /* Adobe-style mobile: one category card fills the width, the next peeks —
+     swipe horizontally to advance (CSS scroll-snap, no JS). */
+  .v3-cats-row {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 28px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .v3-cats-row::-webkit-scrollbar { display: none; }
+  .v3-cat { scroll-snap-align: start; }
+}
 @media (max-width: 560px) {
-  .v3-cats-row { grid-template-columns: 1fr; }
   .v3-gives-row { grid-template-columns: 1fr; }
   .v3-hero-in { padding-block: 72px 150px; }
   .v3-hero-note { font-size: 10.5px; letter-spacing: .05em; }
