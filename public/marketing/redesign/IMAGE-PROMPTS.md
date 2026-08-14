@@ -53,3 +53,48 @@ upper half; keep the lower third uncluttered for the caption.
 | `gives-consistency` | 3:4 | A team lifting a trophy / celebrating a win together, confetti or stadium lights. ("Great programs are built with consistency.") |
 | `cta-sunset` | 16:7 (wide) | A coach walking off the field at sunset with his young child, silhouetted, holding hands. Warm golden backlight. Right side darker for an overlaid card. ("Imagine getting two hours of your week back.") |
 | `product-dashboard` | use real UI | The "sneak peek" product shot — a phone + web dashboard. Best filled with a **real** screenshot from `public/images/` rather than generated, so the UI is authentic. |
+
+## Rotating hero panes (Adobe-style category hero)
+
+Four hero images, one per category card (Run the program / Coach the game /
+Fund the program / Bring families in). Rolling over a card slides in that
+card's hero. Save as `hero-run.jpg`, `hero-game.jpg`, `hero-fund.jpg`,
+`hero-family.jpg` (16:9, largest export size).
+
+> **STATUS: generated & composited (2026-08-13).** The `hero-*-blank.jpg`
+> files are the AI originals with empty screens; `hero-*.jpg` are the finals
+> with real product screenshots perspective-warped onto every screen.
+> To refresh after a screenshot changes: `python3 scripts/compose-hero-screens.py`
+> (that script also documents which capture goes on which device; the fund
+> phone's graphic is `hero-fund-graphic.png` — swap that file to change the post).
+
+**Direction (locked 2026-08-13): FIRST-PERSON POV, bright & airy.** Every hero
+is shot from the user's own eyes — your hands, your desk, your field. No faces
+of the "you" character, ever. Daylight, clean whites, optimistic. No moody
+night scenes.
+
+**Series rules (bake into every prompt):**
+- Generate all four in ONE ChatGPT conversation. After the first image, start
+  each following prompt with: *"Same photographic series as the previous image —
+  identical bright color grade, lens, and the same first-person hands."*
+- Keep the LEFT THIRD simple and uncluttered (plain wall, open court, open
+  sky) — the headline renders there live over the image.
+- Every screen in the scene is BLANK with a soft cool glow — never let the AI
+  draw UI. Composite real app screenshots onto the screens in post.
+
+**Base block (paste at the top of each prompt):**
+> Bright, airy editorial photograph, 16:9 landscape, FIRST-PERSON POV: shot
+> from the subject's own eye level, their hands visible in the lower frame,
+> face never shown. Natural daylight, clean whites, soft shadows, crisp and
+> optimistic; shallow depth of field; subtle blue and warm-gold accents in the
+> environment. Keep the LEFT THIRD of the frame simple and uncluttered — a
+> large headline will be overlaid there. Every screen in the scene is BLANK
+> with only a soft cool glow — no readable interface, icons, or text anywhere.
+> No logos, no watermarks.
+
+| id | scene |
+|----|-------|
+| `hero-run` | POV: you are the coach sitting at a tidy desk in a sunlit athletics office in the morning. Your own hands rest on a keyboard in the lower frame. Slightly right of center, a large desktop monitor with a blank, softly glowing screen; an iPhone leans against its stand, also glowing. On the desk: a coffee mug, a whistle on its lanyard, a small stack of numbered index cards, one neat notepad. Big soft window light from the left; through an interior window, a bright empty gym court. Mood: the whole program handled before first period. |
+| `hero-game` | POV: your hands hold an iPad (blank glowing screen) at the scorer's table of a bright, sun-filled high-school gym — daylight pouring through high windows onto polished maple. A laptop sits open to the right, screen blank; a basketball and a marker rest beside it. The far court and championship banners are softly out of focus in the light. Mood: game-planning in the daylight, everything under control. |
+| `hero-fund` | POV: your two hands hold an iPhone up in landscape, framing the football field below from the top of the home bleachers at golden hour — the phone screen a blank soft glow. Beyond it, a vivid green field in warm late-afternoon sun, players warming up small in the distance, blue sky with a little gold flare. A plain BLANK banner on the fence rail nearby (no lettering). Mood: every golden hour is content; the program looks big-time. |
+| `hero-family` | POV: you are the parent leaning on a bright kitchen counter in the morning, your own hand steadying an iPhone propped against a fruit bowl, screen a blank soft glow. Beside the phone, your teenage athlete leans in smiling at the screen, morning light across the counter, a glass of orange juice, a numbered jersey folded on a stool behind. Mood: the program reaches home; nothing is missed. |
