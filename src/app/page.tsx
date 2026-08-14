@@ -65,9 +65,9 @@ type Mod = {
   ico: ReactNode;
 };
 
-function Shot({ src, alt }: { src: string; alt: string }) {
+function Shot({ src, alt, className }: { src: string; alt: string; className?: string }) {
   /* eslint-disable-next-line @next/next/no-img-element */
-  return <img src={src} alt={alt} loading="lazy" />;
+  return <img src={src} alt={alt} loading="lazy" className={className} />;
 }
 
 const MODS: Mod[] = [
@@ -329,16 +329,8 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#dcebff,#cfe2fa)", justifyContent: "center" }}>
-        <div className="v3-studio-card">
-          <span className="v3-studio-big">
-            FRIDAY.
-            <br />
-            UNDER THE LIGHTS.
-          </span>
-          <span className="v3-studio-num">27–14</span>
-          <span className="v3-studio-bar">Presented by Ridgeline Motors</span>
-        </div>
+      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#101827,#1d2c49)", justifyContent: "center", alignItems: "center" }}>
+        <Shot className="v3-studio-poster" src="/marketing/screens/studio-flyer.png" alt="A school-branded game-day flyer made in Studio, with a local sponsor" />
       </div>
     ),
   },
@@ -438,21 +430,17 @@ function Spotlights() {
         <div
           className="v3-spot-media reveal"
           style={{
-            background: "linear-gradient(150deg,#dcebff,#cfe2fa)",
-            padding: 34,
+            background: "linear-gradient(150deg,#101827,#1d2c49)",
+            padding: 28,
             display: "grid",
             placeItems: "center",
           }}
         >
-          <div className="v3-studio-card v3-studio-card--lg">
-            <span className="v3-studio-big">
-              GAME DAY
-              <br />
-              7:00 PM · HOME
-            </span>
-            <span className="v3-studio-num">#RIDGEPRIDE</span>
-            <span className="v3-studio-bar">Presented by Ridgeline Motors</span>
-          </div>
+          <Shot
+            className="v3-studio-poster--lg"
+            src="/marketing/screens/studio-flyer.png"
+            alt="A school-branded game-day flyer made in Studio, featuring both teams and a local sponsor"
+          />
         </div>
       </div>
 
