@@ -1276,8 +1276,7 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .v3-studio-num { position: absolute; bottom: 32px; left: 10px; color: var(--gold); font-weight: 800; font-size: 24px; }
 .v3-studio-bar { position: absolute; left: 0; right: 0; bottom: 0; background: var(--gold); color: var(--gold-ink); font-weight: 700; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; padding: 6px 9px; }
 /* Real Studio output shown as a poster (portrait graphic on the gradient canvas) */
-.v3-studio-poster { height: 90%; width: auto; max-width: 82%; object-fit: contain; border-radius: 8px; box-shadow: 0 14px 34px -14px rgba(0,0,0,.5); }
-.v3-studio-poster--lg { height: auto; width: auto; max-height: 470px; max-width: 78%; border-radius: 12px; box-shadow: 0 26px 60px -22px rgba(0,0,0,.5); }
+.v3-studio-poster--lg { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 26px 60px -22px rgba(0,0,0,.55); }
 
 /* ---- spotlights ---- */
 .v3-spots { padding-block: 36px 8px; }

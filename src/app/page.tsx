@@ -329,9 +329,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#101827,#1d2c49)", justifyContent: "center", alignItems: "center" }}>
-        <Shot className="v3-studio-poster" src="/marketing/screens/studio-flyer.png" alt="A school-branded game-day flyer made in Studio, with a local sponsor" />
-      </div>
+      <Shot src="/marketing/screens/studio-flyer-card.png" alt="A school-branded game-day graphic made in Studio, with a local sponsor" />
     ),
   },
 ];
@@ -431,7 +429,7 @@ function Spotlights() {
           className="v3-spot-media reveal"
           style={{
             background: "linear-gradient(150deg,#101827,#1d2c49)",
-            padding: 28,
+            padding: 14,
             display: "grid",
             placeItems: "center",
           }}
