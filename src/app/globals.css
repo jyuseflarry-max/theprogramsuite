@@ -1346,7 +1346,7 @@ details[open] .faq-ico { transform: rotate(45deg); }
   .v3-cats-row {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 82%;
+    grid-auto-columns: 46%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-padding-left: 28px;
@@ -1355,7 +1355,8 @@ details[open] .faq-ico { transform: rotate(45deg); }
     padding-bottom: 2px;
   }
   .v3-cats-row::-webkit-scrollbar { display: none; }
-  .v3-cat { scroll-snap-align: start; }
+  .v3-cat { scroll-snap-align: start; padding: 14px 14px; }
+  .v3-cat-arrow { display: none; }  /* reclaim width for the label at 2-up */
   /* module cards go full width on phones — 2-up is too cramped for this copy */
   .v3-grid { grid-template-columns: 1fr; }
 }
