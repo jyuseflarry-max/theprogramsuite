@@ -1204,14 +1204,6 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .v3-cat-arrow { margin-left: auto; color: var(--muted); transition: transform .18s ease; }
 .v3-cat:hover .v3-cat-arrow { transform: translateX(3px); }
 
-/* ---- story ribbon ---- */
-.v3-story { padding: 84px 0 36px; }
-.v3-story-in { max-width: 840px; }
-.v3-story-in > p { color: var(--ink-soft); max-width: 65ch; font-size: 17px; }
-.v3-story-sign { margin-top: 18px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-.v3-story-sign b { font-size: 15px; color: var(--ink); }
-.v3-story-sign span { font-size: 13px; color: var(--muted); }
-
 /* ---- module grid ---- */
 .v3-platform { padding: 52px 0 36px; }
 .v3-sec-head { max-width: 760px; margin-bottom: 34px; }

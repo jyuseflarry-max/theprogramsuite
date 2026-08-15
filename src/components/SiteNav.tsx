@@ -4,7 +4,6 @@ const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
 const NAV_LINKS = [
   { href: "/#platform", label: "Platform" },
-  { href: "/#story", label: "Why We Built It" },
   { href: "/#pricing", label: "Pricing" },
 ];
 

@@ -16,7 +16,6 @@ const COLS = [
   {
     h: "Company",
     links: [
-      { l: "About", href: "/#story" },
       { l: "Resources", href: "/#faq" },
       { l: "Support", href: "/support" },
       { l: "Contact", href: "/#access" },

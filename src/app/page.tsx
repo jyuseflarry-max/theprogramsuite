@@ -18,32 +18,12 @@ export default function LandingPage() {
       <ModuleGrid />
       <ModuleModal modules={MOD_LIST} />
       <Pricing />
-      <StoryRibbon />
       <LeadForm />
       <Faq />
       <CtaBand />
       <Trust />
       <SiteFooter />
     </div>
-  );
-}
-
-/* ============================================================ Story ribbon (compressed) */
-function StoryRibbon() {
-  return (
-    <section className="v3-story" id="story">
-      <div className="container v3-story-in reveal">
-        <p>
-          Somewhere along the way we were managing software instead of athletes — and missing the
-          moments that mattered. So we built the one system a program actually runs on: designed by
-          coaches, built for every coach.
-        </p>
-        <div className="v3-story-sign">
-          <b>Jyusef Larry</b>
-          <span>Founder &amp; Head Coach</span>
-        </div>
-      </div>
-    </section>
   );
 }
 
