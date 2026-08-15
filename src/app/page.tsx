@@ -18,7 +18,6 @@ export default function LandingPage() {
       <Spotlights />
       <Pricing />
       <StoryRibbon />
-      <GivesBack />
       <LeadForm />
       <Faq />
       <CtaBand />
@@ -538,56 +537,6 @@ function Spotlights() {
   );
 }
 
-/* ============================================================ What it gives you back */
-const GIVES: { ico: IcoName; t: string; d: string }[] = [
-  {
-    ico: "whistle",
-    t: "You coach. We handle the busy work.",
-    d: "Save hours every week by automating the administration.",
-  },
-  {
-    ico: "users",
-    t: "Your athletes get your attention.",
-    d: "More intentional time to develop, connect, and lead.",
-  },
-  {
-    ico: "family",
-    t: "Your family gets your evenings.",
-    d: "Get the moments back that you can't get anywhere else.",
-  },
-  {
-    ico: "impact",
-    t: "Your program gets consistency.",
-    d: "Stay organized, align your staff, and elevate the culture.",
-  },
-];
-
-function GivesBack() {
-  return (
-    <section className="v3-gives" id="why">
-      <div className="container">
-        <div className="v3-sec-head reveal" style={{ marginBottom: 28 }}>
-          <h2 className="rx-display v3-h2">The point was never software.</h2>
-        </div>
-        <div className="v3-gives-row">
-          {GIVES.map((g) => {
-            const Glyph = Ico[g.ico];
-            return (
-              <div className="v3-give reveal" key={g.t}>
-                <span className="v3-give-ico">
-                  <Glyph />
-                </span>
-                <b>{g.t}</b>
-                <p>{g.d}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ============================================================ Pricing (unchanged) */
 type Tier = {
   name: string;
@@ -647,7 +596,7 @@ const TIERS: Tier[] = [
       "Studio",
       "Sponsorship sales",
       "Fundraising tools",
-      "365 premium AI creations/yr (~1 a day)",
+      "AI graphics every year — 200 Small · 300 Mid · 400 Large",
     ],
     hook: null,
     cta: "Start Showcase",
@@ -739,7 +688,8 @@ function Pricing() {
               <p>
                 Bring the whole department onto Command or Showcase, plus a department roll-up of
                 inventory, budget, and staff for the AD. Each sport counts as one program; boys&apos;
-                and girls&apos; teams count separately.
+                and girls&apos; teams count separately. Showcase departments share one school-wide
+                pool of AI graphics — 900 a year Small, 2,000 Mid, 4,000 Large.
               </p>
             </div>
           </div>
@@ -768,6 +718,9 @@ function Pricing() {
 
         <p className="price-foot">
           Pricing is banded by student enrollment (your school&apos;s size).
+        </p>
+        <p className="price-foot">
+          Multiple schools? School District pricing is custom — <a href="#access">contact us</a>.
         </p>
       </div>
     </section>
