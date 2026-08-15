@@ -27,7 +27,7 @@ const PANES: Pane[] = [
         highest <em>level.</em>
       </>
     ),
-    sub: "Schedule, athletes, practice, game day, gear, and content — the operating system for school sports. Run your program as if you had a full staff.",
+    sub: "Schedule, athletes, practice, game day, gear, and content — the system for school sports. Run your program as if you had a full staff.",
   },
   {
     img: "/marketing/redesign/hero-game.jpg",
