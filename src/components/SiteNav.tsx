@@ -6,7 +6,6 @@ const NAV_LINKS = [
   { href: "/#platform", label: "Platform" },
   { href: "/#story", label: "Why We Built It" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/#why", label: "About" },
 ];
 
 export function SiteNav() {

@@ -67,7 +67,7 @@ const PANES: Pane[] = [
   },
 ];
 
-type Cat = { t: string; d: string; href: string; ico: ReactNode; tint: string; dark?: boolean };
+type Cat = { t: string; d: string; href: string; mod?: string; ico: ReactNode; tint: string; dark?: boolean };
 
 const CATS: Cat[] = [
   {
@@ -87,7 +87,8 @@ const CATS: Cat[] = [
   {
     t: "Coach the game",
     d: "Playbook · scouting · analytics",
-    href: "#strategy",
+    href: "?m=strategy",
+    mod: "strategy",
     tint: "#e8590c",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -99,7 +100,8 @@ const CATS: Cat[] = [
   {
     t: "Fund the program",
     d: "Content · sponsors · fundraising",
-    href: "#showcase",
+    href: "?m=studio",
+    mod: "studio",
     tint: "var(--gold)",
     dark: true,
     ico: (
@@ -111,7 +113,8 @@ const CATS: Cat[] = [
   {
     t: "Bring families in",
     d: "Athlete & family app",
-    href: "#why",
+    href: "?m=messages",
+    mod: "messages",
     tint: "var(--good)",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -177,6 +180,7 @@ export function HeroV3() {
                 key={c.t}
                 className={"v3-cat" + (i === pane ? " active" : "")}
                 href={c.href}
+                data-module={c.mod}
                 onMouseEnter={() => go(i)}
                 onFocus={() => go(i)}
                 onTouchStart={() => go(i)}

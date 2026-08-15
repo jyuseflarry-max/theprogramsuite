@@ -6,6 +6,7 @@ import { LeadForm } from "@/components/marketing/LeadForm";
 import { PlanPrefill } from "@/components/marketing/PlanPrefill";
 import { Reveal } from "@/components/marketing/Reveal";
 import { HeroV3 } from "@/components/marketing/HeroV3";
+import { ModuleModal, type ModDetail } from "@/components/marketing/ModuleModal";
 
 export default function LandingPage() {
   return (
@@ -15,7 +16,7 @@ export default function LandingPage() {
       <SiteNav />
       <HeroV3 />
       <ModuleGrid />
-      <Spotlights />
+      <ModuleModal modules={MOD_LIST} />
       <Pricing />
       <StoryRibbon />
       <LeadForm />
@@ -32,10 +33,6 @@ function StoryRibbon() {
   return (
     <section className="v3-story" id="story">
       <div className="container v3-story-in reveal">
-        <h2 className="rx-display v3-story-h2">
-          We coached with six apps and a stack of spreadsheets.{" "}
-          <em>Never again.</em>
-        </h2>
         <p>
           Somewhere along the way we were managing software instead of athletes — and missing the
           moments that mattered. So we built the one system a program actually runs on: designed by
@@ -58,7 +55,6 @@ type Mod = {
   dark?: boolean;
   chip?: string;
   chipGold?: boolean;
-  href: string;
   media: ReactNode;
   ico: ReactNode;
 };
@@ -73,7 +69,6 @@ const MODS: Mod[] = [
     name: "Home",
     desc: "Start with what needs attention, what is next, and what the staff needs to handle today.",
     tint: "var(--accent)",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M3 11l9-8 9 8" />
@@ -106,7 +101,6 @@ const MODS: Mod[] = [
     name: "Schedule",
     desc: "Games, practices, training, and trips on one calendar — quick-add, drag to move, conflict checks built in.",
     tint: "#0b8f5b",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -139,7 +133,6 @@ const MODS: Mod[] = [
     name: "Practice",
     desc: "Plan in blocks and periods, pull from your drill library, and run practice live from the field.",
     tint: "#007a5c",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="5" y="3" width="14" height="18" rx="2" />
@@ -172,7 +165,6 @@ const MODS: Mod[] = [
     name: "Training",
     desc: "Periodized programs, rack layouts, and a weight-room kiosk — loads captured while the lift happens.",
     tint: "#7a5195",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M2 12h3M19 12h3M7 12h10" />
@@ -206,7 +198,6 @@ const MODS: Mod[] = [
     name: "Athletes",
     desc: "Roster, attendance, eligibility, and development — one clearance verdict per athlete, with the fix one tap away.",
     tint: "#5856d6",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="8" r="3.5" />
@@ -224,7 +215,6 @@ const MODS: Mod[] = [
     name: "Game Day & Hosting",
     desc: "Run the nights you host: officials, table crew, gate, setup, and the duty board.",
     tint: "#e8590c",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
@@ -242,7 +232,6 @@ const MODS: Mod[] = [
     name: "Inventory & Budget",
     desc: "Catalog, issue, track, collect, reconcile, buy — the full gear lifecycle, with auto-fees and a settlement desk.",
     tint: "#8e6b3a",
-    href: "#inventory",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21 8l-9-5-9 5v8l9 5 9-5z" />
@@ -260,7 +249,6 @@ const MODS: Mod[] = [
     name: "Messages",
     desc: "One inbox for the whole program — MAAPP-aligned, so a minor is never alone in a chat with an adult.",
     tint: "var(--good)",
-    href: "#access",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z" />
@@ -288,7 +276,6 @@ const MODS: Mod[] = [
     desc: "Playbook, scouting, call sheets, and analytics — shaped to your sport: football, basketball, cross country, volleyball.",
     tint: "#0a84ff",
     chip: "Sport pack",
-    href: "#strategy",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="9" />
@@ -320,7 +307,6 @@ const MODS: Mod[] = [
     dark: true,
     chip: "Showcase",
     chipGold: true,
-    href: "#showcase",
     ico: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12 3l1.9 5.6L20 10l-5 3.8L16.5 21 12 17.5 7.5 21 9 13.8 4 10l6.1-1.4z" />
@@ -344,8 +330,13 @@ function ModuleGrid() {
           </p>
         </div>
         <div className="v3-grid">
-          {MODS.map((m) => (
-            <a className="v3-card reveal" href={m.href} key={m.name}>
+          {MOD_LIST.map((m) => (
+            <a
+              className="v3-card reveal"
+              href={`?m=${m.slug}`}
+              data-module={m.slug}
+              key={m.name}
+            >
               <div className="v3-card-media">{m.media}</div>
               <div className="v3-card-body">
                 <div className="v3-card-top">
@@ -373,169 +364,331 @@ function ModuleGrid() {
   );
 }
 
-/* ============================================================ Spotlights */
-function Spotlights() {
-  return (
-    <section className="v3-spots container">
-      <div className="v3-spot" id="showcase">
-        <div className="reveal">
-          <h3 className="rx-display v3-spot-h3">The program that funds itself.</h3>
-          <p className="v3-spot-lead">
-            Studio turns every game into school-branded content — and every banner, post,
-            and scoreboard slot into sponsorship revenue you can prove.
-          </p>
-          <ul className="v3-spot-list">
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Create in seconds.</b> AI media packs from a game, a template, or scratch —
-                social, campus displays, print.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Approve, schedule, post.</b> A season-wide calendar with an approval queue and
-                connected channels.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Sell → fulfill → prove → renew.</b> Sponsor slots with valuation and
-                proof-of-display, on a public sponsor page.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Consent-aware by default.</b> Athlete media rights and wording checks on every
-                graphic.
-              </span>
-            </li>
-          </ul>
-          <div className="v3-spot-cta">
-            <a className="btn btn-ink" href="#access">
-              Explore Studio <Ico.arrow />
-            </a>
-            <a href="#pricing" className="v3-spot-alt">
-              See Showcase pricing
-            </a>
-          </div>
-        </div>
-        <div
-          className="v3-spot-media reveal"
-          style={{
-            background: "linear-gradient(150deg,#101827,#1d2c49)",
-            padding: 14,
-            display: "grid",
-            placeItems: "center",
-          }}
-        >
-          <Shot
-            className="v3-studio-poster--lg"
-            src="/marketing/screens/studio-flyer.png"
-            alt="A school-branded game-day flyer made in Studio, featuring both teams and a local sponsor"
-          />
-        </div>
+/* ============================================================ Module detail panels
+   Rich content shown inside the URL-synced modal (ModuleModal). Keyed by slug.
+   Modules without an entry fall back to a light panel (headline + desc + media). */
+const DETAILS: Record<string, ModDetail> = {
+  home: {
+    headline: "The morning read on your whole program.",
+    lead: "Home is the one screen that tells you what needs attention, what's next, and what the staff still has to handle — before practice, before the bus, before anyone has to ask.",
+    bullets: [
+      {
+        head: "Exceptions first.",
+        body: "Unsigned forms, athletes not cleared, a trip without a driver — the problems surface at the top, not buried three reports deep.",
+      },
+      {
+        head: "Today, at a glance.",
+        body: "Every game, practice, lift, and trip for the day on one timeline, with times and locations.",
+      },
+      {
+        head: "Handoffs the staff can see.",
+        body: "Each coach opens to their own to-dos, so the season never lives in one person's head.",
+      },
+      {
+        head: "One tap to the fix.",
+        body: "Every alert links straight to the screen that clears it — no hunting for where to go.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See it in a demo <Ico.arrow />
+      </a>
+    ),
+  },
+  schedule: {
+    headline: "One calendar for everything you run.",
+    lead: "Games, practices, lifts, and travel on a single calendar — build the season once, then drag to adjust when the week changes on you.",
+    bullets: [
+      {
+        head: "Everything in one place.",
+        body: "Games, practices, training blocks, and trips share one source of truth — no more three calendars that disagree.",
+      },
+      {
+        head: "Conflict checks built in.",
+        body: "A double-booked field, an overlapping practice, a bus that can't make it back in time — flagged before you publish.",
+      },
+      {
+        head: "Quick-add, drag to move.",
+        body: "Add an event in seconds; drag it when the opponent reschedules and every view updates at once.",
+      },
+      {
+        head: "Families stay current.",
+        body: "Publish once and athletes, parents, and staff all see the same times and locations.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See the calendar <Ico.arrow />
+      </a>
+    ),
+  },
+  practice: {
+    headline: "Plan the practice. Run it from the field.",
+    lead: "Build practice in blocks and periods, pull from your own drill library, and run the script live from your phone — a rolling clock keeps the whole staff on the same period.",
+    bullets: [
+      {
+        head: "Blocks and periods.",
+        body: "Lay out the session on a timeline with a length per segment, so a two-hour practice actually fits in two hours.",
+      },
+      {
+        head: "Your drill library.",
+        body: "Save the drills you run, tag them by install and phase, and drop them into any practice.",
+      },
+      {
+        head: "Run it live.",
+        body: "The clock moves every coach period to period — no whistle math, no drifting twenty minutes long.",
+      },
+      {
+        head: "It carries over.",
+        body: "Today's plan becomes a record you can copy, tweak, and reuse next week.",
+      },
+    ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/practice-planner.png"
+          alt="The practice planner: a session laid out in timed blocks and periods, pulled from the drill library"
+        />
       </div>
+    ),
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See practice live <Ico.arrow />
+      </a>
+    ),
+  },
+  training: {
+    headline: "A weight room that logs itself.",
+    lead: "Periodized programs, rack assignments, and a rack-side kiosk — athletes see their numbers and record their lifts while the set is happening, not from memory afterward.",
+    bullets: [
+      {
+        head: "Periodized by design.",
+        body: "Build multi-week programs with sets, reps, and percentages that progress on their own.",
+      },
+      {
+        head: "Rack layouts.",
+        body: "Assign groups to racks and rotations so a full team lifts without a traffic jam.",
+      },
+      {
+        head: "Kiosk mode.",
+        body: "An iPad at the rack shows the day's lifts and captures loads as athletes go — no clipboard, no re-entry.",
+      },
+      {
+        head: "Loads that mean something.",
+        body: "Every rep is stored, so PRs, trends, and deloads are built on real numbers.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        Tour the weight room <Ico.arrow />
+      </a>
+    ),
+  },
+  athletes: {
+    headline: "Every athlete, cleared or not — one verdict.",
+    lead: "Roster, attendance, eligibility, and development in one profile, with a single clearance verdict per athlete and the exact thing standing in the way one tap down.",
+    bullets: [
+      {
+        head: "One clearance verdict.",
+        body: "Forms, physicals, fees, and grades roll up into a single cleared-or-not — no cross-checking five systems.",
+      },
+      {
+        head: "The fix, one tap away.",
+        body: "“Missing physical,” “fee outstanding” — tap the flag and go straight to what resolves it.",
+      },
+      {
+        head: "Attendance that counts.",
+        body: "Practice and lift attendance ties back to your eligibility rules automatically.",
+      },
+      {
+        head: "Development on the record.",
+        body: "Growth, testing, and notes live on the profile — not in a coach's notebook.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See a clearance <Ico.arrow />
+      </a>
+    ),
+  },
+  "game-day": {
+    headline: "Run the nights you host — without the clipboard.",
+    lead: "The home-game plan that assigns every job — officials, table crew, gate, setup, teardown — and shows the whole crew who's on what, in real time.",
+    bullets: [
+      {
+        head: "The duty board.",
+        body: "Every role for the night in one view, assigned and checkable, so nothing gets dropped at 6:45.",
+      },
+      {
+        head: "Officials and crew.",
+        body: "Confirm officials, table workers, and gate staff ahead of time — and see who has actually shown up.",
+      },
+      {
+        head: "Setup to teardown.",
+        body: "A running list from lining the field to locking the gate, split across the people you assigned.",
+      },
+      {
+        head: "Nothing forgotten.",
+        body: "Recurring game-night tasks come pre-loaded, so week eight runs like week one.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See a game night <Ico.arrow />
+      </a>
+    ),
+  },
+  messages: {
+    headline: "One inbox. Every conversation, on the record.",
+    lead: "Team, staff, and family messaging in one place — built MAAPP-aligned from the start, so a minor is never alone in a thread with an adult and every message is retained for review.",
+    bullets: [
+      {
+        head: "Safe by default.",
+        body: "Athlete-coach conversations include a second adult and stay visible — safety isn't a setting someone can forget to turn on.",
+      },
+      {
+        head: "One inbox for the program.",
+        body: "Announcements, staff coordination, and family updates without three apps and a group text.",
+      },
+      {
+        head: "Families in the loop.",
+        body: "Parents see what's sent to their athlete and can reply where it's appropriate.",
+      },
+      {
+        head: "Retained for review.",
+        body: "Every message is kept and searchable, so your AD has a record if it's ever needed.",
+      },
+    ],
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See messaging <Ico.arrow />
+      </a>
+    ),
+  },
+  studio: {
+    headline: "The program that funds itself.",
+    lead: "Studio turns every game into school-branded content — and every banner, post, and scoreboard slot into sponsorship revenue you can prove.",
+    bullets: [
+      {
+        head: "Create in seconds.",
+        body: "AI media packs from a game, a template, or scratch — social, campus displays, print.",
+      },
+      {
+        head: "Approve, schedule, post.",
+        body: "A season-wide calendar with an approval queue and connected channels.",
+      },
+      {
+        head: "Sell → fulfill → prove → renew.",
+        body: "Sponsor slots with valuation and proof-of-display, on a public sponsor page.",
+      },
+      {
+        head: "Consent-aware by default.",
+        body: "Athlete media rights and wording checks on every graphic.",
+      },
+    ],
+    media: (
+      <div
+        className="v3-spot-media v3-modal-poster"
+        style={{ background: "linear-gradient(150deg,#101827,#1d2c49)" }}
+      >
+        <Shot
+          className="v3-studio-poster--lg"
+          src="/marketing/screens/studio-flyer.png"
+          alt="A school-branded game-day flyer made in Studio, featuring both teams and a local sponsor"
+        />
+      </div>
+    ),
+    ctas: (
+      <>
+        <a className="btn btn-ink" href="#access">
+          Explore Studio <Ico.arrow />
+        </a>
+        <a href="#pricing" className="v3-spot-alt">
+          See Showcase pricing
+        </a>
+      </>
+    ),
+  },
+  strategy: {
+    headline: "College-grade tools. High-school staff size.",
+    lead: "Every sport gets its own Strategy tab — design the scheme in your own terminology, scout the opponent, and read the numbers that used to take a college staff.",
+    bullets: [
+      { head: "Football", body: "— playbook builder, opponent tendencies, situational call sheets." },
+      { head: "Basketball", body: "— live tagging, shot charts, lineup analytics, game simulator." },
+      { head: "Cross country", body: "— meet predictor, pack analytics, course adjustments." },
+      { head: "Volleyball", body: "— rotations, overlap planner, one-manager live match stats." },
+    ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/strategy-playbook.png"
+          alt="The basketball play designer: a half-court diagram with players, defenders, and movement arrows, beside the play editor"
+        />
+      </div>
+    ),
+    ctas: (
+      <a className="btn btn-ink" href="#access">
+        See your sport <Ico.arrow />
+      </a>
+    ),
+  },
+  inventory: {
+    headline: "Every jersey home. Every dollar accounted for.",
+    lead: "Six jobs — catalog, issue, track, collect, reconcile, purchase. Scan gear out at the door, auto-create fees for what doesn’t come back, and turn shortages into a purchase plan.",
+    bullets: [
+      {
+        head: "Exception-first collect.",
+        body: "“13 athletes have nothing out” — you only work the exceptions.",
+      },
+      {
+        head: "Settlement desk.",
+        body: "Athlete clearance ties gear, fees, and forms into one verdict.",
+      },
+      {
+        head: "Budget pipeline.",
+        body: "Request → approval → receiving → documentation, board-ready.",
+      },
+    ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/buying-needs.png"
+          alt="Buying needs — turn shortages into a purchase plan"
+        />
+      </div>
+    ),
+    ctas: (
+      <>
+        <a className="btn btn-ink" href="#access">
+          Tour inventory <Ico.arrow />
+        </a>
+        <a href="/equipment" className="v3-spot-alt">
+          Compare vs gear-only trackers
+        </a>
+      </>
+    ),
+  },
+};
 
-      <div className="v3-spot v3-spot--flip" id="strategy">
-        <div className="reveal">
-          <h3 className="rx-display v3-spot-h3">College-grade tools. High-school staff size.</h3>
-          <p className="v3-spot-lead">
-            Every sport gets its own Strategy tab — design the scheme in your own terminology, scout
-            the opponent, and read the numbers that used to take a college staff.
-          </p>
-          <ul className="v3-spot-list">
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Football</b> — playbook builder, opponent tendencies, situational call sheets.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Basketball</b> — live tagging, shot charts, lineup analytics, game simulator.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Cross country</b> — meet predictor, pack analytics, course adjustments.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Volleyball</b> — rotations, overlap planner, one-manager live match stats.
-              </span>
-            </li>
-          </ul>
-          <div className="v3-spot-cta">
-            <a className="btn btn-ink" href="#access">
-              See your sport <Ico.arrow />
-            </a>
-          </div>
-        </div>
-        <div className="v3-spot-media reveal">
-          <Shot
-            src="/marketing/screens/strategy-playbook.png"
-            alt="The basketball play designer: a half-court diagram with players, defenders, and movement arrows, beside the play editor"
-          />
-        </div>
-      </div>
+const SLUGS: Record<string, string> = {
+  "Home": "home",
+  "Schedule": "schedule",
+  "Practice": "practice",
+  "Training": "training",
+  "Athletes": "athletes",
+  "Game Day & Hosting": "game-day",
+  "Inventory & Budget": "inventory",
+  "Messages": "messages",
+  "Strategy": "strategy",
+  "Studio": "studio",
+};
 
-      <div className="v3-spot" id="inventory">
-        <div className="reveal">
-          <h3 className="rx-display v3-spot-h3">Every jersey home. Every dollar accounted for.</h3>
-          <p className="v3-spot-lead">
-            Six jobs — catalog, issue, track, collect, reconcile, purchase. Scan gear out at the
-            door, auto-create fees for what doesn&apos;t come back, and turn shortages into a
-            purchase plan.
-          </p>
-          <ul className="v3-spot-list">
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Exception-first collect.</b> &ldquo;13 athletes have nothing out&rdquo; — you
-                only work the exceptions.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Settlement desk.</b> Athlete clearance ties gear, fees, and forms into one
-                verdict.
-              </span>
-            </li>
-            <li>
-              <Ico.check className="v3-ck" width="15" height="15" />
-              <span>
-                <b>Budget pipeline.</b> Request → approval → receiving → documentation, board-ready.
-              </span>
-            </li>
-          </ul>
-          <div className="v3-spot-cta">
-            <a className="btn btn-ink" href="#access">
-              Tour inventory <Ico.arrow />
-            </a>
-            <a href="/equipment" className="v3-spot-alt">
-              Compare vs gear-only trackers
-            </a>
-          </div>
-        </div>
-        <div className="v3-spot-media reveal">
-          <Shot
-            src="/marketing/screens/buying-needs.png"
-            alt="Buying needs — turn shortages into a purchase plan"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
+const slugFor = (name: string) => SLUGS[name] ?? name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+const MOD_LIST = MODS.map((m) => {
+  const slug = slugFor(m.name);
+  return { ...m, slug, detail: DETAILS[slug] };
+});
 
 /* ============================================================ Pricing (unchanged) */
 type Tier = {
@@ -612,6 +765,11 @@ const BANDS: {
   { band: "Small · under 500", commandPrice: "$3,600", showPrice: "$7,200" },
   { band: "Mid · 500–1,500", commandPrice: "$8,000", showPrice: "$16,000" },
   { band: "Large · 1,500+", commandPrice: "$16,000", showPrice: "$32,000" },
+];
+
+const COLLEGE: { tier: string; commandPrice: string; showPrice: string }[] = [
+  { tier: "Non-Division I", commandPrice: "$2,000", showPrice: "$4,000" },
+  { tier: "Division I", commandPrice: "$2,400", showPrice: "$4,800" },
 ];
 
 function Pricing() {
@@ -716,8 +874,44 @@ function Pricing() {
           </div>
         </div>
 
+        <div className="dept college reveal">
+          <div className="dept-head">
+            <div>
+              <h3>College programs</h3>
+              <p>
+                Colleges run leaner than high schools — fewer teams per sport — so college
+                programs are priced by division, not enrollment. Showcase adds fundraising and
+                sponsorship sales, plus a yearly pool of AI graphics — 500 for Non-Division&nbsp;I,
+                600 for Division&nbsp;I.
+              </p>
+            </div>
+          </div>
+          <div className="dept-rows">
+            {COLLEGE.map((c) => (
+              <div className="dept-row" key={c.tier}>
+                <span className="band">{c.tier}</span>
+                <div className="dept-tier">
+                  <span className="dept-tier-name">Command</span>
+                  <span className="price sm">
+                    {c.commandPrice}
+                    <i>/yr</i>
+                  </span>
+                </div>
+                <div className="dept-tier">
+                  <span className="dept-tier-name">Showcase</span>
+                  <span className="price sm">
+                    {c.showPrice}
+                    <i>/yr</i>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <p className="price-foot">
-          Pricing is banded by student enrollment (your school&apos;s size).
+          High-school pricing is banded by student enrollment; college programs are priced by
+          division (Division&nbsp;I or below).
         </p>
         <p className="price-foot">
           Multiple schools? School District pricing is custom — <a href="#access">contact us</a>.
