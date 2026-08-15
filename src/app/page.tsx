@@ -56,25 +56,10 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#eafaf0,#e2ecfb)" }}>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--accent)" }} />
-          Tue · Practice — Field 2 · 3:30
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "#0b8f5b" }} />
-          Wed · Weights — Group A · 6:00 AM
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--warn)" }} />
-          Fri · vs Ridgeline — HOME · 7:00
-          <span className="v3-vbadge">No conflicts</span>
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--faint)" }} />
-          Sat · Film + team breakfast · 9:00
-        </div>
-      </div>
+      <Shot
+        src="/marketing/screens/cards/schedule-card.png"
+        alt="The season calendar in month view — August with practices, lifts, and games laid out"
+      />
     ),
   },
   {
@@ -88,25 +73,10 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#e8f7ee,#e6f0fb)" }}>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--accent)" }} />1 · Dynamic Warmup ·
-          10 min
-          <span className="v3-vbadge">Run live</span>
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "#007a5c" }} />2 · Inside Run — Install 12
-          · 15 min
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--warn)" }} />3 · 7-on-7 vs scout
-          look · 20 min
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--faint)" }} />4 · Special teams ·
-          10 min
-        </div>
-      </div>
+      <Shot
+        src="/marketing/screens/cards/practice-card.png"
+        alt="The practice builder: a time-blocked plan with periods, minutes, and focus notes"
+      />
     ),
   },
   {
@@ -121,25 +91,10 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#fdf3e3,#f3e9fb)" }}>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--accent)" }} />
-          Back Squat · Group B · 5×5
-          <span className="v3-vbadge">185 lb · 45+25+2.5</span>
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--good)" }} />
-          Rack 3 — Jordan M. checked in ✓
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--warn)" }} />
-          Bench · Week 6 of 8 · deload next
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--faint)" }} />
-          Kiosk mode · iPad rack-side
-        </div>
-      </div>
+      <Shot
+        src="/marketing/screens/cards/training-card.png"
+        alt="The Training planner: a first-lift fast start and a before / run / after workflow for the weight room"
+      />
     ),
   },
   {
@@ -203,20 +158,10 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#eefcf1,#e1f4ff)" }}>
-        <div className="v3-bubble">
-          Bus leaves at 3:45 — varsity dress is white.
-          <small>Coach → Team · families can view</small>
-        </div>
-        <div className="v3-bubble v3-bubble--me">
-          Marcus will be there, thank you Coach!
-          <small>Parent · in the conversation by default</small>
-        </div>
-        <div className="v3-vrow" style={{ marginTop: "auto" }}>
-          <span className="v3-vdot" style={{ background: "var(--good)" }} />
-          Open · monitored · retained for AD review
-        </div>
-      </div>
+      <Shot
+        src="/marketing/screens/cards/messages-card.png"
+        alt="The program message inbox: announcements and check-ins with previews and timestamps"
+      />
     ),
   },
   {
@@ -231,21 +176,10 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#eaf3ff,#dbe9fb)", justifyContent: "center" }}>
-        <svg className="v3-court" viewBox="0 0 300 180" fill="none" aria-hidden="true">
-          <rect x="6" y="6" width="288" height="168" rx="8" stroke="#9db8dd" strokeWidth="2" />
-          <circle cx="150" cy="90" r="28" stroke="#9db8dd" strokeWidth="2" />
-          <path d="M6 40h70v100H6M294 40h-70v100h70" stroke="#9db8dd" strokeWidth="2" />
-          <path d="M76 90 Q 120 40 165 78" stroke="var(--gold)" strokeWidth="2.5" strokeDasharray="6 5" />
-          <path d="M165 78 L 210 120" stroke="var(--gold)" strokeWidth="2.5" />
-          <circle cx="76" cy="90" r="7" fill="#007aff" />
-          <text x="76" y="94" fontSize="9" fill="#fff" textAnchor="middle">1</text>
-          <circle cx="165" cy="78" r="7" fill="#007aff" />
-          <text x="165" y="82" fontSize="9" fill="#fff" textAnchor="middle">2</text>
-          <circle cx="210" cy="120" r="7" fill="var(--gold)" />
-          <text x="210" y="124" fontSize="9" fill="#1c1c1e" textAnchor="middle">3</text>
-        </svg>
-      </div>
+      <Shot
+        src="/marketing/screens/cards/strategy-card.png"
+        alt="The play designer: a half-court diagram with players, defenders, and movement, beside the play tools"
+      />
     ),
   },
   {
