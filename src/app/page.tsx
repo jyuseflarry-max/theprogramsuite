@@ -14,12 +14,11 @@ export default function LandingPage() {
       <PlanPrefill />
       <SiteNav />
       <HeroV3 />
-      <StoryRibbon />
       <ModuleGrid />
       <Spotlights />
-      <DistrictBand />
-      <GivesBack />
       <Pricing />
+      <StoryRibbon />
+      <GivesBack />
       <LeadForm />
       <Faq />
       <CtaBand />
@@ -539,46 +538,6 @@ function Spotlights() {
   );
 }
 
-/* ============================================================ District band */
-function DistrictBand() {
-  return (
-    <section className="v3-district" id="district">
-      <div className="container v3-district-grid">
-        <div className="reveal">
-          <h2 className="rx-display v3-h2">Visibility a purchase this size requires.</h2>
-          <p className="v3-spot-lead">
-            The District Hub rolls every school up into one view — setup gaps, inventory and fee
-            exposure, unreviewed alerts, and a board packet you can export instead of build.
-          </p>
-          <div className="v3-spot-cta">
-            <a className="btn btn-primary" href="#access">
-              Talk to us <Ico.arrow />
-            </a>
-          </div>
-        </div>
-        <div className="v3-dist-cards reveal">
-          <div className="v3-dist-card">
-            <b>Board Packet</b>
-            <span>Board-ready reporting, exported in one click.</span>
-          </div>
-          <div className="v3-dist-card">
-            <b>Work Queue</b>
-            <span>Overdue work and unreviewed alerts across schools.</span>
-          </div>
-          <div className="v3-dist-card">
-            <b>Audit &amp; Privacy</b>
-            <span>Role-based access, audit logs, privacy desk.</span>
-          </div>
-          <div className="v3-dist-card">
-            <b>Implementation</b>
-            <span>A per-school tracker from signature to adoption.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ============================================================ What it gives you back */
 const GIVES: { ico: IcoName; t: string; d: string }[] = [
   {
@@ -690,12 +649,7 @@ const TIERS: Tier[] = [
       "Fundraising tools",
       "365 premium AI creations/yr (~1 a day)",
     ],
-    hook: (
-      <>
-        <b>Showcase</b> is double Command at every school size — the revenue tools only need to earn
-        that back to pay for themselves.
-      </>
-    ),
+    hook: null,
     cta: "Start Showcase",
     ctaCls: "btn-primary",
   },
@@ -705,12 +659,10 @@ const BANDS: {
   band: string;
   commandPrice?: string;
   showPrice?: string;
-  talk?: boolean;
 }[] = [
-  { band: "Small · under 500", commandPrice: "$4,500", showPrice: "$9,000" },
-  { band: "Mid · 500–1,500", commandPrice: "$10,000", showPrice: "$20,000" },
-  { band: "Large · 1,500+", commandPrice: "$20,000", showPrice: "$40,000" },
-  { band: "School district", talk: true },
+  { band: "Small · under 500", commandPrice: "$3,600", showPrice: "$7,200" },
+  { band: "Mid · 500–1,500", commandPrice: "$8,000", showPrice: "$16,000" },
+  { band: "Large · 1,500+", commandPrice: "$16,000", showPrice: "$32,000" },
 ];
 
 function Pricing() {
@@ -793,41 +745,29 @@ function Pricing() {
           </div>
           <div className="dept-rows">
             {BANDS.map((b) => (
-              <div className={"dept-row" + (b.talk ? " talk" : "")} key={b.band}>
+              <div className="dept-row" key={b.band}>
                 <span className="band">{b.band}</span>
-                {b.talk ? (
-                  <>
-                    <span className="price">Let&apos;s talk</span>
-                    <span className="list">high schools &amp; middle schools, district-wide</span>
-                  </>
-                ) : (
-                  <>
-                    <div className="dept-tier">
-                      <span className="dept-tier-name">Command</span>
-                      <span className="price sm">
-                        {b.commandPrice}
-                        <i>/yr</i>
-                      </span>
-                    </div>
-                    <div className="dept-tier">
-                      <span className="dept-tier-name">Showcase</span>
-                      <span className="price sm">
-                        {b.showPrice}
-                        <i>/yr</i>
-                      </span>
-                    </div>
-                  </>
-                )}
+                <div className="dept-tier">
+                  <span className="dept-tier-name">Command</span>
+                  <span className="price sm">
+                    {b.commandPrice}
+                    <i>/yr</i>
+                  </span>
+                </div>
+                <div className="dept-tier">
+                  <span className="dept-tier-name">Showcase</span>
+                  <span className="price sm">
+                    {b.showPrice}
+                    <i>/yr</i>
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         <p className="price-foot">
-          Pricing is banded by student enrollment (your school&apos;s size), so it
-          works the same in every state. School District pricing covers a district&apos;s high schools and middle schools together. For
-          scale: equipment-only trackers run $800&ndash;$1,600 a year just to count gear &mdash;{" "}
-          <a href="/equipment">Command runs the entire program for less</a>.
+          Pricing is banded by student enrollment (your school&apos;s size).
         </p>
       </div>
     </section>
