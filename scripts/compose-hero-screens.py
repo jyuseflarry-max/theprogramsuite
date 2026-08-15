@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Composite real product screenshots onto the blank screens of the AI hero photos.
 
+    ⚠️  SUPERSEDED (Aug 2026): the four LIVE heroes (hero-{run,game,fund,family}.jpg)
+    are now AI-composited via an image model, not perspective-warped by this script.
+    Running this WILL OVERWRITE those hand-made heroes with the older composite look.
+    Kept for reference / fallback only — regenerate heroes through the image model,
+    or restore from git after running this.
+
+
 The four rotating-hero images (public/marketing/redesign/hero-{run,game,fund,family}.jpg)
 are built from "-blank" originals (same folder) whose device screens are empty white.
 This script perspective-warps real captures onto those screens, so heroes can be
