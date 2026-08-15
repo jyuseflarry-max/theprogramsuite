@@ -279,11 +279,6 @@ const DETAILS: Record<string, ModDetail> = {
         />
       </div>
     ),
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See the calendar <Ico.arrow />
-      </a>
-    ),
   },
   practice: {
     headline: "Plan the practice. Run it from the field.",
@@ -313,11 +308,6 @@ const DETAILS: Record<string, ModDetail> = {
           alt="The practice planner: a session laid out in timed blocks and periods, pulled from the drill library"
         />
       </div>
-    ),
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See practice live <Ico.arrow />
-      </a>
     ),
   },
   training: {
@@ -349,11 +339,6 @@ const DETAILS: Record<string, ModDetail> = {
         />
       </div>
     ),
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        Tour the weight room <Ico.arrow />
-      </a>
-    ),
   },
   athletes: {
     headline: "Every athlete, cleared or not — one verdict.",
@@ -376,11 +361,6 @@ const DETAILS: Record<string, ModDetail> = {
         body: "Growth, testing, and notes live on the profile — not in a coach's notebook.",
       },
     ],
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See a clearance <Ico.arrow />
-      </a>
-    ),
   },
   "game-day": {
     headline: "Run the nights you host — without the clipboard.",
@@ -403,11 +383,6 @@ const DETAILS: Record<string, ModDetail> = {
         body: "Recurring game-night tasks come pre-loaded, so week eight runs like week one.",
       },
     ],
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See a game night <Ico.arrow />
-      </a>
-    ),
   },
   messages: {
     headline: "One inbox. Every conversation, on the record.",
@@ -437,11 +412,6 @@ const DETAILS: Record<string, ModDetail> = {
           alt="The program message inbox: announcements and check-ins with previews, including a monitored thread noting families are copied by default"
         />
       </div>
-    ),
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See messaging <Ico.arrow />
-      </a>
     ),
   },
   studio: {
@@ -478,14 +448,9 @@ const DETAILS: Record<string, ModDetail> = {
       </div>
     ),
     ctas: (
-      <>
-        <a className="btn btn-ink" href="#access">
-          Explore Studio <Ico.arrow />
-        </a>
-        <a href="#pricing" className="v3-spot-alt">
-          See Showcase pricing
-        </a>
-      </>
+      <a href="#pricing" className="v3-spot-alt">
+        See Showcase pricing
+      </a>
     ),
   },
   strategy: {
@@ -504,11 +469,6 @@ const DETAILS: Record<string, ModDetail> = {
           alt="The basketball play designer: a half-court diagram with players, defenders, and movement arrows, beside the play editor"
         />
       </div>
-    ),
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See your sport <Ico.arrow />
-      </a>
     ),
   },
   inventory: {
@@ -537,14 +497,9 @@ const DETAILS: Record<string, ModDetail> = {
       </div>
     ),
     ctas: (
-      <>
-        <a className="btn btn-ink" href="#access">
-          Tour inventory <Ico.arrow />
-        </a>
-        <a href="/equipment" className="v3-spot-alt">
-          Compare vs gear-only trackers
-        </a>
-      </>
+      <a href="/equipment" className="v3-spot-alt">
+        Compare vs gear-only trackers
+      </a>
     ),
   },
 };

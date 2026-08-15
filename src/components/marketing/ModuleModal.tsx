@@ -23,7 +23,8 @@ export type ModDetail = {
   bullets?: { head: string; body: ReactNode }[];
   /** Large panel visual. Omit to reuse the module's card media (the vignette). */
   media?: ReactNode;
-  ctas: ReactNode;
+  /** Optional in-panel links. Omit entirely — the pinned "Request a demo" is the primary CTA. */
+  ctas?: ReactNode;
 };
 
 export type ModalMod = {
@@ -232,18 +233,13 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
                   ))}
                 </ul>
               )}
-              <div className="v3-spot-cta">
-                {d ? (
-                  d.ctas
-                ) : (
-                  <>
-                    <a className="btn btn-ink" href="#access">
-                      Request a demo <Ico.arrow />
-                    </a>
-                    <span className="v3-modal-soon">Full walkthrough coming soon</span>
-                  </>
-                )}
-              </div>
+              {d ? (
+                d.ctas && <div className="v3-spot-cta">{d.ctas}</div>
+              ) : (
+                <div className="v3-spot-cta">
+                  <span className="v3-modal-soon">Full walkthrough coming soon</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
