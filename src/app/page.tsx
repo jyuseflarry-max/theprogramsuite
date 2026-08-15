@@ -337,6 +337,14 @@ const DETAILS: Record<string, ModDetail> = {
         body: "Publish once and athletes, parents, and staff all see the same times and locations.",
       },
     ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/schedule-calendar.png"
+          alt="The season calendar in month view — August laid out with practices, lifts, and games, each with a time and a build-plan link"
+        />
+      </div>
+    ),
     ctas: (
       <a className="btn btn-ink" href="#access">
         See the calendar <Ico.arrow />
@@ -399,6 +407,14 @@ const DETAILS: Record<string, ModDetail> = {
         body: "Every rep is stored, so PRs, trends, and deloads are built on real numbers.",
       },
     ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/training-planner.png"
+          alt="The Training planner: a first-lift fast start, today's lift, and a before / run / after workflow for running the weight room"
+        />
+      </div>
+    ),
     ctas: (
       <a className="btn btn-ink" href="#access">
         Tour the weight room <Ico.arrow />
@@ -480,6 +496,14 @@ const DETAILS: Record<string, ModDetail> = {
         body: "Every message is kept and searchable, so your AD has a record if it's ever needed.",
       },
     ],
+    media: (
+      <div className="v3-spot-media">
+        <Shot
+          src="/marketing/screens/messages-inbox.png"
+          alt="The program message inbox: announcements and check-ins with previews, including a monitored thread noting families are copied by default"
+        />
+      </div>
+    ),
     ctas: (
       <a className="btn btn-ink" href="#access">
         See messaging <Ico.arrow />
