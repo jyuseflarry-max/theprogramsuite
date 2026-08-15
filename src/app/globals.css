@@ -1209,7 +1209,7 @@ details[open] .faq-ico { transform: rotate(45deg); }
 .v3-sec-head { max-width: 760px; margin-bottom: 34px; }
 .v3-h2 { font-size: clamp(28px, 4vw, 46px); margin-top: 14px; letter-spacing: -.03em; text-wrap: balance; }
 .v3-sec-head > p { margin-top: 14px; color: var(--ink-soft); font-size: 17px; max-width: 60ch; }
-.v3-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.v3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .v3-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); color: var(--ink-2); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
 .v3-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); border-color: var(--line-2); }
 .v3-card-media { aspect-ratio: 16 / 10; background: var(--surface-2); overflow: hidden; position: relative; border-bottom: 1px solid var(--line); }

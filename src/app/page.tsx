@@ -46,38 +46,6 @@ function Shot({ src, alt, className }: { src: string; alt: string; className?: s
 
 const MODS: Mod[] = [
   {
-    name: "Home",
-    desc: "Start with what needs attention, what is next, and what the staff needs to handle today.",
-    tint: "var(--accent)",
-    ico: (
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M3 11l9-8 9 8" />
-        <path d="M5 9.5V21h14V9.5" />
-      </svg>
-    ),
-    media: (
-      <div className="v3-vig" style={{ background: "linear-gradient(160deg,#eef4ff,#e2ecfb)" }}>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--warn)" }} />
-          Today&apos;s Roll Call — 3 exceptions
-          <span className="v3-vbadge">Do next</span>
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--good)" }} />
-          Bus leaves 3:45 — Ridgeline (Away)
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--accent)" }} />2 forms waiting on
-          signatures
-        </div>
-        <div className="v3-vrow">
-          <span className="v3-vdot" style={{ background: "var(--faint)" }} />
-          Weights — Group B · 6:00 AM ✓
-        </div>
-      </div>
-    ),
-  },
-  {
     name: "Schedule",
     desc: "Games, practices, training, and trips on one calendar — quick-add, drag to move, conflict checks built in.",
     tint: "#0b8f5b",
@@ -348,33 +316,6 @@ function ModuleGrid() {
    Rich content shown inside the URL-synced modal (ModuleModal). Keyed by slug.
    Modules without an entry fall back to a light panel (headline + desc + media). */
 const DETAILS: Record<string, ModDetail> = {
-  home: {
-    headline: "The morning read on your whole program.",
-    lead: "Home is the one screen that tells you what needs attention, what's next, and what the staff still has to handle — before practice, before the bus, before anyone has to ask.",
-    bullets: [
-      {
-        head: "Exceptions first.",
-        body: "Unsigned forms, athletes not cleared, a trip without a driver — the problems surface at the top, not buried three reports deep.",
-      },
-      {
-        head: "Today, at a glance.",
-        body: "Every game, practice, lift, and trip for the day on one timeline, with times and locations.",
-      },
-      {
-        head: "Handoffs the staff can see.",
-        body: "Each coach opens to their own to-dos, so the season never lives in one person's head.",
-      },
-      {
-        head: "One tap to the fix.",
-        body: "Every alert links straight to the screen that clears it — no hunting for where to go.",
-      },
-    ],
-    ctas: (
-      <a className="btn btn-ink" href="#access">
-        See it in a demo <Ico.arrow />
-      </a>
-    ),
-  },
   schedule: {
     headline: "One calendar for everything you run.",
     lead: "Games, practices, lifts, and travel on a single calendar — build the season once, then drag to adjust when the week changes on you.",
@@ -651,7 +592,6 @@ const DETAILS: Record<string, ModDetail> = {
 };
 
 const SLUGS: Record<string, string> = {
-  "Home": "home",
   "Schedule": "schedule",
   "Practice": "practice",
   "Training": "training",
