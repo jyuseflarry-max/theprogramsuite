@@ -57,8 +57,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/schedule-card.png"
-        alt="The season calendar in month view — August with practices, lifts, and games laid out"
+        src="/marketing/screens/cards/schedule-photo.jpg"
+        alt="A coach checking the season calendar on a tablet by the team bus at dusk"
       />
     ),
   },
@@ -74,8 +74,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/practice-card.png"
-        alt="The practice builder: a time-blocked plan with periods, minutes, and focus notes"
+        src="/marketing/screens/cards/practice-photo.jpg"
+        alt="A coach with a clipboard running a football practice at golden hour, players working through blocking-sled drills"
       />
     ),
   },
@@ -92,8 +92,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/training-card.png"
-        alt="The Training planner: a first-lift fast start and a before / run / after workflow for the weight room"
+        src="/marketing/screens/cards/training-photo.jpg"
+        alt="A high school weight room at golden hour: loaded racks and dumbbells with an athlete mid-lift"
       />
     ),
   },
@@ -109,8 +109,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/athlete-profile-card.png"
-        alt="Athlete 360 profile: status pills, section tabs, and review checks"
+        src="/marketing/screens/cards/athletes-photo.jpg"
+        alt="A row of players in uniform seen from behind on the sideline, a roster clipboard in the foreground"
       />
     ),
   },
@@ -126,8 +126,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/game-day-card.png"
-        alt="Game day board: 5 things to fix and final blockers"
+        src="/marketing/screens/cards/gameday-photo.jpg"
+        alt="A game-night entrance: gate crew at the ticket table with packed bleachers behind"
       />
     ),
   },
@@ -143,8 +143,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/inventory-home-card.png"
-        alt="Inventory dashboard: available, issued, open fees, and the command center"
+        src="/marketing/screens/cards/inventory-photo.jpg"
+        alt="An equipment room with shelves of helmets and folded jerseys, a scanner and check-in clipboard in the foreground"
       />
     ),
   },
@@ -159,8 +159,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/messages-card.png"
-        alt="The program message inbox: announcements and check-ins with previews and timestamps"
+        src="/marketing/screens/cards/messages-photo.jpg"
+        alt="A coach at a laptop working through the program's team message threads"
       />
     ),
   },
@@ -177,8 +177,8 @@ const MODS: Mod[] = [
     ),
     media: (
       <Shot
-        src="/marketing/screens/cards/strategy-card.png"
-        alt="The play designer: a half-court diagram with players, defenders, and movement, beside the play tools"
+        src="/marketing/screens/cards/strategy-photo.jpg"
+        alt="A coach diagramming X-and-O plays on a whiteboard, call sheet and playbook on the desk with a stadium beyond"
       />
     ),
   },
