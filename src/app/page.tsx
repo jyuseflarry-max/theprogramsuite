@@ -573,7 +573,7 @@ const TIERS: Tier[] = [
       "Practice planning + strength & training",
       "Inventory, gear & budget",
       "Staff roles, access & audit",
-      "MAAPP-aligned messaging + fair-use AI",
+      "MAAPP-aligned messaging",
     ],
     hook: null,
     cta: "Start with Command",
