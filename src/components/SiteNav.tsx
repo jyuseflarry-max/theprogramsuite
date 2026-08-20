@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
@@ -13,8 +14,7 @@ export function SiteNav() {
       <div className="container rx-nav-inner">
         <div className="rx-nav-left">
           <Link href="/" className="logo" aria-label="The Program Suite — home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="logo-img" src="/marketing/logo-mark.png" alt="" />
+            <Image className="logo-img" src="/marketing/logo-mark.png" alt="" width={60} height={30} priority />
             <span className="logo-word">The Program Suite</span>
           </Link>
           <div className="rx-nav-links">

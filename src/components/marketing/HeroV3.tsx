@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, type ReactNode } from "react";
 
 /**
@@ -137,8 +138,14 @@ export function HeroV3() {
       <header className="v3-hero">
         {PANES.map((p, i) => (
           <div className={"v3-pane" + (i === pane ? " on" : "")} key={p.img} aria-hidden={i !== pane}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={p.img} alt={i === pane ? p.alt : ""} loading={i === 0 ? "eager" : "lazy"} />
+            <Image
+              src={p.img}
+              alt={i === pane ? p.alt : ""}
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            />
           </div>
         ))}
         <div className="v3-hero-scrim" aria-hidden="true" />

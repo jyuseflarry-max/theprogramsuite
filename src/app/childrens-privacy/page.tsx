@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Children's Privacy (COPPA) | The Program Suite",
+  title: "Children's Privacy (COPPA)",
   description:
     "How The Program Suite collects and protects the personal information of children under 13, under COPPA and school authorization.",
 };

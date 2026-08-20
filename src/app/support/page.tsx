@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Support | The Program Suite",
+  title: "Support",
   description:
     "Get help with The Program Suite. Contact our support team, browse answers to common questions about accounts, billing, data, and privacy, or request account deletion.",
   alternates: { canonical: "/support" },

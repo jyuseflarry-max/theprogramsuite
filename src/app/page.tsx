@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Ico, type IcoName } from "@/components/marketing/icons";
@@ -40,9 +41,46 @@ type Mod = {
   ico: ReactNode;
 };
 
-function Shot({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  /* eslint-disable-next-line @next/next/no-img-element */
-  return <img src={src} alt={alt} loading="lazy" className={className} />;
+/* Card thumbnail — fills a fixed-aspect .v3-card-media box; object-fit is set in
+   CSS. next/image serves AVIF/WebP + a responsive srcset automatically. */
+function CardShot({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
+    />
+  );
+}
+
+/* Natural-flow product screenshot for the module modal panels. Intrinsic ratio
+   from width/height (required so a missed call site is a type error); rendered
+   fluid via width:100%/height:auto. */
+function Shot({
+  src,
+  alt,
+  className,
+  width,
+  height,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  width: number;
+  height: number;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      sizes="(max-width: 900px) 92vw, 620px"
+      className={className}
+      style={{ width: "100%", height: "auto" }}
+    />
+  );
 }
 
 const MODS: Mod[] = [
@@ -57,7 +95,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/schedule-photo.jpg"
         alt="A coach checking the season calendar on a tablet by the team bus at dusk"
       />
@@ -74,7 +112,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/practice-photo.jpg"
         alt="A coach with a clipboard running a football practice at golden hour, players working through blocking-sled drills"
       />
@@ -92,7 +130,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/training-photo.jpg"
         alt="A high school weight room at golden hour: loaded racks and dumbbells with an athlete mid-lift"
       />
@@ -109,7 +147,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/athletes-photo.jpg"
         alt="A row of players in uniform seen from behind on the sideline, a roster clipboard in the foreground"
       />
@@ -126,7 +164,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/gameday-photo.jpg"
         alt="A game-night entrance: gate crew at the ticket table with packed bleachers behind"
       />
@@ -143,7 +181,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/inventory-photo.jpg"
         alt="An equipment room with shelves of helmets and folded jerseys, a scanner and check-in clipboard in the foreground"
       />
@@ -159,7 +197,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/messages-photo.jpg"
         alt="A coach at a laptop working through the program's team message threads"
       />
@@ -177,7 +215,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot
+      <CardShot
         src="/marketing/screens/cards/strategy-photo.jpg"
         alt="A coach diagramming X-and-O plays on a whiteboard, call sheet and playbook on the desk with a stadium beyond"
       />
@@ -196,7 +234,7 @@ const MODS: Mod[] = [
       </svg>
     ),
     media: (
-      <Shot src="/marketing/screens/studio-flyer-card.png" alt="A school-branded game-day graphic made in Studio, with a local sponsor" />
+      <CardShot src="/marketing/screens/studio-flyer-card.png" alt="A school-branded game-day graphic made in Studio, with a local sponsor" />
     ),
   },
 ];
@@ -275,6 +313,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1440}
+          height={900}
           src="/marketing/screens/schedule-calendar.png"
           alt="The season calendar in month view — August laid out with practices, lifts, and games, each with a time and a build-plan link"
         />
@@ -305,6 +345,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1440}
+          height={900}
           src="/marketing/screens/practice-planner.png"
           alt="The practice planner: a session laid out in timed blocks and periods, pulled from the drill library"
         />
@@ -335,6 +377,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1440}
+          height={900}
           src="/marketing/screens/training-planner.png"
           alt="The Training planner: a first-lift fast start, today's lift, and a before / run / after workflow for running the weight room"
         />
@@ -409,6 +453,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1440}
+          height={900}
           src="/marketing/screens/messages-inbox.png"
           alt="The program message inbox: announcements and check-ins with previews, including a monitored thread noting families are copied by default"
         />
@@ -443,6 +489,8 @@ const DETAILS: Record<string, ModDetail> = {
       >
         <Shot
           className="v3-studio-poster--lg"
+          width={900}
+          height={1200}
           src="/marketing/screens/studio-flyer.png"
           alt="A school-branded game-day flyer made in Studio, featuring both teams and a local sponsor"
         />
@@ -466,6 +514,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1600}
+          height={1029}
           src="/marketing/screens/strategy-playbook.png"
           alt="The basketball play designer: a half-court diagram with players, defenders, and movement arrows, beside the play editor"
         />
@@ -492,6 +542,8 @@ const DETAILS: Record<string, ModDetail> = {
     media: (
       <div className="v3-spot-media">
         <Shot
+          width={1440}
+          height={900}
           src="/marketing/screens/buying-needs.png"
           alt="Buying needs — turn shortages into a purchase plan"
         />

@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | The Program Suite",
+  title: "Terms of Service",
   description: "Terms of Service for The Program Suite sports management platform.",
 };
 

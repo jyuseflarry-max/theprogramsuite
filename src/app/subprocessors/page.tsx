@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Sub-processors | The Program Suite",
+  title: "Sub-processors",
   description:
     "The third-party service providers The Program Suite uses to process personal and student data.",
 };

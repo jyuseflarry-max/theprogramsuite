@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Ico } from "@/components/marketing/icons";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
@@ -8,8 +9,10 @@ const COLS = [
     h: "Platform",
     links: [
       { l: "Platform", href: "/#platform" },
-      { l: "Features", href: "/#tools" },
+      { l: "Scheduling", href: "/scheduling" },
+      { l: "Eligibility & Roster", href: "/eligibility" },
       { l: "Equipment & Inventory", href: "/equipment" },
+      { l: "Athletic Department", href: "/athletic-department-software" },
       { l: "Pricing", href: "/#pricing" },
     ],
   },
@@ -36,8 +39,7 @@ export function SiteFooter() {
         <div className="rx-footer-grid">
           <div className="rx-footer-about">
             <Link href="/" className="logo" aria-label="The Program Suite — home">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="logo-img" src="/marketing/logo-mark.png" alt="" />
+              <Image className="logo-img" src="/marketing/logo-mark.png" alt="" width={60} height={30} />
               <span className="logo-word">The Program Suite</span>
             </Link>
             <p>

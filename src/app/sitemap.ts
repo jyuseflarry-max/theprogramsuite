@@ -27,6 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     page("/", 1.0, "weekly"),
     page("/equipment", 0.9, "monthly"),
+    page("/scheduling", 0.9, "monthly"),
+    page("/eligibility", 0.9, "monthly"),
+    page("/athletic-department-software", 0.9, "monthly"),
     page("/support", 0.5, "monthly"),
     page("/privacy", 0.3, "yearly"),
     page("/terms", 0.3, "yearly"),

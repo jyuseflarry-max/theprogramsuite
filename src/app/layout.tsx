@@ -37,14 +37,26 @@ export const metadata: Metadata = {
   // Canonical host is www — the apex (theprogramsuite.com) 307-redirects to www,
   // so og:url / canonical must match to avoid a redirect mismatch.
   metadataBase: new URL("https://www.theprogramsuite.com"),
-  title: "The Program Suite — The System for Coaches",
+  title: {
+    default: "Athletic Program Management Software | The Program Suite",
+    template: "%s | The Program Suite",
+  },
   description:
-    "You coach. We'll handle the rest. The all-in-one system for athletic programs — one platform that replaces the busywork so you can spend more time coaching.",
+    "Run your whole athletic program on one platform — scheduling, roster and eligibility, practice, strength and training, equipment and inventory, and safe team messaging. Built by coaches.",
+  keywords: [
+    "athletic program management software",
+    "athletic department software",
+    "sports team management software",
+    "high school athletics software",
+    "coaching software",
+    "team scheduling software",
+    "athletic equipment inventory software",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "The Program Suite — The System for Coaches",
+    title: "Athletic Program Management Software | The Program Suite",
     description:
-      "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
+      "One platform to run your entire athletic program — scheduling, roster and eligibility, practice, training, equipment, and safe team messaging. Built by coaches.",
     type: "website",
     url: "https://www.theprogramsuite.com",
     siteName: "The Program Suite",
@@ -59,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Program Suite — The System for Coaches",
+    title: "Athletic Program Management Software | The Program Suite",
     description:
-      "You coach. We'll handle the rest. One platform for your entire program — more coaching, less administration.",
+      "One platform to run your entire athletic program — scheduling, roster, practice, training, equipment, and safe team messaging.",
     images: ["/images/og-coach.jpg"],
   },
 };

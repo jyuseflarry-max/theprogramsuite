@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Athletic Equipment & Inventory Management Software | The Program Suite",
+  title: "Athletic Equipment & Inventory Management Software",
   description:
     "Track, issue, collect, and settle team gear — with QR labels, automatic lost-gear fees, athlete and family visibility, and AD roll-ups. Inventory is one module of a platform that runs the whole program.",
   alternates: { canonical: "/equipment" },

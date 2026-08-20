@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/primitives";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | The Program Suite",
+  title: "Privacy Policy",
   description: "Privacy Policy for The Program Suite sports management platform.",
 };
 
