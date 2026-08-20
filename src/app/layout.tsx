@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   // Canonical host is www — the apex (theprogramsuite.com) 307-redirects to www,
   // so og:url / canonical must match to avoid a redirect mismatch.
   metadataBase: new URL("https://www.theprogramsuite.com"),
+  verification: {
+    google: "3vVDjQhxDPXt7z_0Q4-wEkNLo0aGE4mj6YoXH4jiTD8",
+  },
   title: {
     default: "Athletic Program Management Software | The Program Suite",
     template: "%s | The Program Suite",
