@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Oswald, Caveat } from "next/font/google";
+import { SiteStructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
 /* Geist — body + UI */
@@ -71,7 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${geist.variable} ${geistMono.variable} ${oswald.variable} ${caveat.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SiteStructuredData />
+        {children}
+      </body>
     </html>
   );
 }

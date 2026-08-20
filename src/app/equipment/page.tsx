@@ -7,6 +7,23 @@ export const metadata: Metadata = {
   title: "Athletic Equipment & Inventory Management Software | The Program Suite",
   description:
     "Track, issue, collect, and settle team gear — with QR labels, automatic lost-gear fees, athlete and family visibility, and AD roll-ups. Inventory is one module of a platform that runs the whole program.",
+  alternates: { canonical: "/equipment" },
+  openGraph: {
+    title: "Athletic Equipment & Inventory Management Software | The Program Suite",
+    description:
+      "Track, issue, collect, and settle team gear — QR labels, automatic lost-gear fees, athlete and family visibility, and AD roll-ups, in a platform that runs the whole program.",
+    type: "website",
+    url: "https://www.theprogramsuite.com/equipment",
+    siteName: "The Program Suite",
+    images: [{ url: "/images/og-coach.jpg", width: 1200, height: 675, alt: "The Program Suite — athletic equipment & inventory management" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Athletic Equipment & Inventory Management Software | The Program Suite",
+    description:
+      "Track, issue, collect, and settle team gear in a platform that runs the whole program.",
+    images: ["/images/og-coach.jpg"],
+  },
 };
 
 /* The six spoken jobs of the equipment room, in lifecycle order. */

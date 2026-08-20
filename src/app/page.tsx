@@ -7,6 +7,7 @@ import { PlanPrefill } from "@/components/marketing/PlanPrefill";
 import { Reveal } from "@/components/marketing/Reveal";
 import { HeroV3 } from "@/components/marketing/HeroV3";
 import { ModuleModal, type ModDetail } from "@/components/marketing/ModuleModal";
+import { JsonLd } from "@/components/StructuredData";
 
 export default function LandingPage() {
   return (
@@ -794,9 +795,52 @@ const FAQ_ITEMS = [
   },
 ];
 
+/* Plain-text answers for FAQPage structured data (Google rich result). Kept in
+   sync with FAQ_ITEMS above; text-only because schema.org answers can't carry
+   JSX/links. */
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      q: 'What exactly is "one program"?',
+      a: "One program is one sport, one gender, with all of its levels — freshman, JV, and varsity together. Boys' and girls' teams of the same sport are two separate programs; a true coed sport counts as one. You're never charged per level, and because everything lives under the program, an athlete's history follows them from one season to the next.",
+    },
+    {
+      q: "We run on spreadsheets and group texts today. Is switching painful?",
+      a: "No. Most programs start with the one area that hurts most — usually inventory or scheduling — and import their existing roster and gear lists. You can grow into the other modules whenever you're ready; nothing has to migrate twice.",
+    },
+    {
+      q: "How is this different from an equipment-inventory app?",
+      a: "Equipment-only trackers count gear and log check-outs, and charge $800–$1,600 a year to do it. Inventory here goes further — automatic lost-gear fees, athlete and family self-service, QR labels, purchasing and budget — and it's one module of a platform that runs the entire program for less than most gear trackers cost alone.",
+    },
+    {
+      q: "Is this serious enough for a district procurement review?",
+      a: "Yes. Roles and permissions, full audit trails, budget and spend reconciliation, and board-ready reporting are built in. Administrators get the visibility and accountability a purchase of this size requires — not just a coach's convenience tool.",
+    },
+    {
+      q: "How do you keep coach–athlete messaging safe?",
+      a: "Messaging is MAAPP-aligned: open, monitored, and auditable. A minor can never end up in a private one-to-one channel with an adult — a parent or guardian is automatically part of every direct conversation, and when no family account exists, a second adult from the program is added instead. Every message is scanned on send, anyone can flag one, and the full history is retained for athletic-director review.",
+    },
+    {
+      q: "What do coaches actually do on their phones?",
+      a: "The coach app is phone-first: messaging, attendance, schedules, game-day readiness, and quick gear actions all work from the sideline. Training workflows are tuned for an iPad rack-side, so loads and groups get captured while the lift is happening.",
+    },
+    {
+      q: "Who built it, and who do we talk to?",
+      a: "The Program Suite was built by coaches who ran programs on the same scattered tools you're trying to replace. When you reach out, you're talking to people who've run a program — not a call center.",
+    },
+  ].map((it) => ({
+    "@type": "Question",
+    name: it.q,
+    acceptedAnswer: { "@type": "Answer", text: it.a },
+  })),
+};
+
 function Faq() {
   return (
     <section className="section rx-faq" id="faq">
+      <JsonLd data={FAQ_SCHEMA} />
       <div className="container">
         <div className="section-head center reveal" style={{ margin: "0 auto" }}>
           <h2 className="rx-display rx-h2">Frequently asked questions</h2>
