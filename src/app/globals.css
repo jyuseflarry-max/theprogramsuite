@@ -1139,6 +1139,9 @@ details[open] .faq-ico { transform: rotate(45deg); }
 }
 @media (max-width: 620px) {
   .rx-nav-login { display: none; }
+  /* Keep only the primary "Get Started" CTA in the nav on phones; "Request a
+     demo" is still reachable from the hero and the bottom call-to-action band. */
+  .rx-nav-demo { display: none; }
   .rx-nav-inner { gap: 12px; }
   .rx-nav .logo-word { font-size: 16px; }
   .rx-nav .logo-img { height: 26px; }
