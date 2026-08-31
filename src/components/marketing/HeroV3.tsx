@@ -169,7 +169,10 @@ export function HeroV3() {
             )}
           </div>
           <div className="v3-hero-ctas reveal">
-            <a href="#access" className="btn btn-primary btn-lg">
+            <a href="https://app.theprogramsuite.com/get-started" className="btn btn-primary btn-lg">
+              Get Started
+            </a>
+            <a href="#access" className="btn btn-ghost btn-lg">
               Request a demo
             </a>
             <a href="#platform" className="btn btn-ghost btn-lg">
