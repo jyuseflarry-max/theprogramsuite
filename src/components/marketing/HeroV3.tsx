@@ -100,7 +100,7 @@ const CATS: Cat[] = [
   },
   {
     t: "Fund the program",
-    d: "Content · sponsors · fundraising",
+    d: "Content · sponsors · graphics",
     href: "?m=studio",
     mod: "studio",
     tint: "var(--gold)",

@@ -582,8 +582,8 @@ type Tier = {
   popular: boolean;
   badge: string | null;
   for: string;
-  bands: Band[];
-  monthly: boolean;
+  annual: string;
+  monthly: string;
   everything: string | null;
   feats: string[];
   hook: ReactNode | null;
@@ -591,20 +591,14 @@ type Tier = {
   ctaCls: string;
 };
 
-type Band = { size: string; price: string };
-
 const TIERS: Tier[] = [
   {
     name: "Command",
     popular: false,
-    badge: "Most popular",
-    for: "Everything you need to run the whole program day to day.",
-    bands: [
-      { size: "Small · under 500", price: "800" },
-      { size: "Mid · 500–1,500", price: "1,200" },
-      { size: "Large · 1,500+", price: "1,600" },
-    ],
-    monthly: true,
+    badge: null,
+    for: "Everything you need to run the whole program, day to day.",
+    annual: "500",
+    monthly: "50",
     everything: null,
     feats: [
       "Athletes, roster & family access",
@@ -621,41 +615,46 @@ const TIERS: Tier[] = [
   {
     name: "Showcase",
     popular: true,
-    badge: "Most valuable",
-    for: "Everything in Command, plus the ability to generate funds for your program.",
-    bands: [
-      { size: "Small · under 500", price: "1,600" },
-      { size: "Mid · 500–1,500", price: "2,400" },
-      { size: "Large · 1,500+", price: "3,200" },
-    ],
-    monthly: false,
+    badge: "Most popular",
+    for: "Everything in Command, plus Content Studio to turn your program into content.",
+    annual: "1,000",
+    monthly: "100",
     everything: "Everything in Command, plus",
     feats: [
+      "Content Studio — branded graphics & video",
+      "25 AI graphics a month",
       "Media gallery",
-      "Studio",
-      "Sponsorship sales",
-      "Fundraising tools",
-      "AI graphics every year — 200 Small · 300 Mid · 400 Large",
+      "Roster & schedule migration",
+      "Priority support",
     ],
     hook: null,
     cta: "Start Showcase",
     ctaCls: "btn-primary",
   },
+  {
+    name: "Plus",
+    popular: false,
+    badge: "Most complete",
+    for: "Showcase with the biggest graphics allotment and done-for-you setup.",
+    annual: "1,500",
+    monthly: "150",
+    everything: "Everything in Showcase, plus",
+    feats: [
+      "50 AI graphics a month",
+      "Done-for-you onboarding — we load your roster & full schedule",
+      "Same-day priority support",
+      "Automatic season rollover",
+    ],
+    hook: null,
+    cta: "Start Plus",
+    ctaCls: "btn-ink",
+  },
 ];
 
-const BANDS: {
-  band: string;
-  commandPrice?: string;
-  showPrice?: string;
-}[] = [
-  { band: "Small · under 500", commandPrice: "$3,600", showPrice: "$7,200" },
-  { band: "Mid · 500–1,500", commandPrice: "$8,000", showPrice: "$16,000" },
-  { band: "Large · 1,500+", commandPrice: "$16,000", showPrice: "$32,000" },
-];
-
-const COLLEGE: { tier: string; commandPrice: string; showPrice: string }[] = [
-  { tier: "Non-Division I", commandPrice: "$2,000", showPrice: "$4,000" },
-  { tier: "Division I", commandPrice: "$2,400", showPrice: "$4,800" },
+const SCHOOL: { tier: string; price: string; note: string }[] = [
+  { tier: "Command", price: "2,500", note: "The whole operating system, every sport" },
+  { tier: "Showcase", price: "5,000", note: "+ Content Studio · 100 AI graphics a month" },
+  { tier: "Plus", price: "7,500", note: "+ 200 a month · done-for-you setup" },
 ];
 
 function Pricing() {
@@ -665,9 +664,9 @@ function Pricing() {
         <div className="section-head center reveal" style={{ maxWidth: 820, margin: "0 auto" }}>
           <h2 className="rx-display rx-h2">Start with one program. Grow into the whole department.</h2>
           <p className="rx-lead">
-            Every plan covers one full program — one sport, one gender, all levels — so an
-            athlete&apos;s history follows them year over year. Boys&apos; and girls&apos; teams count as
-            separate programs; a true coed sport is one.
+            One flat price per program — one sport, one gender, all levels — the same at any
+            school size, so an athlete&apos;s history follows them year over year. Boys&apos; and
+            girls&apos; teams count as separate programs; a true coed sport is one.
           </p>
         </div>
 
@@ -680,28 +679,13 @@ function Pricing() {
               <div className="plan-name">{t.name}</div>
               <div className="plan-for">{t.for}</div>
               <div className="plan-price">
-                <span className="from">from</span>
                 <span className="cur">$</span>
-                <span className="amt">{t.bands[0].price}</span>
+                <span className="amt">{t.annual}</span>
                 <span className="per">/year</span>
               </div>
-              <div className="plan-list">Priced by student enrollment</div>
-              <ul className="plan-bands">
-                {t.bands.map((b) => (
-                  <li key={b.size}>
-                    <span className="band">{b.size}</span>
-                    <span className="amt">
-                      ${b.price}
-                      <i>/yr</i>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {t.monthly && (
-                <div className="plan-monthly">
-                  or pay <b>monthly</b> (+25%) — Command only
-                </div>
-              )}
+              <div className="plan-monthly">
+                or <b>${t.monthly}/mo</b> — annual is 2 months free
+              </div>
               <hr className="div" />
               <ul className="plan-feats">
                 {t.everything && <li className="everything">{t.everything}</li>}
@@ -730,28 +714,21 @@ function Pricing() {
             <div>
               <h3>Whole athletic department</h3>
               <p>
-                Bring the whole department onto Command or Showcase, plus a department roll-up of
-                inventory, budget, and staff for the AD. Each sport counts as one program; boys&apos;
-                and girls&apos; teams count separately. Showcase departments share one school-wide
-                pool of AI graphics — 900 a year Small, 2,000 Mid, 4,000 Large.
+                One bill for the entire department — flat, at any size. A small school and a
+                20-sport 6A department pay the same. Showcase and Plus departments share a
+                school-wide pool of AI graphics — 100 a month on Showcase, 200 on Plus — and you
+                can pay annually or monthly (a tenth of the annual).
               </p>
             </div>
           </div>
           <div className="dept-rows">
-            {BANDS.map((b) => (
-              <div className="dept-row" key={b.band}>
-                <span className="band">{b.band}</span>
+            {SCHOOL.map((s) => (
+              <div className="dept-row" key={s.tier}>
+                <span className="band">{s.tier}</span>
                 <div className="dept-tier">
-                  <span className="dept-tier-name">Command</span>
+                  <span className="dept-tier-name">{s.note}</span>
                   <span className="price sm">
-                    {b.commandPrice}
-                    <i>/yr</i>
-                  </span>
-                </div>
-                <div className="dept-tier">
-                  <span className="dept-tier-name">Showcase</span>
-                  <span className="price sm">
-                    {b.showPrice}
+                    ${s.price}
                     <i>/yr</i>
                   </span>
                 </div>
@@ -760,47 +737,26 @@ function Pricing() {
           </div>
         </div>
 
-        <div className="dept college reveal">
+        <div className="dept reveal">
           <div className="dept-head">
             <div>
-              <h3>College programs</h3>
+              <h3>Sponsorship — a $500/yr add-on</h3>
               <p>
-                Colleges run leaner than high schools — fewer teams per sport — so college
-                programs are priced by division, not enrollment. Showcase adds fundraising and
-                sponsorship sales, plus a yearly pool of AI graphics — 500 for Non-Division&nbsp;I,
-                600 for Division&nbsp;I.
+                Add sponsorship to Showcase or Plus and sell sponsor placements across your
+                program&apos;s graphics, gamecast, and score cards — with real impression reporting
+                to show sponsors what they got. You keep 100% of what you raise.
               </p>
             </div>
-          </div>
-          <div className="dept-rows">
-            {COLLEGE.map((c) => (
-              <div className="dept-row" key={c.tier}>
-                <span className="band">{c.tier}</span>
-                <div className="dept-tier">
-                  <span className="dept-tier-name">Command</span>
-                  <span className="price sm">
-                    {c.commandPrice}
-                    <i>/yr</i>
-                  </span>
-                </div>
-                <div className="dept-tier">
-                  <span className="dept-tier-name">Showcase</span>
-                  <span className="price sm">
-                    {c.showPrice}
-                    <i>/yr</i>
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
         <p className="price-foot">
-          High-school pricing is banded by student enrollment; college programs are priced by
-          division (Division&nbsp;I or below).
+          Every program is the same flat price — no enrollment bands, no per-athlete fees. College
+          programs are priced the same (Squad-based). Need more graphics than your plan includes?
+          Top-up packs are available anytime.
         </p>
         <p className="price-foot">
-          Multiple schools? School District pricing is custom — <a href="#access">contact us</a>.
+          Multiple schools? District pricing is custom — <a href="#access">contact us</a>.
         </p>
       </div>
     </section>
