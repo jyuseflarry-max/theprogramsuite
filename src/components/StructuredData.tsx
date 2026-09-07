@@ -83,10 +83,10 @@ const GRAPH = {
       offers: {
         "@type": "AggregateOffer",
         priceCurrency: "USD",
-        lowPrice: "800",
-        highPrice: "32000",
+        lowPrice: "500",
+        highPrice: "7500",
         offerCount: "6",
-        // Priced per program per year; a whole department is the high end.
+        // Flat pricing: $500–$1,500 per program/yr; $2,500–$7,500 per department/yr.
         unitText: "per year",
       },
     },
