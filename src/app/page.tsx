@@ -654,7 +654,7 @@ const TIERS: Tier[] = [
 const SCHOOL: { tier: string; price: string; note: string }[] = [
   { tier: "Command", price: "2,500", note: "The whole operating system, every sport" },
   { tier: "Showcase", price: "5,000", note: "+ Content Studio · 100 AI graphics a month" },
-  { tier: "Plus", price: "7,500", note: "+ 200 a month · done-for-you setup" },
+  { tier: "Plus", price: "7,500", note: "+ 200 AI graphics a month · done-for-you setup" },
 ];
 
 function Pricing() {

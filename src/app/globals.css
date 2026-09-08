@@ -433,7 +433,7 @@ h1,h2,h3,h4 { margin: 0; }
 .dept { margin-top: 26px; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
 .dept-head { padding: 26px 30px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .dept-head h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.018em; }
-.dept-head p { font-size: 14.5px; color: var(--ink-soft); margin: 6px 0 0; max-width: 760px; }
+.dept-head p { font-size: 14.5px; color: var(--ink-soft); margin: 6px 0 0; max-width: 540px; }
 .dept-rows { display: grid; grid-template-columns: repeat(3, 1fr); }
 .dept.college .dept-rows { grid-template-columns: repeat(2, 1fr); }
 .dept-row { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 7px; }
