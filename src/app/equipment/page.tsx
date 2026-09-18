@@ -159,7 +159,7 @@ export default function EquipmentPage() {
               <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>
                 The Program Suite — Command
               </p>
-              <p className="mt-3 text-[34px] font-semibold">from $800<span className="text-[16px] font-normal opacity-70">/yr</span></p>
+              <p className="mt-3 text-[34px] font-semibold">from $495<span className="text-[16px] font-normal opacity-70">/yr</span></p>
               <p className="mt-3 text-[15px] leading-[1.6] opacity-85">
                 Inventory at this depth — plus practice planning, training, scheduling, attendance,
                 messaging, compliance, travel, and the rest of the program. One login, one price.

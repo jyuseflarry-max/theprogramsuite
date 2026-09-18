@@ -401,7 +401,7 @@ h1,h2,h3,h4 { margin: 0; }
 .aud-card.feature .aud-foot { color: rgba(255,255,255,.6); }
 
 /* ============================================================ Pricing */
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 40px; max-width: 760px; margin-left: auto; margin-right: auto; }
 .plan { position: relative; background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 32px 28px 30px; display: flex; flex-direction: column; box-shadow: var(--shadow-card); }
 .plan.popular { border-color: var(--accent); box-shadow: var(--shadow-lift); }
 .plan-badge { position: absolute; top: -12px; left: 28px; background: var(--gold); color: var(--gold-ink); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: 7px; }
@@ -434,7 +434,7 @@ h1,h2,h3,h4 { margin: 0; }
 .dept-head { padding: 26px 30px; border-bottom: 1px solid var(--line); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .dept-head h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.018em; }
 .dept-head p { font-size: 14.5px; color: var(--ink-soft); margin: 6px 0 0; max-width: 540px; }
-.dept-rows { display: grid; grid-template-columns: repeat(3, 1fr); }
+.dept-rows { display: grid; grid-template-columns: repeat(2, 1fr); }
 .dept.college .dept-rows { grid-template-columns: repeat(2, 1fr); }
 .dept-row { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 7px; }
 .dept-row:last-child { border-right: 0; }
@@ -446,6 +446,11 @@ h1,h2,h3,h4 { margin: 0; }
 .dept-tier + .dept-tier { margin-top: 14px; }
 .dept-tier-name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2); }
 .plan-badge--soft { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line-2); }
+
+/* Add-ons (coming soon) */
+.addon-soon { align-self: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line-2); padding: 4px 9px; border-radius: 7px; margin-bottom: 8px; }
+.addon-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; margin-top: 4px; }
+.addon-plan { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--muted); margin-top: 10px; }
 
 .price-foot { font-size: 13px; color: var(--muted); text-align: center; margin-top: 26px; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
