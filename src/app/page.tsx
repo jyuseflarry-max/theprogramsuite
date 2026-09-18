@@ -596,9 +596,9 @@ const TIERS: Tier[] = [
     name: "Command",
     popular: false,
     badge: null,
-    for: "Everything you need to run the whole program, day to day.",
-    annual: "500",
-    monthly: "50",
+    for: "The operating system for your program.",
+    annual: "495",
+    monthly: "49",
     everything: null,
     feats: [
       "Athletes, roster & family access",
@@ -607,6 +607,8 @@ const TIERS: Tier[] = [
       "Inventory, gear & budget",
       "Staff roles, access & audit",
       "MAAPP-aligned messaging",
+      "1 GB storage",
+      "Free watermarked graphics previews — buy credit packs à la carte (0 included)",
     ],
     hook: null,
     cta: "Start with Command",
@@ -616,14 +618,14 @@ const TIERS: Tier[] = [
     name: "Showcase",
     popular: true,
     badge: "Most popular",
-    for: "Everything in Command, plus Content Studio to turn your program into content.",
-    annual: "1,000",
-    monthly: "100",
+    for: "Command, plus Content Studio & growth tools.",
+    annual: "995",
+    monthly: "99",
     everything: "Everything in Command, plus",
     feats: [
       "Content Studio — branded graphics & video",
-      "25 AI graphics a month",
-      "Media gallery",
+      "25 monthly graphics credits (renew monthly)",
+      "5 GB storage",
       "Roster & schedule migration",
       "Priority support",
     ],
@@ -631,30 +633,26 @@ const TIERS: Tier[] = [
     cta: "Start Showcase",
     ctaCls: "btn-primary",
   },
-  {
-    name: "Plus",
-    popular: false,
-    badge: "Most complete",
-    for: "Showcase with the biggest graphics allotment and done-for-you setup.",
-    annual: "1,500",
-    monthly: "150",
-    everything: "Everything in Showcase, plus",
-    feats: [
-      "50 AI graphics a month",
-      "Done-for-you onboarding — we load your roster & full schedule",
-      "Same-day priority support",
-      "Automatic season rollover",
-    ],
-    hook: null,
-    cta: "Start Plus",
-    ctaCls: "btn-ink",
-  },
 ];
 
 const SCHOOL: { tier: string; price: string; note: string }[] = [
-  { tier: "Command", price: "2,500", note: "The whole operating system, every sport" },
-  { tier: "Showcase", price: "5,000", note: "+ Content Studio · 100 AI graphics a month" },
-  { tier: "Plus", price: "7,500", note: "+ 200 AI graphics a month · done-for-you setup" },
+  { tier: "Command", price: "2,475", note: "The whole operating system, every sport" },
+  { tier: "Showcase", price: "4,975", note: "+ Content Studio · 100 graphics credits a month" },
+];
+
+const ADDONS: { name: string; desc: string; plan: string }[] = [
+  {
+    name: "Sponsorships",
+    desc:
+      "Turn your program's sponsors into measured value — sponsor pages, tasteful in-app placements, and impression/ROI reports.",
+    plan: "Planned: $500/year add-on · requires Showcase",
+  },
+  {
+    name: "Camps",
+    desc:
+      "Run camp registration and payments end to end — branded sign-up, waivers, rosters, and day-of check-in.",
+    plan: "Planned: free to enable · small per-registration fee",
+  },
 ];
 
 function Pricing() {
@@ -684,7 +682,7 @@ function Pricing() {
                 <span className="per">/year</span>
               </div>
               <div className="plan-monthly">
-                or <b>${t.monthly}/mo</b> — annual is 2 months free
+                or <b>${t.monthly}/mo</b> billed monthly — annual saves ~2 months (~16%)
               </div>
               <hr className="div" />
               <ul className="plan-feats">
@@ -715,9 +713,9 @@ function Pricing() {
               <h3>Whole athletic department</h3>
               <p>
                 One bill for the entire department — flat, at any size. A small school and a
-                20-sport 6A department pay the same. Showcase and Plus departments share a
-                school-wide pool of AI graphics — 100 a month on Showcase, 200 on Plus — and you
-                can pay annually or monthly (a tenth of the annual).
+                20-sport 6A department pay the same. Showcase departments get a school-wide
+                pool of graphics credits — 100 a month. Pay monthly, or annually to save
+                ~2 months (~16%).
               </p>
             </div>
           </div>
@@ -740,13 +738,24 @@ function Pricing() {
         <div className="dept reveal">
           <div className="dept-head">
             <div>
-              <h3>Sponsorship — a $500/yr add-on</h3>
+              <h3>Add-ons</h3>
               <p>
-                Add sponsorship to Showcase or Plus and sell sponsor placements across your
-                program&apos;s graphics, gamecast, and score cards — with real impression reporting
-                to show sponsors what they got. You keep 100% of what you raise.
+                Optional modules that layer onto your plan. Both are on the way — not yet
+                available to purchase.
               </p>
             </div>
+          </div>
+          <div className="dept-rows">
+            {ADDONS.map((a) => (
+              <div className="dept-row" key={a.name}>
+                <span className="addon-soon">Coming soon</span>
+                <div className="dept-tier">
+                  <span className="dept-tier-name">{a.name}</span>
+                  <span className="addon-desc">{a.desc}</span>
+                  <span className="addon-plan">{a.plan}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

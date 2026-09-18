@@ -12,12 +12,14 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  * program publishes; the quoted RANGE spans community amplification. The ZIP
  * drives a socioeconomic (median household income) market adjustment.
  *
- * Ties into the Showcase tier: the toolset that actually captures this value.
+ * Sponsorship tooling is a planned Showcase add-on (Coming soon), so this is a
+ * demand-gauging lead magnet — it estimates value and captures a waitlist, and
+ * does not imply the feature is purchasable yet.
  * Plan: docs/sponsorship-valuation-plan.md (Phase 2)
  */
 
-/** Starting annual price of the Showcase tier (the ROI anchor). */
-const SHOWCASE_START_PRICE = 1_600;
+/** Starting annual price of the Showcase tier (the plan the add-on will require). */
+const SHOWCASE_START_PRICE = 995;
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -124,13 +126,6 @@ export function SponsorshipCalculator() {
           ? "Using the national average for now."
           : "Add a ZIP to adjust for your community's income.";
 
-  // Showcase ROI tie-in: does the estimate clear the starting price of Showcase?
-  const pointDollars = result.pointCents / 100;
-  const clearsShowcase = pointDollars >= SHOWCASE_START_PRICE;
-  const roiNote = clearsShowcase
-    ? "Your estimate already clears it — the rest is money back in the program."
-    : "A sponsor or two clears it — the rest is money back in the program.";
-
   return (
     <div className="calc">
       <form className="calc-form" onSubmit={(e) => e.preventDefault()}>
@@ -191,10 +186,11 @@ export function SponsorshipCalculator() {
 
         {hasInput ? (
           <div className="calc-roi">
-            <span className="calc-roi-eyebrow">Showcase pays for itself</span>
+            <span className="calc-roi-eyebrow">Sponsorships — coming soon</span>
             <p>
-              <b>Showcase</b> is the toolset that generates these graphics and sells the placement —{" "}
-              <b>{usd.format(SHOWCASE_START_PRICE)}/yr</b> to start. {roiNote}
+              We&apos;re building the tools to package, sell, and prove sponsor placements.
+              They&apos;ll launch as a <b>Showcase</b> add-on (Showcase from{" "}
+              <b>{usd.format(SHOWCASE_START_PRICE)}/yr</b>). Join the waitlist to hear first.
             </p>
           </div>
         ) : null}
@@ -208,8 +204,9 @@ export function SponsorshipCalculator() {
           </p>
         </div>
 
-        <a className="btn btn-primary btn-block calc-cta" href="#pricing">
-          See Showcase pricing <ArrowRight aria-hidden="true" width="16" height="16" />
+        <a className="btn btn-primary btn-block calc-cta" href="#access">
+          Notify me when Sponsorships launches{" "}
+          <ArrowRight aria-hidden="true" width="16" height="16" />
         </a>
       </aside>
     </div>
