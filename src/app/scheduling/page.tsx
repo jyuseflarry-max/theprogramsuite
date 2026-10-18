@@ -7,12 +7,12 @@ import { JsonLd } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: "Athletic Scheduling Software",
   description:
-    "Put games, practices, lifts, and travel on one team calendar with built-in conflict checks — drag to reschedule and every athlete, parent, and coach sees the change instantly.",
+    "Game schedules, opponents, and results are part of Team & Athlete Operations, the shared foundation included with every product purchase.",
   alternates: { canonical: "/scheduling" },
   openGraph: {
     title: "Athletic Scheduling Software | The Program Suite",
     description:
-      "One calendar for games, practices, training, and trips — conflict checks built in, and families stay current automatically.",
+      "Game schedules, opponents, and results in the shared Team & Athlete Operations foundation.",
     type: "website",
     url: "https://www.theprogramsuite.com/scheduling",
     siteName: "The Program Suite",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Athletic Scheduling Software | The Program Suite",
-    description: "One calendar for games, practices, training, and trips — with conflict checks built in.",
+    description: "Game schedules, opponents, and results in the shared Team & Athlete Operations foundation.",
     images: ["/images/og-coach.jpg"],
   },
 };
@@ -37,18 +37,18 @@ const breadcrumb = {
 
 /* What one shared calendar actually does. */
 const JOBS: { t: string; d: string }[] = [
-  { t: "One calendar", d: "Games, practices, training blocks, and trips share a single source of truth — no more three calendars that quietly disagree." },
+  { t: "One calendar", d: "The basic program schedule is shared, and each purchased product adds its own focused work to the same source of truth." },
   { t: "Conflict checks", d: "A double-booked field, an overlapping practice, a bus that can't make it back in time — flagged before you ever hit publish." },
   { t: "Quick-add, drag to move", d: "Add an event in seconds; when the opponent reschedules, drag it and every view updates at once." },
   { t: "Season built once", d: "Lay out the whole season up front, then adjust the week that changes on you — without rebuilding anything." },
   { t: "Families stay current", d: "Publish once and athletes, parents, and staff all see the same times, locations, and changes — no group-text relay." },
-  { t: "Travel and trips", d: "Bus times, itineraries, and away-game logistics live on the same calendar as everything else." },
+  { t: "Games, opponents, and results", d: "The season's game schedule, opponent list, and results are part of the included Team & Athlete Operations foundation." },
 ];
 
 const DEEPER: { t: string; d: string }[] = [
   { t: "Built for a whole program, not one team", d: "Freshman, JV, and varsity live under one program, so a shared field or a moved bus is visible across every level at once." },
   { t: "Change once, updated everywhere", d: "Move a practice and the athlete app, the family view, and the staff schedule all reflect it immediately — nobody works off a stale printout." },
-  { t: "Attendance ties back in", d: "Practices and lifts on the calendar feed attendance and eligibility, so a schedule isn't just a plan — it's the record." },
+  { t: "Attendance ties back in", d: "Attendance and availability are part of Team & Athlete Operations, so the schedule is connected to the athlete record." },
   { t: "Phone-first for the sideline", d: "Coaches check and adjust the schedule from their phone; families get it in the same app their athlete already uses." },
 ];
 
@@ -67,9 +67,9 @@ export default function SchedulingPage() {
           </h1>
           <p className="mt-6 max-w-[720px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">
             Most programs run on three calendars that disagree and a group text nobody can search. The
-            Program Suite puts games, practices, training, and travel on one schedule with conflict
-            checks built in — so a moved practice reaches every athlete, parent, and coach the moment
-            you publish it.
+            Program Suite includes game schedules, opponents, and results through Team &amp; Athlete
+            Operations with every product purchase. Selected products add their own focused work while
+            staff and families stay connected to the same season.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
@@ -126,8 +126,8 @@ export default function SchedulingPage() {
             See it on <span className="headline-italic">your season.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">
-            Scheduling is one module of a platform that runs the entire program — roster, practice,
-            training, gear, and messaging included.
+            The basic schedule is included through Team &amp; Athlete Operations. Add the operational
+            products your program needs, and their work stays on the same calendar.
           </p>
           <div className="mt-8 flex justify-center">
             <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>

@@ -10,6 +10,8 @@
  * each other (the SoftwareApplication is published by the Organization).
  */
 
+import { PRODUCT_CATALOG } from "@/lib/product-catalog";
+
 const SITE = "https://www.theprogramsuite.com";
 const ORG_ID = `${SITE}/#organization`;
 const SITE_ID = `${SITE}/#website`;
@@ -39,7 +41,7 @@ const GRAPH = {
         url: `${SITE}/marketing/logo-mark.png`,
       },
       description:
-        "The all-in-one operating system for school and college athletic programs — scheduling, roster and eligibility, practice and training, equipment and inventory, and MAAPP-aligned messaging in one platform.",
+        "A connected platform for school and college athletic programs, sold through five $250 annual products with Team & Athlete Operations included with every purchase.",
       email: "coach@theprogramsuite.com",
       address: {
         "@type": "PostalAddress",
@@ -79,16 +81,15 @@ const GRAPH = {
       url: SITE,
       publisher: { "@id": ORG_ID },
       description:
-        "One platform to run an athletic program: schedule, athletes and eligibility, practice planning, strength and training, equipment and inventory, budget, and MAAPP-aligned team messaging.",
-      offers: {
-        "@type": "AggregateOffer",
+        "Choose Practice, Strength & Conditioning, Inventory, Scouting, Film & Analytics, or Travel & Meals. Every product is $250 per program, per year and includes the same Team & Athlete Operations foundation.",
+      offers: PRODUCT_CATALOG.map((product) => ({
+        "@type": "Offer",
+        name: product.name,
+        price: String(product.price),
         priceCurrency: "USD",
-        lowPrice: "495",
-        highPrice: "4975",
-        offerCount: "4",
-        // Flat pricing: $495–$995 per program/yr; $2,475–$4,975 per department/yr.
-        unitText: "per year",
-      },
+        unitText: "per program per year",
+        sku: product.stripeProductId,
+      })),
     },
   ],
 };

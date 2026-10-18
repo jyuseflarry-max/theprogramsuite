@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { PRODUCT_IDS } from "@/lib/product-catalog";
 
 const requiredFields = ["name", "email", "school", "role", "sports", "plan"] as const;
+const allowedProductInterests = new Set([...PRODUCT_IDS, "multiple_products", "Not sure yet"]);
 
 function field(formData: FormData, name: string) {
   const value = formData.get(name);
@@ -71,6 +73,12 @@ export async function POST(request: Request) {
   if (missing.length > 0) {
     const redirectUrl = new URL("/request-access/error", appUrl(request));
     redirectUrl.searchParams.set("reason", "missing");
+    return NextResponse.redirect(redirectUrl, { status: 303 });
+  }
+
+  if (!allowedProductInterests.has(field(formData, "plan"))) {
+    const redirectUrl = new URL("/request-access/error", appUrl(request));
+    redirectUrl.searchParams.set("reason", "product");
     return NextResponse.redirect(redirectUrl, { status: 303 });
   }
 

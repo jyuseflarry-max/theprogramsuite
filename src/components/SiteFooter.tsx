@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Ico } from "@/components/marketing/icons";
+import { PRODUCT_CATALOG } from "@/lib/product-catalog";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 
@@ -9,11 +10,11 @@ const COLS = [
     h: "Platform",
     links: [
       { l: "Platform", href: "/#platform" },
+      ...PRODUCT_CATALOG.map((product) => ({ l: product.name, href: `/${product.slug}` })),
+      { l: "Team & Athlete Operations", href: "/team-athlete-operations" },
       { l: "Scheduling", href: "/scheduling" },
-      { l: "Eligibility & Roster", href: "/eligibility" },
-      { l: "Equipment & Inventory", href: "/equipment" },
       { l: "Athletic Department", href: "/athletic-department-software" },
-      { l: "Pricing", href: "/#pricing" },
+      { l: "Pricing", href: "/pricing" },
     ],
   },
   {
@@ -43,8 +44,8 @@ export function SiteFooter() {
               <span className="logo-word">The Program Suite</span>
             </Link>
             <p>
-              The all-in-one system for athletic programs — so coaches get the freedom to
-              focus on changing lives. Built by coaches who lived the chaos.
+              One connected platform with the products your program needs — so coaches get the
+              freedom to focus on changing lives. Built by coaches who lived the chaos.
             </p>
             <div className="rx-socials">
               {SOCIALS.map((s) => {

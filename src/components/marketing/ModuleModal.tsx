@@ -90,7 +90,7 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
     }
   }, []);
 
-  // A link inside the panel (a CTA to #access, /equipment, …). Close the panel
+  // A link inside the panel (a CTA to #access, /inventory, …). Close the panel
   // and hand off to the link's destination. Same-page hash links need us to
   // unlock scroll and jump ourselves — at the moment the browser would scroll,
   // the body is still locked, so the native anchor jump is swallowed.

@@ -16,20 +16,20 @@ export function LeadForm() {
           <div className="lead-intro reveal">
             <h2 className="h-display h2">See it working for your program.</h2>
             <p>
-              Tell us about your program and we&apos;ll get you set up — with the right
-              plan for your school and sport.
+              Tell us what job your program needs to solve. We&apos;ll show you the right
+              product mix in one connected workspace.
             </p>
             <ul className="lead-assure">
               <li>
-                <Ico.check className="ck" width="16" height="16" /> A real person replies — coaches,
-                not a call center
+                <Ico.check className="ck" width="16" height="16" /> Every product is $250 per program,
+                per year
               </li>
               <li>
-                <Ico.check className="ck" width="16" height="16" /> No card required to get started
+                <Ico.check className="ck" width="16" height="16" /> Choose one product or combine several
               </li>
               <li>
-                <Ico.check className="ck" width="16" height="16" /> Up and running in your sport within a
-                week
+                <Ico.check className="ck" width="16" height="16" /> Team &amp; Athlete Operations is included
+                with every purchase
               </li>
             </ul>
           </div>
@@ -69,12 +69,14 @@ export function LeadForm() {
                 />
               </div>
               <div className="field half">
-                <label htmlFor="f-plan">Plan</label>
+                <label htmlFor="f-plan">Product Interest</label>
                 <select id="f-plan" name="plan" defaultValue="Not sure yet">
-                  <option>Command (one program)</option>
-                  <option>Showcase (one program)</option>
-                  <option>Entire school</option>
-                  <option>District coverage</option>
+                  <option value="practice">Practice</option>
+                  <option value="strength">Strength &amp; Conditioning</option>
+                  <option value="inventory">Inventory</option>
+                  <option value="scouting_film_analytics">Scouting, Film &amp; Analytics</option>
+                  <option value="travel_meals">Travel &amp; Meals</option>
+                  <option value="multiple_products">Multiple products</option>
                   <option>Not sure yet</option>
                 </select>
               </div>

@@ -15,7 +15,7 @@ const ROWS = [
       "Today's tasks, ranked by urgency",
       "Live kit readiness by team",
       "Buying needs before you're short",
-      "Per-team clearance at a glance",
+      "Per-team return-to-play status at a glance",
     ],
     src: "/marketing/screens/inventory-home.png",
     url: "app.theprogramsuite.com/summit-ridge/inventory",
@@ -58,7 +58,7 @@ const MINIS: { real: boolean; src?: string; title: string; note: string }[] = [
   { real: true, src: "/marketing/screens/item-detail.png", title: "Item & athlete history", note: "every unit, size, condition, and hand-off" },
   { real: true, src: "/marketing/screens/buying-needs.png", title: "Equipment catalog", note: "every item type, stock, and replacement value" },
   { real: true, src: "/marketing/screens/athlete-profile.png", title: "Athlete 360 profiles", note: "roster, family access, development notes" },
-  { real: true, src: "/marketing/screens/game-day.png", title: "Game day", note: "travel, attendance, staffing, readiness" },
+  { real: true, src: "/marketing/screens/game-day.png", title: "Game day", note: "schedule, attendance, staffing, readiness" },
   { real: true, src: "/marketing/screens/practice-planner.png", title: "Practice planner", note: "install goals, drill library, staff blocks" },
   { real: true, src: "/marketing/screens/budget.png", title: "Budget & purchasing", note: "spend, approvals, and purchase orders" },
 ];
