@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s | The Program Suite",
   },
   description:
-    "Run your whole athletic program on one platform — scheduling, roster and eligibility, practice, strength and training, equipment and inventory, and safe team messaging. Built by coaches.",
+    "Choose Practice, Strength & Conditioning, Inventory, Scouting, Film & Analytics, or Travel & Meals for $250 per program, per year each. Team & Athlete Operations is included with every purchase.",
   keywords: [
     "athletic program management software",
     "athletic department software",
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
     "high school athletics software",
     "coaching software",
     "team scheduling software",
-    "athletic equipment inventory software",
+    "athletic inventory software",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     title: "Athletic Program Management Software | The Program Suite",
     description:
-      "One platform to run your entire athletic program — scheduling, roster and eligibility, practice, training, equipment, and safe team messaging. Built by coaches.",
+      "Five annual products at $250 per program, per year each, with Team & Athlete Operations included with every purchase.",
     type: "website",
     url: "https://www.theprogramsuite.com",
     siteName: "The Program Suite",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Athletic Program Management Software | The Program Suite",
     description:
-      "One platform to run your entire athletic program — scheduling, roster, practice, training, equipment, and safe team messaging.",
+      "Choose the tools your program needs. Five $250 annual products share one included Team & Athlete Operations foundation.",
     images: ["/images/og-coach.jpg"],
   },
 };

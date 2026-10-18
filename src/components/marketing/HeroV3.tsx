@@ -23,48 +23,60 @@ const PANES: Pane[] = [
     alt: "First-person view of a coach's desk: The Program Suite home dashboard on the monitor, the coach app on an iPhone, the gym through the window",
     h1: (
       <>
-        Coach at the
+        Build and run
         <br />
-        highest <em>level.</em>
+        better <em>practices.</em>
       </>
     ),
-    sub: "Schedule, athletes, practice, game day, gear, and content — the system for school sports. Run your program as if you had a full staff.",
-  },
-  {
-    img: "/marketing/redesign/hero-game.jpg",
-    alt: "First-person view at the scorer's table: game-day checklist on an iPad, practice plan on a laptop, a bright gym beyond",
-    h1: (
-      <>
-        Win the game
-        <br />
-        before <em>game day.</em>
-      </>
-    ),
-    sub: "Playbook, scouting, call sheets, and live analytics — college-grade strategy tools, shaped to your sport and your staff size.",
+    sub: "Practice plans, drills, templates, live execution, boards, and reports—one focused product for the work your staff does every day.",
   },
   {
     img: "/marketing/redesign/hero-fund.jpg",
-    alt: "First-person view holding a phone over the field at golden hour, reviewing a school-branded game graphic",
+    alt: "First-person view of a coach reviewing athlete work on a phone beside the field",
     h1: (
       <>
-        The program that
+        Run the room.
         <br />
-        funds <em>itself.</em>
+        Understand the <em>work.</em>
       </>
     ),
-    sub: "School-branded graphics in seconds, an approval queue, and sponsors sold, fulfilled, and proven — every Friday night becomes revenue.",
+    sub: "Strength & Conditioning brings programs, workouts, exercises, sessions, testing, and training load into one connected product.",
   },
   {
     img: "/marketing/redesign/hero-family.jpg",
-    alt: "First-person view of a parent's phone at the kitchen counter showing the team app, their athlete leaning in smiling",
+    alt: "First-person view of a family reviewing team information on a phone",
     h1: (
       <>
-        Every family,
+        Know what you own.
         <br />
-        in the <em>loop.</em>
+        Know where it <em>is.</em>
       </>
     ),
-    sub: "A phone-first app athletes actually use — and messaging where a minor is never alone in a chat with an adult. Families see everything.",
+    sub: "Inventory keeps athlete sizing, catalog, issue and collection, custody, counts, maintenance, and purchasing together.",
+  },
+  {
+    img: "/marketing/redesign/hero-game.jpg",
+    alt: "First-person view at the scorer's table with a coaching workspace open",
+    h1: (
+      <>
+        Scout. Review.
+        <br />
+        Find the <em>edge.</em>
+      </>
+    ),
+    sub: "Scouting, Film & Analytics keeps opponent preparation, film review, and performance analysis in one staff workflow.",
+  },
+  {
+    img: "/marketing/redesign/hero-field.jpg",
+    alt: "A team field at sunset before an away trip",
+    h1: (
+      <>
+        Move the team.
+        <br />
+        Keep every <em>detail.</em>
+      </>
+    ),
+    sub: "Travel & Meals brings trip planning, itineraries, travel coordination, team meals, and meal ordering together.",
   },
 ];
 
@@ -72,9 +84,10 @@ type Cat = { t: string; d: string; href: string; mod?: string; ico: ReactNode; t
 
 const CATS: Cat[] = [
   {
-    t: "Run the program",
-    d: "Schedule · athletes · gear",
-    href: "#platform",
+    t: "Practice",
+    d: "$250/year",
+    href: "?m=practice",
+    mod: "practice",
     tint: "var(--accent)",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -86,10 +99,10 @@ const CATS: Cat[] = [
     ),
   },
   {
-    t: "Coach the game",
-    d: "Playbook · scouting · analytics",
-    href: "?m=strategy",
-    mod: "strategy",
+    t: "Strength & Conditioning",
+    d: "$250/year",
+    href: "?m=strength-conditioning",
+    mod: "strength-conditioning",
     tint: "#e8590c",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -99,10 +112,10 @@ const CATS: Cat[] = [
     ),
   },
   {
-    t: "Fund the program",
-    d: "Content · sponsors · graphics",
-    href: "?m=studio",
-    mod: "studio",
+    t: "Inventory",
+    d: "$250/year",
+    href: "?m=inventory",
+    mod: "inventory",
     tint: "var(--gold)",
     dark: true,
     ico: (
@@ -112,17 +125,31 @@ const CATS: Cat[] = [
     ),
   },
   {
-    t: "Bring families in",
-    d: "Athlete & family app",
-    href: "?m=messages",
-    mod: "messages",
-    tint: "var(--good)",
+    t: "Scouting, Film & Analytics",
+    d: "$250/year",
+    href: "?m=scouting-film-analytics",
+    mod: "scouting-film-analytics",
+    tint: "#5b52a3",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="9" cy="8" r="3.2" />
         <path d="M3.5 20c.6-3.4 2.8-5 5.5-5s4.9 1.6 5.5 5" />
         <circle cx="17" cy="9" r="2.4" />
         <path d="M15.5 20c.4-2.4 1.6-3.8 3.5-3.8 1.4 0 2.5.8 3 2.3" />
+      </svg>
+    ),
+  },
+  {
+    t: "Travel & Meals",
+    d: "$250/year",
+    href: "?m=travel-meals",
+    mod: "travel-meals",
+    tint: "var(--good)",
+    ico: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M5 17h14M7 17l1-9h8l1 9M10 8V5h4v3" />
+        <circle cx="8" cy="20" r="1" />
+        <circle cx="16" cy="20" r="1" />
       </svg>
     ),
   },
@@ -150,7 +177,7 @@ export function HeroV3() {
         ))}
         <div className="v3-hero-scrim" aria-hidden="true" />
         <div className="container v3-hero-in">
-          {/* All four copy blocks share one grid cell, so the block (and the
+          {/* All five copy blocks share one grid cell, so the block (and the
               buttons below it) keeps the height of the tallest copy — nothing
               jumps when panes swap. */}
           <div className="v3-hero-copies">
@@ -169,14 +196,11 @@ export function HeroV3() {
             )}
           </div>
           <div className="v3-hero-ctas reveal">
-            <a href="https://app.theprogramsuite.com/get-started" className="btn btn-primary btn-lg">
-              Get Started
-            </a>
-            <a href="#access" className="btn btn-ghost btn-lg">
+            <a href="#access" className="btn btn-primary btn-lg">
               Request a demo
             </a>
             <a href="#platform" className="btn btn-ghost btn-lg">
-              Explore the platform
+              Explore the products
             </a>
           </div>
         </div>

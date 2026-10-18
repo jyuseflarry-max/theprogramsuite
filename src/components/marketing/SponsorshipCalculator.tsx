@@ -12,14 +12,12 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  * program publishes; the quoted RANGE spans community amplification. The ZIP
  * drives a socioeconomic (median household income) market adjustment.
  *
- * Sponsorship tooling is a planned Showcase add-on (Coming soon), so this is a
+ * Sponsorship tooling sits outside the five paid products, so this is a
  * demand-gauging lead magnet — it estimates value and captures a waitlist, and
  * does not imply the feature is purchasable yet.
  * Plan: docs/sponsorship-valuation-plan.md (Phase 2)
  */
 
-/** Starting annual price of the Showcase tier (the plan the add-on will require). */
-const SHOWCASE_START_PRICE = 995;
 
 const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -189,8 +187,8 @@ export function SponsorshipCalculator() {
             <span className="calc-roi-eyebrow">Sponsorships — coming soon</span>
             <p>
               We&apos;re building the tools to package, sell, and prove sponsor placements.
-              They&apos;ll launch as a <b>Showcase</b> add-on (Showcase from{" "}
-              <b>{usd.format(SHOWCASE_START_PRICE)}/yr</b>). Join the waitlist to hear first.
+              Sponsorship capabilities are separate from the four operational products. Join the
+              waitlist for approved availability and pricing.
             </p>
           </div>
         ) : null}

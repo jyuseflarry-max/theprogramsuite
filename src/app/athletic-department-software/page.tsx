@@ -7,12 +7,12 @@ import { JsonLd } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: "Athletic Department Software",
   description:
-    "Run the whole athletic department on one platform — every program's roster, schedule, eligibility, equipment, and messaging, with staff roles, audit trails, and a department roll-up for the AD.",
+    "Give each athletic program the operational products it needs, with shared team and athlete operations, staff roles, audit trails, and department visibility.",
   alternates: { canonical: "/athletic-department-software" },
   openGraph: {
     title: "Athletic Department Software | The Program Suite",
     description:
-      "One platform for every program in the department — roster, schedule, eligibility, and equipment, with staff roles, audit trails, and an AD roll-up.",
+      "Five $250 annual products for every program, with Team & Athlete Operations included with each purchase.",
     type: "website",
     url: "https://www.theprogramsuite.com/athletic-department-software",
     siteName: "The Program Suite",
@@ -37,16 +37,16 @@ const breadcrumb = {
 
 const JOBS: { t: string; d: string }[] = [
   { t: "Every program, one platform", d: "Football, basketball, volleyball, cross country — each program runs day to day, and the department sees all of them in one place." },
-  { t: "Roll-up for the AD", d: "Roster, eligibility, inventory, and staff across every program, rolled up so the athletic director isn't chasing twenty coaches for a number." },
+  { t: "Roll-up for the AD", d: "Roster, availability, Inventory, and staff across every program, rolled up so the athletic director isn't chasing twenty coaches for a number." },
   { t: "Staff roles and access", d: "Give each coach, assistant, and administrator exactly the access they need — and nothing they don't — across the whole department." },
   { t: "Audit trails built in", d: "Who changed what, when — a full record across programs, so accountability isn't a favor you ask a coach for." },
-  { t: "Eligibility at a glance", d: "One clearance verdict per athlete rolls up to a department view, so the AD knows who's cleared without opening five systems." },
+  { t: "Athlete operations at a glance", d: "Attendance, availability, health, readiness, forms, academics, and standards stay connected to the athlete record." },
   { t: "Equipment across programs", d: "Every program's gear, issued and collected, with fees and shortages visible department-wide instead of siloed in a closet." },
 ];
 
 const DEEPER: { t: string; d: string }[] = [
   { t: "Built for procurement review", d: "Roles and permissions, full audit trails, and board-ready reporting are built in — the visibility and accountability a purchase of this size requires." },
-  { t: "One price per program", d: "Bring one program on, or the whole department. Each sport is priced as one program; boys' and girls' teams count separately." },
+  { t: "Products that fit each program", d: "Start each program with the operational products it needs and add products as the work grows." },
   { t: "MAAPP-aligned messaging", d: "Every coach–athlete conversation is open, monitored, and auditable department-wide — safety by default, not a setting someone forgets to turn on." },
   { t: "Grows at your pace", d: "Start with the programs that hurt most and add the rest whenever you're ready — nothing has to migrate twice." },
 ];
@@ -66,12 +66,12 @@ export default function AthleticDepartmentPage() {
           </h1>
           <p className="mt-6 max-w-[720px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">
             Every program runs on its own scattered tools, and the AD spends the week chasing numbers.
-            The Program Suite runs each program day to day — roster, schedule, eligibility, equipment,
-            and messaging — and rolls all of it up so the department finally has one source of truth.
+            The Program Suite gives each program the products it needs while Team &amp; Athlete Operations
+            keeps the roster, basic schedule, athlete records, staff, messaging, and families connected.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
-            <ArrowBtn href="/#pricing" variant="ghost" large>See department pricing</ArrowBtn>
+            <ArrowBtn href="/pricing" variant="ghost" large>See product pricing</ArrowBtn>
           </div>
         </div>
       </section>
@@ -124,8 +124,8 @@ export default function AthleticDepartmentPage() {
             Bring the department <span className="headline-italic">onto one system.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">
-            Start with one program or roll out the whole department. A 20-minute walkthrough with
-            people who&apos;ve run a program — not a call center.
+            Start with one product in one program or shape the whole department. A focused walkthrough
+            will map the right product mix without inventing a one-size-fits-all bundle.
           </p>
           <div className="mt-8 flex justify-center">
             <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>

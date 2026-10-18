@@ -2,26 +2,29 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
+import { getProduct, productLeadHref } from "@/lib/product-catalog";
+
+const INVENTORY = getProduct("inventory")!;
 
 export const metadata: Metadata = {
-  title: "Athletic Equipment & Inventory Management Software",
+  title: "Athletic Inventory Software",
   description:
-    "Track, issue, collect, and settle team gear — with QR labels, automatic lost-gear fees, athlete and family visibility, and AD roll-ups. Inventory is one module of a platform that runs the whole program.",
-  alternates: { canonical: "/equipment" },
+    "Inventory for school athletics: athlete sizing, catalog, issue and collection, custody, storage counts, loans, reservations, maintenance, purchasing, and fees.",
+  alternates: { canonical: "/inventory" },
   openGraph: {
-    title: "Athletic Equipment & Inventory Management Software | The Program Suite",
+    title: "Athletic Inventory Software | The Program Suite",
     description:
-      "Track, issue, collect, and settle team gear — QR labels, automatic lost-gear fees, athlete and family visibility, and AD roll-ups, in a platform that runs the whole program.",
+      "Run the full inventory lifecycle, from athlete sizing and custody to physical counts, maintenance, purchasing, and fees.",
     type: "website",
-    url: "https://www.theprogramsuite.com/equipment",
+    url: "https://www.theprogramsuite.com/inventory",
     siteName: "The Program Suite",
-    images: [{ url: "/images/og-coach.jpg", width: 1200, height: 675, alt: "The Program Suite — athletic equipment & inventory management" }],
+    images: [{ url: "/images/og-coach.jpg", width: 1200, height: 675, alt: "The Program Suite Inventory product" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Athletic Equipment & Inventory Management Software | The Program Suite",
+    title: "Athletic Inventory Software | The Program Suite",
     description:
-      "Track, issue, collect, and settle team gear in a platform that runs the whole program.",
+      "Athlete sizing, custody, counts, loans, reservations, maintenance, purchasing, and inventory-related fees.",
     images: ["/images/og-coach.jpg"],
   },
 };
@@ -32,7 +35,7 @@ const JOBS: { t: string; d: string }[] = [
   { t: "Issue", d: "Hand out a full kit per athlete, size-matched from the roster's own sizes. Scan a QR label or tap a name — either way it's logged." },
   { t: "Track", d: "Walk the storage room with your phone. Recount stock, hand out consumables, and see exactly what's out and with whom." },
   { t: "Collect", d: "Check-in shows only the athletes who still have gear out. Everyone else collapses to one quiet line." },
-  { t: "Reconcile", d: "Lost or damaged at check-in? The fee is already created. Settle it, waive it, or let clearance hold until it's resolved." },
+  { t: "Reconcile", d: "Lost or damaged at check-in? The inventory-related fee is already created. Settle or waive it with the item history intact." },
   { t: "Purchase", d: "Buying needs roll up from what's short. Purchase orders carry vendors, unit costs, and budget categories — receiving restocks automatically." },
 ];
 
@@ -59,7 +62,7 @@ const DEEPER: { t: string; d: string }[] = [
   },
   {
     t: "It already knows your roster",
-    d: "No spreadsheet import to start a season. Sizes come from athlete profiles, fees notify families through the same messaging the program already uses, and clearance ties into the rest of the platform.",
+    d: "Athlete apparel and shoe sizing lives in Inventory. Fees notify families through the same messaging the program already uses.",
   },
 ];
 
@@ -71,7 +74,7 @@ export default function EquipmentPage() {
       {/* Title band */}
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
-          <div className="mb-[18px]"><Eyebrow>Equipment &amp; Inventory</Eyebrow></div>
+          <div className="mb-[18px]"><Eyebrow>Inventory</Eyebrow></div>
           <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>
             The equipment room, <span className="headline-italic">run like a program.</span>
           </h1>
@@ -81,8 +84,8 @@ export default function EquipmentPage() {
             issue it, track it, collect it, settle the fees, and reorder what&apos;s short.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
-            <ArrowBtn href="/#pricing" variant="ghost" large>See pricing</ArrowBtn>
+            <ArrowBtn href={productLeadHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
+            <ArrowBtn href="/pricing" variant="ghost" large>See pricing</ArrowBtn>
           </div>
         </div>
       </section>
@@ -137,37 +140,19 @@ export default function EquipmentPage() {
         </div>
       </section>
 
-      {/* Price comparison */}
+      {/* Product pricing */}
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
-          <div className="mb-[18px]"><Eyebrow>Do the math</Eyebrow></div>
+          <div className="mb-[18px]"><Eyebrow>Inventory Pricing</Eyebrow></div>
           <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>
-            A gear tracker costs more than the <span className="headline-italic">whole program.</span>
+            Inventory is <span className="headline-italic">$250 per program, per year.</span>
           </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="p-6" style={{ background: "var(--color-paper-2)" }}>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[color:var(--color-muted)]">
-                Equipment-only trackers
-              </p>
-              <p className="mt-3 text-[34px] font-semibold">$800–$1,600<span className="text-[16px] font-normal text-[color:var(--color-muted)]">/yr</span></p>
-              <p className="mt-3 text-[15px] leading-[1.6] text-[color:var(--color-muted)]">
-                Counts your gear and logs check-outs. Fees, purchasing, athlete self-service, and the
-                other twenty jobs of your program live somewhere else.
-              </p>
-            </div>
-            <div className="p-6" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>
-                The Program Suite — Command
-              </p>
-              <p className="mt-3 text-[34px] font-semibold">from $495<span className="text-[16px] font-normal opacity-70">/yr</span></p>
-              <p className="mt-3 text-[15px] leading-[1.6] opacity-85">
-                Inventory at this depth — plus practice planning, training, scheduling, attendance,
-                messaging, compliance, travel, and the rest of the program. One login, one price.
-              </p>
-            </div>
+          <div className="mt-10 p-6" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>Included With Inventory</p>
+            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Team &amp; Athlete Operations keeps Inventory connected to the roster, basic schedule, athlete records, staff, messaging, and family access. Add another operational product later without rebuilding any of it.</p>
           </div>
           <div className="mt-8">
-            <ArrowBtn href="/#pricing">Compare the plans</ArrowBtn>
+            <ArrowBtn href="/pricing">See All Product Pricing</ArrowBtn>
           </div>
         </div>
       </section>
@@ -183,7 +168,7 @@ export default function EquipmentPage() {
             they&apos;re ready.
           </p>
           <div className="mt-8 flex justify-center">
-            <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>
+            <ArrowBtn href={productLeadHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
           </div>
         </div>
       </section>

@@ -22,6 +22,26 @@ const nextConfig: NextConfig = {
         destination: "/api/request-access",
         permanent: true,
       },
+      {
+        source: "/eligibility",
+        destination: "/team-athlete-operations",
+        permanent: true,
+      },
+      {
+        source: "/equipment",
+        destination: "/inventory",
+        permanent: true,
+      },
+      {
+        source: "/games-trips",
+        destination: "/travel-meals",
+        permanent: true,
+      },
+      {
+        source: "/games-and-trips",
+        destination: "/travel-meals",
+        permanent: true,
+      },
     ];
   },
 };

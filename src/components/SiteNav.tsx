@@ -2,11 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
-const GET_STARTED_URL = "https://app.theprogramsuite.com/get-started";
-
 const NAV_LINKS = [
-  { href: "/#platform", label: "Platform" },
-  { href: "/#pricing", label: "Pricing" },
+  { href: "/#platform", label: "Products" },
+  { href: "/#included", label: "Included Operations" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 export function SiteNav() {
@@ -30,11 +29,8 @@ export function SiteNav() {
           <a href={APP_LOGIN_URL} className="rx-nav-login">
             Log in
           </a>
-          <a href="/#access" className="btn btn-ghost rx-nav-btn rx-nav-demo">
-            Request a demo
-          </a>
-          <a href={GET_STARTED_URL} className="btn btn-primary rx-nav-btn">
-            Get Started
+          <a href="/#access" className="btn btn-primary rx-nav-btn">
+            Request a Demo
           </a>
         </div>
       </div>
