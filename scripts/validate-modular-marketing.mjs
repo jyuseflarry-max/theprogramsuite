@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { PRODUCT_CATALOG, productLeadHref } from "../src/lib/product-catalog.js";
+import { PRODUCT_CATALOG, productPurchaseHref } from "../src/lib/product-catalog.js";
 
 const root = process.cwd();
 const read = (path) => readFileSync(resolve(root, path), "utf8");
@@ -24,7 +24,12 @@ for (const [index, values] of expected.entries()) {
     `Catalog product ${index + 1} does not match the stable contract`,
   );
   assert.equal(product.price, 250, `${name} must cost $250 per program, per year`);
-  assert.equal(productLeadHref(id), `/?product=${id}#access`, `${name} lead CTA must preserve its stable identifier`);
+  const destination = encodeURIComponent(`/settings/program-tools?product=${id}`);
+  assert.equal(
+    productPurchaseHref(id),
+    `https://app.theprogramsuite.com/login?next=${destination}`,
+    `${name} purchase CTA must preserve its stable identifier`,
+  );
 }
 
 const homepage = read("src/components/marketing/ModularLandingPage.tsx");
