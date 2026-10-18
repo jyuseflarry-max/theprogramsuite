@@ -64,9 +64,10 @@ export function getProduct(productId) {
   return PRODUCT_CATALOG.find((product) => product.id === productId);
 }
 
-export function productLeadHref(productId) {
+export function productPurchaseHref(productId) {
   if (!PRODUCT_IDS.includes(productId)) throw new Error(`Unknown product identifier: ${productId}`);
-  return `/?product=${encodeURIComponent(productId)}#access`;
+  const destination = `/settings/program-tools?product=${productId}`;
+  return `https://app.theprogramsuite.com/login?next=${encodeURIComponent(destination)}`;
 }
 
 export function formatAnnualPrice(price) {
