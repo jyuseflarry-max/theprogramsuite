@@ -2,7 +2,7 @@ import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
-import { FOUNDATION_CAPABILITIES, formatAnnualPrice, getProduct, productPurchaseHref } from "@/lib/product-catalog";
+import { FOUNDATION_CAPABILITIES, formatAnnualPrice, getProduct, productSignupHref } from "@/lib/product-catalog";
 
 const PRODUCT_IMAGES: Record<string, { src: string; alt: string }> = {
   practice: { src: "/marketing/screens/practice-planner.png", alt: "The Practice planning workspace" },
@@ -26,7 +26,7 @@ export function ProductLandingPage({ productId }: { productId: string }) {
             Choose {product.name} for {formatAnnualPrice(product.price)} per program. Athlete Operations/Core is included with the purchase.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href={productPurchaseHref(product.id)} large>Choose {product.name}</ArrowBtn>
+            <ArrowBtn href={productSignupHref(product.id)} large>Start with {product.name}</ArrowBtn>
             <ArrowBtn href="/pricing" variant="ghost" large>Compare Products</ArrowBtn>
           </div>
         </div>

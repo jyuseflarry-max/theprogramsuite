@@ -68,10 +68,10 @@ export function getProduct(productId) {
   return PRODUCT_CATALOG.find((product) => product.id === productId);
 }
 
-export function productPurchaseHref(productId) {
+export function productSignupHref(productId) {
   if (!PRODUCT_IDS.includes(productId)) throw new Error(`Unknown product identifier: ${productId}`);
-  const destination = `/settings/program-tools?product=${productId}`;
-  return `https://app.theprogramsuite.com/login?next=${encodeURIComponent(destination)}`;
+  const params = new URLSearchParams({ scope: "team", product: productId });
+  return `https://app.theprogramsuite.com/get-started/create-school?${params.toString()}`;
 }
 
 export function formatAnnualPrice(price) {

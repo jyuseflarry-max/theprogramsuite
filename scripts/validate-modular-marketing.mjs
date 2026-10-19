@@ -6,7 +6,7 @@ import {
   FOUNDATION_CAPABILITIES,
   PRODUCT_CATALOG,
   PRODUCT_IDS,
-  productPurchaseHref,
+  productSignupHref,
 } from "../src/lib/product-catalog.js";
 
 const root = process.cwd();
@@ -31,14 +31,13 @@ for (const [index, values] of expected.entries()) {
     `Catalog product ${index + 1} does not match the stable contract`,
   );
   assert.equal(product.price, 250, `${name} must cost $250 per program, per year`);
-  const destination = encodeURIComponent(`/settings/program-tools?product=${id}`);
   assert.equal(
-    productPurchaseHref(id),
-    `https://app.theprogramsuite.com/login?next=${destination}`,
-    `${name} purchase CTA must preserve its stable identifier`,
+    productSignupHref(id),
+    `https://app.theprogramsuite.com/get-started/create-school?scope=team&product=${id}`,
+    `${name} signup CTA must preserve its stable identifier`,
   );
 }
-assert.throws(() => productPurchaseHref("travel_meals"), /Unknown product identifier/, "The retired Travel & Meals key must be rejected");
+assert.throws(() => productSignupHref("travel_meals"), /Unknown product identifier/, "The retired Travel & Meals key must be rejected");
 
 for (const capability of ["Trips and meals", "Forms and acknowledgments", "Academics and team standards", "Messaging", "Family access"]) {
   assert.ok(FOUNDATION_CAPABILITIES.includes(capability), `Core foundation is missing ${capability}`);
@@ -75,6 +74,7 @@ for (const retired of [/Games & Trips/i, /Equipment (?:Inventory|Management)/i, 
 }
 
 assert.match(homepage, /data-product=\{product\.id\}/, "Pricing CTAs must carry the stable product identifier");
+assert.doesNotMatch(homepage, /app\.theprogramsuite\.com\/login/, "Product CTAs must not send new customers to login");
 assert.match(prefill, /URLSearchParams\(window\.location\.search\).*get\("product"\)/s, "Direct product CTA links must prefill the lead form");
 assert.ok(leadForm.includes("PRODUCT_CATALOG.map"), "Lead form product options must use the shared catalog");
 assert.match(requestAccessRoute, /new Set\(\[\.\.\.PRODUCT_IDS/, "Access requests must validate against the shared product identifiers");

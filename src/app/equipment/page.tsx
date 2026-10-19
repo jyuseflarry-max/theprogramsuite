@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
-import { getProduct, productPurchaseHref } from "@/lib/product-catalog";
+import { getProduct, productSignupHref } from "@/lib/product-catalog";
 
 const INVENTORY = getProduct("inventory")!;
 
@@ -84,7 +84,7 @@ export default function EquipmentPage() {
             issue it, track it, collect it, settle the fees, and reorder what&apos;s short.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href={productPurchaseHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
+            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
             <ArrowBtn href="/pricing" variant="ghost" large>See pricing</ArrowBtn>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function EquipmentPage() {
             they&apos;re ready.
           </p>
           <div className="mt-8 flex justify-center">
-            <ArrowBtn href={productPurchaseHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
+            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
           </div>
         </div>
       </section>
