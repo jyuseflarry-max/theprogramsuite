@@ -33,7 +33,7 @@ for (const [index, values] of expected.entries()) {
   assert.equal(product.price, 250, `${name} must cost $250 per program, per year`);
   assert.equal(
     productSignupHref(id),
-    `https://app.theprogramsuite.com/get-started/create-school?scope=team&product=${id}`,
+    `https://app.theprogramsuite.com/start?product=${id}`,
     `${name} signup CTA must preserve its stable identifier`,
   );
 }

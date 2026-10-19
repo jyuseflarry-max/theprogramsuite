@@ -70,8 +70,8 @@ export function getProduct(productId) {
 
 export function productSignupHref(productId) {
   if (!PRODUCT_IDS.includes(productId)) throw new Error(`Unknown product identifier: ${productId}`);
-  const params = new URLSearchParams({ scope: "team", product: productId });
-  return `https://app.theprogramsuite.com/get-started/create-school?${params.toString()}`;
+  const params = new URLSearchParams({ product: productId });
+  return `https://app.theprogramsuite.com/start?${params.toString()}`;
 }
 
 export function formatAnnualPrice(price) {
