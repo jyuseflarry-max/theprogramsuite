@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Athletic Department Software | The Program Suite",
     description:
-      "Five $250 annual products for every program, with Team & Athlete Operations included with each purchase.",
+      "Four $250 annual products for every program, with Athlete Operations/Core included with any product purchase.",
     type: "website",
     url: "https://www.theprogramsuite.com/athletic-department-software",
     siteName: "The Program Suite",
@@ -66,8 +66,8 @@ export default function AthleticDepartmentPage() {
           </h1>
           <p className="mt-6 max-w-[720px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">
             Every program runs on its own scattered tools, and the AD spends the week chasing numbers.
-            The Program Suite gives each program the products it needs while Team &amp; Athlete Operations
-            keeps the roster, basic schedule, athlete records, staff, messaging, and families connected.
+            The Program Suite gives each program the products it needs while Athlete Operations/Core
+            keeps rosters, schedules, trips, meals, athlete records, staff, messaging, and families connected.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ArrowBtn href="/#access" large>Request a demo</ArrowBtn>

@@ -31,7 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/strength-conditioning", 0.9, "monthly"),
     page("/inventory", 0.9, "monthly"),
     page("/scouting-film-analytics", 0.9, "monthly"),
-    page("/travel-meals", 0.9, "monthly"),
     page("/scheduling", 0.9, "monthly"),
     page("/team-athlete-operations", 0.9, "monthly"),
     page("/athletic-department-software", 0.9, "monthly"),

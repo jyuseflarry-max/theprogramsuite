@@ -5,12 +5,12 @@ import { ArrowBtn, Eyebrow } from "@/components/primitives";
 import { JsonLd } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Team & Athlete Operations",
-  description: "The shared team and athlete operations included with every The Program Suite product: roster, staff, athlete profiles, health, availability, schedules, opponents, results, and communication.",
+  title: "Athlete Operations/Core",
+  description: "The shared Athlete Operations/Core foundation included with any The Program Suite product purchase: rosters, schedules, trips and meals, availability, health, forms, academics, messaging, and family access.",
   alternates: { canonical: "/team-athlete-operations" },
   openGraph: {
-    title: "Team & Athlete Operations | The Program Suite",
-    description: "Included with every purchased product—the shared foundation that keeps coaches, athletes, and families connected.",
+    title: "Athlete Operations/Core | The Program Suite",
+    description: "Included with any purchased product—the shared foundation that keeps coaches, athletes, staff, and families connected.",
     type: "website",
     url: "https://www.theprogramsuite.com/team-athlete-operations",
     siteName: "The Program Suite",
@@ -23,17 +23,20 @@ const breadcrumb = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.theprogramsuite.com" },
-    { "@type": "ListItem", position: 2, name: "Team & Athlete Operations", item: "https://www.theprogramsuite.com/team-athlete-operations" },
+    { "@type": "ListItem", position: 2, name: "Athlete Operations/Core", item: "https://www.theprogramsuite.com/team-athlete-operations" },
   ],
 };
 
-const FOUNDATIONS = [
-  { t: "Athletes and rosters", d: "Athlete profiles and roster management stay shared across every purchased product." },
-  { t: "Teams and staff", d: "Keep the people responsible for the program connected to the same operational foundation." },
-  { t: "Health and availability", d: "Keep health, readiness, availability, and return-to-play coordination connected to the athlete profile." },
-  { t: "Games and results", d: "Game schedules, opponents, and results belong to the shared foundation rather than a paid travel or scouting product." },
-  { t: "Communication", d: "Coaches, athletes, staff, and families use shared communication tools across the platform." },
-  { t: "One included foundation", d: "Team & Athlete Operations is included with a product purchase and is not sold as a standalone plan." },
+const FOUNDATIONS: { t: string; d: string; id?: string }[] = [
+  { t: "Athletes, staff, and rosters", d: "Keep athlete profiles, rosters, teams, and staff connected across every purchased product." },
+  { t: "Schedules, games, and results", d: "Manage team schedules, games, opponents, scores, and results in the shared foundation." },
+  { t: "Trips and meals", d: "Coordinate trips and team meals as included program operations, not as a separate paid product.", id: "trips-meals" },
+  { t: "Attendance and availability", d: "Track attendance and availability in the same athlete and team context." },
+  { t: "Health and readiness", d: "Coordinate health, readiness, and return-to-play work around the athlete record." },
+  { t: "Forms and acknowledgments", d: "Collect program forms and acknowledgments without breaking the shared workflow." },
+  { t: "Academics and team standards", d: "Keep academic information and team standards connected to program operations." },
+  { t: "Messaging and family access", d: "Give staff, athletes, and families the communication and access paths they need." },
+  { t: "One included foundation", d: "Athlete Operations/Core is included with a product purchase and cannot be purchased separately." },
 ];
 
 export default function TeamAthleteOperationsPage() {
@@ -44,8 +47,8 @@ export default function TeamAthleteOperationsPage() {
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
           <div className="mb-[18px]"><Eyebrow>Included With Every Product</Eyebrow></div>
-          <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>Team &amp; Athlete Operations, <span className="headline-italic">already connected.</span></h1>
-          <p className="mt-6 max-w-[760px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">Every purchased product includes the shared operational foundation your program needs. It is not sold by itself. It keeps the selected products connected through one roster, one basic calendar, one athlete record, and one communication path.</p>
+          <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>Athlete Operations/Core, <span className="headline-italic">already connected.</span></h1>
+          <p className="mt-6 max-w-[760px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">Any purchased product includes the shared operational foundation your program needs. It cannot be purchased separately. It keeps products connected through common rosters, schedules, trips, meals, athlete records, forms, messaging, and family access.</p>
           <div className="mt-8 flex flex-wrap gap-3"><ArrowBtn href="/pricing" large>See Product Pricing</ArrowBtn><ArrowBtn href="/#access" variant="ghost" large>Request a Demo</ArrowBtn></div>
         </div>
       </section>
@@ -53,13 +56,13 @@ export default function TeamAthleteOperationsPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
           <div className="mb-[18px]"><Eyebrow>The shared foundation</Eyebrow></div>
           <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>The parts every product works from.</h2>
-          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">{FOUNDATIONS.map((item, index) => <div key={item.t}><div className="flex items-baseline gap-3"><span className="text-[13px] font-semibold tabular-nums" style={{ color: "var(--color-accent)" }}>{String(index + 1).padStart(2, "0")}</span><h3 className="text-[19px] font-semibold">{item.t}</h3></div><p className="mt-2 text-[15px] leading-[1.6] text-[color:var(--color-muted)]">{item.d}</p></div>)}</div>
+          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">{FOUNDATIONS.map((item, index) => <div key={item.t} id={item.id}><div className="flex items-baseline gap-3"><span className="text-[13px] font-semibold tabular-nums" style={{ color: "var(--color-accent)" }}>{String(index + 1).padStart(2, "0")}</span><h3 className="text-[19px] font-semibold">{item.t}</h3></div><p className="mt-2 text-[15px] leading-[1.6] text-[color:var(--color-muted)]">{item.d}</p></div>)}</div>
         </div>
       </section>
       <section>
         <div className="mx-auto max-w-[1240px] px-5 py-16 text-center md:px-8 md:py-20">
           <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>Choose the product. <span className="headline-italic">Keep the program.</span></h2>
-          <p className="mx-auto mt-4 max-w-[680px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">Practice, Strength &amp; Conditioning, Inventory, Scouting, Film &amp; Analytics, and Travel &amp; Meals all work inside this same included foundation.</p>
+          <p className="mx-auto mt-4 max-w-[680px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">Practice, Strength &amp; Conditioning, Inventory, and Scouting, Film &amp; Analytics all work inside this same included foundation.</p>
           <div className="mt-8 flex justify-center"><ArrowBtn href="/#access" large>Request a Demo</ArrowBtn></div>
         </div>
       </section>

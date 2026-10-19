@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
-import { getProduct, productPurchaseHref } from "@/lib/product-catalog";
+import { getProduct, productSignupHref } from "@/lib/product-catalog";
 
 const INVENTORY = getProduct("inventory")!;
 
@@ -84,7 +84,7 @@ export default function EquipmentPage() {
             issue it, track it, collect it, settle the fees, and reorder what&apos;s short.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href={productPurchaseHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
+            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
             <ArrowBtn href="/pricing" variant="ghost" large>See pricing</ArrowBtn>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function EquipmentPage() {
           </h2>
           <div className="mt-10 p-6" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>Included With Inventory</p>
-            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Team &amp; Athlete Operations keeps Inventory connected to the roster, basic schedule, athlete records, staff, messaging, and family access. Add another operational product later without rebuilding any of it.</p>
+            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Athlete Operations/Core keeps Inventory connected to rosters, schedules, athlete records, staff, messaging, and family access. Add another product later without rebuilding any of it.</p>
           </div>
           <div className="mt-8">
             <ArrowBtn href="/pricing">See All Product Pricing</ArrowBtn>
@@ -168,7 +168,7 @@ export default function EquipmentPage() {
             they&apos;re ready.
           </p>
           <div className="mt-8 flex justify-center">
-            <ArrowBtn href={productPurchaseHref(INVENTORY.id)} large>Choose Inventory</ArrowBtn>
+            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
           </div>
         </div>
       </section>

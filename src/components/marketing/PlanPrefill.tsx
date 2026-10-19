@@ -7,7 +7,8 @@ import { useEffect } from "react";
  *
  * Mount once. Product CTAs use the stable public product identifier in either
  * `data-product` or the `product` query parameter. The identifier is copied to
- * the existing lead form; checkout and entitlements remain owned by the app.
+ * the existing lead form; signup, checkout, and entitlements remain owned by
+ * the app.
  */
 export function PlanPrefill() {
   useEffect(() => {

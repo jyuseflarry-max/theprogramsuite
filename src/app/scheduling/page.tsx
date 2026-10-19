@@ -7,12 +7,12 @@ import { JsonLd } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: "Athletic Scheduling Software",
   description:
-    "Game schedules, opponents, and results are part of Team & Athlete Operations, the shared foundation included with every product purchase.",
+    "Game schedules, opponents, and results are part of Athlete Operations/Core, the shared foundation included with any product purchase.",
   alternates: { canonical: "/scheduling" },
   openGraph: {
     title: "Athletic Scheduling Software | The Program Suite",
     description:
-      "Game schedules, opponents, and results in the shared Team & Athlete Operations foundation.",
+      "Game schedules, opponents, and results in the shared Athlete Operations/Core foundation.",
     type: "website",
     url: "https://www.theprogramsuite.com/scheduling",
     siteName: "The Program Suite",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Athletic Scheduling Software | The Program Suite",
-    description: "Game schedules, opponents, and results in the shared Team & Athlete Operations foundation.",
+    description: "Game schedules, opponents, and results in the shared Athlete Operations/Core foundation.",
     images: ["/images/og-coach.jpg"],
   },
 };
@@ -42,13 +42,13 @@ const JOBS: { t: string; d: string }[] = [
   { t: "Quick-add, drag to move", d: "Add an event in seconds; when the opponent reschedules, drag it and every view updates at once." },
   { t: "Season built once", d: "Lay out the whole season up front, then adjust the week that changes on you — without rebuilding anything." },
   { t: "Families stay current", d: "Publish once and athletes, parents, and staff all see the same times, locations, and changes — no group-text relay." },
-  { t: "Games, opponents, and results", d: "The season's game schedule, opponent list, and results are part of the included Team & Athlete Operations foundation." },
+  { t: "Games, opponents, and results", d: "The season's game schedule, opponent list, and results are part of the included Athlete Operations/Core foundation." },
 ];
 
 const DEEPER: { t: string; d: string }[] = [
   { t: "Built for a whole program, not one team", d: "Freshman, JV, and varsity live under one program, so a shared field or a moved bus is visible across every level at once." },
   { t: "Change once, updated everywhere", d: "Move a practice and the athlete app, the family view, and the staff schedule all reflect it immediately — nobody works off a stale printout." },
-  { t: "Attendance ties back in", d: "Attendance and availability are part of Team & Athlete Operations, so the schedule is connected to the athlete record." },
+  { t: "Attendance ties back in", d: "Attendance and availability are part of Athlete Operations/Core, so the schedule is connected to the athlete record." },
   { t: "Phone-first for the sideline", d: "Coaches check and adjust the schedule from their phone; families get it in the same app their athlete already uses." },
 ];
 
@@ -126,7 +126,7 @@ export default function SchedulingPage() {
             See it on <span className="headline-italic">your season.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">
-            The basic schedule is included through Team &amp; Athlete Operations. Add the operational
+            The basic schedule is included through Athlete Operations/Core. Add the operational
             products your program needs, and their work stays on the same calendar.
           </p>
           <div className="mt-8 flex justify-center">
