@@ -8,11 +8,11 @@ import { Reveal } from "@/components/marketing/Reveal";
 
 export const metadata: Metadata = {
   title: "Product Pricing",
-  description: "Five products at $250 per program, per year. Choose one or combine several, with Team & Athlete Operations included with every purchase.",
+  description: "Four products at $250 per program, per year. Choose one or combine all four for $1,000 per year, with Athlete Operations/Core included with any product purchase.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "The Program Suite Product Pricing",
-    description: "Choose Practice, Strength & Conditioning, Inventory, Scouting, Film & Analytics, or Travel & Meals for $250 per program, per year each.",
+    description: "Choose Practice, Strength & Conditioning, Inventory, or Scouting, Film & Analytics for $250 per program, per year each.",
     url: "https://www.theprogramsuite.com/pricing",
     type: "website",
     siteName: "The Program Suite",

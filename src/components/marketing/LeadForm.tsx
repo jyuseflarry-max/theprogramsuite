@@ -1,4 +1,5 @@
 import { Ico } from "./icons";
+import { PRODUCT_CATALOG } from "@/lib/product-catalog";
 
 /**
  * Access-request lead form.
@@ -28,8 +29,8 @@ export function LeadForm() {
                 <Ico.check className="ck" width="16" height="16" /> Choose one product or combine several
               </li>
               <li>
-                <Ico.check className="ck" width="16" height="16" /> Team &amp; Athlete Operations is included
-                with every purchase
+                <Ico.check className="ck" width="16" height="16" /> Athlete Operations/Core is included
+                with any product purchase
               </li>
             </ul>
           </div>
@@ -71,11 +72,7 @@ export function LeadForm() {
               <div className="field half">
                 <label htmlFor="f-plan">Product Interest</label>
                 <select id="f-plan" name="plan" defaultValue="Not sure yet">
-                  <option value="practice">Practice</option>
-                  <option value="strength">Strength &amp; Conditioning</option>
-                  <option value="inventory">Inventory</option>
-                  <option value="scouting_film_analytics">Scouting, Film &amp; Analytics</option>
-                  <option value="travel_meals">Travel &amp; Meals</option>
+                  {PRODUCT_CATALOG.map((product) => <option value={product.id} key={product.id}>{product.name}</option>)}
                   <option value="multiple_products">Multiple products</option>
                   <option>Not sure yet</option>
                 </select>

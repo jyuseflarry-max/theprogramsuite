@@ -12,7 +12,7 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  * program publishes; the quoted RANGE spans community amplification. The ZIP
  * drives a socioeconomic (median household income) market adjustment.
  *
- * Sponsorship tooling sits outside the five paid products, so this is a
+ * Sponsorship tooling sits outside the four paid products, so this is a
  * demand-gauging lead magnet — it estimates value and captures a waitlist, and
  * does not imply the feature is purchasable yet.
  * Plan: docs/sponsorship-valuation-plan.md (Phase 2)

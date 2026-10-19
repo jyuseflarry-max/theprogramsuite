@@ -2,8 +2,8 @@
  * The public product and pricing contract for the marketing site.
  *
  * Checkout and entitlement fulfillment live in the production application.
- * The marketing site only carries stable identifiers into its existing lead
- * form; it does not create Stripe sessions or expose Stripe credentials.
+ * The marketing site only carries stable identifiers into the production app;
+ * it does not create Stripe sessions or expose Stripe credentials.
  */
 export const PRODUCT_CATALOG = Object.freeze([
   {
@@ -14,7 +14,7 @@ export const PRODUCT_CATALOG = Object.freeze([
     stripeProductId: "tps_program_module_practice",
     annualPriceLookupKey: "tps_program_module_practice_annual",
     description: "Plan the work, run it live, and learn from every session.",
-    features: ["Practice plans", "Drill library", "Reusable templates", "Live practice execution", "Boards and reports"],
+    features: ["Practice plans", "Drills and templates", "Live practice execution", "Boards and reports"],
   },
   {
     id: "strength",
@@ -24,7 +24,7 @@ export const PRODUCT_CATALOG = Object.freeze([
     stripeProductId: "tps_program_module_strength",
     annualPriceLookupKey: "tps_program_module_strength_annual",
     description: "Build programs, run sessions, test athletes, and understand training load.",
-    features: ["Training programs", "Workouts and exercises", "Session execution", "Athlete testing", "Training load"],
+    features: ["Training programs and workouts", "Exercise library", "Testing", "Training sessions and workload management"],
   },
   {
     id: "inventory",
@@ -34,7 +34,7 @@ export const PRODUCT_CATALOG = Object.freeze([
     stripeProductId: "tps_program_module_inventory",
     annualPriceLookupKey: "tps_program_module_inventory_annual",
     description: "Know what you own, where it is, who has it, and what comes next.",
-    features: ["Athlete sizing", "Catalog and storage", "Issue and collection", "Custody and physical counts", "Maintenance and purchasing"],
+    features: ["Equipment catalog and sizing", "Issue and collect", "Storage and physical counts", "Purchasing and inventory fees"],
   },
   {
     id: "scouting_film_analytics",
@@ -44,21 +44,25 @@ export const PRODUCT_CATALOG = Object.freeze([
     stripeProductId: "tps_program_module_scouting_film_analytics",
     annualPriceLookupKey: "tps_program_module_scouting_film_analytics_annual",
     description: "Bring opponent preparation, film, and performance analysis into one focused product.",
-    features: ["Opponent scouting", "Scouting reports", "Film review", "Performance analysis", "Shared staff workflow"],
-  },
-  {
-    id: "travel_meals",
-    slug: "travel-meals",
-    name: "Travel & Meals",
-    price: 250,
-    stripeProductId: "tps_program_module_travel_meals",
-    annualPriceLookupKey: "tps_program_module_travel_meals_annual",
-    description: "Coordinate trips, itineraries, and team meals without a separate planning system.",
-    features: ["Trip planning", "Itineraries", "Travel coordination", "Team meals", "Meal ordering"],
+    features: ["Opponent scouting", "Hosted film", "Sport strategy and tendencies", "Performance analytics"],
   },
 ]);
 
 export const PRODUCT_IDS = Object.freeze(PRODUCT_CATALOG.map((product) => product.id));
+export const ALL_PRODUCTS_ANNUAL_PRICE = PRODUCT_CATALOG.reduce((total, product) => total + product.price, 0);
+
+export const FOUNDATION_CAPABILITIES = Object.freeze([
+  "Athlete and staff rosters",
+  "Team schedules",
+  "Games, opponents, scores, and results",
+  "Trips and meals",
+  "Attendance and availability",
+  "Health, readiness, and return-to-play coordination",
+  "Forms and acknowledgments",
+  "Academics and team standards",
+  "Messaging",
+  "Family access",
+]);
 
 export function getProduct(productId) {
   return PRODUCT_CATALOG.find((product) => product.id === productId);

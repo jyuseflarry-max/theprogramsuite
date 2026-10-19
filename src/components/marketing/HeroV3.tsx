@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, type ReactNode } from "react";
+import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
 
 /**
  * Rotating hero (Adobe-style): four first-person hero photos, one per
@@ -66,28 +67,12 @@ const PANES: Pane[] = [
     ),
     sub: "Scouting, Film & Analytics keeps opponent preparation, film review, and performance analysis in one staff workflow.",
   },
-  {
-    img: "/marketing/redesign/hero-field.jpg",
-    alt: "A team field at sunset before an away trip",
-    h1: (
-      <>
-        Move the team.
-        <br />
-        Keep every <em>detail.</em>
-      </>
-    ),
-    sub: "Travel & Meals brings trip planning, itineraries, travel coordination, team meals, and meal ordering together.",
-  },
 ];
 
-type Cat = { t: string; d: string; href: string; mod?: string; ico: ReactNode; tint: string; dark?: boolean };
+type CategoryPresentation = { ico: ReactNode; tint: string; dark?: boolean };
 
-const CATS: Cat[] = [
-  {
-    t: "Practice",
-    d: "$250/year",
-    href: "?m=practice",
-    mod: "practice",
+const CATEGORY_PRESENTATION: Record<string, CategoryPresentation> = {
+  practice: {
     tint: "var(--accent)",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -98,11 +83,7 @@ const CATS: Cat[] = [
       </svg>
     ),
   },
-  {
-    t: "Strength & Conditioning",
-    d: "$250/year",
-    href: "?m=strength-conditioning",
-    mod: "strength-conditioning",
+  strength: {
     tint: "#e8590c",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -111,11 +92,7 @@ const CATS: Cat[] = [
       </svg>
     ),
   },
-  {
-    t: "Inventory",
-    d: "$250/year",
-    href: "?m=inventory",
-    mod: "inventory",
+  inventory: {
     tint: "var(--gold)",
     dark: true,
     ico: (
@@ -124,11 +101,7 @@ const CATS: Cat[] = [
       </svg>
     ),
   },
-  {
-    t: "Scouting, Film & Analytics",
-    d: "$250/year",
-    href: "?m=scouting-film-analytics",
-    mod: "scouting-film-analytics",
+  scouting_film_analytics: {
     tint: "#5b52a3",
     ico: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -139,21 +112,15 @@ const CATS: Cat[] = [
       </svg>
     ),
   },
-  {
-    t: "Travel & Meals",
-    d: "$250/year",
-    href: "?m=travel-meals",
-    mod: "travel-meals",
-    tint: "var(--good)",
-    ico: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M5 17h14M7 17l1-9h8l1 9M10 8V5h4v3" />
-        <circle cx="8" cy="20" r="1" />
-        <circle cx="16" cy="20" r="1" />
-      </svg>
-    ),
-  },
-];
+};
+
+const CATS = PRODUCT_CATALOG.map((product) => ({
+  t: product.name,
+  d: formatAnnualPrice(product.price),
+  href: `?m=${product.slug}`,
+  mod: product.slug,
+  ...CATEGORY_PRESENTATION[product.id],
+}));
 
 export function HeroV3() {
   const [pane, setPane] = useState(0);
@@ -177,7 +144,7 @@ export function HeroV3() {
         ))}
         <div className="v3-hero-scrim" aria-hidden="true" />
         <div className="container v3-hero-in">
-          {/* All five copy blocks share one grid cell, so the block (and the
+          {/* All four copy blocks share one grid cell, so the block (and the
               buttons below it) keeps the height of the tallest copy — nothing
               jumps when panes swap. */}
           <div className="v3-hero-copies">

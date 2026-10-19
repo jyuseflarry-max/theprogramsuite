@@ -11,7 +11,7 @@ const COLS = [
     links: [
       { l: "Platform", href: "/#platform" },
       ...PRODUCT_CATALOG.map((product) => ({ l: product.name, href: `/${product.slug}` })),
-      { l: "Team & Athlete Operations", href: "/team-athlete-operations" },
+      { l: "Athlete Operations/Core", href: "/team-athlete-operations" },
       { l: "Scheduling", href: "/scheduling" },
       { l: "Athletic Department", href: "/athletic-department-software" },
       { l: "Pricing", href: "/pricing" },

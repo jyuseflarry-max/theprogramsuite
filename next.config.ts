@@ -34,12 +34,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/games-trips",
-        destination: "/travel-meals",
+        destination: "/team-athlete-operations#trips-meals",
         permanent: true,
       },
       {
         source: "/games-and-trips",
-        destination: "/travel-meals",
+        destination: "/team-athlete-operations#trips-meals",
+        permanent: true,
+      },
+      {
+        source: "/travel-meals",
+        destination: "/team-athlete-operations#trips-meals",
         permanent: true,
       },
     ];

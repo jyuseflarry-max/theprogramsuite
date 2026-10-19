@@ -149,7 +149,7 @@ export default function EquipmentPage() {
           </h2>
           <div className="mt-10 p-6" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>Included With Inventory</p>
-            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Team &amp; Athlete Operations keeps Inventory connected to the roster, basic schedule, athlete records, staff, messaging, and family access. Add another operational product later without rebuilding any of it.</p>
+            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Athlete Operations/Core keeps Inventory connected to rosters, schedules, athlete records, staff, messaging, and family access. Add another product later without rebuilding any of it.</p>
           </div>
           <div className="mt-8">
             <ArrowBtn href="/pricing">See All Product Pricing</ArrowBtn>
