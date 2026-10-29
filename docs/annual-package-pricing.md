@@ -17,9 +17,13 @@ package, has no separate fee, and is not sold on its own.
 groups, and estimate calculations. Existing app identifiers `strength` and
 `scouting_film_analytics` remain stable even though their public names changed.
 The homepage, pricing page, product pages, lead interests, and structured data
-use this catalog. Homepage photo cards form a horizontal carousel with previous/next
+use this catalog. Homepage screenshot cards form a horizontal carousel with previous/next
 controls, native touch scrolling, and keyboard navigation. Selecting a card opens
 the shared detail dialog with the same price, Core inclusion, and package limits. No monthly offer or bundle discount is introduced.
+
+Actual product captures use a fictional Riverside demo program, with a visible
+demo-data caption. The asset manifest and preparation details live in
+[Marketing screenshot provenance](marketing-screenshot-provenance.md).
 
 Strategy & Film includes 600 new upload minutes per annual term, 600 retained
 minutes at once, and 10,000 delivered minutes per annual term, using Basic 1080p.

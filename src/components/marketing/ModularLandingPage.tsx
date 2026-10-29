@@ -10,17 +10,29 @@ import { HeroV3 } from "@/components/marketing/HeroV3";
 import { ModuleModal, type ModDetail } from "@/components/marketing/ModuleModal";
 import { JsonLd } from "@/components/StructuredData";
 import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, LIVE_GAME_SCREENSHOTS, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 import { AnnualPricing } from "./AnnualPricing";
 import { PackageCarousel } from "./PackageCarousel";
 
 type Presentation = { tint: string; ico: ReactNode; media: ReactNode; detail: ModDetail };
 
-function CardShot({ src, alt }: { src: string; alt: string }) {
-  return <Image src={src} alt={alt} fill sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 520px" />;
+function CardShot({ productId }: { productId: string }) {
+  const shot = PRODUCT_SCREENSHOTS[productId];
+  return <Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 520px" />;
 }
 
-function ProductShot({ src, alt }: { src: string; alt: string }) {
-  return <Image src={src} alt={alt} width={1440} height={900} sizes="(max-width: 900px) 92vw, 620px" style={{ width: "100%", height: "auto" }} />;
+function ProductShot({ productId, includeAnalytics = false }: { productId: string; includeAnalytics?: boolean }) {
+  const shots = includeAnalytics ? [LIVE_GAME_SCREENSHOTS.capture, LIVE_GAME_SCREENSHOTS.analytics] : [PRODUCT_SCREENSHOTS[productId]];
+  return (
+    <div className="marketing-product-shots">
+      {shots.map((shot, index) => (
+        <figure className="marketing-product-shot" key={shot.src}>
+          <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} sizes="(max-width: 900px) 92vw, 620px" />
+          <figcaption className="marketing-demo-caption">{includeAnalytics ? index === 0 ? "Live capture · " : "Analytics from the same demo events · " : ""}{DEMO_SCREENSHOT_CAPTION}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
 }
 
 const glyphs = {
@@ -33,28 +45,28 @@ const glyphs = {
 const PRESENTATION: Record<string, Presentation> = {
   practice: {
     tint: "#007a5c", ico: glyphs.practice,
-    media: <CardShot src="/marketing/screens/cards/practice-photo.jpg" alt="A coach running practice on the field" />,
-    detail: { headline: "Plan the practice. Run it from the field.", lead: "Build the day from drills and templates, execute it live, and carry the result into reports.", bullets: [{ head: "Plan", body: "Build reusable practice plans from drills and templates." }, { head: "Run", body: "Keep the staff on the same period with live execution and boards." }, { head: "Review", body: "Use practice reports to improve the next session." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/practice-planner.png" alt="The Practice planner with timed blocks and drills" /></div> },
+    media: <CardShot productId="practice" />,
+    detail: { headline: "Plan the practice. Run it from the field.", lead: "Build the day from drills and templates, execute it live, and carry the result into reports.", bullets: [{ head: "Plan", body: "Build reusable practice plans from drills and templates." }, { head: "Run", body: "Keep the staff on the same period with live execution and boards." }, { head: "Review", body: "Use practice reports to improve the next session." }], media: <ProductShot productId="practice" /> },
   },
   strength: {
     tint: "#e8590c", ico: glyphs.strength,
-    media: <CardShot src="/marketing/screens/cards/training-photo.jpg" alt="Athletes training in a school weight room" />,
-    detail: { headline: "Program the room. Understand the work.", lead: "Build programs from workouts and exercises, run sessions, capture testing, and understand athlete training load.", bullets: [{ head: "Program", body: "Build training programs from reusable workouts and exercises." }, { head: "Execute", body: "Run training sessions with the groups and assignments the room needs." }, { head: "Measure", body: "Capture testing and training load in the same workflow." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/training-planner.png" alt="The Performance training planner" /></div> },
+    media: <CardShot productId="strength" />,
+    detail: { headline: "Program the room. Understand the work.", lead: "Build programs from workouts and exercises, run sessions, capture testing, and understand athlete training load.", bullets: [{ head: "Program", body: "Build training programs from reusable workouts and exercises." }, { head: "Execute", body: "Run training sessions with the groups and assignments the room needs." }, { head: "Measure", body: "Capture testing and training load in the same workflow." }], media: <ProductShot productId="strength" /> },
   },
   inventory: {
     tint: "#8e6b3a", ico: glyphs.inventory,
-    media: <CardShot src="/marketing/screens/cards/inventory-photo.jpg" alt="A school athletics inventory room" />,
-    detail: { headline: "Every item accounted for.", lead: "Size athletes, catalog physical items, issue and collect, track custody and counts, plan maintenance, and purchase what is short.", bullets: [{ head: "Issue and collect", body: "Match items to athlete sizes and keep custody history." }, { head: "Count and maintain", body: "Track storage, physical counts, loans, reservations, and maintenance." }, { head: "Purchase", body: "Turn shortages into purchasing needs with the item history intact." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/buying-needs.png" alt="Inventory buying needs and purchasing plan" /></div>, ctas: <a href="/inventory" className="v3-spot-alt">Explore Inventory</a> },
+    media: <CardShot productId="inventory" />,
+    detail: { headline: "Every item accounted for.", lead: "Size athletes, catalog physical items, issue and collect, track custody and counts, plan maintenance, and purchase what is short.", bullets: [{ head: "Issue and collect", body: "Match items to athlete sizes and keep custody history." }, { head: "Count and maintain", body: "Track storage, physical counts, loans, reservations, and maintenance." }, { head: "Purchase", body: "Turn shortages into purchasing needs with the item history intact." }], media: <ProductShot productId="inventory" />, ctas: <a href="/inventory" className="v3-spot-alt">Explore Inventory</a> },
   },
   scouting_film_analytics: {
     tint: "#5b52a3", ico: glyphs.scouting,
-    media: <CardShot src="/marketing/screens/cards/strategy-photo.jpg" alt="A coaching staff reviewing strategy" />,
-    detail: { headline: "Teach the system. Prepare with purpose.", lead: "Connect playbooks, opponent scouting, and film review in one teaching workspace.", bullets: [{ head: "Scout", body: "Organize opponent information and scouting reports." }, { head: "Review", body: "Keep film review in the same staff workflow." }, { head: "Teach", body: "Assign clips and installs, then check understanding with quizzes." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/strategy-playbook.png" alt="The scouting and strategy workspace" /></div>, ctas: <a href="/strategy-film" className="v3-spot-alt">Explore Strategy &amp; Film</a> },
+    media: <CardShot productId="scouting_film_analytics" />,
+    detail: { headline: "Teach the system. Prepare with purpose.", lead: "Connect playbooks, opponent scouting, and film review in one teaching workspace.", bullets: [{ head: "Scout", body: "Organize opponent information and scouting reports." }, { head: "Review", body: "Keep film review in the same staff workflow." }, { head: "Teach", body: "Assign clips and installs, then check understanding with quizzes." }], media: <ProductShot productId="scouting_film_analytics" />, ctas: <a href="/strategy-film" className="v3-spot-alt">Explore Strategy &amp; Film</a> },
   },
   live_game_analytics: {
     tint: "#0b7285", ico: glyphs.scouting,
-    media: <CardShot src="/marketing/screens/cards/gameday-photo.jpg" alt="Game-day coaching and capture" />,
-    detail: { headline: "Capture the possession. See the game.", lead: "Live Game & Analytics is built for basketball: capture events as they happen and turn them into player, team, and lineup insight.", bullets: [{ head: "Capture", body: "Log basketball events and possessions with immediate live updates." }, { head: "Analyze", body: "Review player and team stats, shot charts, lineups, and season reports." }, { head: "Review", body: "Keep the staff connected through live basketball dashboards." }], ctas: <a href="/live-game-analytics" className="v3-spot-alt">Explore Live Game &amp; Analytics</a> },
+    media: <CardShot productId="live_game_analytics" />,
+    detail: { headline: "Capture the possession. See the game.", lead: "Live Game & Analytics is built for basketball: capture events as they happen and turn them into player, team, and lineup insight.", bullets: [{ head: "Capture", body: "Log basketball events and possessions with immediate live updates." }, { head: "Analyze", body: "Review player and team stats, shot charts, lineups, and season reports." }, { head: "Review", body: "Keep the staff connected through live basketball dashboards." }], media: <ProductShot productId="live_game_analytics" includeAnalytics />, ctas: <a href="/live-game-analytics" className="v3-spot-alt">Explore Live Game &amp; Analytics</a> },
   },
 };
 
@@ -91,6 +103,7 @@ function ProductGrid() {
             );
           })}
         </PackageCarousel>
+        <p className="marketing-demo-caption">{DEMO_SCREENSHOT_CAPTION}</p>
       </div>
     </section>
   );

@@ -3,25 +3,21 @@
 import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 
 /**
  * Rotating hero (Adobe-style): five product panes, one per
  * category card. Rolling over (or focusing) a card slides its pane in and
- * swaps the headline. Pane images live in /marketing/redesign/hero-*.jpg and
- * are rebuilt from the -blank originals by scripts/compose-hero-screens.py.
+ * swaps the headline. Every pane uses the matching current application capture.
  */
 
 type Pane = {
-  img: string;
-  alt: string;
   h1: ReactNode;
   sub: string;
 };
 
 const PANES: Record<string, Pane> = {
   practice: {
-    img: "/marketing/redesign/hero-run.jpg",
-    alt: "First-person view of a coach's desk: The Program Suite home dashboard on the monitor, the coach app on an iPhone, the gym through the window",
     h1: (
       <>
         Build and run
@@ -32,8 +28,6 @@ const PANES: Record<string, Pane> = {
     sub: "Practice plans, drills, templates, live execution, boards, and reports—one focused product for the work your staff does every day.",
   },
   strength: {
-    img: "/marketing/redesign/hero-fund.jpg",
-    alt: "First-person view of a coach reviewing athlete work on a phone beside the field",
     h1: (
       <>
         Run the room.
@@ -44,8 +38,6 @@ const PANES: Record<string, Pane> = {
     sub: "Performance brings training programs, workouts, athlete logging, testing, personal records, and the live weight room into one connected product.",
   },
   inventory: {
-    img: "/marketing/redesign/hero-family.jpg",
-    alt: "First-person view of a family reviewing team information on a phone",
     h1: (
       <>
         Know what you own.
@@ -56,8 +48,6 @@ const PANES: Record<string, Pane> = {
     sub: "Inventory keeps athlete sizing, catalog, issue and collection, custody, counts, maintenance, and purchasing together.",
   },
   scouting_film_analytics: {
-    img: "/marketing/redesign/hero-field.jpg",
-    alt: "Prepare for the next game with Strategy & Film",
     h1: (
       <>
         Scout. Review.
@@ -68,8 +58,6 @@ const PANES: Record<string, Pane> = {
     sub: "Strategy & Film connects playbooks, opponent scouting, film sessions, clip review, and teaching assignments before the next game.",
   },
   live_game_analytics: {
-    img: "/marketing/redesign/hero-game.jpg",
-    alt: "First-person view at the scorer's table with a coaching workspace open",
     h1: (
       <>
         Capture the game.
@@ -142,6 +130,7 @@ const CATS = PRODUCT_CATALOG.map((product) => ({
   href: `?m=${product.slug}`,
   mod: product.slug,
   pane: PANES[product.id],
+  shot: PRODUCT_SCREENSHOTS[product.id],
   ...CATEGORY_PRESENTATION[product.id],
 }));
 
@@ -152,21 +141,9 @@ export function HeroV3() {
 
   return (
     <>
-      <header className="v3-hero">
-        {CATS.map((c, i) => (
-          <div className={"v3-pane" + (i === pane ? " on" : "")} key={c.id} aria-hidden={i !== pane}>
-            <Image
-              src={c.pane.img}
-              alt={i === pane ? c.pane.alt : ""}
-              fill
-              sizes="100vw"
-              priority={i === 0}
-              style={{ objectFit: "cover", objectPosition: "center 30%" }}
-            />
-          </div>
-        ))}
-        <div className="v3-hero-scrim" aria-hidden="true" />
+      <header className="v3-hero v3-hero--product-screens">
         <div className="container v3-hero-in">
+          <div className="v3-hero-message">
           {/* All five copy blocks share one grid cell, so the block (and the
               buttons below it) keeps the height of the tallest copy — nothing
               jumps when panes swap. */}
@@ -193,6 +170,23 @@ export function HeroV3() {
               Explore the products
             </a>
           </div>
+          </div>
+          <figure className="v3-hero-visual">
+            <div className="v3-hero-shot-stage">
+              {CATS.map((c, i) => (
+                <div className={"v3-pane" + (i === pane ? " on" : "")} key={c.id} aria-hidden={i !== pane}>
+                  <Image
+                    src={c.shot.src}
+                    alt={i === pane ? c.shot.alt : ""}
+                    fill
+                    sizes="(max-width: 900px) 92vw, 48vw"
+                    priority={i === 0}
+                  />
+                </div>
+              ))}
+            </div>
+            <figcaption className="marketing-demo-caption v3-hero-demo-caption">{DEMO_SCREENSHOT_CAPTION}</figcaption>
+          </figure>
         </div>
       </header>
 

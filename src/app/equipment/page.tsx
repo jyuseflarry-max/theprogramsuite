@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
 import { formatAnnualPrice, getProduct, productInquiryHref } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 
 const INVENTORY = getProduct("inventory")!;
 
@@ -86,6 +88,19 @@ export default function EquipmentPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <ArrowBtn href={productInquiryHref(INVENTORY.id)} large>Request an Inventory Demo</ArrowBtn>
             <ArrowBtn href="/pricing" variant="ghost" large>See pricing</ArrowBtn>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
+        <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-[18px]"><Eyebrow>Inside Inventory</Eyebrow></div>
+          <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>See the Inventory workspace.</h2>
+          <div className="mt-8">
+            <figure className="marketing-product-shot">
+              <Image {...PRODUCT_SCREENSHOTS.inventory} sizes="(max-width: 1240px) 100vw, 1176px" />
+              <figcaption className="marketing-demo-caption">{DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
           </div>
         </div>
       </section>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
 import { JsonLd } from "@/components/StructuredData";
+import { CORE_SCREENSHOTS, DEMO_SCREENSHOT_CAPTION } from "@/lib/marketing-screenshots";
 
 export const metadata: Metadata = {
   title: "Included Core",
@@ -53,6 +55,22 @@ export default function TeamAthleteOperationsPage() {
           <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>Core, <span className="headline-italic">already connected.</span></h1>
           <p className="mt-6 max-w-[760px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">Any paid product includes Core for every team in your program. Common rosters, schedules, communication, athlete care, forms, game operations, travel, meals, and family access keep your work connected.</p>
           <div className="mt-8 flex flex-wrap gap-3"><ArrowBtn href="/pricing" large>See Product Pricing</ArrowBtn><ArrowBtn href="/#access" variant="ghost" large>Request a Demo</ArrowBtn></div>
+        </div>
+      </section>
+      <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
+        <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-[18px]"><Eyebrow>Inside Core</Eyebrow></div>
+          <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>The shared roster and schedule.</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <figure className="marketing-product-shot">
+              <Image {...CORE_SCREENSHOTS.roster} sizes="(max-width: 767px) 100vw, 50vw" />
+              <figcaption className="marketing-demo-caption">Roster · {DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
+            <figure className="marketing-product-shot">
+              <Image {...CORE_SCREENSHOTS.schedule} sizes="(max-width: 767px) 100vw, 50vw" />
+              <figcaption className="marketing-demo-caption">Schedule · {DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>

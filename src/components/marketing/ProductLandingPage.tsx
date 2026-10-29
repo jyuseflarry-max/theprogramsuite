@@ -3,18 +3,14 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
 import { FOUNDATION_CAPABILITIES, formatAnnualPrice, getProduct, productInquiryHref } from "@/lib/product-catalog";
-
-const PRODUCT_IMAGES: Record<string, { src: string; alt: string }> = {
-  practice: { src: "/marketing/screens/practice-planner.png", alt: "The Practice planning workspace" },
-  strength: { src: "/marketing/screens/training-planner.png", alt: "The Performance training workspace" },
-  scouting_film_analytics: { src: "/marketing/screens/strategy-playbook.png", alt: "The scouting and strategy workspace" },
-  inventory: { src: "/marketing/screens/inventory-home.png", alt: "The Inventory workspace" },
-};
+import { DEMO_SCREENSHOT_CAPTION, LIVE_GAME_SCREENSHOTS, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 
 export function ProductLandingPage({ productId }: { productId: string }) {
   const product = getProduct(productId);
   if (!product) throw new Error(`Unknown product: ${productId}`);
-  const image = PRODUCT_IMAGES[productId];
+  const image = PRODUCT_SCREENSHOTS[productId];
+  const showsAnalytics = productId === "live_game_analytics";
+  const images = showsAnalytics ? [LIVE_GAME_SCREENSHOTS.capture, LIVE_GAME_SCREENSHOTS.analytics] : image ? [image] : [];
 
   return (
     <main className="min-h-screen bg-[color:var(--color-paper)] text-[color:var(--color-ink)]">
@@ -61,7 +57,16 @@ export function ProductLandingPage({ productId }: { productId: string }) {
               ))}
             </ul>
           </div>
-          {image ? <div className="overflow-hidden rounded-[18px] border bg-white shadow-xl" style={{ borderColor: "var(--color-line)" }}><Image src={image.src} alt={image.alt} width={1440} height={900} sizes="(max-width: 1024px) 92vw, 650px" style={{ width: "100%", height: "auto" }} /></div> : null}
+          {image ? (
+            <div className="marketing-product-shots">
+              {images.map((shot, index) => (
+                <figure className="marketing-product-shot" key={shot.src}>
+                  <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} sizes="(max-width: 1024px) 92vw, 650px" />
+                  <figcaption className="marketing-demo-caption">{showsAnalytics ? index === 0 ? "Live capture · " : "Analytics from the same demo events · " : ""}{DEMO_SCREENSHOT_CAPTION}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
       <section>
