@@ -4,7 +4,7 @@ import Image from "next/image";
 const APP_LOGIN_URL = "https://app.theprogramsuite.com";
 const NAV_LINKS = [
   { href: "/#platform", label: "Products" },
-  { href: "/#included", label: "Included Operations" },
+  { href: "/team-athlete-operations", label: "Included Core" },
   { href: "/pricing", label: "Pricing" },
 ];
 

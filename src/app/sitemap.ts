@@ -10,7 +10,7 @@ const SITE = "https://www.theprogramsuite.com";
  * `lastModified` is a fixed build date rather than `new Date()` so the sitemap
  * is deterministic and doesn't churn every deploy.
  */
-const LAST_MODIFIED = new Date("2026-10-18");
+const LAST_MODIFIED = new Date("2026-10-29");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const page = (
@@ -28,9 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/", 1.0, "weekly"),
     page("/pricing", 0.9, "monthly"),
     page("/practice", 0.9, "monthly"),
-    page("/strength-conditioning", 0.9, "monthly"),
+    page("/performance", 0.9, "monthly"),
     page("/inventory", 0.9, "monthly"),
-    page("/scouting-film-analytics", 0.9, "monthly"),
+    page("/strategy-film", 0.9, "monthly"),
+    page("/live-game-analytics", 0.9, "monthly"),
     page("/scheduling", 0.9, "monthly"),
     page("/team-athlete-operations", 0.9, "monthly"),
     page("/athletic-department-software", 0.9, "monthly"),

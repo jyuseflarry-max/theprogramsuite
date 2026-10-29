@@ -41,7 +41,7 @@ const GRAPH = {
         url: `${SITE}/marketing/logo-mark.png`,
       },
       description:
-        "A connected platform for school and college athletic programs, sold through four $250 annual products with Athlete Operations/Core included with any product purchase.",
+        "Athletic program software with five annual products priced from $250 to $500 per program. Every team is covered, with Athlete Operations/Core included with any paid product.",
       email: "coach@theprogramsuite.com",
       address: {
         "@type": "PostalAddress",
@@ -81,14 +81,15 @@ const GRAPH = {
       url: SITE,
       publisher: { "@id": ORG_ID },
       description:
-        "Choose Practice, Strength & Conditioning, Inventory, or Scouting, Film & Analytics. Every product is $250 per program, per year and includes the same Athlete Operations/Core foundation, including trips and meals.",
+        "Choose Practice, Performance, Strategy & Film, Live Game & Analytics, or Inventory. Annual pricing covers every team in one program, with Athlete Operations/Core included with any paid product.",
       offers: PRODUCT_CATALOG.map((product) => ({
         "@type": "Offer",
         name: product.name,
         price: String(product.price),
         priceCurrency: "USD",
         unitText: "per program per year",
-        sku: product.stripeProductId,
+        sku: product.id,
+        url: `${SITE}/${product.slug}`,
       })),
     },
   ],
