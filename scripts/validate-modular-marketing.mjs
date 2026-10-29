@@ -10,12 +10,12 @@ const read = (path) => readFileSync(resolve(process.cwd(), path), "utf8");
 const expected = [
   ["practice", "Practice", "practice", 250],
   ["strength", "Performance", "performance", 500],
-  ["scouting_film_analytics", "Strategy & Film", "strategy-film", 350],
+  ["scouting_film_analytics", "Strategy & Film", "strategy-film", 250],
   ["live_game_analytics", "Live Game & Analytics", "live-game-analytics", 250],
   ["inventory", "Inventory", "inventory", 400],
 ];
 assert.deepEqual(PRODUCT_CATALOG.map(({id, name, slug, price}) => [id, name, slug, price]), expected);
-assert.equal(ALL_PRODUCTS_ANNUAL_PRICE, 1750);
+assert.equal(ALL_PRODUCTS_ANNUAL_PRICE, 1650);
 assert.equal(new Set(PRODUCT_IDS).size, 5);
 assert.deepEqual(FILM_ALLOWANCE, { annualUploadMinutes: 600, retainedMinutes: 600, annualDeliveredMinutes: 10000, quality: "Basic 1080p" });
 assert.equal(CORE_GROUPS.length, 6);
@@ -74,7 +74,7 @@ for (const oldPath of ["strength-conditioning", "scouting-film-analytics", "trav
   assert.ok(config.includes(`source: "/${oldPath}"`));
   assert.ok(!sitemap.includes(`page("/${oldPath}"`));
 }
-assert.doesNotMatch(surfaces, /four products|all four|Every product is \$250|\$1,000\/year|\$1,250\/year|Scouting, Film & Analytics|Strength & Conditioning/);
+assert.doesNotMatch(surfaces, /four products|all four|Every product is \$250|\$1,000\/year|\$1,250\/year|\$1,750\/year|Strategy & Film is \$350|Scouting, Film & Analytics|Strength & Conditioning/);
 assert.doesNotMatch(surfaces, /public gamecast|AI narration|AI drill import|AI exercise import|AI menu import/i);
 assert.doesNotMatch(surfaces, /sk_(?:live|test)_|checkout\.sessions\.create|stripe\.checkout/i);
 assert.match(read("src/lib/product-catalog.js"), /App checkout still carries the previous prices/);

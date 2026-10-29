@@ -24,7 +24,7 @@ export const PRODUCT_CATALOG = Object.freeze([
     comparisonDetail: "Programs, workouts, sets, one-rep maxes, and progress",
   },
   {
-    id: "scouting_film_analytics", slug: "strategy-film", name: "Strategy & Film", price: 350,
+    id: "scouting_film_analytics", slug: "strategy-film", name: "Strategy & Film", price: 250,
     description: "Teach the system. Prepare for opponents. Make film actionable.",
     features: ["Playbooks, diagrams, installs, and quizzes", "Opponent scouting and game plans", "Film review, clips, notes, and assignments", "Hosted video shared across Film, Playbook, and Practice"],
     note: "10 hours uploaded per year · 10 hours stored at once · 10,000 delivered minutes per year · Basic 1080p. Unlimited YouTube and Vimeo links.",

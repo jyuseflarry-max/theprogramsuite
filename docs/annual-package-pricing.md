@@ -8,16 +8,18 @@ package, has no separate fee, and is not sold on its own.
 | --- | ---: |
 | Practice | $250 |
 | Performance | $500 |
-| Strategy & Film | $350 |
+| Strategy & Film | $250 |
 | Live Game & Analytics (basketball only) | $250 |
 | Inventory | $400 |
-| All five, including Core | $1,750 |
+| All five, including Core | $1,650 |
 
 `src/lib/product-catalog.js` owns package prices, names, feature boundaries, Core
 groups, and estimate calculations. Existing app identifiers `strength` and
 `scouting_film_analytics` remain stable even though their public names changed.
 The homepage, pricing page, product pages, lead interests, and structured data
-use this catalog. No monthly offer or bundle discount is introduced.
+use this catalog. Homepage photo cards form a horizontal carousel with previous/next
+controls, native touch scrolling, and keyboard navigation. Selecting a card opens
+the shared detail dialog with the same price, Core inclusion, and package limits. No monthly offer or bundle discount is introduced.
 
 Strategy & Film includes 600 new upload minutes per annual term, 600 retained
 minutes at once, and 10,000 delivered minutes per annual term, using Basic 1080p.
@@ -49,7 +51,7 @@ annual uploads. Practice alone supports external drill video links.
 
 The marketing repo does not provision Stripe prices or change app entitlements.
 At implementation, app `origin/main` still quoted $250 for every package, which
-conflicts with Performance, Strategy & Film, and Inventory here. Until the app
+conflicts with Performance and Inventory here. Until the app
 catalog and live Stripe prices are updated and verified, package calls to action
 use the existing demo inquiry form instead of sending customers to an incorrect
 checkout. Multi-package inquiries preserve selected IDs in a URL and compute

@@ -11,11 +11,12 @@ import { ModuleModal, type ModDetail } from "@/components/marketing/ModuleModal"
 import { JsonLd } from "@/components/StructuredData";
 import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
 import { AnnualPricing } from "./AnnualPricing";
+import { PackageCarousel } from "./PackageCarousel";
 
 type Presentation = { tint: string; ico: ReactNode; media: ReactNode; detail: ModDetail };
 
 function CardShot({ src, alt }: { src: string; alt: string }) {
-  return <Image src={src} alt={alt} fill sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw" />;
+  return <Image src={src} alt={alt} fill sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 520px" />;
 }
 
 function ProductShot({ src, alt }: { src: string; alt: string }) {
@@ -63,7 +64,36 @@ export function ModularLandingPage() {
 }
 
 function ProductGrid() {
-  return <section className="v3-platform" id="platform"><div className="container"><div className="v3-sec-head reveal"><h2 className="rx-display v3-h2">Five packages. One connected platform.</h2><p>Choose only the focused products your program needs. Core is included with every package. Start with one or combine the tools your program needs.</p></div><div className="v3-grid v3-grid--products">{PRODUCT_CATALOG.map((product) => { const presentation = PRESENTATION[product.id]; return <a className="v3-card reveal" href={`?m=${product.slug}`} data-module={product.slug} key={product.id} id={product.slug}><div className="v3-card-media">{presentation.media}</div><div className="v3-card-body"><div className="v3-card-top"><span className="v3-mod-ico" style={{ background: presentation.tint, color: "#fff" }}>{presentation.ico}</span><h3>{product.name}</h3><span className="v3-chip">{formatAnnualPrice(product.price)}</span></div><p>{product.description}</p><ul className="product-feature-list">{product.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><span className="v3-card-link">See what&apos;s included <Ico.arrow width="13" height="13" /></span></div></a>; })}</div></div></section>;
+  return (
+    <section className="v3-platform" id="platform">
+      <div className="container">
+        <div className="v3-sec-head reveal">
+          <h2 className="rx-display v3-h2">Five packages. One connected platform.</h2>
+          <p>Core is included with every package. Start with one or combine the tools your program needs.</p>
+        </div>
+        <PackageCarousel names={PRODUCT_CATALOG.map((product) => product.name)}>
+          {PRODUCT_CATALOG.map((product) => {
+            const presentation = PRESENTATION[product.id];
+            return (
+              <a className="v3-card" href={`?m=${product.slug}`} data-module={product.slug} key={product.id} id={product.slug} aria-haspopup="dialog">
+                <div className="v3-card-media">{presentation.media}</div>
+                <div className="v3-card-body">
+                  <div className="v3-card-top">
+                    <span className="v3-mod-ico" style={{ background: presentation.tint, color: "#fff" }}>{presentation.ico}</span>
+                    <h3>{product.name}</h3>
+                    <span className="v3-chip">{formatAnnualPrice(product.price)}</span>
+                  </div>
+                  <p>{product.description}</p>
+                  <ul className="product-feature-list">{product.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+                  <span className="v3-card-link">See what&apos;s included <Ico.arrow width="13" height="13" /></span>
+                </div>
+              </a>
+            );
+          })}
+        </PackageCarousel>
+      </div>
+    </section>
+  );
 }
 
 const CONNECTIONS = [{ title: "Choose the job", body: "Choose Practice, Performance, Strategy & Film, Live Game & Analytics, or Inventory." }, { title: "Keep one foundation", body: "Every purchased product uses the same rosters, schedules, trips, meals, forms, messaging, and family access." }, { title: "See only what matters", body: "Add the specialist tools your program needs. Core keeps people, communication, and scheduling connected." }, { title: "Add products later", body: "Combine products with simple additive annual pricing when another area is ready." }];
@@ -77,9 +107,9 @@ function Growth() {
 }
 
 const FAQ_ITEMS = [
-  { q: "Do we have to buy all five packages?", a: "No. Choose one package or combine several. Practice is $250/year, Performance is $500/year, Strategy & Film is $350/year, Live Game & Analytics is $250/year, and Inventory is $400/year. Each includes Core." },
+  { q: "Do we have to buy all five packages?", a: "No. Choose one package or combine several. Practice is $250/year, Performance is $500/year, Strategy & Film is $250/year, Live Game & Analytics is $250/year, and Inventory is $400/year. Each includes Core." },
   { q: "What does per program mean?", a: "A program covers one sport and its teams, such as Varsity, JV, and Freshman. Prices are per program, per year, billed annually in USD." },
-  { q: "How does additive pricing work?", a: "Add the annual prices of your selected packages. Practice plus Performance is $750/year; all five packages are $1,750/year. Core has no separate charge. These totals do not assume a bundle discount." },
+  { q: "How does additive pricing work?", a: "Add the annual prices of your selected packages. Practice plus Performance is $750/year; all five packages are $1,650/year. Core has no separate charge. These totals do not assume a bundle discount." },
   { q: "What is included in Core?", a: "Core includes rosters, accounts, invitations, communication, scheduling, calendars, basic results, attendance and absences, manual Athlete Care, Game Operations, Travel & Meals, and Public Presence. Optional Core tools can be turned on as needed." },
   { q: "Can we buy Core by itself?", a: "Core is included with a paid package and is not sold separately." },
   { q: "Does Practice include uploaded drill videos?", a: "Practice includes YouTube and Vimeo drill links. Uploaded drill videos require Strategy & Film and use the same shared hosted video allowance as Film and Playbook." },
