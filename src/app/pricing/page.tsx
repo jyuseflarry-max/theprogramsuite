@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LeadForm } from "@/components/marketing/LeadForm";
-import { IncludedOperations, PricingSection } from "@/components/marketing/ModularLandingPage";
+import { AnnualPricing } from "@/components/marketing/AnnualPricing";
 import { PlanPrefill } from "@/components/marketing/PlanPrefill";
 import { Reveal } from "@/components/marketing/Reveal";
 
 export const metadata: Metadata = {
   title: "Product Pricing",
-  description: "Four products at $250 per program, per year. Choose one or combine all four for $1,000 per year, with Athlete Operations/Core included with any product purchase.",
+  description: "Annual pricing per program: Practice $250, Performance $500, Strategy & Film $250, Live Game & Analytics $250, and Inventory $400. Core and every team in your program are included. All five total $1,650 per year.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "The Program Suite Product Pricing",
-    description: "Choose Practice, Strength & Conditioning, Inventory, or Scouting, Film & Analytics for $250 per program, per year each.",
+    description: "Five annual products from $250 to $500 per program, with Core included. Choose the tools you need or all five for $1,650 per year.",
     url: "https://www.theprogramsuite.com/pricing",
     type: "website",
     siteName: "The Program Suite",
@@ -25,8 +25,7 @@ export default function PricingPage() {
       <Reveal />
       <PlanPrefill />
       <SiteNav />
-      <PricingSection />
-      <IncludedOperations />
+      <AnnualPricing headingLevel={1} />
       <LeadForm />
       <SiteFooter />
     </main>

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
 import { JsonLd } from "@/components/StructuredData";
+import { CORE_SCREENSHOTS, DEMO_SCREENSHOT_CAPTION } from "@/lib/marketing-screenshots";
 
 export const metadata: Metadata = {
-  title: "Athlete Operations/Core",
-  description: "The shared Athlete Operations/Core foundation included with any The Program Suite product purchase: rosters, schedules, trips and meals, availability, health, forms, academics, messaging, and family access.",
+  title: "Included Core",
+  description: "Core is included with any paid The Program Suite product: accounts, rosters, schedules, communication, attendance, athlete care, forms, hosting, facilities, standings, season close, travel, meals, and Public Presence.",
   alternates: { canonical: "/team-athlete-operations" },
   openGraph: {
-    title: "Athlete Operations/Core | The Program Suite",
+    title: "Included Core | The Program Suite",
     description: "Included with any purchased product—the shared foundation that keeps coaches, athletes, staff, and families connected.",
     type: "website",
     url: "https://www.theprogramsuite.com/team-athlete-operations",
@@ -23,20 +25,23 @@ const breadcrumb = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.theprogramsuite.com" },
-    { "@type": "ListItem", position: 2, name: "Athlete Operations/Core", item: "https://www.theprogramsuite.com/team-athlete-operations" },
+    { "@type": "ListItem", position: 2, name: "Included Core", item: "https://www.theprogramsuite.com/team-athlete-operations" },
   ],
 };
 
 const FOUNDATIONS: { t: string; d: string; id?: string }[] = [
-  { t: "Athletes, staff, and rosters", d: "Keep athlete profiles, rosters, teams, and staff connected across every purchased product." },
+  { t: "Accounts, invitations, and rosters", d: "Keep athlete profiles, rosters, teams, staff accounts, and family invitations connected across every purchased product." },
   { t: "Schedules, games, and results", d: "Manage team schedules, games, opponents, scores, and results in the shared foundation." },
   { t: "Trips and meals", d: "Coordinate trips and team meals as included program operations, not as a separate paid product.", id: "trips-meals" },
   { t: "Attendance and availability", d: "Track attendance and availability in the same athlete and team context." },
   { t: "Health and readiness", d: "Coordinate health, readiness, and return-to-play work around the athlete record." },
   { t: "Forms and acknowledgments", d: "Collect program forms and acknowledgments without breaking the shared workflow." },
-  { t: "Academics and team standards", d: "Keep academic information and team standards connected to program operations." },
+  { t: "Manual academic check-ins", d: "Keep manually reported academic information connected to the athlete record." },
   { t: "Messaging and family access", d: "Give staff, athletes, and families the communication and access paths they need." },
-  { t: "One included foundation", d: "Athlete Operations/Core is included with a product purchase and cannot be purchased separately." },
+  { t: "Hosting and facilities", d: "Coordinate game hosting, officials, event workers, volunteers, run sheets, and facility use." },
+  { t: "Standings and season close", d: "Keep basic results, standings, and end-of-season program work in the shared foundation." },
+  { t: "Public Presence", d: "Share your program's schedules, results, and approved public information from one program page." },
+  { t: "Core Tools in Use", d: "Turn optional Core tools on or off for your program without adding another paid product. History stays connected." },
 ];
 
 export default function TeamAthleteOperationsPage() {
@@ -46,10 +51,26 @@ export default function TeamAthleteOperationsPage() {
       <SiteNav />
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
-          <div className="mb-[18px]"><Eyebrow>Included With Every Product</Eyebrow></div>
-          <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>Athlete Operations/Core, <span className="headline-italic">already connected.</span></h1>
-          <p className="mt-6 max-w-[760px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">Any purchased product includes the shared operational foundation your program needs. It cannot be purchased separately. It keeps products connected through common rosters, schedules, trips, meals, athlete records, forms, messaging, and family access.</p>
+          <div className="mb-[18px]"><Eyebrow>Included With Every Paid Product</Eyebrow></div>
+          <h1 className="display" style={{ fontSize: "clamp(44px, 7vw, 104px)" }}>Core, <span className="headline-italic">already connected.</span></h1>
+          <p className="mt-6 max-w-[760px] text-[17px] leading-[1.65] text-[color:var(--color-muted)]">Any paid product includes Core for every team in your program. Common rosters, schedules, communication, athlete care, forms, game operations, travel, meals, and family access keep your work connected.</p>
           <div className="mt-8 flex flex-wrap gap-3"><ArrowBtn href="/pricing" large>See Product Pricing</ArrowBtn><ArrowBtn href="/#access" variant="ghost" large>Request a Demo</ArrowBtn></div>
+        </div>
+      </section>
+      <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
+        <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-[18px]"><Eyebrow>Inside Core</Eyebrow></div>
+          <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>The shared roster and schedule.</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <figure className="marketing-product-shot">
+              <Image {...CORE_SCREENSHOTS.roster} sizes="(max-width: 767px) 100vw, 50vw" />
+              <figcaption className="marketing-demo-caption">Roster · {DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
+            <figure className="marketing-product-shot">
+              <Image {...CORE_SCREENSHOTS.schedule} sizes="(max-width: 767px) 100vw, 50vw" />
+              <figcaption className="marketing-demo-caption">Schedule · {DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
       <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
@@ -62,7 +83,7 @@ export default function TeamAthleteOperationsPage() {
       <section>
         <div className="mx-auto max-w-[1240px] px-5 py-16 text-center md:px-8 md:py-20">
           <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>Choose the product. <span className="headline-italic">Keep the program.</span></h2>
-          <p className="mx-auto mt-4 max-w-[680px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">Practice, Strength &amp; Conditioning, Inventory, and Scouting, Film &amp; Analytics all work inside this same included foundation.</p>
+          <p className="mx-auto mt-4 max-w-[680px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">Practice, Performance, Strategy &amp; Film, Live Game &amp; Analytics, and Inventory all work inside this same included foundation. Select the paid tools you need, then switch optional Core tools on or off to fit your program.</p>
           <div className="mt-8 flex justify-center"><ArrowBtn href="/#access" large>Request a Demo</ArrowBtn></div>
         </div>
       </section>

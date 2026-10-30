@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   // No external image domains needed — logo is local
   async redirects() {
     return [
+      { source: "/strength-conditioning", destination: "/performance", permanent: true },
+      { source: "/scouting-film-analytics", destination: "/strategy-film", permanent: true },
       // Old founder-access URLs (pre-Aug 2026 links in ads/emails).
       // permanent: true issues a 308, which preserves the POST method for
       // forms still submitting to the old API endpoint.

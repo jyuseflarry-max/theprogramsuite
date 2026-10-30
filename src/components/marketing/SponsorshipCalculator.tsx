@@ -12,7 +12,7 @@ import { lookupZipIncomeAction } from "@/components/marketing/sponsorship-action
  * program publishes; the quoted RANGE spans community amplification. The ZIP
  * drives a socioeconomic (median household income) market adjustment.
  *
- * Sponsorship tooling sits outside the four paid products, so this is a
+ * Sponsorship tooling sits outside the five paid products, so this is a
  * demand-gauging lead magnet — it estimates value and captures a waitlist, and
  * does not imply the feature is purchasable yet.
  * Plan: docs/sponsorship-valuation-plan.md (Phase 2)
@@ -187,7 +187,7 @@ export function SponsorshipCalculator() {
             <span className="calc-roi-eyebrow">Sponsorships — coming soon</span>
             <p>
               We&apos;re building the tools to package, sell, and prove sponsor placements.
-              Sponsorship capabilities are separate from the four operational products. Join the
+              Sponsorship capabilities are separate from the five operational products. Join the
               waitlist for approved availability and pricing.
             </p>
           </div>

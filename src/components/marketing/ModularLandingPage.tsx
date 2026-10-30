@@ -9,16 +9,30 @@ import { Reveal } from "@/components/marketing/Reveal";
 import { HeroV3 } from "@/components/marketing/HeroV3";
 import { ModuleModal, type ModDetail } from "@/components/marketing/ModuleModal";
 import { JsonLd } from "@/components/StructuredData";
-import { ALL_PRODUCTS_ANNUAL_PRICE, FOUNDATION_CAPABILITIES, PRODUCT_CATALOG, formatAnnualPrice, productSignupHref } from "@/lib/product-catalog";
+import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, LIVE_GAME_SCREENSHOTS, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
+import { AnnualPricing } from "./AnnualPricing";
+import { PackageCarousel } from "./PackageCarousel";
 
 type Presentation = { tint: string; ico: ReactNode; media: ReactNode; detail: ModDetail };
 
-function CardShot({ src, alt }: { src: string; alt: string }) {
-  return <Image src={src} alt={alt} fill sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw" />;
+function CardShot({ productId }: { productId: string }) {
+  const shot = PRODUCT_SCREENSHOTS[productId];
+  return <Image src={shot.src} alt={shot.alt} fill sizes="(max-width: 640px) 85vw, (max-width: 1200px) 45vw, 520px" />;
 }
 
-function ProductShot({ src, alt }: { src: string; alt: string }) {
-  return <Image src={src} alt={alt} width={1440} height={900} sizes="(max-width: 900px) 92vw, 620px" style={{ width: "100%", height: "auto" }} />;
+function ProductShot({ productId, includeAnalytics = false }: { productId: string; includeAnalytics?: boolean }) {
+  const shots = includeAnalytics ? [LIVE_GAME_SCREENSHOTS.capture, LIVE_GAME_SCREENSHOTS.analytics] : [PRODUCT_SCREENSHOTS[productId]];
+  return (
+    <div className="marketing-product-shots">
+      {shots.map((shot, index) => (
+        <figure className="marketing-product-shot" key={shot.src}>
+          <Image src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} sizes="(max-width: 900px) 92vw, 620px" />
+          <figcaption className="marketing-demo-caption">{includeAnalytics ? index === 0 ? "Live capture · " : "Analytics from the same demo events · " : ""}{DEMO_SCREENSHOT_CAPTION}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
 }
 
 const glyphs = {
@@ -31,54 +45,90 @@ const glyphs = {
 const PRESENTATION: Record<string, Presentation> = {
   practice: {
     tint: "#007a5c", ico: glyphs.practice,
-    media: <CardShot src="/marketing/screens/cards/practice-photo.jpg" alt="A coach running practice on the field" />,
-    detail: { headline: "Plan the practice. Run it from the field.", lead: "Build the day from drills and templates, execute it live, and carry the result into reports.", bullets: [{ head: "Plan", body: "Build reusable practice plans from drills and templates." }, { head: "Run", body: "Keep the staff on the same period with live execution and boards." }, { head: "Review", body: "Use practice reports to improve the next session." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/practice-planner.png" alt="The Practice planner with timed blocks and drills" /></div> },
+    media: <CardShot productId="practice" />,
+    detail: { headline: "Plan the practice. Run it from the field.", lead: "Build the day from drills and templates, execute it live, and carry the result into reports.", bullets: [{ head: "Plan", body: "Build reusable practice plans from drills and templates." }, { head: "Run", body: "Keep the staff on the same period with live execution and boards." }, { head: "Review", body: "Use practice reports to improve the next session." }], media: <ProductShot productId="practice" /> },
   },
   strength: {
     tint: "#e8590c", ico: glyphs.strength,
-    media: <CardShot src="/marketing/screens/cards/training-photo.jpg" alt="Athletes training in a school weight room" />,
-    detail: { headline: "Program the room. Understand the work.", lead: "Build programs from workouts and exercises, run sessions, capture testing, and understand athlete training load.", bullets: [{ head: "Program", body: "Build training programs from reusable workouts and exercises." }, { head: "Execute", body: "Run training sessions with the groups and assignments the room needs." }, { head: "Measure", body: "Capture testing and training load in the same workflow." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/training-planner.png" alt="The Strength and Conditioning training planner" /></div> },
+    media: <CardShot productId="strength" />,
+    detail: { headline: "Program the room. Understand the work.", lead: "Build programs from workouts and exercises, run sessions, capture testing, and understand athlete training load.", bullets: [{ head: "Program", body: "Build training programs from reusable workouts and exercises." }, { head: "Execute", body: "Run training sessions with the groups and assignments the room needs." }, { head: "Measure", body: "Capture testing and training load in the same workflow." }], media: <ProductShot productId="strength" /> },
   },
   inventory: {
     tint: "#8e6b3a", ico: glyphs.inventory,
-    media: <CardShot src="/marketing/screens/cards/inventory-photo.jpg" alt="A school athletics inventory room" />,
-    detail: { headline: "Every item accounted for.", lead: "Size athletes, catalog physical items, issue and collect, track custody and counts, plan maintenance, and purchase what is short.", bullets: [{ head: "Issue and collect", body: "Match items to athlete sizes and keep custody history." }, { head: "Count and maintain", body: "Track storage, physical counts, loans, reservations, and maintenance." }, { head: "Purchase", body: "Turn shortages into purchasing needs with the item history intact." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/buying-needs.png" alt="Inventory buying needs and purchasing plan" /></div>, ctas: <a href="/inventory" className="v3-spot-alt">Explore Inventory</a> },
+    media: <CardShot productId="inventory" />,
+    detail: { headline: "Every item accounted for.", lead: "Size athletes, catalog physical items, issue and collect, track custody and counts, plan maintenance, and purchase what is short.", bullets: [{ head: "Issue and collect", body: "Match items to athlete sizes and keep custody history." }, { head: "Count and maintain", body: "Track storage, physical counts, loans, reservations, and maintenance." }, { head: "Purchase", body: "Turn shortages into purchasing needs with the item history intact." }], media: <ProductShot productId="inventory" />, ctas: <a href="/inventory" className="v3-spot-alt">Explore Inventory</a> },
   },
   scouting_film_analytics: {
     tint: "#5b52a3", ico: glyphs.scouting,
-    media: <CardShot src="/marketing/screens/cards/strategy-photo.jpg" alt="A coaching staff reviewing strategy" />,
-    detail: { headline: "See the opponent. Review the film. Learn from the work.", lead: "Keep scouting, film, and analysis together so the staff can prepare and review from one focused product.", bullets: [{ head: "Scout", body: "Organize opponent information and scouting reports." }, { head: "Review", body: "Keep film review in the same staff workflow." }, { head: "Analyze", body: "Use performance analysis to support the next decision." }], media: <div className="v3-spot-media"><ProductShot src="/marketing/screens/strategy-playbook.png" alt="The scouting and strategy workspace" /></div>, ctas: <a href="/scouting-film-analytics" className="v3-spot-alt">Explore Scouting, Film &amp; Analytics</a> },
+    media: <CardShot productId="scouting_film_analytics" />,
+    detail: { headline: "Teach the system. Prepare with purpose.", lead: "Connect playbooks, opponent scouting, and film review in one teaching workspace.", bullets: [{ head: "Scout", body: "Organize opponent information and scouting reports." }, { head: "Review", body: "Keep film review in the same staff workflow." }, { head: "Teach", body: "Assign clips and installs, then check understanding with quizzes." }], media: <ProductShot productId="scouting_film_analytics" />, ctas: <a href="/strategy-film" className="v3-spot-alt">Explore Strategy &amp; Film</a> },
+  },
+  live_game_analytics: {
+    tint: "#0b7285", ico: glyphs.scouting,
+    media: <CardShot productId="live_game_analytics" />,
+    detail: { headline: "Capture the possession. See the game.", lead: "Live Game & Analytics is built for basketball: capture events as they happen and turn them into player, team, and lineup insight.", bullets: [{ head: "Capture", body: "Log basketball events and possessions with immediate live updates." }, { head: "Analyze", body: "Review player and team stats, shot charts, lineups, and season reports." }, { head: "Review", body: "Keep the staff connected through live basketball dashboards." }], media: <ProductShot productId="live_game_analytics" includeAnalytics />, ctas: <a href="/live-game-analytics" className="v3-spot-alt">Explore Live Game &amp; Analytics</a> },
   },
 };
 
 export function ModularLandingPage() {
-  const modalProducts = PRODUCT_CATALOG.map((product) => ({ ...product, desc: product.description, ...PRESENTATION[product.id] }));
-  return <div className="rx"><Reveal /><PlanPrefill /><SiteNav /><HeroV3 /><ProductGrid /><ModuleModal modules={modalProducts} /><IncludedOperations /><ConnectedWorkspace /><PricingSection /><Growth /><LeadForm /><Faq /><CtaBand /><Trust /><SiteFooter /></div>;
+  const modalProducts = PRODUCT_CATALOG.map((product) => ({ ...product, desc: product.description, chip: formatAnnualPrice(product.price), ...PRESENTATION[product.id] }));
+  return <div className="rx"><Reveal /><PlanPrefill /><SiteNav /><HeroV3 /><ProductGrid /><ModuleModal modules={modalProducts} /><ConnectedWorkspace /><AnnualPricing /><Growth /><LeadForm /><Faq /><CtaBand /><Trust /><SiteFooter /></div>;
 }
 
 function ProductGrid() {
-  return <section className="v3-platform" id="platform"><div className="container"><div className="v3-sec-head reveal"><h2 className="rx-display v3-h2">Four products. One connected platform.</h2><p>Choose only the focused products your program needs. Every selection works from the same included Athlete Operations/Core foundation.</p></div><div className="v3-grid v3-grid--products">{PRODUCT_CATALOG.map((product) => { const presentation = PRESENTATION[product.id]; return <a className="v3-card reveal" href={`?m=${product.slug}`} data-module={product.slug} key={product.id} id={product.slug}><div className="v3-card-media">{presentation.media}</div><div className="v3-card-body"><div className="v3-card-top"><span className="v3-mod-ico" style={{ background: presentation.tint, color: "#fff" }}>{presentation.ico}</span><h3>{product.name}</h3><span className="v3-chip">{formatAnnualPrice(product.price)}</span></div><p>{product.description}</p><ul className="product-feature-list">{product.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><span className="v3-card-link">See what&apos;s included <Ico.arrow width="13" height="13" /></span></div></a>; })}</div></div></section>;
+  return (
+    <section className="v3-platform" id="platform">
+      <div className="container">
+        <div className="v3-sec-head reveal">
+          <h2 className="rx-display v3-h2">Five packages. One connected platform.</h2>
+          <p>Core is included with every package. Start with one or combine the tools your program needs.</p>
+        </div>
+        <PackageCarousel names={PRODUCT_CATALOG.map((product) => product.name)}>
+          {PRODUCT_CATALOG.map((product) => {
+            const presentation = PRESENTATION[product.id];
+            return (
+              <a className="v3-card" href={`?m=${product.slug}`} data-module={product.slug} key={product.id} id={product.slug} aria-haspopup="dialog">
+                <div className="v3-card-media">{presentation.media}</div>
+                <div className="v3-card-body">
+                  <div className="v3-card-top">
+                    <span className="v3-mod-ico" style={{ background: presentation.tint, color: "#fff" }}>{presentation.ico}</span>
+                    <h3>{product.name}</h3>
+                    <span className="v3-chip">{formatAnnualPrice(product.price)}</span>
+                  </div>
+                  <p>{product.description}</p>
+                  <ul className="product-feature-list">{product.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+                  <span className="v3-card-link">See what&apos;s included <Ico.arrow width="13" height="13" /></span>
+                </div>
+              </a>
+            );
+          })}
+        </PackageCarousel>
+        <p className="marketing-demo-caption">{DEMO_SCREENSHOT_CAPTION}</p>
+      </div>
+    </section>
+  );
 }
 
-export function IncludedOperations() {
-  return <section className="section included-ops" id="included"><div className="container included-ops-grid"><div className="reveal"><p className="eyebrow"><span className="dot" />Included With Every Product</p><h2 className="rx-display rx-h2">Athlete Operations/Core is the shared foundation.</h2><p className="rx-lead">Every product purchase includes Athlete Operations/Core for the connected team, athlete, trip, meal, and communication work around it. The foundation cannot be purchased separately.</p><a className="btn btn-ghost" href="/team-athlete-operations">Explore the Included Foundation <Ico.arrow /></a></div><ul className="included-ops-list reveal">{FOUNDATION_CAPABILITIES.map((item) => <li key={item}><Ico.check width="16" height="16" />{item}</li>)}</ul></div></section>;
-}
-
-const CONNECTIONS = [{ title: "Choose the job", body: "Select Practice, Strength & Conditioning, Inventory, or Scouting, Film & Analytics." }, { title: "Keep one foundation", body: "Every purchased product uses the same rosters, schedules, trips, meals, forms, messaging, and family access." }, { title: "See only what matters", body: "Choose only the paid products your program needs without presenting the shared foundation as another plan." }, { title: "Add products later", body: "Combine products with simple additive annual pricing when another area is ready." }];
+const CONNECTIONS = [{ title: "Choose the job", body: "Choose Practice, Performance, Strategy & Film, Live Game & Analytics, or Inventory." }, { title: "Keep one foundation", body: "Every purchased product uses the same rosters, schedules, trips, meals, forms, messaging, and family access." }, { title: "See only what matters", body: "Add the specialist tools your program needs. Core keeps people, communication, and scheduling connected." }, { title: "Add products later", body: "Combine products with simple additive annual pricing when another area is ready." }];
 
 function ConnectedWorkspace() {
-  return <section className="section connected-workspace"><div className="container"><div className="section-head center reveal"><h2 className="rx-display rx-h2">One workspace, shaped around your program.</h2><p className="rx-lead">Four focused products share one included operational foundation.</p></div><ol className="connection-grid reveal">{CONNECTIONS.map((item, index) => <li key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol></div></section>;
-}
-
-export function PricingSection() {
-  return <section className="section rx-pricing" id="pricing"><div className="container"><div className="section-head center reveal" style={{ maxWidth: 820, margin: "0 auto" }}><p className="eyebrow"><span className="dot" />Simple Additive Pricing</p><h2 className="rx-display rx-h2">Choose the tools your program needs.</h2><p className="rx-lead">Every product is $250 per program, per year. Choose one or combine several. Athlete Operations/Core is included with any product purchase.</p></div><div className="plans plans--products reveal">{PRODUCT_CATALOG.map((product) => <article className="plan" key={product.id}><div className="plan-name">{product.name}</div><div className="plan-for">{product.description}</div><div className="plan-price"><span className="cur">$</span><span className="amt">{product.price}</span><span className="per">/year</span></div><div className="plan-qualifier">Per program</div><hr className="div" /><ul className="plan-feats">{product.features.map((feature) => <li key={feature}><Ico.check className="ck" width="15" height="15" />{feature}</li>)}</ul><div className="plan-cta"><a href={productSignupHref(product.id)} data-product={product.id} className="btn btn-block btn-primary">Start with {product.name} <Ico.arrow /></a></div></article>)}</div><div className="pricing-examples reveal" aria-label="Example additive product totals"><h3>How additive pricing works</h3><div className="pricing-example-grid"><div><span>One product</span><strong>{formatAnnualPrice(PRODUCT_CATALOG[0].price)}</strong></div><div><span>Any two products</span><strong>{formatAnnualPrice(PRODUCT_CATALOG[0].price * 2)}</strong></div><div><span>All four products</span><strong>{formatAnnualPrice(ALL_PRODUCTS_ANNUAL_PRICE)}</strong></div></div><p>Prices add together. These examples are not separately named bundles and do not include a bundle discount.</p></div></div></section>;
+  return <section className="section connected-workspace"><div className="container"><div className="section-head center reveal"><h2 className="rx-display rx-h2">One workspace, shaped around your program.</h2><p className="rx-lead">Five focused packages share one included Core.</p></div><ol className="connection-grid reveal">{CONNECTIONS.map((item, index) => <li key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol></div></section>;
 }
 
 function Growth() {
-  return <section className="section growth-band"><div className="container growth-grid reveal"><div><p className="eyebrow"><span className="dot" />Choose What You Need</p><h2 className="rx-display rx-h2">Start focused. Add another product when it fits.</h2></div><div><p>Each product costs the same $250 per program, per year. The shared Athlete Operations/Core foundation is included with the first product and remains connected as you add more.</p><a className="btn btn-primary" href="#access">Request a Demo <Ico.arrow /></a></div></div></section>;
+  return <section className="section growth-band"><div className="container growth-grid reveal"><div><p className="eyebrow"><span className="dot" />Choose What You Need</p><h2 className="rx-display rx-h2">Start focused. Add another product when it fits.</h2></div><div><p>Package prices add together, with Core included at no extra charge. Start with the work that matters today and add another package when your program needs it.</p><a className="btn btn-primary" href="#access">Request a Demo <Ico.arrow /></a></div></div></section>;
 }
 
-const FAQ_ITEMS = [{ q: "Do we have to buy all four products?", a: "No. Choose only the product or products your program needs. Each product is $250 per program, per year." }, { q: "How does additive pricing work?", a: "One product is $250/year, any two products are $500/year, and all four products are $1,000/year. These are additive totals, not discounted bundles." }, { q: "What is included with every product?", a: "Athlete Operations/Core is included with any product purchase: athlete and staff rosters, schedules, games and results, trips and meals, attendance and availability, health and return-to-play coordination, forms, academics, messaging, and family access." }, { q: "Can we buy Athlete Operations/Core by itself?", a: "No. It is the shared foundation included with a product purchase, not a standalone product or free plan." }, { q: "Where do trips and meals belong?", a: "Trips and meals are capabilities in the included Athlete Operations/Core foundation. They are not a separate paid product." }, { q: "Are these four separate apps?", a: "No. They are four selectable products inside one connected platform, using the same included Athlete Operations/Core foundation." }];
+const FAQ_ITEMS = [
+  { q: "Do we have to buy all five packages?", a: "No. Choose one package or combine several. Practice is $250/year, Performance is $500/year, Strategy & Film is $250/year, Live Game & Analytics is $250/year, and Inventory is $400/year. Each includes Core." },
+  { q: "What does per program mean?", a: "A program covers one sport and its teams, such as Varsity, JV, and Freshman. Prices are per program, per year, billed annually in USD." },
+  { q: "How does additive pricing work?", a: "Add the annual prices of your selected packages. Practice plus Performance is $750/year; all five packages are $1,650/year. Core has no separate charge. These totals do not assume a bundle discount." },
+  { q: "What is included in Core?", a: "Core includes rosters, accounts, invitations, communication, scheduling, calendars, basic results, attendance and absences, manual Athlete Care, Game Operations, Travel & Meals, and Public Presence. Optional Core tools can be turned on as needed." },
+  { q: "Can we buy Core by itself?", a: "Core is included with a paid package and is not sold separately." },
+  { q: "Does Practice include uploaded drill videos?", a: "Practice includes YouTube and Vimeo drill links. Uploaded drill videos require Strategy & Film and use the same shared hosted video allowance as Film and Playbook." },
+  { q: "What video allowance comes with Strategy & Film?", a: "Each annual subscription includes 10 hours of new uploads, 10 hours stored at once, and 10,000 delivered playback minutes across viewers, at Basic 1080p. Sharing one uploaded asset between Film, Playbook, and Practice counts it once. YouTube and Vimeo links are unlimited." },
+  { q: "Which sports does Live Game & Analytics support?", a: "Live Game & Analytics currently supports basketball only. Core includes basic scheduling, scores, and results for every program; live event capture, shot charts, and basketball analytics are in the paid package." },
+];
 
 const FAQ_SCHEMA = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQ_ITEMS.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) };
 

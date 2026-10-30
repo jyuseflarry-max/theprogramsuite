@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { PRODUCT_CATALOG, annualTotal, formatAnnualPrice } from "@/lib/product-catalog";
 
 /**
  * Plan pre-fill for the lead form.
@@ -19,7 +20,20 @@ export function PlanPrefill() {
       if (match) select.value = match.value;
     };
 
-    selectProduct(new URLSearchParams(window.location.search).get("product"));
+    const params = new URLSearchParams(window.location.search);
+    selectProduct(params.get("product"));
+
+    // Compute from our catalog, never from a price supplied in the URL. Keep the
+    // chosen combination in the existing CRM message field through the POST.
+    const requested = new Set((params.get("packages") || "").split(","));
+    const products = PRODUCT_CATALOG.filter((product) => requested.has(product.id));
+    if (products.length > 1) {
+      selectProduct("multiple_products");
+      const message = document.getElementById("f-message") as HTMLTextAreaElement | null;
+      if (message && !message.value.trim()) {
+        message.value = `Package estimate: ${products.map((product) => product.name).join(" + ")} — ${formatAnnualPrice(annualTotal(products.map((product) => product.id)))} per program, billed annually. Core included.\n\n`;
+      }
+    }
 
     const onClick = (event: MouseEvent) => {
       const trigger = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-product]");

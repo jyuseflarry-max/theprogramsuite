@@ -7,12 +7,12 @@ import { JsonLd } from "@/components/StructuredData";
 export const metadata: Metadata = {
   title: "Athletic Department Software",
   description:
-    "Give each athletic program the operational products it needs, with shared team and athlete operations, staff roles, audit trails, and department visibility.",
+    "Choose from five annual products priced $250–$500 per program, covering every team, with included Athlete Operations/Core and department visibility.",
   alternates: { canonical: "/athletic-department-software" },
   openGraph: {
     title: "Athletic Department Software | The Program Suite",
     description:
-      "Four $250 annual products for every program, with Athlete Operations/Core included with any product purchase.",
+      "Five annual products priced $250–$500 per program cover every team, with Athlete Operations/Core included with any paid product.",
     type: "website",
     url: "https://www.theprogramsuite.com/athletic-department-software",
     siteName: "The Program Suite",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Athletic Department Software | The Program Suite",
-    description: "One platform for every program in the department, with a roll-up view for the AD.",
+    description: "Five annual products from $250 per program, covering every team, with included Athlete Operations/Core and a roll-up view for the AD.",
     images: ["/images/og-coach.jpg"],
   },
 };
@@ -37,11 +37,11 @@ const breadcrumb = {
 
 const JOBS: { t: string; d: string }[] = [
   { t: "Every program, one platform", d: "Football, basketball, volleyball, cross country — each program runs day to day, and the department sees all of them in one place." },
-  { t: "Roll-up for the AD", d: "Roster, availability, Inventory, and staff across every program, rolled up so the athletic director isn't chasing twenty coaches for a number." },
+  { t: "Roll-up for the AD", d: "Roster, availability, staff, and purchased product activity across programs, rolled up so the athletic director isn't chasing twenty coaches for a number." },
   { t: "Staff roles and access", d: "Give each coach, assistant, and administrator exactly the access they need — and nothing they don't — across the whole department." },
   { t: "Audit trails built in", d: "Who changed what, when — a full record across programs, so accountability isn't a favor you ask a coach for." },
-  { t: "Athlete operations at a glance", d: "Attendance, availability, health, readiness, forms, academics, and standards stay connected to the athlete record." },
-  { t: "Equipment across programs", d: "Every program's gear, issued and collected, with fees and shortages visible department-wide instead of siloed in a closet." },
+  { t: "Athlete operations at a glance", d: "Attendance, availability, health, readiness, forms, and manual academic check-ins stay connected to the athlete record." },
+  { t: "Equipment across programs", d: "For programs with Inventory, gear, fees, and shortages stay visible department-wide instead of siloed in a closet." },
 ];
 
 const DEEPER: { t: string; d: string }[] = [

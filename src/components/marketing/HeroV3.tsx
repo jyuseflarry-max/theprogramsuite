@@ -3,25 +3,21 @@
 import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import { PRODUCT_CATALOG, formatAnnualPrice } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 
 /**
- * Rotating hero (Adobe-style): four first-person hero photos, one per
+ * Rotating hero (Adobe-style): five product panes, one per
  * category card. Rolling over (or focusing) a card slides its pane in and
- * swaps the headline. Pane images live in /marketing/redesign/hero-*.jpg and
- * are rebuilt from the -blank originals by scripts/compose-hero-screens.py.
+ * swaps the headline. Every pane uses the matching current application capture.
  */
 
 type Pane = {
-  img: string;
-  alt: string;
   h1: ReactNode;
   sub: string;
 };
 
-const PANES: Pane[] = [
-  {
-    img: "/marketing/redesign/hero-run.jpg",
-    alt: "First-person view of a coach's desk: The Program Suite home dashboard on the monitor, the coach app on an iPhone, the gym through the window",
+const PANES: Record<string, Pane> = {
+  practice: {
     h1: (
       <>
         Build and run
@@ -31,9 +27,7 @@ const PANES: Pane[] = [
     ),
     sub: "Practice plans, drills, templates, live execution, boards, and reports—one focused product for the work your staff does every day.",
   },
-  {
-    img: "/marketing/redesign/hero-fund.jpg",
-    alt: "First-person view of a coach reviewing athlete work on a phone beside the field",
+  strength: {
     h1: (
       <>
         Run the room.
@@ -41,11 +35,9 @@ const PANES: Pane[] = [
         Understand the <em>work.</em>
       </>
     ),
-    sub: "Strength & Conditioning brings programs, workouts, exercises, sessions, testing, and training load into one connected product.",
+    sub: "Performance brings training programs, workouts, athlete logging, testing, personal records, and the live weight room into one connected product.",
   },
-  {
-    img: "/marketing/redesign/hero-family.jpg",
-    alt: "First-person view of a family reviewing team information on a phone",
+  inventory: {
     h1: (
       <>
         Know what you own.
@@ -55,9 +47,7 @@ const PANES: Pane[] = [
     ),
     sub: "Inventory keeps athlete sizing, catalog, issue and collection, custody, counts, maintenance, and purchasing together.",
   },
-  {
-    img: "/marketing/redesign/hero-game.jpg",
-    alt: "First-person view at the scorer's table with a coaching workspace open",
+  scouting_film_analytics: {
     h1: (
       <>
         Scout. Review.
@@ -65,9 +55,19 @@ const PANES: Pane[] = [
         Find the <em>edge.</em>
       </>
     ),
-    sub: "Scouting, Film & Analytics keeps opponent preparation, film review, and performance analysis in one staff workflow.",
+    sub: "Strategy & Film connects playbooks, opponent scouting, film sessions, clip review, and teaching assignments before the next game.",
   },
-];
+  live_game_analytics: {
+    h1: (
+      <>
+        Capture the game.
+        <br />
+        Understand every <em>possession.</em>
+      </>
+    ),
+    sub: "Live Game & Analytics gives basketball staffs live stat capture, possessions, lineups, and game reports in a dedicated game-day workflow.",
+  },
+};
 
 type CategoryPresentation = { ico: ReactNode; tint: string; dark?: boolean };
 
@@ -112,13 +112,25 @@ const CATEGORY_PRESENTATION: Record<string, CategoryPresentation> = {
       </svg>
     ),
   },
+  live_game_analytics: {
+    tint: "#c24b2a",
+    ico: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3v18M5.6 5.6c6 1 6 11.8 0 12.8M18.4 5.6c-6 1-6 11.8 0 12.8" />
+      </svg>
+    ),
+  },
 };
 
 const CATS = PRODUCT_CATALOG.map((product) => ({
+  id: product.id,
   t: product.name,
   d: formatAnnualPrice(product.price),
   href: `?m=${product.slug}`,
   mod: product.slug,
+  pane: PANES[product.id],
+  shot: PRODUCT_SCREENSHOTS[product.id],
   ...CATEGORY_PRESENTATION[product.id],
 }));
 
@@ -129,35 +141,23 @@ export function HeroV3() {
 
   return (
     <>
-      <header className="v3-hero">
-        {PANES.map((p, i) => (
-          <div className={"v3-pane" + (i === pane ? " on" : "")} key={p.img} aria-hidden={i !== pane}>
-            <Image
-              src={p.img}
-              alt={i === pane ? p.alt : ""}
-              fill
-              sizes="100vw"
-              priority={i === 0}
-              style={{ objectFit: "cover", objectPosition: "center 30%" }}
-            />
-          </div>
-        ))}
-        <div className="v3-hero-scrim" aria-hidden="true" />
+      <header className="v3-hero v3-hero--product-screens">
         <div className="container v3-hero-in">
-          {/* All four copy blocks share one grid cell, so the block (and the
+          <div className="v3-hero-message">
+          {/* All five copy blocks share one grid cell, so the block (and the
               buttons below it) keeps the height of the tallest copy — nothing
               jumps when panes swap. */}
           <div className="v3-hero-copies">
-            {PANES.map((p, i) =>
+            {CATS.map((c, i) =>
               i === 0 ? (
-                <div className={"v3-hero-copy" + (i === pane ? " on" : "")} key={p.img} aria-hidden={i !== pane}>
-                  <h1 className="rx-display v3-h1">{p.h1}</h1>
-                  <p className="v3-hero-sub">{p.sub}</p>
+                <div className={"v3-hero-copy" + (i === pane ? " on" : "")} key={c.id} aria-hidden={i !== pane}>
+                  <h1 className="rx-display v3-h1">{c.pane.h1}</h1>
+                  <p className="v3-hero-sub">{c.pane.sub}</p>
                 </div>
               ) : (
-                <div className={"v3-hero-copy" + (i === pane ? " on" : "")} key={p.img} aria-hidden={i !== pane}>
-                  <p className="rx-display v3-h1">{p.h1}</p>
-                  <p className="v3-hero-sub">{p.sub}</p>
+                <div className={"v3-hero-copy" + (i === pane ? " on" : "")} key={c.id} aria-hidden={i !== pane}>
+                  <p className="rx-display v3-h1">{c.pane.h1}</p>
+                  <p className="v3-hero-sub">{c.pane.sub}</p>
                 </div>
               ),
             )}
@@ -170,6 +170,23 @@ export function HeroV3() {
               Explore the products
             </a>
           </div>
+          </div>
+          <figure className="v3-hero-visual">
+            <div className="v3-hero-shot-stage">
+              {CATS.map((c, i) => (
+                <div className={"v3-pane" + (i === pane ? " on" : "")} key={c.id} aria-hidden={i !== pane}>
+                  <Image
+                    src={c.shot.src}
+                    alt={i === pane ? c.shot.alt : ""}
+                    fill
+                    sizes="(max-width: 900px) 92vw, 48vw"
+                    priority={i === 0}
+                  />
+                </div>
+              ))}
+            </div>
+            <figcaption className="marketing-demo-caption v3-hero-demo-caption">{DEMO_SCREENSHOT_CAPTION}</figcaption>
+          </figure>
         </div>
       </header>
 

@@ -10,7 +10,7 @@ import { Ico } from "@/components/marketing/icons";
  * Any element on the page with a `data-module="<slug>"` attribute (the grid
  * cards, the hero category cards) opens the matching panel in place. The open
  * module is reflected in the URL as `?m=<slug>`, so a panel is shareable, the
- * browser back button closes it, and a link that lands directly on `?m=studio`
+ * browser back button closes it, and a link that lands directly on `?m=practice`
  * opens straight into that panel.
  *
  * Cards stay real <a href="?m=slug"> links, so this is pure enhancement:
@@ -38,6 +38,7 @@ export type ModalMod = {
   ico: ReactNode;
   media: ReactNode;
   detail?: ModDetail;
+  note?: string;
 };
 
 const getParam = () =>
@@ -59,6 +60,7 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
   const triggerRef = useRef<HTMLElement | null>(null); // element to restore focus to
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
   openRef.current = slug !== null;
 
@@ -153,7 +155,24 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
   useEffect(() => {
     if (!slug) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closePanel();
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePanel();
+      }
+      if (e.key === "Tab") {
+        const controls = Array.from(panelRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? []).filter((element) => element.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls.at(-1);
+        if (e.shiftKey && (document.activeElement === first || !panelRef.current?.contains(document.activeElement))) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || !panelRef.current?.contains(document.activeElement))) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     };
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -181,6 +200,7 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
       }}
     >
       <div
+        ref={panelRef}
         className="v3-modal-panel"
         role="dialog"
         aria-modal="true"
@@ -221,6 +241,7 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
             <div className="v3-modal-copy">
               <h3 className="rx-display v3-spot-h3">{d ? d.headline : mod.name}</h3>
               <p className="v3-spot-lead">{d ? d.lead : mod.desc}</p>
+              <p className="v3-modal-core">Core included · per program, billed annually</p>
               {d?.bullets && (
                 <ul className="v3-spot-list">
                   {d.bullets.map((b, i) => (
@@ -233,6 +254,7 @@ export function ModuleModal({ modules }: { modules: ModalMod[] }) {
                   ))}
                 </ul>
               )}
+              {mod.note && <p className="v3-modal-package-note">{mod.note}</p>}
               {d ? (
                 d.ctas && <div className="v3-spot-cta">{d.ctas}</div>
               ) : (

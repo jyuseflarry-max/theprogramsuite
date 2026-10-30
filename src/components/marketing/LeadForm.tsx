@@ -18,19 +18,19 @@ export function LeadForm() {
             <h2 className="h-display h2">See it working for your program.</h2>
             <p>
               Tell us what job your program needs to solve. We&apos;ll show you the right
-              product mix in one connected workspace.
+              product mix and annual pricing in one connected workspace.
             </p>
             <ul className="lead-assure">
               <li>
-                <Ico.check className="ck" width="16" height="16" /> Every product is $250 per program,
-                per year
+                <Ico.check className="ck" width="16" height="16" /> Annual pricing per program,
+                including all its teams
               </li>
               <li>
                 <Ico.check className="ck" width="16" height="16" /> Choose one product or combine several
               </li>
               <li>
-                <Ico.check className="ck" width="16" height="16" /> Athlete Operations/Core is included
-                with any product purchase
+                <Ico.check className="ck" width="16" height="16" /> Core is included
+                with any paid product
               </li>
             </ul>
           </div>

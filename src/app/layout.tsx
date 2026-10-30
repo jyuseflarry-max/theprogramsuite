@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s | The Program Suite",
   },
   description:
-    "Choose Practice, Strength & Conditioning, Inventory, or Scouting, Film & Analytics for $250 per program, per year each. Athlete Operations/Core is included with any product purchase.",
+    "Choose from five annual products priced $250–$500 per program, covering every team. Athlete Operations/Core is included with any paid product.",
   keywords: [
     "athletic program management software",
     "athletic department software",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Athletic Program Management Software | The Program Suite",
     description:
-      "Four annual products at $250 per program, per year each, with Athlete Operations/Core included with any product purchase.",
+      "Five annual products priced $250–$500 per program, covering every team, with Athlete Operations/Core included with any paid product.",
     type: "website",
     url: "https://www.theprogramsuite.com",
     siteName: "The Program Suite",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Athletic Program Management Software | The Program Suite",
     description:
-      "Choose the tools your program needs. Four $250 annual products share one included Athlete Operations/Core foundation.",
+      "Choose the tools your program needs. Five annual products from $250 per program cover every team and include Athlete Operations/Core.",
     images: ["/images/og-coach.jpg"],
   },
 };

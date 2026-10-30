@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowBtn, Eyebrow } from "@/components/primitives";
-import { getProduct, productSignupHref } from "@/lib/product-catalog";
+import { formatAnnualPrice, getProduct, productInquiryHref } from "@/lib/product-catalog";
+import { DEMO_SCREENSHOT_CAPTION, PRODUCT_SCREENSHOTS } from "@/lib/marketing-screenshots";
 
 const INVENTORY = getProduct("inventory")!;
 
 export const metadata: Metadata = {
   title: "Athletic Inventory Software",
   description:
-    "Inventory for school athletics: athlete sizing, catalog, issue and collection, custody, storage counts, loans, reservations, maintenance, purchasing, and fees.",
+    "Inventory for school athletics: catalog, sizing, custody, counts, loans, reservations, maintenance, purchasing, and fees for $400 per program, per year. All teams and Core are included.",
   alternates: { canonical: "/inventory" },
   openGraph: {
     title: "Athletic Inventory Software | The Program Suite",
@@ -84,8 +86,21 @@ export default function EquipmentPage() {
             issue it, track it, collect it, settle the fees, and reorder what&apos;s short.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
+            <ArrowBtn href={productInquiryHref(INVENTORY.id)} large>Request an Inventory Demo</ArrowBtn>
             <ArrowBtn href="/pricing" variant="ghost" large>See pricing</ArrowBtn>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b" style={{ borderColor: "var(--color-line)" }}>
+        <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-[18px]"><Eyebrow>Inside Inventory</Eyebrow></div>
+          <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>See the Inventory workspace.</h2>
+          <div className="mt-8">
+            <figure className="marketing-product-shot">
+              <Image {...PRODUCT_SCREENSHOTS.inventory} sizes="(max-width: 1240px) 100vw, 1176px" />
+              <figcaption className="marketing-demo-caption">{DEMO_SCREENSHOT_CAPTION}</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -145,11 +160,11 @@ export default function EquipmentPage() {
         <div className="mx-auto max-w-[1240px] px-5 py-16 md:px-8 md:py-20">
           <div className="mb-[18px]"><Eyebrow>Inventory Pricing</Eyebrow></div>
           <h2 className="display" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>
-            Inventory is <span className="headline-italic">$250 per program, per year.</span>
+            Inventory is <span className="headline-italic">{formatAnnualPrice(INVENTORY.price)} per program.</span>
           </h2>
           <div className="mt-10 p-6" style={{ background: "var(--color-ink)", color: "var(--color-paper)" }}>
             <p className="text-[13px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--color-accent)" }}>Included With Inventory</p>
-            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Athlete Operations/Core keeps Inventory connected to rosters, schedules, athlete records, staff, messaging, and family access. Add another product later without rebuilding any of it.</p>
+            <p className="mt-3 text-[15px] leading-[1.6] opacity-85">Every team in your program is included. Core keeps Inventory connected to rosters, schedules, athlete records, staff, messaging, and family access. Add another product later without rebuilding any of it.</p>
           </div>
           <div className="mt-8">
             <ArrowBtn href="/pricing">See All Product Pricing</ArrowBtn>
@@ -164,11 +179,11 @@ export default function EquipmentPage() {
             Spend the season coaching, <span className="headline-italic">not counting.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[560px] text-[16px] leading-[1.65] text-[color:var(--color-muted)]">
-            Most programs start with inventory — and grow into the rest whenever
-            they&apos;re ready.
+            Start with Inventory and add another product whenever your
+            program is ready.
           </p>
           <div className="mt-8 flex justify-center">
-            <ArrowBtn href={productSignupHref(INVENTORY.id)} large>Start with Inventory</ArrowBtn>
+            <ArrowBtn href={productInquiryHref(INVENTORY.id)} large>Request an Inventory Demo</ArrowBtn>
           </div>
         </div>
       </section>
