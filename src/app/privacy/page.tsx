@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const EFFECTIVE_DATE = "July 19, 2026";
-const LAST_UPDATED   = "July 27, 2026";
+const LAST_UPDATED   = "November 27, 2026";
 const CONTACT_EMAIL  = "privacy@theprogramsuite.com";
 const CONTACT_ADDR   = "5900 Balcones Drive, Suite 29102, Austin, TX 78731";
 
@@ -49,7 +49,8 @@ export default function PrivacyPage() {
             coaching, athletic administration, and program management tools to high school and college athletic
             programs. The Program Suite is owned and operated by <strong>CJ3 Legacy Holdings, LLC</strong>, a Texas
             limited liability company. We operate the application at <strong>app.theprogramsuite.com</strong> and the marketing website at{" "}
-            <strong>theprogramsuite.com</strong> (collectively, the "Service"). Both sites are owned and operated
+            <strong>theprogramsuite.com</strong>, together with our Coach and Athlete mobile apps and
+            their Apple Watch companions (collectively, the "Service"). These services are owned and operated
             by CJ3 Legacy Holdings, LLC under the laws of the State of Texas.
           </p>
           <p className="mt-3">
@@ -100,6 +101,35 @@ export default function PrivacyPage() {
             <li>Strength training logs and nutrition data</li>
             <li>Disciplinary or behavioral notes entered by coaching staff</li>
           </ul>
+
+          <Subhead>Running Workouts and Location</Subhead>
+          <p>
+            When a program enables running workouts, athletes can record a run for an Individual
+            Workout or practice makeup using manual entry, the Athlete phone app, or its Apple Watch
+            companion. The workout result includes distance, elapsed time, pauses, interval splits
+            when available, and the recording source. It is associated with the signed-in account,
+            athlete, program, and assignment being completed.
+          </p>
+          <p className="mt-3">
+            GPS uses precise location only during a run you explicitly start, including while the
+            phone screen is locked or the Watch workout is active. Location permission is optional;
+            measured-course and manual-entry options remain available. You can submit distance and
+            times without uploading route coordinates. Sharing a recorded route with authorized
+            program staff is a separate, optional choice, off by default. We do not use workout
+            location for advertising, cross-app tracking, or monitoring outside your active run.
+          </p>
+
+          <Subhead>Apple Health and Apple Watch Workouts</Subhead>
+          <p>
+            Apple Health import is optional and requires your permission. If you choose it, we read
+            the workout information needed to attach the run you select, including its timing,
+            distance, recording source, and available splits. Route information is read for upload
+            only if you separately choose to share that workout&apos;s route. User-entered Health
+            workouts remain identified as reported entries. Heart rate is not required. The Athlete
+            Watch companion can record an authorized workout and transfer its result to your linked
+            phone account. The Coach Watch companion remains a staff practice and game remote.
+            You can change location and Health permissions in your device settings.
+          </p>
 
           <Subhead>Communications</Subhead>
           <ul className="list-disc pl-5 space-y-1">
@@ -158,6 +188,12 @@ export default function PrivacyPage() {
             information about athletes and family members in that program. This is the core function
             of the Service. Athletes can view their own data. Family members can view data associated
             with their linked athlete.
+          </p>
+          <p className="mt-3">
+            Running results support assignment completion and coach review within that same
+            authorized scope. Optional route coordinates are available to the athlete and authorized
+            program staff; recording a run does not automatically share its route. A recording made
+            on a parent&apos;s device is not silently assigned to a child.
           </p>
 
           <Subhead>Training Staff (Medical Notes)</Subhead>
@@ -287,6 +323,14 @@ export default function PrivacyPage() {
 
         <Section title="8. Data Retention" id="data-retention">
           <p>
+            Optional uploaded running routes have a shorter retention period: access expires after
+            90 days, and expired route coordinates are removed by the daily purge. You can remove a
+            shared route sooner without deleting the distance/time result or the coach&apos;s
+            acceptance record. The required workout result follows the underlying assignment or
+            attendance record&apos;s retention policy. Pending workout results may remain in a private,
+            account-bound device journal so they can be recovered and synchronized.
+          </p>
+          <p>
             We retain your personal information for as long as your account is active and for a
             period following account closure or program cancellation as described below:
           </p>
@@ -369,7 +413,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1 mt-2">
             <li>All data is transmitted over encrypted HTTPS connections</li>
             <li>Passwords are hashed using industry-standard algorithms and are never stored in plaintext</li>
-            <li>Sensitive data fields (athletic performance and health metrics) are encrypted at rest using AES-256-GCM</li>
+            <li>Stored data is encrypted at rest by our hosting providers; selected sensitive fields receive additional AES-256-GCM field encryption</li>
             <li>File storage is hosted in private, access-controlled buckets; sensitive files are served via short-lived signed URLs</li>
             <li>Database access is governed by row-level security policies tied to each program's tenant context</li>
             <li>Access to production systems is restricted to authorized personnel</li>
